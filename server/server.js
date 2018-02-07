@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-
+const session = require('express-session')
 const dbConnection = require('./database') 
 // ROUTES
 const user = require('./routes/user');
@@ -15,6 +15,16 @@ app.use(
 		extended: false
 	})
 )
+
+//SESSIONS
+app.use(
+	session({
+		secret: 'bubbles',
+		resave: false,
+		saveUninitialized: false
+	})
+)
+
 app.use(bodyParser.json())
 
 //routing
