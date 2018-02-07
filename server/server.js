@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./database') 
 const passport = require('./passport');
 // ROUTES
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 app.use(
 	session({
 		secret: 'bubbles',
+		store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false,
 		saveUninitialized: false
 	})
