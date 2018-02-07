@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const session = require('express-session')
 const dbConnection = require('./database') 
+const passport = require('./passport');
 // ROUTES
 const user = require('./routes/user');
 const PORT = 8080
@@ -15,6 +16,7 @@ app.use(
 		extended: false
 	})
 )
+app.use(bodyParser.json())
 
 //SESSIONS
 app.use(
@@ -25,7 +27,9 @@ app.use(
 	})
 )
 
-app.use(bodyParser.json())
+// PASSPORT
+app.use(passport.initialize())
+app.use(passport.session())
 
 //routing
 app.use('/user', user);
