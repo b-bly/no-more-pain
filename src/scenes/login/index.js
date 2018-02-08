@@ -23,7 +23,7 @@ class LoginForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.user.loggedIn = true) {
+        if (nextProps.user.loggedIn === true) {
             this.setState({
                 redirectTo: '/'
             })
@@ -47,6 +47,8 @@ class LoginForm extends Component {
     }
 
     render() {
+        console.log('login rendered');
+        
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {

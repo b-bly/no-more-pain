@@ -1,20 +1,21 @@
 import axios from 'axios';
-const url = '/user/logout';
+const url = '/user/';
 
 export default function login() {
     return dispatch => {
-        console.log('login action');
-    
-        axios.post(url).then(res => {
-            console.log('login action res.data');
+        console.log('get user action user: ');
+        console.log();
+        axios.get(url).then(res => {
+            console.log('get user action res.data');
             console.log(res.data);
             const user = {
-                username: '',
-                loggedIn: false
-            }
+                username: res.data.user.username,
+                loggedIn: true 
+            };
+            if (!res.data.user.username) user.loggedIn = false;
             dispatch(postNewUserAsync(user));
         }).catch(function (error) {
-            console.log('error login : ');
+            console.log('error get user : ');
             console.log(error);
             dispatch(postNewUserAsync('fail'));
         });
@@ -23,7 +24,7 @@ export default function login() {
 
 function postNewUserAsync (payload) {
     return {
-        type: 'LOGOUT',
+        type: 'GET_USER',
         payload: payload
     }
 }

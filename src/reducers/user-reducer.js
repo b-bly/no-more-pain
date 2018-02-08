@@ -8,6 +8,8 @@ export default function (state = [], action) {
             return action.payload;
         case 'LOGOUT':
             return action.payload;
+        case 'GET_USER':
+            return action.payload;
         default:
             return state;
     }
