@@ -3,27 +3,22 @@ import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
 import '../App.css';
 import axios from 'axios'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+//actions
+import logout from '../actions/logout';
 
 class Navbar extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.logout = this.logout.bind(this)
     }
 
     logout(event) {
         event.preventDefault()
         console.log('logging out')
-        axios.post('/user/logout').then(response => {
-          console.log(response.data)
-          if (response.status === 200) {
-            this.props.updateUser({
-              loggedIn: false,
-              username: null
-            })
-          }
-        }).catch(error => {
-            console.log('Logout error')
-        })
+        this.props.logout(this.props.user);
       }
 
     render() {
@@ -69,4 +64,20 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+
+function mapStateToProps(state) {
+	console.log('login - mapStateToProps called, state: ');
+	console.log(state);
+	return {
+		user: state.user //users is labeled in reducers/index.js
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		logout: logout //binds function imported above to the name that will be available in this.props,
+		//so this.props.postNewUser
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

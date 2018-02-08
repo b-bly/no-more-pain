@@ -6,6 +6,8 @@ export default function (state = [], action) {
             return action.payload;
         case 'LOGIN':
             return action.payload;
+        case 'LOGOUT':
+            return action.payload;
         default:
             return state;
     }

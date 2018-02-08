@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-import UserForm from './user-form'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+//actions
+import login from '../../actions/login';
+//components
+import UserForm from '../login/user-form'
 
 class LoginForm extends Component {
     constructor() {
@@ -16,6 +22,14 @@ class LoginForm extends Component {
   
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user.loggedIn = true) {
+            this.setState({
+                redirectTo: '/'
+            })
+        }
+    }
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -26,29 +40,10 @@ class LoginForm extends Component {
         event.preventDefault()
         console.log('handleSubmit')
 
-        axios
-            .post('/user/login', {
-                username: this.state.username,
-                password: this.state.password
-            })
-            .then(response => {
-                console.log('login response: ')
-                console.log(response)
-                if (response.status === 200) {
-                    // update App.js state
-                    this.props.updateUser({
-                        loggedIn: true,
-                        username: response.data.username
-                    })
-                    // update the state to redirect to home
-                    this.setState({
-                        redirectTo: '/'
-                    })
-                }
-            }).catch(error => {
-                console.log('login error: ')
-                console.log(error);
-            })
+        this.props.login({
+			username: this.state.username,
+			password: this.state.password
+		})
     }
 
     render() {
@@ -70,4 +65,19 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm
+function mapStateToProps(state) {
+	console.log('login - mapStateToProps called, state: ');
+	console.log(state);
+	return {
+		user: state.user //users is labeled in reducers/index.js
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		login: login //binds function imported above to the name that will be available in this.props,
+		//so this.props.postNewUser
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

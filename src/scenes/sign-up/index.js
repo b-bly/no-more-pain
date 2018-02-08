@@ -87,4 +87,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
-//	export default SignupForm
+
