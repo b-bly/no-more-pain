@@ -61,7 +61,12 @@ class App extends Component {
         {/* Routes to different components */}
         <Route
           exact path="/"
-          component={Home} />
+          render={() =>
+          <Home 
+            username={this.state.username}
+            loggedIn={this.state.loggedIn}
+          />} 
+          />
         <Route
           path="/login"
           render={() =>
@@ -83,3 +88,14 @@ class App extends Component {
 }
 
 export default App;
+
+// CHEATSHEET
+
+// Conditional Rendering
+//     { this.props.loggedIn === true &&
+
+// {isLoggedIn ? (
+//   <LogoutButton onClick={this.handleLogoutClick} />
+// ) : (
+//   <LoginButton onClick={this.handleLoginClick} />
+// )}

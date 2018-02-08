@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
 
 class Home extends Component {
+    constructor() {
+        super();
+        this.state = {
+            redirectTo: null
+        }
+    }
     render() {
-        return (
-            <div>
-                <span>No More Pain</span>
-            </div>
-        )
-
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        } else {
+            return (
+                <div>
+                    <span>No More Pain</span>
+                </div>
+            )
+        }
     }
 }
 
-export default Home
+export default Home;
