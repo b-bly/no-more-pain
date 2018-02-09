@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
 import '../App.css';
+import './navbar.css';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

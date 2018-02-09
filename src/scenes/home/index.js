@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
     constructor() {
@@ -14,7 +15,8 @@ class Home extends Component {
         } else {
             return (
                 <div>
-                    <span>No More Pain</span>
+                    <p>No More Pain</p>
+                    <Link to="/injury-list">Injury List</Link>
                 </div>
             )
         }

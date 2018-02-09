@@ -7,6 +7,7 @@ import LoginForm from './scenes/login'
 import Navbar from './components/navbar'
 import Home from './scenes/home/index.js'
 import UserGreeting from './scenes/home/user-greeting'
+import InjuryList from './scenes/injury-list/index.js'
 
 class App extends Component {
   constructor() {
@@ -45,6 +46,9 @@ class App extends Component {
             <Signup
             />}
         />
+        <Route 
+          path="/injury-list"
+          component={InjuryList} />
 
       </div>
     );

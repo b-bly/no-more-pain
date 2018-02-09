@@ -10,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 
 //style
-import './index.css';
 import 'spectre.css/dist/spectre.min.css';
 import 'spectre.css/dist/spectre-icons.css';
 import './index.css';
