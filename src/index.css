@@ -3,3 +3,124 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.loading-container {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  width: 50vw;
+}
+.loading:after {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 2rem;
+}
+.btn-clear {
+  float: right;
+}
+.card { 
+  width: max-content;
+  margin-bottom: 7px;
+  margin-top: 7px;
+  box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .3);
+}
+.card-header, .card-header-treatment, .card-bdy {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+ 
+}
+
+.card-header h4,
+.modal-header h4 {
+  font-weight: 400;
+}
+.card-title-line {
+  height: 35px;
+}
+.card-line {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+}
+
+ .tooltip:after {
+  width: 190px;
+}
+.avatar {
+  margin: 1.5rem  2.5rem  1.5rem  0;
+}
+.btn-right {
+  display: flex;
+  flex-direction: row-reverse;
+  
+}
+.card-bdy  {
+  font-size: 1rem;
+  font-weight: 200;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+textarea.form-input {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register {
+  margin: 10px;
+}
+.color-picker-container {
+  display: flex;
+  align-items: center;
+}
+.navbar-item {
+  color: white;
+  margin: 10px;
+}
+
+.treatment-title {
+  text-align: left;
+  
+}
+.treatment-name {
+  font-weight: 400;
+}
+.upvotes {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.toggle {
+  opacity: 0.8;
+  cursor: pointer;
+}
+@media screen and (max-width: 700px) {
+  .card {
+    padding: .5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  .card .card-title {
+    font-size: 1rem;
+  }
+  .card-body p {
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+  .card-header {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
