@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 // components
-import Signup from './scenes/sign-up'
-import LoginForm from './scenes/login'
+import User from './scenes/user'
 import Navbar from './components/navbar'
 import Home from './scenes/home/index.js'
 import UserGreeting from './scenes/home/user-greeting'
@@ -37,11 +36,11 @@ class App extends Component {
         
         <Route
           path="/login"
-          component={LoginForm}
+          component={User}
         />
          <Route
           path="/signup"
-          component={LoginForm}
+          component={User}
         />
         
         

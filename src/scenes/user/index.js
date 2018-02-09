@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 import login from '../../actions/login';
 import signUp from '../../actions/sign-up';
 //components
-import UserForm from '../login/user-form'
+import UserForm from './user-form'
 
-class LoginForm extends Component {
+class User extends Component {
     constructor() {
         super()
         this.state = {
@@ -111,7 +111,7 @@ class LoginForm extends Component {
     }
 }
 
-LoginForm.propTypes = {
+User.propTypes = {
     username: PropTypes.string,
     password: PropTypes.string
 };
@@ -132,4 +132,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(User);
