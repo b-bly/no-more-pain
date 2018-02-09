@@ -1,7 +1,7 @@
 import axios from 'axios';
 const url = '/user/';
 
-export default function login() {
+export default function getUser() {
     return dispatch => {
         console.log('get user action user: ');
         console.log();
