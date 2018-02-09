@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+import { Redirect, Route, Switch } from 'react-router-dom'
 //REDUX
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 //actions
 import login from '../../actions/login';
+import signUp from '../../actions/sign-up';
 //components
 import UserForm from '../login/user-form'
 
@@ -18,9 +18,10 @@ class LoginForm extends Component {
             password: '',
             redirectTo: null
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.login = this.login.bind(this)
+        this.signup = this.signup.bind(this)
         this.handleChange = this.handleChange.bind(this)
-  
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -28,7 +29,13 @@ class LoginForm extends Component {
             this.setState({
                 redirectTo: '/'
             })
+        } else if (nextProps.user !== 'fail') {
+            //if successful login
+            this.setState({
+                redirectTo: '/login'
+            })
         }
+
     }
 
     handleChange(event) {
@@ -37,50 +44,92 @@ class LoginForm extends Component {
         })
     }
 
-    handleSubmit(event) {
+    login(event) {
         event.preventDefault()
         console.log('handleSubmit')
 
         this.props.login({
-			username: this.state.username,
-			password: this.state.password
-		})
+            username: this.state.username,
+            password: this.state.password
+        })
+    }
+
+    signup(event) {
+        event.preventDefault()
+        console.log('sign-up-form, username: ');
+        console.log(this.state.username);
+
+        this.props.signUp({
+            username: this.state.username,
+            password: this.state.password
+        })
     }
 
     render() {
         console.log('login rendered');
+        console.log(this.props);
+        const match = this.props.match;
+        console.log('match: ');
+        console.log(match);
         
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
                 <div>
-                    <h4>Login</h4>
-                   <UserForm 
-                   handleChange={this.handleChange}
-                   handleSubmit={this.handleSubmit} 
-                   username={this.state.username}
-                   password={this.state.password}
-                   buttonText="login" />
+
+                    <div>
+                       {match.url=="/login" ? (
+
+                       
+                                    <div>
+                                        <h4>Login</h4>
+                                        <UserForm
+                                            handleChange={this.handleChange}
+                                            handleSubmit={this.login}
+                                            username={this.state.username}
+                                            password={this.state.password}
+                                            buttonText="login" />
+                                    </div>
+                       ) : (
+                         
+                                    <div>
+                                        <h4>Sign up</h4>
+                                        <UserForm
+                                            handleChange={this.handleChange}
+                                            handleSubmit={this.signup}
+                                            username={this.state.username}
+                                            password={this.state.password}
+                                            buttonText="submit" />
+                                    </div>
+                       )}
+                           
+                    </div>
                 </div>
             )
         }
     }
 }
 
+LoginForm.propTypes = {
+    username: PropTypes.string,
+    password: PropTypes.string
+};
+
 function mapStateToProps(state) {
-	console.log('login - mapStateToProps called, state: ');
-	console.log(state);
-	return {
-		user: state.user //users is labeled in reducers/index.js
-	};
+    console.log('login - mapStateToProps called, state: ');
+    console.log(state);
+    return {
+        user: state.user //users is labeled in reducers/index.js
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		login: login //binds function imported above to the name that will be available in this.props,
-		//so this.props.postNewUser
-	}, dispatch);
+    return bindActionCreators({
+        login: login,
+        signUp: signUp //binds function imported above to the name that will be available in this.props,
+        //so this.props.postNewUser
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

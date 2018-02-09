@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import getInjuryList from '../../actions/getInjuryList';
 import { Link } from 'react-router-dom';
+//COMPONENTS
+//import AddInjuryForm from './add-injury-form';
 
 class InjuryList extends Component {
     constructor(props) {
@@ -29,7 +31,9 @@ class InjuryList extends Component {
                 <ol>
                     {injuryList}
                 </ol>              
-                <Link to='/injury-info'>Injury Info</Link>
+                <Link to='/injury-info'>Injury Info</Link> <br></br>
+                <Link to='/add-injury'>Add injury</Link>
+                
             </div>
         );
     }

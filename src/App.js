@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { Route } from 'react-router-dom'
 // components
 import Signup from './scenes/sign-up'
@@ -8,6 +7,7 @@ import Navbar from './components/navbar'
 import Home from './scenes/home/index.js'
 import UserGreeting from './scenes/home/user-greeting'
 import InjuryList from './scenes/injury-list/index.js'
+import AddInjuryForm from './scenes/injury-list/add-injury-form'
 
 class App extends Component {
   constructor() {
@@ -34,21 +34,23 @@ class App extends Component {
               loggedIn={this.state.loggedIn}
             />}
         />
+        
         <Route
           path="/login"
-          render={() =>
-            <LoginForm
-            />}
+          component={LoginForm}
         />
-        <Route
+         <Route
           path="/signup"
-          render={() =>
-            <Signup
-            />}
+          component={LoginForm}
         />
+        
+        
         <Route 
           path="/injury-list"
           component={InjuryList} />
+        <Route 
+          path="/add-injury"
+          component={AddInjuryForm} />
 
       </div>
     );
