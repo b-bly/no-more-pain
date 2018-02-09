@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 import logo from '../logo.svg';
 import '../App.css';
 import './navbar.css';
-import axios from 'axios'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 //actions
 import logout from '../actions/logout';
 

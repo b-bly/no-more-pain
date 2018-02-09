@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import getInjuryList from '../../actions/getInjuryList';
 import { Link } from 'react-router-dom';
 //COMPONENTS

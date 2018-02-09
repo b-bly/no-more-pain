@@ -34,6 +34,10 @@ class UserGreeting extends Component {
     }
 }
 
+UserGreeting.propTypes = {
+    username: PropTypes.string
+};
+
 function mapStateToProps(state) {
     console.log('login - mapStateToProps called, state: ');
     console.log(state);

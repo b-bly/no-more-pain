@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 //REDUX
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -79,7 +79,7 @@ class User extends Component {
                 <div>
 
                     <div>
-                       {match.url=="/login" ? (
+                       {match.url==="/login" ? (
 
                        
                                     <div>

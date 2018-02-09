@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types'
 //actions
-
+import addInjury from '../../actions/add-injury'
 
 
 class AddInjuryForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			username: '',
-			password: '',
-			confirmPassword: '',
+			title: '',
+			description: '',
 			redirectTo: null
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -42,12 +41,12 @@ class AddInjuryForm extends Component {
 	}
 	handleSubmit(event) {
 		event.preventDefault()
-		console.log('sign-up-form, username: ');
-		console.log(this.state.username);
+		console.log('add-injury-form, injury:: ');
+		console.log(this.state);
 
 		this.props.addInjury({
-			username: this.state.title,
-			password: this.state.description
+			title: this.state.title,
+			description: this.state.description
 		})
 	}
 	render() {
@@ -115,13 +114,13 @@ function mapStateToProps(state) {
 	console.log('sign-up.js mapStateToProps called, state: ');
 	console.log(state);
 	return {
-		injury: state.injury //users is labeled in reducers/index.js
+		injuryList: state.injuryList //users is labeled in reducers/index.js
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		//injury: injury //binds function imported above to the name that will be available in this.props,
+		addInjury: addInjury //binds function imported above to the name that will be available in this.props,
 		//so this.props.postNewUser
 	}, dispatch);
 }
