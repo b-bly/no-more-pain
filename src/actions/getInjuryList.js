@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = '/injuries';
+const url = '/injury';
 
 export default function getInjuryList() {
     return dispatch => {
