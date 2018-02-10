@@ -27,10 +27,8 @@ router.post('/', loggedIn, (req, res) => {
             //const newInjury = new Injury ({
                 //title: title,
                 //description: description
-           // })
-            
+           // })          
             console.log(newInjury);
-
             newInjury.save((err, injury) => {
                 if (err) return res.json(err)
                 console.log('success');
@@ -40,6 +38,17 @@ router.post('/', loggedIn, (req, res) => {
         }
     })
 })
+
+router.get('/', (req, res) => {
+        Injury.find({})
+            .exec((err, data) => {
+                console.log('get injury list, data:');
+                console.log(data);
+                
+                res.send(data);
+            });
+});
+
 
 // check if logged in (authenticated)
 function loggedIn(req, res, next) {
