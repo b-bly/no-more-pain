@@ -49,6 +49,14 @@ class AddInjuryForm extends Component {
 			description: this.state.description
 		})
 	}
+
+	cancel() {
+		this.setState({
+			redirectTo: '/injury-list',
+			title: '',
+			description: ''
+		})
+	}
 	render() {
 		//const user = this.props.user;
 		console.log('signup rendered');
@@ -91,7 +99,11 @@ class AddInjuryForm extends Component {
 								</div>
 							</div>
 							<div className="form-group ">
-								<div className="col-7"></div>
+								<div className="col-6"></div>
+								<button className="btn col-1"
+								onClick={this.cancel}
+								>Cancel </button>
+								&nbsp;
 								<button
 									className="btn btn-primary col-1 col-mr-auto"
 									type="submit">Submit</button>

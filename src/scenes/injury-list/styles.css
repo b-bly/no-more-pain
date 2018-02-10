@@ -1,0 +1,17 @@
+.list-links {
+    font-size: .8em;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin-top: 10px;
+}
+
+.list-title {
+    align-items: center;
+    height: 35px;
+    margin-top: auto;
+}

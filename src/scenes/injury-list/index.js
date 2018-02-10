@@ -6,6 +6,8 @@ import getInjuryList from '../../actions/getInjuryList';
 import { Link } from 'react-router-dom';
 //COMPONENTS
 //import AddInjuryForm from './add-injury-form';
+//STYLES
+import './styles.css';
 
 class InjuryList extends Component {
     constructor(props) {
@@ -19,21 +21,29 @@ class InjuryList extends Component {
         console.log('injury list props: ');
         console.log(this.props);
         const injuryList = this.props.injuryList.map((titleObj, i) =>
-            <li key={i.toString()}> {titleObj.title} </li>
+            <div key={i.toString()}>
+                <li> {titleObj.title} </li>
+                {/* to do: only show edit/delete if user = current user */}
+                <a className="list-links">edit</a> <a className="list-links">delete</a>
+            </div>
         );
-    //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
-    //     const injuryList = injuryListStatic.map((titleObj, i) =>
-    //     <li key={i.toString()}> {titleObj.title} </li>
-    // );
+        //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
+        //     const injuryList = injuryListStatic.map((titleObj, i) =>
+        //     <li key={i.toString()}> {titleObj.title} </li>
+        // );
         return (
             <div>
-                <p>Injury List</p>
+                <div className="center container">
+                    <div className="col-2 list-title"><h3>Injury List</h3></div>
+                    <Link to='/add-injury' className="btn col-1 list-title">Add injury</Link>
+                </div>
+                {/* search box, add injury  */}
                 <ol>
                     {injuryList}
-                </ol>              
+                </ol>
                 <Link to='/injury-info'>Injury Info</Link> <br></br>
-                <Link to='/add-injury'>Add injury</Link>
-                
+
+
             </div>
         );
     }
