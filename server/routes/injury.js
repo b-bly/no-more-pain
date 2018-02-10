@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('../passport')
-const Injury = require('../database/models/injuries')
+const Injury = require('../database/models/injury')
 
 router.post('/', loggedIn, (req, res) => {
     console.log('*** add injury ***');
