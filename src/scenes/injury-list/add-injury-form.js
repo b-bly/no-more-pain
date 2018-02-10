@@ -70,10 +70,10 @@ class AddInjuryForm extends Component {
 					<div>
 						<form className="form-horizontal" onSubmit={this.handleSubmit}>
 							<div className="form-group">
-								<div className="col-1 col-ml-auto">
+								<div className="col-2 col-ml-auto">
 									<label className="form-label" htmlFor="title">Name of injury:</label>
 								</div>
-								<div className="col-3 col-mr-auto">
+								<div className="col-4 col-mr-auto">
 									<input className="form-input"
 										type="text"
 										id="title"
@@ -85,10 +85,10 @@ class AddInjuryForm extends Component {
 								</div>
 							</div>
 							<div className="form-group">
-								<div className="col-1 col-ml-auto">
+								<div className="col-2 col-ml-auto">
 									<label className="form-label" htmlFor="password">Description: </label>
 								</div>
-								<div className="col-3 col-mr-auto">
+								<div className="col-4 col-mr-auto">
 									<input className="form-input"
 										placeholder="description"
 										type="description"
@@ -99,7 +99,7 @@ class AddInjuryForm extends Component {
 								</div>
 							</div>
 							<div className="form-group ">
-								<div className="col-6"></div>
+								<div className="col-7"></div>
 								<button className="btn col-1"
 								onClick={this.cancel}
 								>Cancel </button>
