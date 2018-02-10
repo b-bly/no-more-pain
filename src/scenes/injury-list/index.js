@@ -13,18 +13,18 @@ class InjuryList extends Component {
         this.state = { injuryList: [] };
     }
     componentWillMount() {
-        //this.props.getInjuryList();
+        this.props.getInjuryList();
     }
     render() {
         console.log('injury list props: ');
         console.log(this.props);
-        // const injuryList = this.props.injuryList.map((titleObj, i) =>
-        //     <li key={i.toString()}> {titleObj.title} </li>
-        // );
-        const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
-        const injuryList = injuryListStatic.map((titleObj, i) =>
-        <li key={i.toString()}> {titleObj.title} </li>
-    );
+        const injuryList = this.props.injuryList.map((titleObj, i) =>
+            <li key={i.toString()}> {titleObj.title} </li>
+        );
+    //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
+    //     const injuryList = injuryListStatic.map((titleObj, i) =>
+    //     <li key={i.toString()}> {titleObj.title} </li>
+    // );
         return (
             <div>
                 <p>Injury List</p>

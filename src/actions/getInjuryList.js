@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:5000/injuries';
+const url = '/injuries';
 
 export default function getInjuryList() {
     return dispatch => {
