@@ -1,14 +1,14 @@
 import axios from 'axios';
-const url = '/injury';
+const url = '/injury/info';
 
-export default function getInjuryInfo(title) {
+export default function getInjuryInfo(id) {
     return dispatch => {
         console.log('getInjuryInfo action title: ');
-        console.log(title);
+        console.log(id);
         
-        axios.get(`${url}/injuryInfo`, {
+        axios.get(url, {
             params: {
-                title: title
+                id: id
             }
         }).then(res => {
             console.log('injuryInfo action res.data');

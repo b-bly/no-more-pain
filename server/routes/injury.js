@@ -49,6 +49,19 @@ router.get('/', (req, res) => {
             });
 });
 
+router.get('/info', (req, res) => {
+    const id = req.query.id;
+    console.log('get info, req.query:');
+    console.log(req.query);
+    
+    Injury.findOne({_id: id})
+        .exec((err, data) => {
+            console.log('get injury info, data:');
+            console.log(data);
+            res.send(data);
+        });
+});
+
 
 // check if logged in (authenticated)
 function loggedIn(req, res, next) {

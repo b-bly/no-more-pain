@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import getInjuryInfo from '../actions/getInjuryInfo';
+import getInjuryInfo from '../../actions/getInjuryInfo';
 import { Link } from 'react-router-dom';
 
 class InjuryInfo extends Component {
@@ -16,7 +16,7 @@ class InjuryInfo extends Component {
         this.toggleComments = this.toggleComments.bind(this);
     }
     componentWillMount() {
-        this.props.getInjuryInfo('High Hamstring Tendonopathy');
+        
     }
     toggleComments() {
         this.setState({ showComments: !this.state.showComments });

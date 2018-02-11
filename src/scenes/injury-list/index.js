@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //import PropTypes from 'prop-types';
 import getInjuryList from '../../actions/getInjuryList';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 //COMPONENTS
 //import AddInjuryForm from './add-injury-form';
+//ACTIONS
+import getInjuryInfo from '../../actions/getInjuryInfo'
 //STYLES
 import './styles.css';
 
-class InjuryListItem extends Component { 
+class InjuryListItem extends Component {
     //When you pass a parameter to an onClick function, you can't just write it like
     //handleClick(parameter) or react will call it repeatedly.
     //I am externalizing item to avoid using an arrow
@@ -22,7 +24,7 @@ class InjuryListItem extends Component {
     render() {
         return (
             <li className="injury-list-item"
-            onClick={this.handleClick.bind(this)}
+                onClick={this.handleClick.bind(this)}
             >{this.props.injury.title}</li>
         );
     }
@@ -31,49 +33,63 @@ class InjuryListItem extends Component {
 class InjuryList extends Component {
     constructor(props) {
         super(props);
-        this.state = { injuryList: [] };
+        this.state = {
+            
+            redirectTo: ''
+        };
         this.injuryInfo = this.injuryInfo.bind(this);
     }
+
     injuryInfo(id) {
         console.log('injuryInfo called, id:');
         console.log(id);
+                //call getInjuryInfo to set store injuryInfo to clicked injury
+        this.props.getInjuryInfo(id);
+        //set state to redirect
+        // this.setState({
+        //     redirectTo: 'injury-info'
+        // });
     }
 
     componentWillMount() {
         this.props.getInjuryList();
     }
     render() {
-        console.log('injury list props: ');
-        console.log(this.props);
-        const injuryList = this.props.injuryList.map((injury, i) =>
-            <div key={i.toString()}>
-                <InjuryListItem 
-                    onClick={this.injuryInfo} 
-                    injury={injury} />
-                    
-                {/* to do: only show edit/delete if user = current user */}
-                <a className="list-links">edit</a> <a className="list-links">delete</a>
-            </div>
-        );
-        //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
-        //     const injuryList = injuryListStatic.map((titleObj, i) =>
-        //     <li key={i.toString()}> {titleObj.title} </li>
-        // );
-        return (
-            <div>
-                <div className="center container">
-                    <div className="col-2 list-title"><h3>Injury List</h3></div>
-                    <Link to='/add-injury' className="btn col-1 list-title">Add injury</Link>
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        } else {
+            console.log('injury list props: ');
+            console.log(this.props);
+            const injuryList = this.props.injuryList.map((injury, i) =>
+                <div key={i.toString()}>
+                    <InjuryListItem
+                        onClick={this.injuryInfo}
+                        injury={injury} />
+
+                    {/* to do: only show edit/delete if user = current user */}
+                    <a className="list-links">edit</a> <a className="list-links">delete</a>
                 </div>
-                {/* search box */}
-                <ol>
-                    {injuryList}
-                </ol>
-                <Link to='/injury-info'>Injury Info</Link> <br></br>
+            );
+            //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
+            //     const injuryList = injuryListStatic.map((titleObj, i) =>
+            //     <li key={i.toString()}> {titleObj.title} </li>
+            // );
+            return (
+                <div>
+                    <div className="center container">
+                        <div className="col-2 list-title"><h3>Injury List</h3></div>
+                        <Link to='/add-injury' className="btn col-1 list-title">Add injury</Link>
+                    </div>
+                    {/* search box */}
+                    <ol>
+                        {injuryList}
+                    </ol>
+                    <Link to='/injury-info'>Injury Info</Link> <br></br>
 
 
-            </div>
-        );
+                </div>
+            );
+        }
     }
 }
 
@@ -93,7 +109,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getInjuryList: getInjuryList
+        getInjuryList: getInjuryList,
+        getInjuryInfo: getInjuryInfo
     }, dispatch);
 }
 

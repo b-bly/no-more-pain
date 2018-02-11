@@ -7,6 +7,7 @@ import Home from './scenes/home/index.js'
 import UserGreeting from './scenes/home/user-greeting'
 import InjuryList from './scenes/injury-list/index.js'
 import AddInjuryForm from './scenes/injury-list/add-injury-form'
+import InjuryInfo from './scenes/injury-info'
 
 class App extends Component {
   constructor() {
@@ -33,23 +34,26 @@ class App extends Component {
               loggedIn={this.state.loggedIn}
             />}
         />
-        
+
         <Route
           path="/login"
           component={User}
         />
-         <Route
+        <Route
           path="/signup"
           component={User}
         />
-        
-        
-        <Route 
+
+
+        <Route
           path="/injury-list"
           component={InjuryList} />
-        <Route 
+        <Route
           path="/add-injury"
           component={AddInjuryForm} />
+        <Route
+          path="/injury-info"
+          component={InjuryInfo} />
 
       </div>
     );
