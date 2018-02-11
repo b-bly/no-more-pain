@@ -9,20 +9,48 @@ import { Link } from 'react-router-dom';
 //STYLES
 import './styles.css';
 
+class InjuryListItem extends Component { 
+    //When you pass a parameter to an onClick function, you can't just write it like
+    //handleClick(parameter) or react will call it repeatedly.
+    //I am externalizing item to avoid using an arrow
+    //function, which creates a new function every click
+    //https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#protips
+    //https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
+    handleClick() {
+        this.props.onClick(this.props.injury._id);
+    }
+    render() {
+        return (
+            <li className="injury-list-item"
+            onClick={this.handleClick.bind(this)}
+            >{this.props.injury.title}</li>
+        );
+    }
+}
+
 class InjuryList extends Component {
     constructor(props) {
         super(props);
         this.state = { injuryList: [] };
+        this.injuryInfo = this.injuryInfo.bind(this);
     }
+    injuryInfo(id) {
+        console.log('injuryInfo called, id:');
+        console.log(id);
+    }
+
     componentWillMount() {
         this.props.getInjuryList();
     }
     render() {
         console.log('injury list props: ');
         console.log(this.props);
-        const injuryList = this.props.injuryList.map((titleObj, i) =>
+        const injuryList = this.props.injuryList.map((injury, i) =>
             <div key={i.toString()}>
-                <li> {titleObj.title} </li>
+                <InjuryListItem 
+                    onClick={this.injuryInfo} 
+                    injury={injury} />
+                    
                 {/* to do: only show edit/delete if user = current user */}
                 <a className="list-links">edit</a> <a className="list-links">delete</a>
             </div>
@@ -37,7 +65,7 @@ class InjuryList extends Component {
                     <div className="col-2 list-title"><h3>Injury List</h3></div>
                     <Link to='/add-injury' className="btn col-1 list-title">Add injury</Link>
                 </div>
-                {/* search box, add injury  */}
+                {/* search box */}
                 <ol>
                     {injuryList}
                 </ol>
