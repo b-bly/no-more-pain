@@ -21,5 +21,5 @@ const commentsSchema = new Schama({
 })
 
 const Comments = mongoose.model('Injuries', commentsSchema)
-module.exports = Injuries;
+module.exports = Comments;
 
