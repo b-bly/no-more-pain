@@ -2,14 +2,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 mongoose.promise = Promise
 
-// Define userSchema
+// Define injurySchema
 const injuriesSchema = new Schema({
 
 	title: { type: String, unique: false, required: true },
     description: { type: String, unique: false, required: false },
     treatements: {
+        //add id
         name: String,
-        comments: [String],
+        comments: [String], //needs to be it's own schema?
         description: String,
         upvotes: Number
     }
@@ -18,6 +19,18 @@ const injuriesSchema = new Schema({
 {
     collection: 'injuries'
 })
+
+//embeding comments in this injuriesSchema will only let me display comments
+//as they are structured in the schema.
+// Pro: no data processing
+// con: less flexibility
+//I think I'm going to try a separate comments schema.
+
+//MONGO comments schema:
+//https://docs.mongodb.com/ecosystem/use-cases/storing-comments/#sharding
+
+//slug generator for Mongoose
+//https://www.npmjs.com/package/mongoose-slug-generator
 
 const Injuries = mongoose.model('Injuries', injuriesSchema)
 module.exports = Injuries
