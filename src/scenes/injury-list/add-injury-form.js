@@ -17,6 +17,7 @@ class AddInjuryForm extends Component {
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
+		this.cancel = this.cancel.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -43,11 +44,16 @@ class AddInjuryForm extends Component {
 		event.preventDefault()
 		console.log('add-injury-form, injury:: ');
 		console.log(this.state);
-
 		this.props.addInjury({
 			title: this.state.title,
 			description: this.state.description
 		})
+		this.setState({
+			redirectTo: '/injury-list'
+		});
+	
+		
+		
 	}
 
 	cancel() {
@@ -59,7 +65,7 @@ class AddInjuryForm extends Component {
 	}
 	render() {
 		//const user = this.props.user;
-		console.log('signup rendered');
+		console.log('add-injury rendered');
 
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
@@ -100,13 +106,17 @@ class AddInjuryForm extends Component {
 							</div>
 							<div className="form-group ">
 								<div className="col-7"></div>
-								<button className="btn col-1"
+								<input className="btn col-1"
+								type="button"
+								value="Cancel"
 								onClick={this.cancel}
-								>Cancel </button>
+								></input>
 								&nbsp;
-								<button
+								<input
 									className="btn btn-primary col-1 col-mr-auto"
-									type="submit">Submit</button>
+									type="submit" 
+									value="Submit"
+									></input>
 							</div>
 						</form>
 					</div>
@@ -123,7 +133,7 @@ AddInjuryForm.propTypes = {
 };
 
 function mapStateToProps(state) {
-	console.log('sign-up.js mapStateToProps called, state: ');
+	console.log('add-injury mapStateToProps called, state: ');
 	console.log(state);
 	return {
 		injuryList: state.injuryList //users is labeled in reducers/index.js

@@ -8,6 +8,7 @@ import { Link, Redirect } from 'react-router-dom';
 //import AddInjuryForm from './add-injury-form';
 //ACTIONS
 import getInjuryInfo from '../../actions/getInjuryInfo'
+import deleteInjury from '../../actions/delete-injury'
 //STYLES
 import './styles.css';
 
@@ -21,11 +22,20 @@ class InjuryListItem extends Component {
     handleClick() {
         this.props.onClick(this.props.injury._id);
     }
+    delete() {
+        this.props.delete(this.props.injury._id)
+    }
     render() {
         return (
+            <div>
             <li className="injury-list-item"
                 onClick={this.handleClick.bind(this)}
             >{this.props.injury.title}</li>
+            <a className="list-links">edit</a> 
+            &nbsp;
+            <a className="list-links"
+            onClick={this.delete.bind(this)}>delete</a>
+            </div>
         );
     }
 }
@@ -38,6 +48,7 @@ class InjuryList extends Component {
             redirectTo: ''
         };
         this.injuryInfo = this.injuryInfo.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     injuryInfo(id) {
@@ -46,9 +57,19 @@ class InjuryList extends Component {
                 //call getInjuryInfo to set store injuryInfo to clicked injury
         this.props.getInjuryInfo(id);
         //set state to redirect
-        // this.setState({
-        //     redirectTo: 'injury-info'
-        // });
+        this.setState({
+            redirectTo: 'injury-info'
+        });
+    }
+
+    delete (id) {
+        console.log('injury-list, delete called, id: ');
+        console.log(id);
+        this.props.deleteInjury(id);
+    }
+
+    componentWillReceiveProps() {
+        
     }
 
     componentWillMount() {
@@ -64,10 +85,11 @@ class InjuryList extends Component {
                 <div key={i.toString()}>
                     <InjuryListItem
                         onClick={this.injuryInfo}
+                        delete={this.delete}
                         injury={injury} />
 
                     {/* to do: only show edit/delete if user = current user */}
-                    <a className="list-links">edit</a> <a className="list-links">delete</a>
+                    
                 </div>
             );
             //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
@@ -110,7 +132,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getInjuryList: getInjuryList,
-        getInjuryInfo: getInjuryInfo
+        deleteInjury: deleteInjury
     }, dispatch);
 }
 

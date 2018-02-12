@@ -12,11 +12,14 @@ class InjuryInfo extends Component {
             showComments: false,
             showDescription: false
         }
+
         this.toggleDescription = this.toggleDescription.bind(this);
         this.toggleComments = this.toggleComments.bind(this);
     }
     componentWillMount() {
-        
+        // if (this.props.injuryInfo.title.length < 1) {
+        //     this.props.getInjuryInfo();
+        // }
     }
     toggleComments() {
         this.setState({ showComments: !this.state.showComments });
@@ -153,7 +156,13 @@ class InjuryInfo extends Component {
                 <div className="container">
 
                     {/* TITLE */}
+                    <div className="center container">
+                        <div className="col-3 list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
+                        <Link to='/add-treatment' className="btn col-1 list-title">Add injury</Link>
+                    </div>
+                </div>
 
+                <div className="container">
                     <div className="columns">
                         <div className="column col-6 col-mx-auto">
                             <div className="card">
@@ -220,7 +229,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
 //       </div>
 //     </BrowserRouter>
 //   )
-  
+
 //   // when the url matches `/tacos` this component renders
 //   const Tacos  = ({ match }) => (
 //     // here's a nested div

@@ -3,7 +3,7 @@ const router = express.Router()
 const passport = require('../passport')
 const Injury = require('../database/models/injury')
 
-router.post('/', loggedIn, (req, res) => {
+router.post('/', (req, res) => {
     console.log('*** add injury ***');
     console.log(req.body);
     
@@ -51,17 +51,36 @@ router.get('/', (req, res) => {
 
 router.get('/info', (req, res) => {
     const id = req.query.id;
-    console.log('get info, req.query:');
-    console.log(req.query);
-    
+
     Injury.findOne({_id: id})
         .exec((err, data) => {
+            if (err) {
+                console.log('get info error:');
+                console.log(err);
+                res.send(err)
+            }
+     
+            res.send(data)
+        });
+});
+
+router.delete('/', (req, res) => {
+    const id = req.query.id;
+    console.log('delete injury, req.query:');
+    console.log(req.query);
+    
+    Injury.remove({_id: id})
+        .exec((err, data) => {
+            if (err) {
+                console.log('delete injury error:');
+                console.log(err)
+                res.send(err)
+            }
             console.log('get injury info, data:');
             console.log(data);
             res.send(data);
         });
 });
-
 
 // check if logged in (authenticated)
 function loggedIn(req, res, next) {
