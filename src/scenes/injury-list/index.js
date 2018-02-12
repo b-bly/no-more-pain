@@ -23,7 +23,7 @@ class InjuryListItem extends Component {
     //https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#protips
     //https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
     handleClick() {
-        this.props.onClick(this.props.injury._id);
+        this.props.handleClick(this.props.injury._id);
     }
 
     delete() {
@@ -120,7 +120,7 @@ class InjuryList extends Component {
                     )
                         : (
                             <InjuryListItem
-                                onClick={this.injuryInfo}
+                                handleClick={this.injuryInfo}
                                 delete={this.delete}
                                 showForm={this.showForm.bind(this)}
                                 injury={injury} />

@@ -21,12 +21,15 @@ class InjuryInfo extends Component {
         //     this.props.getInjuryInfo();
         // }
     }
+
     toggleComments() {
         this.setState({ showComments: !this.state.showComments });
     }
+
     toggleDescription() {
         this.setState({ showDescription: !this.state.showDescription });
     }
+    
     render() {
         console.log('injury info props: ');
         console.log(this.props);

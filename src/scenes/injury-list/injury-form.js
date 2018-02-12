@@ -63,7 +63,7 @@ class InjuryForm extends Component {
 		} else {
 			return (
 				<div >
-					<h4>Add New Injury</h4>
+					<h4>Edit Injury</h4>
 					<div>
 						<form className="form-horizontal" onSubmit={this.handleSubmit}>
 							<div className="form-group">
