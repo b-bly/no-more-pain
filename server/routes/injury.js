@@ -6,7 +6,7 @@ const Injury = require('../database/models/injury')
 router.post('/', (req, res) => {
     console.log('*** add injury ***');
     console.log(req.body);
-    
+
     const title = req.body.title;
     const description = req.body.description;
 
@@ -25,9 +25,9 @@ router.post('/', (req, res) => {
             const newInjury = new Injury(req.body);
             //this didn't work:
             //const newInjury = new Injury ({
-                //title: title,
-                //description: description
-           // })          
+            //title: title,
+            //description: description
+            // })          
             console.log(newInjury);
             newInjury.save((err, injury) => {
                 if (err) return res.json(err)
@@ -40,36 +40,58 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-        Injury.find({})
-            .exec((err, data) => {
-                console.log('get injury list, data:');
-                console.log(data);
-                
-                res.send(data);
-            });
+    Injury.find({})
+        .exec((err, data) => {
+            console.log('get injury list, data:');
+            console.log(data);
+
+            res.send(data);
+        });
 });
 
 router.get('/info', (req, res) => {
     const id = req.query.id;
 
-    Injury.findOne({_id: id})
+    Injury.findOne({ _id: id })
         .exec((err, data) => {
             if (err) {
                 console.log('get info error:');
                 console.log(err);
                 res.send(err)
             }
-     
+
             res.send(data)
         });
+});
+
+router.put('/update', function (req, res) {
+    const injury = {
+        title: req.body.title,
+        description: req.body.description
+    };
+    const id = req.body.id;
+    console.log('update, req.body: ');
+    console.log(req.body);
+    Injury.findByIdAndUpdate(
+        { _id: id },
+        { $set: injury },
+        function (err, data) {
+            if (err) {
+                console.log('put error: ', err);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
+        }
+    );
 });
 
 router.delete('/', (req, res) => {
     const id = req.query.id;
     console.log('delete injury, req.query:');
     console.log(req.query);
-    
-    Injury.remove({_id: id})
+
+    Injury.remove({ _id: id })
         .exec((err, data) => {
             if (err) {
                 console.log('delete injury error:');
@@ -81,6 +103,8 @@ router.delete('/', (req, res) => {
             res.send(data);
         });
 });
+
+
 
 // check if logged in (authenticated)
 function loggedIn(req, res, next) {

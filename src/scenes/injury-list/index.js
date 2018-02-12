@@ -6,9 +6,12 @@ import getInjuryList from '../../actions/getInjuryList';
 import { Link, Redirect } from 'react-router-dom';
 //COMPONENTS
 //import AddInjuryForm from './add-injury-form';
+import InjuryForm from './injury-form';
 //ACTIONS
 import getInjuryInfo from '../../actions/getInjuryInfo'
 import deleteInjury from '../../actions/delete-injury'
+import updateInjury from '../../actions/update-injury'
+
 //STYLES
 import './styles.css';
 
@@ -22,19 +25,26 @@ class InjuryListItem extends Component {
     handleClick() {
         this.props.onClick(this.props.injury._id);
     }
+
     delete() {
-        this.props.delete(this.props.injury._id)
+        this.props.delete(this.props.injury._id);
     }
+
+    showForm() {
+        this.props.showForm(this.props.injury._id);
+    }
+
     render() {
         return (
             <div>
-            <li className="injury-list-item"
-                onClick={this.handleClick.bind(this)}
-            >{this.props.injury.title}</li>
-            <a className="list-links">edit</a> 
-            &nbsp;
+                <li className="injury-list-item"
+                    onClick={this.handleClick.bind(this)}
+                >{this.props.injury.title}</li>
+                <a className="list-links"
+                    onClick={this.showForm.bind(this)}>edit</a>
+                &nbsp;
             <a className="list-links"
-            onClick={this.delete.bind(this)}>delete</a>
+                    onClick={this.delete.bind(this)}>delete</a>
             </div>
         );
     }
@@ -44,7 +54,7 @@ class InjuryList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+            showForm: '',
             redirectTo: ''
         };
         this.injuryInfo = this.injuryInfo.bind(this);
@@ -54,7 +64,7 @@ class InjuryList extends Component {
     injuryInfo(id) {
         console.log('injuryInfo called, id:');
         console.log(id);
-                //call getInjuryInfo to set store injuryInfo to clicked injury
+        //call getInjuryInfo to set store injuryInfo to clicked injury
         this.props.getInjuryInfo(id);
         //set state to redirect
         this.setState({
@@ -62,19 +72,38 @@ class InjuryList extends Component {
         });
     }
 
-    delete (id) {
+    delete(id) {
         console.log('injury-list, delete called, id: ');
         console.log(id);
         this.props.deleteInjury(id);
     }
 
-    componentWillReceiveProps() {
-        
+    showForm(id) {
+        this.setState({
+            showForm: id
+        })
     }
 
     componentWillMount() {
         this.props.getInjuryList();
     }
+
+    updateInjury(updatedInjury) {
+        this.props.updateInjury(updatedInjury);
+        console.log('updateInjury called, updatedInjury: ');
+        console.log(updatedInjury);
+        
+        this.setState({
+            showForm: ''
+        });
+    }
+
+    cancel () {
+        this.setState({
+            showForm: ''
+        });
+    }
+
     render() {
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
@@ -83,13 +112,23 @@ class InjuryList extends Component {
             console.log(this.props);
             const injuryList = this.props.injuryList.map((injury, i) =>
                 <div key={i.toString()}>
-                    <InjuryListItem
-                        onClick={this.injuryInfo}
-                        delete={this.delete}
+                    {injury._id === this.state.showForm ? (
+                        <InjuryForm
+                        updateInjury={this.updateInjury.bind(this)} 
+                        cancel={this.cancel.bind(this)}
                         injury={injury} />
+                    )
+                        : (
+                            <InjuryListItem
+                                onClick={this.injuryInfo}
+                                delete={this.delete}
+                                showForm={this.showForm.bind(this)}
+                                injury={injury} />
+
+                        )}
 
                     {/* to do: only show edit/delete if user = current user */}
-                    
+
                 </div>
             );
             //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
@@ -132,7 +171,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getInjuryList: getInjuryList,
-        deleteInjury: deleteInjury
+        deleteInjury: deleteInjury,
+        updateInjury: updateInjury
     }, dispatch);
 }
 
