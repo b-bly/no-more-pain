@@ -13,16 +13,16 @@ export default function getUser() {
                 loggedIn: true 
             };
             if (!res.data.user.username) user.loggedIn = false;
-            dispatch(postNewUserAsync(user));
+            dispatch(getUserAsync(user));
         }).catch(function (error) {
             console.log('error get user : ');
             console.log(error);
-            dispatch(postNewUserAsync('fail'));
+            dispatch(getUserAsync('fail'));
         });
     }
 }
 
-function postNewUserAsync (payload) {
+function getUserAsync (payload) {
     return {
         type: 'GET_USER',
         payload: payload

@@ -12,16 +12,16 @@ export default function login(userInfo) {
                 username: res.data.username,
                 loggedIn: true
             }
-            dispatch(postNewUserAsync(user));
+            dispatch(loginAsync(user));
         }).catch(function (error) {
             console.log('error login : ');
             console.log(error);
-            dispatch(postNewUserAsync('fail'));
+            dispatch(loginAsync('fail'));
         });
     }
 }
 
-function postNewUserAsync (payload) {
+function loginAsync (payload) {
     return {
         type: 'LOGIN',
         payload: payload

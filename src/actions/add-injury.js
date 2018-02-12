@@ -8,16 +8,16 @@ export default function addInjury(injury) {
         axios.post(url, injury).then(res => {
             console.log('addInjury action res.data');
             console.log(res.data);
-            dispatch(postNewUserAsync(res.data));
+            dispatch(addInjuryAsync(res.data));
         }).catch(function (error) {
             console.log('error addInjury : ');
             console.log(error);
-            dispatch(postNewUserAsync('fail'));
+            dispatch(addInjuryAsync('fail'));
         });
     }
 }
 
-function postNewUserAsync (payload) {
+function addInjuryAsync (payload) {
     return {
         type: 'ADD_INJURY',
         payload: payload
