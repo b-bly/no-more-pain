@@ -29,7 +29,7 @@ class InjuryInfo extends Component {
     toggleDescription() {
         this.setState({ showDescription: !this.state.showDescription });
     }
-    
+
     render() {
         console.log('injury info props: ');
         console.log(this.props);

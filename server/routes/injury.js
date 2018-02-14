@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../passport')
 const Injury = require('../database/models/injury')
+const Comments = require('../database/models/comments')
 
 router.post('/', (req, res) => {
     console.log('*** add injury ***');
@@ -104,6 +105,28 @@ router.delete('/', (req, res) => {
         });
 });
 
+// Treatments
+router.post('/', (req, res) => {
+    console.log('*** add treatment or comment ***');
+    console.log(req.body);
+    const treatment = req.body.treatment;
+
+    // updating an array of objects: 
+    //https://stackoverflow.com/questions/19695058/how-to-define-object-in-array-in-mongoose-schema-correctly-with-2d-geo-index
+    Injury.update({ _id: id },
+        { $push: treatment })
+        .exec((err, data) => {
+            if (err) {
+                console.log('post treatment error:');
+                console.log(err)
+                res.send(err)
+            }
+            console.log('post treatment, data:');
+            console.log(data);
+            res.send(data);
+        });
+
+})
 
 
 // check if logged in (authenticated)

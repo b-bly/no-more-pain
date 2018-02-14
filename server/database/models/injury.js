@@ -7,13 +7,14 @@ const injuriesSchema = new Schema({
 
 	title: { type: String, unique: false, required: true },
     description: { type: String, unique: false, required: false },
-    treatements: {
+    treatements: [{
         //add id
+        id: Schema.Types.ObjectId,
         name: String,
-        comments: [String], //needs to be it's own schema?
+        // comments: [String], //needs to be it's own schema?
         description: String,
         upvotes: Number
-    }
+    }]
 
 },
 {
