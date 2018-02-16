@@ -8,6 +8,7 @@ import UserGreeting from './scenes/home/user-greeting'
 import InjuryList from './scenes/injury-list/index.js'
 import AddInjuryForm from './scenes/injury-list/add-injury-form'
 import InjuryInfo from './scenes/injury-info'
+import AddTreatmentForm from './scenes/injury-info/add-treatment'
 
 class App extends Component {
   constructor() {
@@ -54,6 +55,9 @@ class App extends Component {
         <Route
           path="/injury-info"
           component={InjuryInfo} />
+           <Route
+          path="/add-treatment"
+          component={AddTreatmentForm} />
 
       </div>
     );

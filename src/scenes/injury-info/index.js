@@ -201,8 +201,8 @@ class InjuryInfo extends Component {
 
                     {/* TITLE */}
                     <div className="center container">
-                        <div className="col-3 list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
-                        <Link to='/add-treatment' className="btn col-1 list-title">Add Treatment</Link>
+                        <div className="col-3 col-ml-auto list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
+                        <div className="col-2- col-mr-auto"><Link to='/add-treatment' className="btn list-title">Add Treatment</Link></div>
                     </div>
                 </div>
 

@@ -95,7 +95,7 @@ class AddInjuryForm extends Component {
 									<label className="form-label" htmlFor="password">Description: </label>
 								</div>
 								<div className="col-4 col-mr-auto">
-									<input className="form-input"
+									<textarea className="form-input"
 										placeholder="description"
 										type="description"
 										name="description"
