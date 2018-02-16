@@ -5,10 +5,62 @@ import PropTypes from 'prop-types';
 import getInjuryInfo from '../../actions/getInjuryInfo';
 import { Link } from 'react-router-dom';
 
+class Treatment extends Component {
+    handleClick() {
+        //this.props.handleClick(this.props.injury._id);
+    }
+
+    delete() {
+        //this.props.delete(this.props.injury._id);
+    }
+
+    showForm() {
+        this.props.showForm(this.props.treatment._id);
+    }
+
+    toggleDescription() {
+        this.props.toggleDescription(this.props.treatment._id);
+    }
+
+    render() {
+        return (
+            <div className="columns" >
+                <div className="column col-4"></div>
+                <div className="column col-6 col-mr-auto">
+                    <div className="">
+                        <div className="card-bdy">
+                            <div className="card-title-line">
+                                <p className="treatment-name" >{this.props.treatment.name} &nbsp;
+    
+                        <span className="upvotes">Upvotes: {this.props.treatment.upvotes} &nbsp;</span></p>
+                            </div>
+                            <div className="card-title-line">
+                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                            </div>
+                        </div>
+                        <div className="card-line toggle" >
+                            <p className="upvotes"
+
+                                onClick={this.toggleDescription.bind(this)}>
+                                Description
+                        {this.props.showDescription === this.props.treatment._id ?
+                                    <span>: {this.props.treatment.description}</span>
+                                    : null}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
 class InjuryInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showForm: '',
             showComments: false,
             showDescription: false
         }
@@ -26,8 +78,14 @@ class InjuryInfo extends Component {
         this.setState({ showComments: !this.state.showComments });
     }
 
-    toggleDescription() {
-        this.setState({ showDescription: !this.state.showDescription });
+    toggleDescription(id) {
+        this.setState({ showDescription: id });
+    }
+
+    showForm(id) {
+        this.setState({
+            showForm: id
+        })
     }
 
     render() {
@@ -44,11 +102,14 @@ class InjuryInfo extends Component {
         //        description: 'Do two sets of 20',
         //        upvotes: '0' } } ]
 
+        //recursive walk thorugh json object:
+        //need this if replies to replies are allowed
+        // https://stackoverflow.com/questions/19323699/iterating-through-json-object-javascript
 
         let treatments = Object.assign([], this.props.injuryInfo.treatments);
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
-        console.log('treatments');
+        console.log('comments');
         console.log(comments);
         treatments = treatments.map((treatmentCopy, i) => {
             const treatment = Object.assign({}, treatmentCopy);
@@ -76,34 +137,14 @@ class InjuryInfo extends Component {
             );
             return (
                 <div className="treatment-container" key={i.toString()}>
-                    <div className="columns" >
-                        <div className="column col-4"></div>
-                        <div className="column col-6 col-mr-auto">
-                            <div className="">
-                                <div className="card-bdy">
-                                    <div className="card-title-line">
-                                        <p className="treatment-name" >{treatment.name} &nbsp;
 
-                                    <span className="upvotes">Upvotes: {treatment.upvotes} &nbsp;</span></p>
-                                    </div>
-                                    <div className="card-title-line">
-                                        <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                                    </div>
-                                </div>
-                                <div className="card-line toggle" >
-                                    <p className="upvotes"
+                    {/* TREATMENTS  */}
 
-                                        onClick={this.toggleDescription}>
-                                        Description
-                                    {this.state.showDescription ?
-                                            <span>: {treatment.description}</span>
-                                            : null}
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    <Treatment
+                        showForm={this.showForm}
+                        toggleDescription={this.toggleDescription}
+                        treatment={treatment}
+                    />
 
                     {/* COMMENTS */}
 
@@ -161,7 +202,7 @@ class InjuryInfo extends Component {
                     {/* TITLE */}
                     <div className="center container">
                         <div className="col-3 list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
-                        <Link to='/add-treatment' className="btn col-1 list-title">Add injury</Link>
+                        <Link to='/add-treatment' className="btn col-1 list-title">Add Treatment</Link>
                     </div>
                 </div>
 

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 mongoose.promise = Promise
 
 // Define userSchema
-const commentsSchema = new Schama({
+const commentsSchema = new Schema({
     injury_id: Schema.Types.ObjectId,
     treatment_id: Schema.Types.ObjectId,
     parent_id: Schema.Types.ObjectId,
@@ -20,6 +20,6 @@ const commentsSchema = new Schama({
     collection: 'comments'
 })
 
-const Comments = mongoose.model('Injuries', commentsSchema)
+const Comments = mongoose.model('Comments', commentsSchema)
 module.exports = Comments;
 

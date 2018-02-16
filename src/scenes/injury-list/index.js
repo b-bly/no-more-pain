@@ -172,7 +172,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getInjuryList: getInjuryList,
         deleteInjury: deleteInjury,
-        updateInjury: updateInjury
+        updateInjury: updateInjury,
+        getInjuryInfo: getInjuryInfo
     }, dispatch);
 }
 
