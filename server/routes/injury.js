@@ -106,15 +106,25 @@ router.delete('/', (req, res) => {
 });
 
 // Treatments
-router.post('/', (req, res) => {
+router.post('/add-treatment/:injuryId', (req, res) => {
     console.log('*** add treatment or comment ***');
     console.log(req.body);
-    const treatment = req.body.treatment;
-
+    console.log('injuryId:');
+    console.log(req.params.injuryId);
+    
+    const treatment = req.body;
+    const injuryId = req.params.injuryId;
+    treatment.upvotes = 0;
+    console.log('treatment: ');
+    console.log(treatment);
+    
     // updating an array of objects: 
     //https://stackoverflow.com/questions/19695058/how-to-define-object-in-array-in-mongoose-schema-correctly-with-2d-geo-index
-    Injury.update({ _id: id },
-        { $push: treatment })
+    
+    //update wasn't working.  Find out why
+    // https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
+    Injury.findOneAndUpdate({ _id: injuryId },
+        { $push: {treatments: treatment} })
         .exec((err, data) => {
             if (err) {
                 console.log('post treatment error:');

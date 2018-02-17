@@ -23,16 +23,17 @@ class AddInjuryForm extends Component {
 	componentWillReceiveProps(nextProps) {
 		console.log('add-injury-form, nextProps: ');
 		console.log(nextProps);
+//need to work on this
 
-		if (!!nextProps.newInjury &&
-			nextProps.newInjury !== 'fail') {
-			//if successful login
-			this.setState({
-				redirectTo: '/injury-list',
-				title: '',
-				description: ''
-			})
-		}
+		// if (!!nextProps.injuryList &&
+		// 	nextProps.injuryList !== 'fail') {
+		// 	//if successful login
+		// 	this.setState({
+		// 		redirectTo: '/injury-list',
+		// 		title: '',
+		// 		description: ''
+		// 	})
+		// }
 	}
 
 	handleChange(event) {
@@ -52,8 +53,6 @@ class AddInjuryForm extends Component {
 			redirectTo: '/injury-list'
 		});
 	
-		
-		
 	}
 
 	cancel() {

@@ -85,7 +85,10 @@ class InjuryList extends Component {
     }
 
     componentWillMount() {
-        this.props.getInjuryList();
+        if (this.props.injuryList.length < 1) {
+            this.props.getInjuryList();
+        }
+        
     }
 
     updateInjury(updatedInjury) {

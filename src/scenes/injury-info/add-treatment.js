@@ -8,32 +8,27 @@ import addTreatment from '../../actions/add-treatment'
 //styles
 import './styles.css';
 
-
-
 class AddTreatmentForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            comments: '',
             description: '',
-            upvotes: 0,
             redirectTo: null
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.cancel = this.cancel.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         console.log('add-injury-form, nextProps: ');
         console.log(nextProps);
-
         if (!!nextProps.newInjury &&
             nextProps.newInjury !== 'fail') {
-            //if successful login
+            //if successful request
             this.setState({
-                redirectTo: '/injury-list',
+                redirectTo: '/injury-info',
                 name: '',
                 description: ''
             })
@@ -45,19 +40,20 @@ class AddTreatmentForm extends Component {
             [event.target.name]: event.target.value
         })
     }
+
     handleSubmit(event) {
         event.preventDefault()
         console.log('add-injury-form, injury:: ');
         console.log(this.state);
+        //need to have injury id
         this.props.addTreatment({
-            name: this.state.name,
-            //comments: this.state.comments,
-            description: this.state.description,
-            //upvotes: this.state.upvotes,
+            injuryId: this.props.injuryInfo._id,
+            treatment: {
+                name: this.state.name,
+                description: this.state.description
+            }
         });
-        this.setState({
-            redirectTo: '/injury-info'
-        });
+        //redirect in componentWillReceiveProps--response from actions
     }
 
     cancel() {
@@ -73,10 +69,13 @@ class AddTreatmentForm extends Component {
 
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
-        } else {
+        } else if (this.props.injuryInfo.title === undefined) {
+            return <Redirect to='/injury-list' />
+        } 
+        else {
             return (
                 <div >
-                    <h4>Add New Injury</h4>
+                    <h4>Add New Treatment to {this.props.injuryInfo.title}</h4>
                     <div>
                         <form className="form-horizontal" onSubmit={this.handleSubmit}>
                             <div className="form-group">
@@ -133,23 +132,24 @@ class AddTreatmentForm extends Component {
 }
 
 AddTreatmentForm.propTypes = {
-    name: PropTypes.string,
-    comments: PropTypes.array, //of objects
-    description: PropTypes.string,
-    upvotes: PropTypes.number
+    injuryId: PropTypes.number,
+    //name: PropTypes.string,
+    //comments: PropTypes.array, //of objects
+    //description: PropTypes.string
+    //upvotes: PropTypes.number
 };
 
 function mapStateToProps(state) {
     console.log('add-treatment mapStateToProps called, state: ');
     console.log(state);
     return {
-        injuryInfo: state.injuryInfo 
+        injuryInfo: state.injuryInfo
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        addTreatment: addTreatment 
+        addTreatment: addTreatment
     }, dispatch);
 }
 

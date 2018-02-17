@@ -1,7 +1,10 @@
 export default function (state = [], action) {
     switch (action.type) {
         case 'ADD_INJURY':
-            return [ ...state.injuryList, action.payload];
+        console.log('injuryList, state:');
+        console.log(state);
+        
+            return [ ...state, action.payload];
             //return [action.payload];
         case 'GET_INJURIES_LIST':
             console.log('injuries reducer, action: ');

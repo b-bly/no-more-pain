@@ -1,4 +1,4 @@
-export default function (state = [], action) {
+export default function (state = {}, action) {
     console.log('USER reducer, action: ');
     console.log({ ...action.payload });
     switch (action.type) {

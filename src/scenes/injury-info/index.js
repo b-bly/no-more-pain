@@ -89,8 +89,8 @@ class InjuryInfo extends Component {
     }
 
     render() {
-        console.log('injury info props: ');
-        console.log(this.props);
+        console.log('injury info props.injuryInfo._id: ');
+        console.log(this.props.injuryInfo._id);
         //injuryInfo data:
         // [ anonymous {
         //     id: 1,
@@ -198,11 +198,13 @@ class InjuryInfo extends Component {
         return (
             <div>
                 <div className="container">
-
                     {/* TITLE */}
                     <div className="center container">
                         <div className="col-3 col-ml-auto list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
-                        <div className="col-2- col-mr-auto"><Link to='/add-treatment' className="btn list-title">Add Treatment</Link></div>
+                        <div className="col-2- col-mr-auto">
+                        <Link to='/add-treatment' 
+                        className="btn list-title">Add Treatment</Link>
+                        </div>
                     </div>
                 </div>
 
@@ -216,7 +218,6 @@ class InjuryInfo extends Component {
                                         <Link to='/'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
                                     </div>
                                     <div className="card-title-line">
-
                                         <h4 className="card-title ">&nbsp; {this.props.injuryInfo.title}</h4>
                                     </div>
                                 </div>
@@ -231,12 +232,9 @@ class InjuryInfo extends Component {
                 <div className="columns">
                     <div className="column col-4"></div>
                     <div className="column col-6 col-mr-auto treatment-title"><h4>Treatments: </h4></div>
-
                 </div>
-
                 {/* TREATMENTS LIST */}
                 {treatments}
-
             </div>
         );
     }

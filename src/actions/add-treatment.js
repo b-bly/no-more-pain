@@ -1,11 +1,11 @@
 import axios from 'axios';
-const url = '/treatment/add-treatment';
+const url = '/injury/add-treatment/';
 
-export default function addTreatment(treatment) {
+export default function addTreatment(treatmentObject) {
     return dispatch => {
         console.log('addTreatment action treatment: ');
-        console.log(treatment);
-        axios.post(url, treatment).then(res => {
+        console.log(treatmentObject);
+        axios.post(url + treatmentObject.injuryId, treatmentObject.treatment).then(res => {
             console.log('addTreatment action res.data');
             console.log(res.data);
             dispatch(addTreatmentAsync(res.data));
