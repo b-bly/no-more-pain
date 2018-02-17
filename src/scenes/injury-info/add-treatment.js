@@ -34,7 +34,7 @@ class AddTreatmentForm extends Component {
             //if successful login
             this.setState({
                 redirectTo: '/injury-list',
-                title: '',
+                name: '',
                 description: ''
             })
         }
@@ -49,18 +49,15 @@ class AddTreatmentForm extends Component {
         event.preventDefault()
         console.log('add-injury-form, injury:: ');
         console.log(this.state);
-        this.props.addInjury({
+        this.props.addTreatment({
             name: this.state.name,
-            comments: this.state.comments,
+            //comments: this.state.comments,
             description: this.state.description,
-            upvotes: this.state.upvotes,
-        })
+            //upvotes: this.state.upvotes,
+        });
         this.setState({
             redirectTo: '/injury-info'
         });
-
-
-
     }
 
     cancel() {
@@ -68,7 +65,7 @@ class AddTreatmentForm extends Component {
             redirectTo: '/injury-list',
             title: '',
             description: ''
-        })
+        });
     }
     render() {
         //const user = this.props.user;
@@ -84,14 +81,14 @@ class AddTreatmentForm extends Component {
                         <form className="form-horizontal" onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <div className="col-2 col-ml-auto">
-                                    <label className="form-label" htmlFor="title">Name of Treatment:</label>
+                                    <label className="form-label" htmlFor="name">Name of Treatment:</label>
                                 </div>
                                 <div className="col-4 col-mr-auto">
                                     <input className="form-input"
                                         type="text"
-                                        id="title"
-                                        name="title"
-                                        placeholder="Name of injury"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Name of treatment"
                                         value={this.state.name}
                                         onChange={this.handleChange}
                                     />
@@ -141,25 +138,18 @@ AddTreatmentForm.propTypes = {
     description: PropTypes.string,
     upvotes: PropTypes.number
 };
-// //add id
-// id: Schema.Types.ObjectId,
-// name: String,
-// // comments: [String], //needs to be it's own schema?
-// description: String,
-// upvotes: Number
 
 function mapStateToProps(state) {
     console.log('add-treatment mapStateToProps called, state: ');
     console.log(state);
     return {
-        injuryInfo: state.injuryInfo //users is labeled in reducers/index.js
+        injuryInfo: state.injuryInfo 
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        addTreatment: addTreatment //binds function imported above to the name that will be available in this.props,
-        //so this.props.postNewUser
+        addTreatment: addTreatment 
     }, dispatch);
 }
 
