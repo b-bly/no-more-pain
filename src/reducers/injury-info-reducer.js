@@ -16,20 +16,22 @@ export default function (state = {}, action) {
             //        description: 'Do two sets of 20',
             //        upvotes: '0' } } ]
             return action.payload;
-            // {
-            //     id: action.payload.id,
-            //     title: action.payload.title,
-            //     description: action.payload.description,
-            //     treatments: action.payload.treatments.map((treatment) => {
-            //         treatment = Object.assign({}, treatment);
-            //         return {
-            //             name: treatment.name,
-            //             comments: Object.assign([], treatment.comments),
-            //             description: treatment.description,
-            //             upvotes: treatment.upvotes
-            //         }
-            //     })
-            // };
+        // {
+        //     id: action.payload.id,
+        //     title: action.payload.title,
+        //     description: action.payload.description,
+        //     treatments: action.payload.treatments.map((treatment) => {
+        //         treatment = Object.assign({}, treatment);
+        //         return {
+        //             name: treatment.name,
+        //             comments: Object.assign([], treatment.comments),
+        //             description: treatment.description,
+        //             upvotes: treatment.upvotes
+        //         }
+        //     })
+        // };
+        case 'ADD_TREATMENT':
+            return action.payload;
         default:
             return state;
     }

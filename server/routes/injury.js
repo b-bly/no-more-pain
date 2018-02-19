@@ -122,7 +122,7 @@ router.post('/add-treatment/:injuryId', (req, res) => {
     //https://stackoverflow.com/questions/19695058/how-to-define-object-in-array-in-mongoose-schema-correctly-with-2d-geo-index
     
     //update wasn't working.  Find out why
-    // https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
+    // https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose2
     Injury.findOneAndUpdate({ _id: injuryId },
         { $push: {treatments: treatment} })
         .exec((err, data) => {

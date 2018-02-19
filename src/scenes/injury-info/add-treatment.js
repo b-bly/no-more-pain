@@ -85,7 +85,7 @@ class AddTreatmentForm extends Component {
                                 <div className="col-4 col-mr-auto">
                                     <input className="form-input"
                                         type="text"
-                                        id="name"
+                                        id="name"                                        
                                         name="name"
                                         placeholder="Name of treatment"
                                         value={this.state.name}
@@ -100,8 +100,8 @@ class AddTreatmentForm extends Component {
                                 <div className="col-4 col-mr-auto">
                                     <textarea
                                         className="form-input description"
-                                        placeholder=" ."
-                                        type="description"
+                                        placeholder=" "
+                                        type="text"
                                         name="description"
                                         value={this.state.description}
                                         onChange={this.handleChange}
