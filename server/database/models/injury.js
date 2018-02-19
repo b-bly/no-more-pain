@@ -7,7 +7,7 @@ const injuriesSchema = new Schema({
 
 	title: { type: String, unique: false, required: true },
     description: { type: String, unique: false, required: false },
-    treatements: [{
+    treatments: [{
         //add id
         id: Schema.Types.ObjectId,
         name: String,

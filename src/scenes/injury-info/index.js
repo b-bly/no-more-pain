@@ -31,7 +31,7 @@ class Treatment extends Component {
                         <div className="card-bdy">
                             <div className="card-title-line">
                                 <p className="treatment-name" >{this.props.treatment.name} &nbsp;
-    
+
                         <span className="upvotes">Upvotes: {this.props.treatment.upvotes} &nbsp;</span></p>
                             </div>
                             <div className="card-title-line">
@@ -114,27 +114,27 @@ class InjuryInfo extends Component {
         treatments = treatments.map((treatmentCopy, i) => {
             const treatment = Object.assign({}, treatmentCopy);
 
-            const comments = treatment.comments.map((commentObj, j) =>
-                <div className="columns" key={j.toString()}>
-                    <div className="column col-5"></div>
-                    <div className="column col-6 col-mr-auto">
-                        <div className="">
-                            <div className="card-bdy">
-                                <div className="card-title-line">
-                                    <p className="upvotes">{commentObj.comment}
-                                        &nbsp;
+        //     const comments = treatment.comments.map((commentObj, j) =>
+        //         <div className="columns" key={j.toString()}>
+        //             <div className="column col-5"></div>
+        //             <div className="column col-6 col-mr-auto">
+        //                 <div className="">
+        //                     <div className="card-bdy">
+        //                         <div className="card-title-line">
+        //                             <p className="upvotes">{commentObj.comment}
+        //                                 &nbsp;
 
-        <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;</span></p>
-                                </div>
-                                <div className="card-title-line">
-                                    <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                                </div>
-                            </div>
+        // <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;</span></p>
+        //                         </div>
+        //                         <div className="card-title-line">
+        //                             <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+        //                         </div>
+        //                     </div>
 
-                        </div>
-                    </div>
-                </div>
-            );
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     );
             return (
                 <div className="treatment-container" key={i.toString()}>
 
@@ -202,8 +202,8 @@ class InjuryInfo extends Component {
                     <div className="center container">
                         <div className="col-3 col-ml-auto list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
                         <div className="col-2- col-mr-auto">
-                        <Link to='/add-treatment' 
-                        className="btn list-title">Add Treatment</Link>
+                            <Link to='/add-treatment'
+                                className="btn list-title">Add Treatment</Link>
                         </div>
                     </div>
                 </div>
