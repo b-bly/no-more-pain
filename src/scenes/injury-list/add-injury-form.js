@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 //actions
 import addInjury from '../../actions/add-injury'
 
-
 class AddInjuryForm extends Component {
 	constructor(props) {
 		super(props)
@@ -25,15 +24,15 @@ class AddInjuryForm extends Component {
 		console.log(nextProps);
 //need to work on this
 
-		// if (!!nextProps.injuryList &&
-		// 	nextProps.injuryList !== 'fail') {
-		// 	//if successful login
-		// 	this.setState({
-		// 		redirectTo: '/injury-list',
-		// 		title: '',
-		// 		description: ''
-		// 	})
-		// }
+		if (!!nextProps.injuryInfo &&
+			nextProps.injuryInfo !== 'fail') {
+			//if successful login
+			this.setState({
+				redirectTo: '/injury-info',
+				title: '',
+				description: ''
+			})
+		}
 	}
 
 	handleChange(event) {
@@ -49,9 +48,7 @@ class AddInjuryForm extends Component {
 			title: this.state.title,
 			description: this.state.description
 		})
-		this.setState({
-			redirectTo: '/injury-list'
-		});
+	
 	
 	}
 
@@ -135,7 +132,8 @@ function mapStateToProps(state) {
 	console.log('add-injury mapStateToProps called, state: ');
 	console.log(state);
 	return {
-		injuryList: state.injuryList //users is labeled in reducers/index.js
+		injuryInfo: state.injuryInfo
+		 //users is labeled in reducers/index.js
 	};
 }
 
@@ -147,3 +145,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddInjuryForm);
+

@@ -24,8 +24,8 @@ class AddTreatmentForm extends Component {
     componentWillReceiveProps(nextProps) {
         console.log('add-injury-form, nextProps: ');
         console.log(nextProps);
-        if (!!nextProps.newInjury &&
-            nextProps.newInjury !== 'fail') {
+        if (!!nextProps.injuryInfo &&
+            nextProps.injuryInfo !== 'fail') {
             //if successful request
             this.setState({
                 redirectTo: '/injury-info',
