@@ -5,7 +5,92 @@ import PropTypes from 'prop-types';
 import getInjuryInfo from '../../actions/getInjuryInfo';
 import { Link } from 'react-router-dom';
 
+class Reply extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            comment: '',
+            
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.cancel = this.cancel.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+        console.log('reply component, state: ');
+        console.log(this.state);
+        //need to figure out how to get access to injury and treatment ids
+
+        // this.props.addComment({
+        //     injuryId: this.props.injuryInfo._id,
+        //     treatmentId: ''
+        // });
+
+        //change this.state.showForm: false
+    }
+
+    cancel() {
+        //this.props.cancelReply();
+    }
+
+    render() {
+        return (
+            <div>
+                <form className="form-horizontal" onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <div className="col-2 col-ml-auto">
+                            <label className="form-label" htmlFor="name">Reply text: </label>
+                        </div>
+                        <div className="col-4 col-mr-auto">
+                            <textarea className="form-input"
+                                type="text"
+                                id=""
+                                name="reply"
+                                placeholder="Name of treatment"
+                                value={this.state.reply}
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group ">
+                                <div className="col-7"></div>
+                                <input className="btn col-1"
+                                    type="button"
+                                    value="Cancel"
+                                    onClick={this.cancel}
+                                ></input>
+                                &nbsp;
+								<input
+                                    className="btn btn-primary col-1 col-mr-auto"
+                                    type="submit"
+                                    value="Submit"
+                                ></input>
+                            </div>
+                </form>
+            </div>
+
+        );
+    }
+}
+
 class Treatment extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            treatmentId: '', //selected treatment
+            commentId: '',
+            commentParentId: '', //will need eventually for nested comments
+        }
+    }
+
     handleClick() {
         //this.props.handleClick(this.props.injury._id);
     }
@@ -46,7 +131,10 @@ class Treatment extends Component {
                         {this.props.showDescription === this.props.treatment._id ?
                                     <span>: {this.props.treatment.description}</span>
                                     : null}
-                            </p>
+                                <span
+                                //************* onClick={}
+                                > Reply</span></p>
+
                         </div>
 
                     </div>
@@ -114,27 +202,27 @@ class InjuryInfo extends Component {
         treatments = treatments.map((treatmentCopy, i) => {
             const treatment = Object.assign({}, treatmentCopy);
 
-        //     const comments = treatment.comments.map((commentObj, j) =>
-        //         <div className="columns" key={j.toString()}>
-        //             <div className="column col-5"></div>
-        //             <div className="column col-6 col-mr-auto">
-        //                 <div className="">
-        //                     <div className="card-bdy">
-        //                         <div className="card-title-line">
-        //                             <p className="upvotes">{commentObj.comment}
-        //                                 &nbsp;
+            //     const comments = treatment.comments.map((commentObj, j) =>
+            //         <div className="columns" key={j.toString()}>
+            //             <div className="column col-5"></div>
+            //             <div className="column col-6 col-mr-auto">
+            //                 <div className="">
+            //                     <div className="card-bdy">
+            //                         <div className="card-title-line">
+            //                             <p className="upvotes">{commentObj.comment}
+            //                                 &nbsp;
 
-        // <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;</span></p>
-        //                         </div>
-        //                         <div className="card-title-line">
-        //                             <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-        //                         </div>
-        //                     </div>
+            // <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;</span></p>
+            //                         </div>
+            //                         <div className="card-title-line">
+            //                             <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+            //                         </div>
+            //                     </div>
 
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     );
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     );
             return (
                 <div className="treatment-container" key={i.toString()}>
 
@@ -197,6 +285,7 @@ class InjuryInfo extends Component {
 
         return (
             <div>
+                
                 <div className="container">
                     {/* TITLE */}
                     <div className="center container">
