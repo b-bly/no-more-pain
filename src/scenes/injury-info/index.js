@@ -50,12 +50,27 @@ class InjuryInfo extends Component {
         console.log(comment);
         console.log(this.props.injuryInfo._id);
         
-        
-        this.props.addReply({
-            injuryId: this.props.injuryInfo._id,
-            treatmentId: treatmentId,
-            comment: comment
-        })
+                // const commentsSchema = {
+        //     injury_id: Schema.Types.ObjectId,
+        //     treatment_id: Schema.Types.ObjectId,
+        //     parent_id: Schema.Types.ObjectId,
+        //     posted: { type: Date, default: Date.now },
+        //     upvotes: Number,
+        //     author: {
+        //               id: Schema.Types.ObjectId,
+        //               username: String
+        //              },
+        //     text: String
+        // }
+        const replyObject = {
+            injury_id: this.props.injuryInfo._id,
+            treatment_id: treatmentId,
+            parent_id: null, //move values to state?
+            upvotes: 0,
+            author: null,
+            text: comment
+        }
+        this.props.addReply(replyObject);
     }
 
     render() {

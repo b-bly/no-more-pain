@@ -5,13 +5,13 @@ export default function addReply(replyObject) {
     return dispatch => {
         console.log('addReply action replyObject: ');
         console.log(replyObject);
-        axios.post(url + replyObject.injuryId, replyObject).then(res => {
+        axios.post(url + replyObject.injury_id, replyObject).then(res => {
             console.log('addReply action res.data');
             console.log(res.data);
             //dispatch(addReplyAsync(res.data));
             axios.get('injury/info', {
                 params: {
-                    id: replyObject.injuryId
+                    id: replyObject.injury_id
                 }
             }).then(res => {
                 console.log('add-reply, get action res.data');
