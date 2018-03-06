@@ -32,12 +32,7 @@ export default class Reply extends Component {
         console.log(this.state);
         //need to figure out how to get access to injury and treatment ids
 
-        // this.props.addComment({
-        //     injuryId: this.props.injuryInfo._id,
-        //     treatmentId: ''
-        // });
-
-        //change this.state.showForm: false
+        this.props.addReply(this.state.comment);
     }
 
     cancel() {
@@ -56,9 +51,9 @@ export default class Reply extends Component {
                             <textarea className="form-input"
                                 type="text"
                                 id=""
-                                name="reply"
+                                name="comment"
                                 placeholder="Name of treatment"
-                                value={this.state.reply}
+                                value={this.state.comment}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -75,6 +70,7 @@ export default class Reply extends Component {
                                     className="btn btn-primary col-1 col-mr-auto"
                                     type="submit"
                                     value="Submit"
+                                    onClick={this.handleSubmit}
                                 ></input>
                             </div>
                 </form>

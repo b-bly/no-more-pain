@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 //actions
 import getInjuryInfo from '../../actions/getInjuryInfo';
+import addReply from '../../actions/add-reply'
 //components
 import Treatment from './treatment';
 //react router dom
@@ -39,6 +40,18 @@ class InjuryInfo extends Component {
     showForm(id) {
         this.setState({
             showForm: id
+        })
+    }
+
+    addReply(treatmentId, comment) {
+        console.log('injury-info index, addReply, treatmentId, comment: ');
+        console.log(treatmentId);
+        console.log(comment);
+        
+        this.props.addReply({
+            injuryId: this.props.injuryInfo._id,
+            treatmentId: treatmentId,
+            comment: comment
         })
     }
 
@@ -98,6 +111,7 @@ class InjuryInfo extends Component {
                         showForm={this.showForm}
                         toggleDescription={this.toggleDescription}
                         treatment={treatment}
+                        addReply = {this.addReply}
                     />
 
                     {/* COMMENTS */}

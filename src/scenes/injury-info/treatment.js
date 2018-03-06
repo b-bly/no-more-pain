@@ -11,6 +11,7 @@ export default class Treatment extends Component {
         }
         this.showForm = this.showForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
+        this.addReply = this.addReply.bind(this);
     }
 
     handleClick() {
@@ -32,6 +33,10 @@ export default class Treatment extends Component {
         this.setState({
             treatmentId: ''
         })
+    }
+
+    addReply(comment) {
+        this.props.addReply(this.state.treatmentId, comment);
     }
 
     toggleDescription() {
@@ -71,6 +76,7 @@ export default class Treatment extends Component {
                         {this.state.treatmentId !== '' && 
                         <div>
                             <Reply 
+                            addReply={this.addReply}
                             cancelReply={this.cancelReply}/>
                         </div>
                         }

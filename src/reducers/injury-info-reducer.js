@@ -32,6 +32,8 @@ export default function (state = {}, action) {
         // };
         case 'ADD_TREATMENT':
             return action.payload;
+        case 'ADD_REPLY':
+            return action.payload;
         default:
             return state;
     }

@@ -1,37 +1,37 @@
 import axios from 'axios';
-const url = '/injury/add-treatment/';
+const url = '/injury/add-reply/';
 
-export default function addTreatment(treatmentObject) {
+export default function addReply(replyObject) {
     return dispatch => {
-        console.log('addTreatment action treatment: ');
-        console.log(treatmentObject);
-        axios.post(url + treatmentObject.injuryId, treatmentObject.treatment).then(res => {
-            console.log('addTreatment action res.data');
+        console.log('addReply action replyObject: ');
+        console.log(replyObject);
+        axios.post(url + replyObject.injuryId, replyObject).then(res => {
+            console.log('addReply action res.data');
             console.log(res.data);
-            //dispatch(addTreatmentAsync(res.data));
+            //dispatch(addReplyAsync(res.data));
             axios.get('injury/info', {
                 params: {
-                    id: treatmentObject.injuryId
+                    id: replyObject.injuryId
                 }
             }).then(res => {
-                console.log('add-treatment, get action res.data');
+                console.log('add-reply, get action res.data');
                 console.log(res.data);
                 
-                dispatch(addTreatmentAsync(res.data));
+                dispatch(addReplyAsync(res.data));
             }).catch(function (error) {
-                console.log('error getInjuryInfo : ');
+                console.log('error getInjuryInfo in addReply: ');
                 console.log(error);
             });
 
         }).catch(function (error) {
-            console.log('error addTreatment : ');
+            console.log('error addReply : ');
             console.log(error);
-            dispatch(addTreatmentAsync('fail'));
+            dispatch(addReplyAsync('fail'));
         });
     }
 }
 
-function addTreatmentAsync (injuryInfo) {
+function addReplyAsync (injuryInfo) {
     return {
         type: 'ADD_REPLY',
         payload: injuryInfo
