@@ -38,7 +38,7 @@ class Reply extends Component {
     }
 
     cancel() {
-        //this.props.cancelReply();
+        this.props.cancelReply();
     }
 
     render() {
@@ -89,6 +89,8 @@ class Treatment extends Component {
             commentId: '',
             commentParentId: '', //will need eventually for nested comments
         }
+        this.showForm = this.showForm.bind(this);
+        this.cancelReply = this.cancelReply.bind(this);
     }
 
     handleClick() {
@@ -100,7 +102,16 @@ class Treatment extends Component {
     }
 
     showForm() {
-        this.props.showForm(this.props.treatment._id);
+        this.setState({
+            treatmentId: this.props.treatment._id
+        });
+        
+    }
+
+    cancelReply() {
+        this.setState({
+            treatmentId: ''
+        })
     }
 
     toggleDescription() {
@@ -132,10 +143,17 @@ class Treatment extends Component {
                                     <span>: {this.props.treatment.description}</span>
                                     : null}
                                 <span
-                                //************* onClick={}
+                                onClick={this.showForm}
                                 > Reply</span></p>
 
                         </div>
+                        {/* ************************************************************ */}
+                        {this.state.treatmentId !== '' && 
+                        <div>
+                            <Reply 
+                            cancelReply={this.cancelReply}/>
+                        </div>
+                        }
 
                     </div>
                 </div>
