@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 //actions
 import getInjuryInfo from '../../actions/getInjuryInfo';
-import addReply from '../../actions/add-reply'
+import addReply from '../../actions/add-reply';
 //components
 import Treatment from './treatment';
 //react router dom
@@ -22,6 +22,7 @@ class InjuryInfo extends Component {
 
         this.toggleDescription = this.toggleDescription.bind(this);
         this.toggleComments = this.toggleComments.bind(this);
+        this.addReply = this.addReply.bind(this);
     }
     componentWillMount() {
         // if (this.props.injuryInfo.title.length < 1) {
@@ -44,9 +45,11 @@ class InjuryInfo extends Component {
     }
 
     addReply(treatmentId, comment) {
-        console.log('injury-info index, addReply, treatmentId, comment: ');
+        console.log('injury-info index, addReply, treatmentId, comment, injuryId: ');
         console.log(treatmentId);
         console.log(comment);
+        console.log(this.props.injuryInfo._id);
+        
         
         this.props.addReply({
             injuryId: this.props.injuryInfo._id,
@@ -224,7 +227,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getInjuryInfo: getInjuryInfo
+        getInjuryInfo: getInjuryInfo,
+        addReply: addReply
     }, dispatch);
 }
 

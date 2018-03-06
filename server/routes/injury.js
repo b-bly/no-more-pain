@@ -107,24 +107,25 @@ router.delete('/', (req, res) => {
 
 // Treatments
 router.post('/add-treatment/:injuryId', (req, res) => {
-    console.log('*** add treatment or comment ***');
+    console.log('*** add treatment ***');
     console.log(req.body);
     console.log('injuryId:');
     console.log(req.params.injuryId);
-    
+
     const treatment = req.body;
     const injuryId = req.params.injuryId;
     treatment.upvotes = 0;
     console.log('treatment: ');
     console.log(treatment);
-    
+
     // updating an array of objects: 
     //https://stackoverflow.com/questions/19695058/how-to-define-object-in-array-in-mongoose-schema-correctly-with-2d-geo-index
-    
+
     //update wasn't working.  Find out why
+    //because you need to find the record first?
     // https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose2
     Injury.findOneAndUpdate({ _id: injuryId },
-        { $push: {treatments: treatment} })
+        { $push: { treatments: treatment } })
         .exec((err, data) => {
             if (err) {
                 console.log('post treatment error:');
@@ -137,6 +138,46 @@ router.post('/add-treatment/:injuryId', (req, res) => {
         });
 })
 
+// injuryId: this.props.injuryInfo._id,
+//             treatmentId: treatmentId,
+//             comment: comment
+router.post('/add-reply/:injuryId', (req, res) => {
+    console.log('*** add reply req.body: ***');
+    console.log(req.body);
+    console.log('injuryId:');
+    console.log(req.params.injuryId);
+
+    const injuryId = req.params.injuryId;
+    const treatmentId = req.body.treatmentId;
+    const comment = req.body.comment;
+
+
+    // updating an array of objects: 
+    //https://stackoverflow.com/questions/19695058/how-to-define-object-in-array-in-mongoose-schema-correctly-with-2d-geo-index
+
+    //update wasn't working.  Find out why
+    // https://stackoverflow.com/questions/15691224/mongoose-update-values-in-array-of-objects
+    
+    // Injury.findOneAndUpdate({ _id: injuryId },
+    //     { $push: { treatments: treatment } })
+    //     .exec((err, data) => {
+    //         if (err) {
+    //             console.log('post treatment error:');
+    //             console.log(err)
+    //             res.send(err)
+    //         }
+    //         console.log('post treatment, data:');
+    //         console.log(data);
+    //         res.send(data);
+    //     });
+})
+//example
+// Person.update({ 'items.id': 2 }, {
+//     '$set': {
+//         'items.$.name': 'updated item2',
+//         'items.$.value': 'two updated'
+//     }
+// }, function (err) { ...
 
 // check if logged in (authenticated)
 function loggedIn(req, res, next) {
