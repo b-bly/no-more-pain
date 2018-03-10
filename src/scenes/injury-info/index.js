@@ -49,8 +49,8 @@ class InjuryInfo extends Component {
         console.log(treatmentId);
         console.log(comment);
         console.log(this.props.injuryInfo._id);
-        
-                // const commentsSchema = {
+
+        // const commentsSchema = {
         //     injury_id: Schema.Types.ObjectId,
         //     treatment_id: Schema.Types.ObjectId,
         //     parent_id: Schema.Types.ObjectId,
@@ -62,6 +62,7 @@ class InjuryInfo extends Component {
         //              },
         //     text: String
         // }
+
         const replyObject = {
             injury_id: this.props.injuryInfo._id,
             treatment_id: treatmentId,
@@ -91,7 +92,23 @@ class InjuryInfo extends Component {
         //need this if replies to replies are allowed
         // https://stackoverflow.com/questions/19323699/iterating-through-json-object-javascript
 
-        let treatments = Object.assign([], this.props.injuryInfo.treatments);
+        const practiceData = {
+            description: "pain in elbow",
+            title: "Tennis elbow",
+            treatments: [{
+                _id: "5a8a185f3dbc572f6c349c81", name: "stretch", description: "stretch", upvotes: 0,
+                comments: [
+                    { text: 'worked for me', upvotes: 1},
+                    { text: 'do these every day', upvotes: 0 },
+                    { text: 'warm up first', upvotes: 99 }
+                ]
+            },
+            { _id: "5a8f704f05f1287b39e0994f", name: "ice", description: "", upvotes: 0 },
+            { _id: "5a8f71063f68287b56b9f45e", name: "rest", description: "", upvotes: 0 },
+            { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
+        }
+
+        let treatments = Object.assign([], practiceData.treatments); //this.props.injuryInfo.treatments
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
         console.log('comments');
@@ -99,27 +116,6 @@ class InjuryInfo extends Component {
         treatments = treatments.map((treatmentCopy, i) => {
             const treatment = Object.assign({}, treatmentCopy);
 
-            //     const comments = treatment.comments.map((commentObj, j) =>
-            //         <div className="columns" key={j.toString()}>
-            //             <div className="column col-5"></div>
-            //             <div className="column col-6 col-mr-auto">
-            //                 <div className="">
-            //                     <div className="card-bdy">
-            //                         <div className="card-title-line">
-            //                             <p className="upvotes">{commentObj.comment}
-            //                                 &nbsp;
-
-            // <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;</span></p>
-            //                         </div>
-            //                         <div className="card-title-line">
-            //                             <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-            //                         </div>
-            //                     </div>
-
-            //                 </div>
-            //             </div>
-            //         </div>
-            //     );
             return (
                 <div className="treatment-container" key={i.toString()}>
 
@@ -129,61 +125,30 @@ class InjuryInfo extends Component {
                         showForm={this.showForm}
                         toggleDescription={this.toggleDescription}
                         treatment={treatment}
-                        addReply = {this.addReply}
+                        comments={comments}
+                        addReply={this.addReply}
                     />
 
                     {/* COMMENTS */}
 
-                    <div className="columns">
+                    {/* <div className="columns">
                         <div className="column col-5"></div>
                         <div className="column col-6 col-mr-auto treatment-title toggle"
                             onClick={this.toggleComments}
-                        ><h4>Comments: </h4></div>
+                        ><h4>Comments: </h4>
+                        </div>
                     </div>
                     {this.state.showComments ?
                         <div className="upvotes">{comments}</div>
-                        : null}
+                        : null} */}
                 </div>
-
-
-
             );
         });
         console.log(this.props.injuryInfo.treatments);
 
-        // const treatmentsJSX = treatments.map((treatment, i) => {
-        //     const comments = Object.assign([], treatment.comments);
-        // });
-
-
-        //trying to access comments with an index like an array comments[0] logs undefined, so this
-        //is the only solution I could find.  I had tried JSON.parse and slice().
-
-        // comments = comments.map((comment, i) =>
-        //     <div className="columns" key={i.toString()}>
-        //         <div className="column col-4"></div>
-        //         <div className="column col-6 col-mr-auto">
-        //             <div className="card">
-        //                 <div className="card-header">
-        //                     <div className="card-title-line">
-        //                         <h4 className="card-title " >&nbsp; {comment} &nbsp;</h4>
-        //                     </div>
-        //                     <div className="card-title-line">
-        //                         <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-        //                     </div>
-        //                 </div>
-
-        //             </div>
-        //         </div>
-        //     </div>
-        // );
-
-        // const name = this.props.injuryInfo.name;
-        // const upvotes = this.props.injuryInfo.upvotes;
-
         return (
             <div>
-                
+
                 <div className="container">
                     {/* TITLE */}
                     <div className="center container">
@@ -272,3 +237,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
 //       />
 //     </div>
 //   )
+
+
+
+
+// Problem accessing data from props:
+        //trying to access comments with an index like an array comments[0] logs undefined, so this
+        //is the only solution I could find.  I had tried JSON.parse and slice().
+
+                // const treatmentsJSX = treatments.map((treatment, i) => {
+        //     const comments = Object.assign([], treatment.comments);
+        // });

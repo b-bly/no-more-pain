@@ -54,14 +54,46 @@ router.get('/info', (req, res) => {
     const id = req.query.id;
 
     Injury.findOne({ _id: id })
-        .exec((err, data) => {
+        .exec((err, injuryObject) => {
             if (err) {
                 console.log('get info error:');
                 console.log(err);
                 res.send(err)
+            } else {
+                //get comments
+                Comment.find({ injury_id: id })
+                    .exec((err, comments) => {
+                        if (err) {
+                            console.log('get info error:');
+                            console.log(err);
+                            res.send(err)
+                        } else {
+                            console.log('get comments: ');
+                            console.log(comments);
+                            
+                            //add comments to injury object
+                            injuryObject.treatments = injuryObject.treatments.map((treatment, i) => {
+                                treatment.comments = [];
+                          
+                                comments.forEach((comment, j) => {
+                                    //lesson learned.  need to change mongoose ids to strings or the == logic doesn't work
+                                    const match = comment.treatment_id.toString() == treatment._id.toString();
+                                    console.log('match');
+                                    console.log(match);
+                                    
+                                    if (match == true) {
+                                        console.log('comment pushed');
+                                        
+                                        treatment.comments.push(comment);
+                                    }
+                                });
+                                return treatment;
+                            })
+                            //send injury object with comments
+                            res.send(injuryObject)
+                        }
+                    });
             }
-
-            res.send(data)
         });
 });
 
@@ -145,7 +177,7 @@ router.post('/add-reply/:injuryId', (req, res) => {
     console.log('injuryId:');
     console.log(req.params.injuryId);
 
-    const newComment = new Comment(req.body);    
+    const newComment = new Comment(req.body);
     console.log(newComment);
     newComment.save((err, comment) => {
         if (err) return res.json(err)
@@ -153,18 +185,18 @@ router.post('/add-reply/:injuryId', (req, res) => {
         res.json(comment)
     })
 
-        // const commentsSchema = {
-        //     injury_id: Schema.Types.ObjectId,
-        //     treatment_id: Schema.Types.ObjectId,
-        //     parent_id: Schema.Types.ObjectId,
-        //     posted: { type: Date, default: Date.now },
-        //     upvotes: Number,
-        //     author: {
-        //               id: Schema.Types.ObjectId,
-        //               username: String
-        //              },
-        //     text: String
-        // }
+    // const commentsSchema = {
+    //     injury_id: Schema.Types.ObjectId,
+    //     treatment_id: Schema.Types.ObjectId,
+    //     parent_id: Schema.Types.ObjectId,
+    //     posted: { type: Date, default: Date.now },
+    //     upvotes: Number,
+    //     author: {
+    //               id: Schema.Types.ObjectId,
+    //               username: String
+    //              },
+    //     text: String
+    // }
 
 })
 
