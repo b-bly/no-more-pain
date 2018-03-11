@@ -45,7 +45,9 @@ class App extends Component {
           component={User}
         />
 
-
+  <Route
+          path="/add-treatment"
+          component={AddTreatmentForm} />
         <Route
           path="/injury-list"
           component={InjuryList} />
@@ -55,9 +57,7 @@ class App extends Component {
         <Route
           path="/injury-info"
           component={InjuryInfo} />
-           <Route
-          path="/add-treatment"
-          component={AddTreatmentForm} />
+         
 
       </div>
     );

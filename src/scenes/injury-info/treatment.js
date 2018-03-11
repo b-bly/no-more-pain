@@ -1,54 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// components
 import Reply from './add-reply';
+import Comments from './comments';
 
+//actions
+import deleteTreatment from '../../actions/delete-treatment'
 
-
-class Comments extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
-    render() {
-        console.log('comments props');
-        console.log(this.props);
-        const commentsCopy = Object.assign([], this.props.comments);
-        console.log('comments[0]');
-        console.log(commentsCopy[0].text);
-
-        const comments = commentsCopy.map((commentObj, j) =>
-            <div className="columns" key={j.toString()}>
-                <div className="column col-5"></div>
-                <div className="column col-6 col-mr-auto">
-                    <div className="">
-                        <div className="card-bdy">
-                            <div className="card-title-line">
-                                <p className="upvotes">{commentObj.text}
-                                    &nbsp;
-
-            <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;</span></p>
-                            </div>
-                            <div className="card-title-line">
-                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        );
-
-        return (
-            <div>
-                {comments}
-            </div>
-        );
-    }
-}
-
-export default class Treatment extends Component {
+class Treatment extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,14 +21,18 @@ export default class Treatment extends Component {
         this.cancelReply = this.cancelReply.bind(this);
         this.addReply = this.addReply.bind(this);
         this.toggleComments = this.toggleComments.bind(this);
+        this.deleteTreatment = this.deleteTreatment.bind(this);
     }
 
     handleClick() {
         //this.props.handleClick(this.props.injury._id);
     }
 
-    delete() {
-        //this.props.delete(this.props.injury._id);
+    deleteTreatment() {
+        console.log('deleteTreatment');
+        console.log(this.props.treatment._id);
+        
+        this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
     }
 
     showForm() {
@@ -129,6 +93,11 @@ export default class Treatment extends Component {
                                 > reply </span>
                                 &nbsp;
                                 &nbsp;
+                                <span
+                                    onClick={this.deleteTreatment}
+                                > delete </span>
+                                &nbsp;
+                                &nbsp;
                                 <span className="heading"
                                     onClick={this.toggleComments}>
                                     show comments </span>
@@ -159,3 +128,19 @@ export default class Treatment extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    console.log('Treatment mapStateToProps called, state: ');
+    console.log(state);
+    return {
+        
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        deleteTreatment: deleteTreatment
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Treatment);

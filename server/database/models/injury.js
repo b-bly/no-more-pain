@@ -15,7 +15,6 @@ const injuriesSchema = new Schema({
         description: String,
         upvotes: Number
     }]
-
 },
 {
     collection: 'injuries'

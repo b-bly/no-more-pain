@@ -11,7 +11,6 @@ router.post('/', (req, res) => {
     const title = req.body.title;
     const description = req.body.description;
 
-
     Injury.findOne({ title: title }, (err, title) => {
         if (err) {
             console.log('User.js post error: ', err)
@@ -52,8 +51,8 @@ router.get('/', (req, res) => {
 
 router.get('/info', (req, res) => {
     const id = req.query.id;
-
     Injury.findOne({ _id: id })
+        .lean() //returns plain json, not a model instance
         .exec((err, injuryObject) => {
             if (err) {
                 console.log('get info error:');
@@ -62,33 +61,34 @@ router.get('/info', (req, res) => {
             } else {
                 //get comments
                 Comment.find({ injury_id: id })
+                    .lean()
                     .exec((err, comments) => {
                         if (err) {
                             console.log('get info error:');
                             console.log(err);
                             res.send(err)
                         } else {
-                            console.log('get comments: ');
-                            console.log(comments);
-                            
+                            console.log('get comments: ');                          
                             //add comments to injury object
+
                             injuryObject.treatments = injuryObject.treatments.map((treatment, i) => {
-                                treatment.comments = [];
-                          
+                                let treatmentCopy = Object.assign({}, treatment);
+                                treatmentCopy.comments = [];
+                                //treatment.comments = [];
                                 comments.forEach((comment, j) => {
                                     //lesson learned.  need to change mongoose ids to strings or the == logic doesn't work
                                     const match = comment.treatment_id.toString() == treatment._id.toString();
-                                    console.log('match');
-                                    console.log(match);
-                                    
                                     if (match == true) {
-                                        console.log('comment pushed');
-                                        
-                                        treatment.comments.push(comment);
+                                        treatmentCopy.comments.push(comment);
+                                        console.log('treatment: ');
+                                        console.log(treatmentCopy.comments);
                                     }
                                 });
-                                return treatment;
+                                return treatmentCopy;
                             })
+                            console.log('injuryObject');
+                            console.log(injuryObject);
+
                             //send injury object with comments
                             res.send(injuryObject)
                         }
@@ -169,6 +169,31 @@ router.post('/add-treatment/:injuryId', (req, res) => {
             res.send(data);
         });
 })
+
+const mongoose = require('mongoose');
+router.put('/info', (req, res) => {
+    console.log('info put, req.body: ');
+    console.log();
+
+    //https://docs.mongodb.com/manual/reference/operator/update/pull/
+//https://github.com/Automattic/mongoose/issues/542 
+    Injury.collection.update({ _id: new mongoose.Types.ObjectId(req.body.injuryId) },
+        { $pull: { 'treatments': { _id: new mongoose.Types.ObjectId(req.body.treatmentId) } }},
+        (err, data) => {
+            if (err) {
+                console.log(err);
+
+            } else {
+                console.log('treatment update successful');
+                console.log(data.result);
+                
+                console.log(req.body.treatmentId);
+                
+            }
+        });
+
+
+});
 
 //should move this to comments module?
 router.post('/add-reply/:injuryId', (req, res) => {

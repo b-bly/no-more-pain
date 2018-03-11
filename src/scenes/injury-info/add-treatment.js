@@ -67,7 +67,7 @@ class AddTreatmentForm extends Component {
         //const user = this.props.user;
         console.log('add-injury rendered');
 
-        if (this.state.redirectTo) {
+        if (this.state.redirectTo !== null) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else if (this.props.injuryInfo.title === undefined) {
             return <Redirect to='/injury-list' />

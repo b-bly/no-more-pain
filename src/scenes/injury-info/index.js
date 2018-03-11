@@ -11,6 +11,9 @@ import Treatment from './treatment';
 //react router dom
 import { Link } from 'react-router-dom';
 
+
+//need to modify injuryInfo to include _id and title or import injuryList props in mapstatetoprops
+
 class InjuryInfo extends Component {
     constructor(props) {
         super(props);
@@ -75,8 +78,8 @@ class InjuryInfo extends Component {
     }
 
     render() {
-        console.log('injury info props.injuryInfo._id: ');
-        console.log(this.props.injuryInfo._id);
+        console.log('injury info props.injuryInfo: ');
+        console.log(this.props.injuryInfo);
         //injuryInfo data:
         // [ anonymous {
         //     id: 1,
@@ -108,7 +111,7 @@ class InjuryInfo extends Component {
             { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
         }
 
-        let treatments = Object.assign([], practiceData.treatments); //this.props.injuryInfo.treatments
+        let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
         console.log('comments');
@@ -125,6 +128,7 @@ class InjuryInfo extends Component {
                         showForm={this.showForm}
                         toggleDescription={this.toggleDescription}
                         treatment={treatment}
+                        injuryId={this.props.injuryInfo._id}
                         comments={comments}
                         addReply={this.addReply}
                     />
@@ -144,7 +148,7 @@ class InjuryInfo extends Component {
                 </div>
             );
         });
-        console.log(this.props.injuryInfo.treatments);
+       
 
         return (
             <div>
