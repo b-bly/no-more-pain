@@ -15,7 +15,7 @@ class Treatment extends Component {
             treatmentId: '', //selected treatment
             commentId: '',
             commentParentId: '', //will need eventually for nested comments
-            showComments: false
+            showComments: true
         }
         this.showForm = this.showForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
@@ -104,13 +104,7 @@ class Treatment extends Component {
                             </p>
                         </div>
                         {/* ************************************************************ */}
-                        {this.state.treatmentId !== '' &&
-                            <div>
-                                <Reply
-                                    addReply={this.addReply}
-                                    cancelReply={this.cancelReply} />
-                            </div>
-                        }
+                 
 
                     </div>
                     <div>
@@ -119,6 +113,7 @@ class Treatment extends Component {
                             <Comments
                                 comments={this.props.comments}
                                 toggleComments={this.toggleComments}
+                                injuryId={this.props.injuryId}
                             />
                         }
 

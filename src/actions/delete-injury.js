@@ -28,7 +28,7 @@ export default function deleteInjury(id) {
                       }
                     });
             
-        }).catch(function (error) {
+        }).catch( (error) => {
             console.log('error deleteInjury : ');
             console.log(error);
             dispatch(deleteInjuryAsync('fail'));

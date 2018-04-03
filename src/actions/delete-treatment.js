@@ -26,7 +26,7 @@ export default function deleteTreatment(treatmentId, injuryId) {
                       }
                     });
             
-        }).catch(function (error) {
+        }).catch((error) => {
             console.log('error deleteTreatment : ');
             console.log(error);
             dispatch(deleteTreatmentAsync('fail'));

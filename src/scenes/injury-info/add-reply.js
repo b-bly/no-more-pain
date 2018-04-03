@@ -13,26 +13,41 @@ export default class Reply extends Component {
         super(props)
         this.state = {
             comment: '',
-            
+           
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.cancel = this.cancel.bind(this);
     }
 
+    componentWillMount () {
+        if (this.mode === 'edit') {       
+        this.setState({
+            comment: this.props.comment.text
+        })
+    }
+    }
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
-        })
+        });
     }
 
     handleSubmit(event) {
         event.preventDefault()
         console.log('reply component, state: ');
         console.log(this.state);
+
+        if (this.props.mode === 'add') {
+            this.props.addReply(this.state.comment);
+        } else if (this.props.mode === 'edit') {
+            this.props.editReply(this.state.comment, this.props.comment._id);
+        }
+        
         //need to figure out how to get access to injury and treatment ids
 
-        this.props.addReply(this.state.comment);
+       
     }
 
     cancel() {
@@ -66,6 +81,7 @@ export default class Reply extends Component {
                                     onClick={this.cancel}
                                 ></input>
                                 &nbsp;
+                                
 								<input
                                     className="btn btn-primary col-1 col-mr-auto"
                                     type="submit"

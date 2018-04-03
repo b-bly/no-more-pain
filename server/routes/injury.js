@@ -108,7 +108,7 @@ router.put('/update', function (req, res) {
     Injury.findByIdAndUpdate(
         { _id: id },
         { $set: injury },
-        function (err, data) {
+        (err, data) => {
             if (err) {
                 console.log('put error: ', err);
                 res.sendStatus(500);

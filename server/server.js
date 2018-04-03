@@ -8,7 +8,8 @@ const dbConnection = require('./database')
 const passport = require('./passport');
 // ROUTES
 const user = require('./routes/user');
-const injury = require('./routes/injury')
+const injury = require('./routes/injury');
+const comment = require('./routes/comments');
 
 const PORT = 8080
 
@@ -38,6 +39,7 @@ app.use(passport.session())
 //routing
 app.use('/user', user);
 app.use('/injury', injury);
+app.use('/comment', comment);
 
 // Starting Server 
 app.listen(PORT, () => {

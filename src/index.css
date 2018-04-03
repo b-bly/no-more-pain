@@ -94,6 +94,12 @@ body {
   margin-top: auto;
 }
 
+.list-links {
+    font-size: 0.8rem;
+    font-weight: 300;
+  
+}
+
 .register {
   margin: 10px;
 }
