@@ -63,10 +63,11 @@ class Treatment extends Component {
     }
 
     render() {
+
         return (
             <div className="columns" >
                 <div className="column col-4"></div>
-                <div className="column col-6 col-mr-auto">
+                <div className="column col-8">
                     <div className="">
                         <div className="card-bdy">
                             <div className="card-title-line">

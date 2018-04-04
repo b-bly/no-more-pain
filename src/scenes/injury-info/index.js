@@ -101,9 +101,9 @@ class InjuryInfo extends Component {
             treatments: [{
                 _id: "5a8a185f3dbc572f6c349c81", name: "stretch", description: "stretch", upvotes: 0,
                 comments: [
-                    { text: 'worked for me', upvotes: 1},
-                    { text: 'do these every day', upvotes: 0 },
-                    { text: 'warm up first', upvotes: 99 }
+                    { text: 'worked for me.  But then again, everything works for me.  That\s just how things go for me.', upvotes: 1, _id: 1},
+                    { text: 'do these every day', upvotes: 0, _id: 2 },
+                    { text: 'warm up first', upvotes: 99, _id: 3 }
                 ]
             },
             { _id: "5a8f704f05f1287b39e0994f", name: "ice", description: "", upvotes: 0 },
@@ -111,7 +111,8 @@ class InjuryInfo extends Component {
             { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
         }
 
-        let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
+        //**************** this.props.injuryInfo.treatments
+        let treatments = Object.assign([], practiceData.treatments); //this.props.injuryInfo.treatments
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
         console.log('comments');
@@ -129,34 +130,24 @@ class InjuryInfo extends Component {
                         toggleDescription={this.toggleDescription}
                         treatment={treatment}
                         injuryId={this.props.injuryInfo._id}
-                        comments={comments}
+                        comments={treatment.comments}
+                        // *********************** treatmentCopy.comments
                         addReply={this.addReply}
                     />
 
-                    {/* COMMENTS */}
-
-                    {/* <div className="columns">
-                        <div className="column col-5"></div>
-                        <div className="column col-6 col-mr-auto treatment-title toggle"
-                            onClick={this.toggleComments}
-                        ><h4>Comments: </h4>
-                        </div>
-                    </div>
-                    {this.state.showComments ?
-                        <div className="upvotes">{comments}</div>
-                        : null} */}
                 </div>
             );
         });
        
-
         return (
             <div>
 
                 <div className="container">
                     {/* TITLE */}
                     <div className="center container">
-                        <div className="col-3 col-ml-auto list-title"><h3>{this.props.injuryInfo.title} Treatments</h3></div>
+                        <div className="col-7 col-ml-auto list-title"><h3>{practiceData.title} Treatments</h3></div>
+                         {/* this.props.injuryInfo.title */}
+                        
                         <div className="col-2- col-mr-auto">
                             <Link to='/add-treatment'
                                 className="btn list-title">Add Treatment</Link>
@@ -174,11 +165,15 @@ class InjuryInfo extends Component {
                                         <Link to='/'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
                                     </div>
                                     <div className="card-title-line">
-                                        <h4 className="card-title ">&nbsp; {this.props.injuryInfo.title}</h4>
+                                        <h4 className="card-title ">&nbsp; {practiceData.title}</h4>
+                                        {/* this.props.injuryInfo.title */}
+
                                     </div>
                                 </div>
                                 <small className="">
-                                    {this.props.injuryInfo.description}
+                                {practiceData.description}
+
+                                    {/* *****************{this.props.injuryInfo.description} */}
                                 </small>
                             </div>
                         </div>

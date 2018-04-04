@@ -59,10 +59,10 @@ export default class Reply extends Component {
             <div>
                 <form className="form-horizontal" onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <div className="col-2 col-ml-auto">
+                        <div className=" col-ml-auto col-4">
                             <label className="form-label" htmlFor="name">Reply text: </label>
                         </div>
-                        <div className="col-4 col-mr-auto">
+                        <div className="col-7 col-mr-auto">
                             <textarea className="form-input"
                                 type="text"
                                 id=""
@@ -75,7 +75,7 @@ export default class Reply extends Component {
                     </div>
                     <div className="form-group ">
                                 <div className="col-7"></div>
-                                <input className="btn col-1"
+                                <input className="btn col-2"
                                     type="button"
                                     value="Cancel"
                                     onClick={this.cancel}
@@ -83,7 +83,7 @@ export default class Reply extends Component {
                                 &nbsp;
                                 
 								<input
-                                    className="btn btn-primary col-1 col-mr-auto"
+                                    className="btn btn-primary col-2 col-mr-auto"
                                     type="submit"
                                     value="Submit"
                                     onClick={this.handleSubmit}

@@ -42,60 +42,79 @@ class Comments extends Component {
     render() {
         console.log('comments props');
         console.log(this.props);
+        console.log('state');
+        console.log(this.state);
+
         const commentsCopy = Object.assign([], this.props.comments);
-        console.log('comments[0]');
-        console.log(commentsCopy[0].text);
+
+
+
+        // injury_id: Schema.Types.ObjectId,
+        // treatment_id: Schema.Types.ObjectId,
+        // parent_id: Schema.Types.ObjectId,
+        // posted: { type: Date, default: Date.now },
+        // upvotes: Number,
+        // author: {
+        //           id: Schema.Types.ObjectId,
+        //           username: String
+        //          },
+        // text: String
 
         const comments = commentsCopy.map((commentObj, j) =>
 
-            <div className="columns" key={j.toString()}>
-                <div className="column col-6 col-mr-auto">
+            // <div className="container">
+            // <div className="columns">
+            //     <div className="column col-6 col-mx-auto">
+            //         <div className="card">
 
-                    {/* {this.state.showForm === commentObj._id ?
+            //             <div className="card-header">
+            //                 <div className="card-title-line">
 
-            <Reply
-                                editReply={this.editReply}
-                                cancelReply={this.cancelReply}
-                                mode={'edit'}
-                                comment={commentObj}
-            />
-                            : */}
-                    <div className="card-bdy">
-                        <div className="">
-                            <p>
-                                {
-                                    this.state.showForm !== '' ?
-                                    <div className="upvotes">{commentObj.text}
+            <div className="" key={j.toString()}>
+                <div className="container">
+                    <div className="columns">
+                        <div className="col-1"></div>
+                        <div className="col-mr-auto col-10">
+                            <div className="card">
+                                <div className="columns card-bdy">
+                                    <div className="col-12 card-line">
+                                        {
+                                            this.state.showForm === commentObj._id ?
+                                                <div>
+                                                    <Reply
+                                                        addReply={this.addReply}
+                                                        cancelReply={this.cancelReply}
+                                                        mode={'add'} />
+                                                </div>
+                                                :
+                                                <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;
+                                        </span></span>
+
+                                        }
+
+                                    </div>
+
+
+
+                                    <div className=" col-12 card-line toggle upvotes">
+                                        <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
                                         &nbsp;
+                                        <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;
+                                        </span>
+
+                                        <span className="list-links"
+                                            onClick={() => this.showForm(commentObj._id)}
+                                        >Edit &nbsp;</span>
+                                        <span className="list-links">Delete &nbsp;
+                                </span>
                                     </div>
-
-                                    :
-
-                                    <div>
-                                        <Reply
-                                            addReply={this.addReply}
-                                            cancelReply={this.cancelReply}
-                                            mode={'add'} />
-                                    </div>
-                                }
-
-                                <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;
-                        </span>
-                            </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <p>
-                            <span className="list-links"
-                                onClick={() => this.showForm(commentObj._id)}
-                            >Edit &nbsp;</span>
-                            <span className="list-links">Delete &nbsp;
-                            </span>
-                        </p>
-                    </div>
-                    <div className="card-title-line">
-                        <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                        {/* <div className=" col-6"></div> */}
                     </div>
                 </div>
+
             </div>
         )
 

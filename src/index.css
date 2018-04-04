@@ -27,6 +27,7 @@ body {
 }
 .card { 
   width: max-content;
+  max-width: 100%;
   margin-bottom: 7px;
   margin-top: 7px;
   box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .3);
@@ -34,7 +35,7 @@ body {
 .card-header, .card-header-treatment, .card-bdy {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 15px;
  
 }
 
@@ -72,7 +73,11 @@ body {
   justify-content: center;
 }
 
-
+.comment {
+  font-size: 1rem;
+  font-weight: 200;
+  color: black;
+}
 
 .form {
   display: flex;
