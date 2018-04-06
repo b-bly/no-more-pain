@@ -157,10 +157,10 @@ class InjuryInfo extends Component {
 
                 <div className="container">
                     <div className="columns">
-                        <div className="column col-6 col-mx-auto">
+                        <div className="col-6 col-mx-auto">
                             <div className="card">
 
-                                <div className="card-header">
+                                <div className="card-bdy">
                                     <div className="card-title-line">
                                         <Link to='/'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
                                     </div>
@@ -170,11 +170,11 @@ class InjuryInfo extends Component {
 
                                     </div>
                                 </div>
-                                <small className="">
+                                <div className="card-description">
                                 {practiceData.description}
 
                                     {/* *****************{this.props.injuryInfo.description} */}
-                                </small>
+                                </div>
                             </div>
                         </div>
 

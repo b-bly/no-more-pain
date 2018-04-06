@@ -70,52 +70,49 @@ class Comments extends Component {
             //             <div className="card-header">
             //                 <div className="card-title-line">
 
-            <div className="" key={j.toString()}>
-                <div className="container">
-                    <div className="columns">
-                        <div className="col-1"></div>
-                        <div className="col-mr-auto col-10">
-                            <div className="card">
-                                <div className="columns card-bdy">
-                                    <div className="col-12 card-line">
-                                        {
-                                            this.state.showForm === commentObj._id ?
-                                                <div>
-                                                    <Reply
-                                                        addReply={this.addReply}
-                                                        cancelReply={this.cancelReply}
-                                                        mode={'add'} />
-                                                </div>
-                                                :
-                                                <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;
+            <div className="columns" key={j.toString()}>
+
+                <div className="col-1"></div>
+                <div className="col-10">
+                    <div className="card">
+                        <div className="columns card-bdy">
+                            <div className="col-12 card-line">
+                                {
+                                    this.state.showForm === commentObj._id ?
+                                        <div>
+                                            <Reply
+                                                addReply={this.addReply}
+                                                cancelReply={this.cancelReply}
+                                                mode={'add'} />
+                                        </div>
+                                        :
+                                        <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;
                                         </span></span>
 
-                                        }
+                                }
 
-                                    </div>
+                            </div>
 
 
 
-                                    <div className=" col-12 card-line toggle upvotes">
-                                        <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                                        &nbsp;
+                            <div className=" col-12 card-line toggle upvotes">
+                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                &nbsp;
                                         <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;
                                         </span>
 
-                                        <span className="list-links"
-                                            onClick={() => this.showForm(commentObj._id)}
-                                        >Edit &nbsp;</span>
-                                        <span className="list-links">Delete &nbsp;
+                                <span className="list-links"
+                                    onClick={() => this.showForm(commentObj._id)}
+                                >Edit &nbsp;</span>
+                                <span className="list-links">Delete &nbsp;
                                 </span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        {/* <div className=" col-6"></div> */}
                     </div>
                 </div>
-
+                {/* <div className=" col-6"></div> */}
             </div>
+
         )
 
 

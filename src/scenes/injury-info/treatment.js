@@ -31,7 +31,7 @@ class Treatment extends Component {
     deleteTreatment() {
         console.log('deleteTreatment');
         console.log(this.props.treatment._id);
-        
+
         this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
     }
 
@@ -65,62 +65,71 @@ class Treatment extends Component {
     render() {
 
         return (
+            // <div className="col-mr-auto col-10">
+            // <div className="card">
+            //     <div className="columns card-bdy">
+            //         <div className="col-12 card-line">
+
             <div className="columns" >
                 <div className="column col-4"></div>
-                <div className="column col-8">
-                    <div className="">
-                        <div className="card-bdy">
-                            <div className="card-title-line">
-                                <p className="treatment-name" >{this.props.treatment.name} &nbsp;
+                <div className="column col-6">
+                    <div className="card">
+                        <div className="columns card-bdy">
+                            <div className="col-12 card-title-line">
+                                
+                                    <span className="treatment-name" >{this.props.treatment.name} &nbsp;
 
-                        <span className="upvotes">Upvotes: {this.props.treatment.upvotes} &nbsp;</span></p>
+                                <span className="upvotes">Upvotes: {this.props.treatment.upvotes} &nbsp;</span></span>
+                                
+                                
+                                    <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                
                             </div>
-                            <div className="card-title-line">
-                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                            </div>
-                        </div>
-                        <div className="card-line toggle" >
-                            <p className="upvotes"
 
-                                onClick={this.toggleDescription.bind(this)}>
-                                description
+                            <div className="col-12 card-line toggle" >
+                                <span className="upvotes"
+
+                                    onClick={this.toggleDescription.bind(this)}>
+                                    description
                         {this.props.showDescription === this.props.treatment._id ?
-                                    <span>: {this.props.treatment.description}</span>
-                                    : null}
-                                &nbsp;
-                                &nbsp;
+                                        <span>: {this.props.treatment.description}</span>
+                                        : null}
+                                    &nbsp;
+                                    &nbsp;
                                 <span
-                                    onClick={this.showForm}
-                                > reply </span>
-                                &nbsp;
-                                &nbsp;
+                                        onClick={this.showForm}
+                                    > reply </span>
+                                    &nbsp;
+                                    &nbsp;
                                 <span
-                                    onClick={this.deleteTreatment}
-                                > delete </span>
-                                &nbsp;
-                                &nbsp;
+                                        onClick={this.deleteTreatment}
+                                    > delete </span>
+                                    &nbsp;
+                                    &nbsp;
                                 <span className="heading"
-                                    onClick={this.toggleComments}>
-                                    show comments </span>
-                            </p>
+                                        onClick={this.toggleComments}>
+                                        show comments </span>
+                                </span>
+                            </div>
+                            {/* ************************************************************ */}
+
+
+
+                            <div>
+
+                                {this.state.showComments === true &&
+                                    <Comments
+                                        comments={this.props.comments}
+                                        toggleComments={this.toggleComments}
+                                        injuryId={this.props.injuryId}
+                                    />
+                                }
+
+                            </div>
                         </div>
-                        {/* ************************************************************ */}
-                 
-
-                    </div>
-                    <div>
-
-                        {this.state.showComments === true &&
-                            <Comments
-                                comments={this.props.comments}
-                                toggleComments={this.toggleComments}
-                                injuryId={this.props.injuryId}
-                            />
-                        }
-
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
@@ -129,7 +138,7 @@ function mapStateToProps(state) {
     console.log('Treatment mapStateToProps called, state: ');
     console.log(state);
     return {
-        
+
     };
 }
 

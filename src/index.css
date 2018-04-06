@@ -2,6 +2,10 @@ a {
   cursor: pointer; 
 }
 
+.avatar {
+  margin: 1.5rem  2.5rem  1.5rem  0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -17,6 +21,7 @@ body {
   height: 60vh;
   width: 50vw;
 }
+
 .loading:after {
   height: 4rem;
   width: 4rem;
@@ -25,18 +30,35 @@ body {
 .btn-clear {
   float: right;
 }
+
+.btn-right {
+  display: flex;
+  flex-direction: row-reverse;
+  
+}
+
 .card { 
-  width: max-content;
+  /* width: max-content; */
   max-width: 100%;
   margin-bottom: 7px;
   margin-top: 7px;
   box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .3);
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
 }
-.card-header, .card-header-treatment, .card-bdy {
+.card-header, .card-header-treatment, .card-bdy, .card-description {
   display: flex;
   align-items: center;
-  padding: 15px;
- 
+}
+
+.card-bdy, .card-description  {
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.card-description {
+  padding-left: 8px;
 }
 
 .card-header h4,
@@ -46,27 +68,12 @@ body {
 .card-title-line {
   height: 35px;
 }
-.card-line {
+.card-line, .card-title-line {
   padding-left: 10px;
   padding-right: 10px;
   text-align: left;
 }
 
- .tooltip:after {
-  width: 190px;
-}
-.avatar {
-  margin: 1.5rem  2.5rem  1.5rem  0;
-}
-.btn-right {
-  display: flex;
-  flex-direction: row-reverse;
-  
-}
-.card-bdy  {
-  font-size: 1rem;
-  font-weight: 200;
-}
 .column {
   display: flex;
   flex-direction: column;
@@ -78,6 +85,10 @@ body {
   font-weight: 200;
   color: black;
 }
+
+
+
+
 
 .form {
   display: flex;
@@ -124,6 +135,10 @@ textarea.form-input {
   font-weight: 300;
 }
 
+.tooltip:after {
+  width: 190px;
+}
+
 .treatment-title {
   text-align: left;
   
@@ -139,6 +154,7 @@ textarea.form-input {
   opacity: 0.8;
   cursor: pointer;
 }
+
 @media screen and (max-width: 700px) {
   .card {
     padding: .5rem;
