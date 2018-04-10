@@ -13,6 +13,7 @@ class Comments extends Component {
             showForm: '',
         }
         this.showForm = this.showForm.bind(this);
+        this.cancelReply = this.cancelReply.bind(this);
     }
 
     showForm(id) {
@@ -83,7 +84,7 @@ class Comments extends Component {
                                             <Reply
                                                 addReply={this.addReply}
                                                 cancelReply={this.cancelReply}
-                                                mode={'add'} />
+                                                mode={'edit'} />
                                         </div>
                                         :
                                         <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;

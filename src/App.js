@@ -77,3 +77,7 @@ export default App;
 // ) : (
 //   <LoginButton onClick={this.handleLoginClick} />
 // )}
+
+//TO DO
+// Clean up CSS file
+// 

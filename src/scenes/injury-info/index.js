@@ -112,7 +112,7 @@ class InjuryInfo extends Component {
         }
 
         //**************** this.props.injuryInfo.treatments
-        let treatments = Object.assign([], practiceData.treatments); //this.props.injuryInfo.treatments
+        let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
         console.log('comments');
@@ -142,18 +142,7 @@ class InjuryInfo extends Component {
         return (
             <div>
 
-                <div className="container">
-                    {/* TITLE */}
-                    <div className="center container">
-                        <div className="col-7 col-ml-auto list-title"><h3>{practiceData.title} Treatments</h3></div>
-                         {/* this.props.injuryInfo.title */}
-                        
-                        <div className="col-2- col-mr-auto">
-                            <Link to='/add-treatment'
-                                className="btn list-title">Add Treatment</Link>
-                        </div>
-                    </div>
-                </div>
+              
 
                 <div className="container">
                     <div className="columns">
@@ -162,7 +151,7 @@ class InjuryInfo extends Component {
 
                                 <div className="card-bdy">
                                     <div className="card-title-line">
-                                        <Link to='/'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
+                                        <Link to='/injury-list'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
                                     </div>
                                     <div className="card-title-line">
                                         <h4 className="card-title ">&nbsp; {practiceData.title}</h4>
@@ -175,6 +164,10 @@ class InjuryInfo extends Component {
 
                                     {/* *****************{this.props.injuryInfo.description} */}
                                 </div>
+                                <div className="col-2- col-mr-auto">
+                            <Link to='/add-treatment'
+                                className="btn list-title">Add Treatment</Link>
+                        </div>
                             </div>
                         </div>
 

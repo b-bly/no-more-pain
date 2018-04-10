@@ -76,14 +76,14 @@ class Treatment extends Component {
                     <div className="card">
                         <div className="columns card-bdy">
                             <div className="col-12 card-title-line">
-                                
-                                    <span className="treatment-name" >{this.props.treatment.name} &nbsp;
+
+                                <span className="treatment-name" >{this.props.treatment.name} &nbsp;
 
                                 <span className="upvotes">Upvotes: {this.props.treatment.upvotes} &nbsp;</span></span>
-                                
-                                
-                                    <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                                
+
+
+                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+
                             </div>
 
                             <div className="col-12 card-line toggle" >
@@ -113,8 +113,14 @@ class Treatment extends Component {
                             </div>
                             {/* ************************************************************ */}
 
-
-
+                            {this.props.showForm === true &&
+                                <Reply
+                                    addReply={this.addReply}
+                                    cancelReply={this.cancelReply}
+                                    mode={'add'}
+                                />
+                            }
+                            {/* *************************************************** */}
                             <div>
 
                                 {this.state.showComments === true &&
