@@ -3,6 +3,40 @@ const router = express.Router()
 const passport = require('../passport')
 const Comment = require('../database/models/comments')
 
+router.post('/add-reply/:injuryId', (req, res) => {
+    console.log('*** add reply req.body: ***');
+    console.log(req.body);
+    console.log('injuryId:');
+    console.log(req.params.injuryId);
+
+    const newComment = new Comment(req.body);
+    console.log(newComment);
+    newComment.save((err, comment) => {
+        if (err) return res.json(err)
+        console.log('success');
+        res.json(comment)
+    })
+
+    // req.body
+    // treatment_id: this.state.treatmentId,
+    //         text: comment,
+    //         injury_id: this.props.injuryId
+
+    // const commentsSchema = {
+    //     injury_id: Schema.Types.ObjectId,
+    //     treatment_id: Schema.Types.ObjectId,
+    //     parent_id: Schema.Types.ObjectId,
+    //     posted: { type: Date, default: Date.now },
+    //     upvotes: Number,
+    //     author: {
+    //               id: Schema.Types.ObjectId,
+    //               username: String
+    //              },
+    //     text: String
+    // }
+
+})
+
 router.put('/', (req, res) => {
 
     const id = req.body.id;

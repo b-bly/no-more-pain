@@ -80,14 +80,14 @@ router.get('/info', (req, res) => {
                                     const match = comment.treatment_id.toString() == treatment._id.toString();
                                     if (match == true) {
                                         treatmentCopy.comments.push(comment);
-                                        console.log('treatment: ');
-                                        console.log(treatmentCopy.comments);
+                                        // console.log('treatment: ');
+                                        // console.log(treatmentCopy.comments);
                                     }
                                 });
                                 return treatmentCopy;
                             })
-                            console.log('injuryObject');
-                            console.log(injuryObject);
+                            // console.log('injuryObject');
+                            // console.log(injuryObject);
 
                             //send injury object with comments
                             res.send(injuryObject)
@@ -196,34 +196,7 @@ router.put('/info', (req, res) => {
 });
 
 //should move this to comments module?
-router.post('/add-reply/:injuryId', (req, res) => {
-    console.log('*** add reply req.body: ***');
-    console.log(req.body);
-    console.log('injuryId:');
-    console.log(req.params.injuryId);
 
-    const newComment = new Comment(req.body);
-    console.log(newComment);
-    newComment.save((err, comment) => {
-        if (err) return res.json(err)
-        console.log('success');
-        res.json(comment)
-    })
-
-    // const commentsSchema = {
-    //     injury_id: Schema.Types.ObjectId,
-    //     treatment_id: Schema.Types.ObjectId,
-    //     parent_id: Schema.Types.ObjectId,
-    //     posted: { type: Date, default: Date.now },
-    //     upvotes: Number,
-    //     author: {
-    //               id: Schema.Types.ObjectId,
-    //               username: String
-    //              },
-    //     text: String
-    // }
-
-})
 
 
 // check if logged in (authenticated)

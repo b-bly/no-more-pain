@@ -22,9 +22,9 @@ export default class Reply extends Component {
     }
 
     componentWillMount () {
-        if (this.mode === 'edit') {       
+        if (this.props.mode === 'edit') {       
         this.setState({
-            comment: this.props.comment.text
+            comment: this.props.comment
         })
     }
     }
@@ -39,16 +39,12 @@ export default class Reply extends Component {
         event.preventDefault()
         console.log('reply component, state: ');
         console.log(this.state);
-
         if (this.props.mode === 'add') {
             this.props.addReply(this.state.comment);
         } else if (this.props.mode === 'edit') {
             this.props.editReply(this.state.comment, this.props.comment._id);
-        }
-        
-        //need to figure out how to get access to injury and treatment ids
-
-       
+        }       
+        //need to figure out how to get access to injury and treatment ids  
     }
 
     cancel() {

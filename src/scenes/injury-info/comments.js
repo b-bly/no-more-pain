@@ -85,6 +85,7 @@ class Comments extends Component {
                                         <Reply
                                             addReply={this.addReply}
                                             cancelReply={this.cancelReply}
+                                            comment={commentObj.text}
                                             mode={'edit'} />
                                     </div>
                                     :

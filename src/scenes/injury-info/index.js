@@ -66,6 +66,7 @@ class InjuryInfo extends Component {
         //     text: String
         // }
 
+
         const replyObject = {
             injury_id: this.props.injuryInfo._id,
             treatment_id: treatmentId,
@@ -112,7 +113,7 @@ class InjuryInfo extends Component {
         }
 
         //**************** this.props.injuryInfo.treatments
-        let treatments = Object.assign([], practiceData.treatments); //this.props.injuryInfo.treatments
+        let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
         console.log('comments');
@@ -154,13 +155,13 @@ class InjuryInfo extends Component {
                                         <Link to='/injury-list'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
                                     </div>
                                     <div className="card-title-line">
-                                        <h4 className="card-title ">&nbsp; {practiceData.title}</h4>
+                                        <h4 className="card-title ">&nbsp; {this.props.injuryInfo.title}</h4>
                                         {/* this.props.injuryInfo.title */}
 
                                     </div>
                                 </div>
                                 <div className="card-description">
-                                {practiceData.description}
+                                {this.props.injuryInfo.description}
 
                                     {/* *****************{this.props.injuryInfo.description} */}
                                 </div>

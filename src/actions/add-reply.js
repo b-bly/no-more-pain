@@ -1,11 +1,11 @@
 import axios from 'axios';
-const url = '/injury/add-reply/';
+const url = '/comment/add-reply/';
 
 export default function addReply(replyObject) {
     return dispatch => {
         console.log('addReply action replyObject: ');
         console.log(replyObject);
-        axios.post(url + replyObject.injury_id, replyObject).then(res => {
+        axios.post(url + replyObject.treatment_id, replyObject).then(res => {
             console.log('addReply action res.data');
             console.log(res.data);
             //dispatch(addReplyAsync(res.data));
@@ -15,14 +15,12 @@ export default function addReply(replyObject) {
                 }
             }).then(res => {
                 console.log('add-reply, get action res.data');
-                console.log(res.data);
-                
+                console.log(res.data);              
                 dispatch(addReplyAsync(res.data));
             }).catch(function (error) {
                 console.log('error getInjuryInfo in addReply: ');
                 console.log(error);
             });
-
         }).catch(function (error) {
             console.log('error addReply : ');
             console.log(error);

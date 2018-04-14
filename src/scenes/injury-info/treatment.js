@@ -53,8 +53,12 @@ class Treatment extends Component {
 
     }
 
-    addReply(comment) {
-        this.props.addReply(this.state.treatmentId, comment);
+    addReply(comment) {    
+        this.props.addReply(this.props.treatment._id, comment); //calling addReply in index.js, not action
+        this.setState({
+            treatmentId: ''
+        });
+
     }
 
     toggleDescription() {
