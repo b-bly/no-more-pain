@@ -76,39 +76,38 @@ class Treatment extends Component {
                     <div className="card">
                         <div className="columns card-bdy">
                             <div className="col-12 card-title-line">
-
-                                <span className="treatment-name" >{this.props.treatment.name} &nbsp;
-
-                                <span className="upvotes">Upvotes: {this.props.treatment.upvotes} &nbsp;</span></span>
-
-
-                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                <span className="treatment-name" >{this.props.treatment.name} &nbsp; </span>
 
                             </div>
 
-                            <div className="col-12 card-line toggle" >
-                                <span className="upvotes"
+                            <div className="col-12 card-line" >
+                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                &nbsp;
 
-                                    onClick={this.toggleDescription.bind(this)}>
-                                    description
+                                    <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
+                                    <span className="toggle">
+                                    <span className="list-links"
+                                        onClick={this.toggleDescription.bind(this)}>
+                                        description
                         {this.props.showDescription === this.props.treatment._id ?
-                                        <span>: {this.props.treatment.description}</span>
-                                        : null}
-                                    &nbsp;
-                                    &nbsp;
+                                            <span>: {this.props.treatment.description}</span>
+                                            : null}
+                                        &nbsp;
+                                        &nbsp;
                                 <span
-                                        onClick={this.showForm}
-                                    > reply </span>
-                                    &nbsp;
-                                    &nbsp;
+                                            onClick={this.showForm}
+                                        > reply </span>
+                                        &nbsp;
+                                        &nbsp;
                                 <span
-                                        onClick={this.deleteTreatment}
-                                    > delete </span>
-                                    &nbsp;
-                                    &nbsp;
+                                            onClick={this.deleteTreatment}
+                                        > delete </span>
+                                        &nbsp;
+                                        &nbsp;
                                 <span className="heading"
-                                        onClick={this.toggleComments}>
-                                        show comments </span>
+                                            onClick={this.toggleComments}>
+                                            show comments </span>
+                                    </span>
                                 </span>
                             </div>
                             {/* ************************************************************ */}
@@ -121,7 +120,7 @@ class Treatment extends Component {
                                 />
                             }
                             {/* *************************************************** */}
-                            <div>
+                            <div className="col-12 card-line ">
 
                                 {this.state.showComments === true &&
                                     <Comments

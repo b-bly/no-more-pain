@@ -58,7 +58,7 @@ class AddTreatmentForm extends Component {
 
     cancel() {
         this.setState({
-            redirectTo: '/injury-info',
+            redirectTo: '/injury-list',
             title: '',
             description: ''
         });

@@ -112,7 +112,7 @@ class InjuryInfo extends Component {
         }
 
         //**************** this.props.injuryInfo.treatments
-        let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
+        let treatments = Object.assign([], practiceData.treatments); //this.props.injuryInfo.treatments
         const firstTreatment = Object.assign({}, treatments[0]);
         const comments = Object.assign({}, firstTreatment.comments);
         console.log('comments');

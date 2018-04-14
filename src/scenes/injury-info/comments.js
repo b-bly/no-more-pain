@@ -74,40 +74,45 @@ class Comments extends Component {
             <div className="columns" key={j.toString()}>
 
                 <div className="col-1"></div>
-                <div className="col-10">
-                    <div className="card">
-                        <div className="columns card-bdy">
-                            <div className="col-12 card-line">
-                                {
-                                    this.state.showForm === commentObj._id ?
-                                        <div>
-                                            <Reply
-                                                addReply={this.addReply}
-                                                cancelReply={this.cancelReply}
-                                                mode={'edit'} />
-                                        </div>
-                                        :
-                                        <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;
+                <div className="col-10 col-mr-auto">
+                    <div className="card columns">
+                    
+                        <div className="col-12 card-line">
+
+                            {
+                                this.state.showForm === commentObj._id ?
+                                    <div>
+                                        <Reply
+                                            addReply={this.addReply}
+                                            cancelReply={this.cancelReply}
+                                            mode={'edit'} />
+                                    </div>
+                                    :
+                                    <div>
+                                        <div className="col-12 card-line">
+                                            <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;
                                         </span></span>
+                                        </div>
 
-                                }
-
-                            </div>
-
-
-
-                            <div className=" col-12 card-line toggle upvotes">
-                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                                &nbsp;
-                                        <span className="upvotes">Upvotes: {commentObj.upvotes} &nbsp;
+                                        <div className=" col-12 card-line list-links">
+                                            <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                            &nbsp;
+                                        <span className="list-links">Upvotes: {commentObj.upvotes} &nbsp;
                                         </span>
 
-                                <span className="list-links"
-                                    onClick={() => this.showForm(commentObj._id)}
-                                >Edit &nbsp;</span>
-                                <span className="list-links">Delete &nbsp;
-                                </span>
-                            </div>
+                                            <span className="list-links toggle"
+                                                onClick={() => this.showForm(commentObj._id)}
+                                            >Edit &nbsp;</span>
+                                            <span className="list-links toggle">Delete &nbsp;
+                                        </span>
+                                        </div>
+                                    </div>
+                            }
+
+
+
+
+
                         </div>
                     </div>
                 </div>

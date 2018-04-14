@@ -1,3 +1,21 @@
 .description {
     font-size: 0.6em;
 }
+
+.form-label {
+   font-size: 0.8rem;
+   color: black;
+}
+
+.form-layout {
+    
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: left;
+    
+}
+
+.form-group {
+    width: 100%;
+}

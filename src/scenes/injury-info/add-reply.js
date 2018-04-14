@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 //import addReply from '../../actions/add-reply'
 //styles
 import './styles.css';
+import '../../index.css';
 
 export default class Reply extends Component {
     constructor(props) {
@@ -56,26 +57,22 @@ export default class Reply extends Component {
 
     render() {
         return (
-            <div>
-                <form className="form-horizontal" onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <div className=" col-ml-auto col-4">
-                            <label className="form-label" htmlFor="name">Reply text: </label>
-                        </div>
-                        <div className="col-7 col-mr-auto">
+            <div className="">
+                <form className="form-horizontal columns" onSubmit={this.handleSubmit}>
+                    <div className="form-group col-12">
+  
                             <textarea className="form-input"
                                 type="text"
                                 id=""
                                 name="comment"
-                                placeholder="Name of treatment"
+                                placeholder="Comment"
                                 value={this.state.comment}
                                 onChange={this.handleChange}
-                            />
-                        </div>
+                            /> 
                     </div>
-                    <div className="form-group ">
-                                <div className="col-7"></div>
-                                <input className="btn col-2"
+                    <div className="form-group col-12">
+                                
+                                <input className="btn "
                                     type="button"
                                     value="Cancel"
                                     onClick={this.cancel}
@@ -83,7 +80,7 @@ export default class Reply extends Component {
                                 &nbsp;
                                 
 								<input
-                                    className="btn btn-primary col-2 col-mr-auto"
+                                    className="btn btn-primary "
                                     type="submit"
                                     value="Submit"
                                     onClick={this.handleSubmit}
