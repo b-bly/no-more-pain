@@ -17,7 +17,7 @@ class Treatment extends Component {
             commentParentId: '', //will need eventually for nested comments
             showComments: true
         }
-        this.showForm = this.showForm.bind(this);
+        this.showReplyForm = this.showReplyForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
         this.addReply = this.addReply.bind(this);
         this.toggleComments = this.toggleComments.bind(this);
@@ -35,7 +35,7 @@ class Treatment extends Component {
         this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
     }
 
-    showForm() {
+    showReplyForm() {
         this.setState({
             treatmentId: this.props.treatment._id
         });
@@ -45,7 +45,12 @@ class Treatment extends Component {
     cancelReply() {
         this.setState({
             treatmentId: ''
-        })
+        });
+
+    }
+
+    showEditForm() {
+
     }
 
     addReply(comment) {
@@ -85,7 +90,7 @@ class Treatment extends Component {
                                 &nbsp;
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
-                                    <span className="toggle">
+                                <span className="toggle">
                                     <span className="list-links"
                                         onClick={this.toggleDescription.bind(this)}>
                                         description
@@ -95,8 +100,13 @@ class Treatment extends Component {
                                         &nbsp;
                                         &nbsp;
                                 <span
-                                            onClick={this.showForm}
+                                            onClick={this.showReplyForm}
                                         > reply </span>
+                                        &nbsp;
+                                        &nbsp;
+                                        <span
+                                            onClick={this.showEditForm}
+                                        > edit </span>
                                         &nbsp;
                                         &nbsp;
                                 <span
@@ -112,12 +122,21 @@ class Treatment extends Component {
                             </div>
                             {/* ************************************************************ */}
 
-                            {this.props.showForm === true &&
-                                <Reply
-                                    addReply={this.addReply}
-                                    cancelReply={this.cancelReply}
-                                    mode={'add'}
-                                />
+                            {this.state.treatmentId !== '' &&
+                                <div>
+                                    <div className="container">
+
+                                        <div className="col-12 card-line">
+
+                                            <Reply
+                                                addReply={this.addReply}
+                                                cancelReply={this.cancelReply}
+                                                mode={'add'}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
                             }
                             {/* *************************************************** */}
                             <div className="col-12 card-line ">

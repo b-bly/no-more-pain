@@ -126,7 +126,7 @@ class InjuryInfo extends Component {
                     {/* TREATMENTS  */}
 
                     <Treatment
-                        showForm={this.showForm}
+                        showForm={this.state.showForm}
                         toggleDescription={this.toggleDescription}
                         treatment={treatment}
                         injuryId={this.props.injuryInfo._id}
