@@ -38,8 +38,10 @@ router.post('/add-reply/:injuryId', (req, res) => {
 })
 
 router.put('/', (req, res) => {
-
-    const id = req.body.id;
+    console.log('comment put, req.body: ');
+    console.log(req.body);
+    
+    const id = req.body.commentId;
     const comment = {
         text: req.body.comment
     }

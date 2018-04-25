@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 //components
 import Reply from './add-reply';
-//actions
-import editComment from '../../actions/edit-comment';
 
 class Comments extends Component {
     constructor(props) {
@@ -14,6 +12,7 @@ class Comments extends Component {
         }
         this.showForm = this.showForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
+        this.editReply = this.editReply.bind(this);
     }
 
     showForm(id) {
@@ -32,6 +31,9 @@ class Comments extends Component {
             commentId: commentId,
             injuryId: this.props.injuryId
         });
+        this.setState({
+            showForm: '',
+        })
     }
 
     cancelReply() {
@@ -86,6 +88,8 @@ class Comments extends Component {
                                             addReply={this.addReply}
                                             cancelReply={this.cancelReply}
                                             comment={commentObj.text}
+                                            comment_id={commentObj._id}
+                                            editReply={this.editReply}
                                             mode={'edit'} />
                                     </div>
                                     :
@@ -141,7 +145,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        editComment: editComment
+       
     }, dispatch);
 }
 

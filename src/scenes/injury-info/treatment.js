@@ -6,7 +6,7 @@ import Reply from './add-reply';
 import Comments from './comments';
 
 //actions
-import deleteTreatment from '../../actions/delete-treatment'
+import deleteTreatment from '../../actions/delete-treatment'; //move to index.js
 
 class Treatment extends Component {
     constructor(props) {
@@ -22,6 +22,7 @@ class Treatment extends Component {
         this.addReply = this.addReply.bind(this);
         this.toggleComments = this.toggleComments.bind(this);
         this.deleteTreatment = this.deleteTreatment.bind(this);
+        this.editReply = this.editReply.bind(this);
     }
 
     handleClick() {
@@ -58,7 +59,18 @@ class Treatment extends Component {
         this.setState({
             treatmentId: ''
         });
+    }
 
+    editReply(commentObject) {
+        this.props.editReply(commentObject)
+        console.log('treatment.js, editReply, commentObject: ');
+        console.log(commentObject);
+        
+       // {
+        //     comment: comment,
+        //     commentId: commentId,
+        //     injuryId: this.props.injuryId
+        // }
     }
 
     toggleDescription() {
@@ -150,6 +162,7 @@ class Treatment extends Component {
                                         comments={this.props.comments}
                                         toggleComments={this.toggleComments}
                                         injuryId={this.props.injuryId}
+                                        editReply={this.editReply}
                                     />
                                 }
 

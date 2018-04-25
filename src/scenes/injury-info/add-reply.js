@@ -42,7 +42,7 @@ export default class Reply extends Component {
         if (this.props.mode === 'add') {
             this.props.addReply(this.state.comment);
         } else if (this.props.mode === 'edit') {
-            this.props.editReply(this.state.comment, this.props.comment._id);
+            this.props.editReply(this.state.comment, this.props.comment_id);
         }       
         //need to figure out how to get access to injury and treatment ids  
     }
@@ -72,7 +72,7 @@ export default class Reply extends Component {
                                     type="button"
                                     value="Cancel"
                                     onClick={this.cancel}
-                                ></input>
+                                />
                                 &nbsp;
                                 
 								<input
@@ -80,7 +80,7 @@ export default class Reply extends Component {
                                     type="submit"
                                     value="Submit"
                                     onClick={this.handleSubmit}
-                                ></input>
+                                />
                             </div>
                 </form>
             </div>

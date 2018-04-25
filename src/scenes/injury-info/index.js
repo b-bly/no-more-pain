@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 //actions
 import getInjuryInfo from '../../actions/getInjuryInfo';
 import addReply from '../../actions/add-reply';
+import editReply from '../../actions/edit-reply';
 //components
 import Treatment from './treatment';
 //react router dom
@@ -26,6 +27,7 @@ class InjuryInfo extends Component {
         this.toggleDescription = this.toggleDescription.bind(this);
         this.toggleComments = this.toggleComments.bind(this);
         this.addReply = this.addReply.bind(this);
+        this.editReply = this.editReply.bind(this);
     }
     componentWillMount() {
         // if (this.props.injuryInfo.title.length < 1) {
@@ -76,6 +78,11 @@ class InjuryInfo extends Component {
             text: comment
         }
         this.props.addReply(replyObject);
+    }
+
+    editReply(commentObject) {
+        console.log('index.js, editReply, commentObj: ');      
+        this.props.editReply(commentObject);
     }
 
     render() {
@@ -134,6 +141,7 @@ class InjuryInfo extends Component {
                         comments={treatment.comments}
                         // *********************** treatmentCopy.comments
                         addReply={this.addReply}
+                        editReply={this.editReply}
                     />
 
                 </div>
@@ -201,7 +209,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getInjuryInfo: getInjuryInfo,
-        addReply: addReply
+        addReply: addReply,
+        editReply: editReply
     }, dispatch);
 }
 
