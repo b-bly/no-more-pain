@@ -139,10 +139,10 @@ class InjuryList extends Component {
             //     <li key={i.toString()}> {titleObj.title} </li>
             // );
             return (
-                <div>
-                    <div className="center container">
+                <div className="container">
+                    <div className="center columns">
                         <div className="col-2 list-title"><h3>Injury List</h3></div>
-                        <Link to='/add-injury' className="btn col-1 list-title">Add injury</Link>
+                        <Link to='/add-injury' className="btn list-title">Add injury</Link>
                     </div>
                     {/* search box */}
                     <ol>

@@ -53,8 +53,10 @@ export default class Reply extends Component {
 
     render() {
         return (
+
+           
             <div className="">
-                <form className="form-horizontal columns" onSubmit={this.handleSubmit}>
+                <form className="form-horizontal" onSubmit={this.handleSubmit}>
                     <div className="form-group col-12">
   
                             <textarea className="form-input"

@@ -54,7 +54,7 @@ class Treatment extends Component {
 
     }
 
-    addReply(comment) {    
+    addReply(comment) {
         this.props.addReply(this.props.treatment._id, comment); //calling addReply in index.js, not action
         this.setState({
             treatmentId: ''
@@ -65,8 +65,8 @@ class Treatment extends Component {
         this.props.editReply(commentObject)
         console.log('treatment.js, editReply, commentObject: ');
         console.log(commentObject);
-        
-       // {
+
+        // {
         //     comment: comment,
         //     commentId: commentId,
         //     injuryId: this.props.injuryId
@@ -139,23 +139,28 @@ class Treatment extends Component {
                             {/* ************************************************************ */}
 
                             {this.state.treatmentId !== '' &&
-                                <div>
-                                    <div className="container">
+                                <div className="col-12">
+                                    <div className="columns" >
 
-                                        <div className="col-12 card-line">
+                                        <div className="col-1"></div>
+                                        <div className="col-11">
+                                            <div className="card columns">
 
-                                            <Reply
-                                                addReply={this.addReply}
-                                                cancelReply={this.cancelReply}
-                                                mode={'add'}
-                                            />
+                                                
+                                                        <Reply
+                                                            addReply={this.addReply}
+                                                            cancelReply={this.cancelReply}
+                                                            mode={'add'}
+                                                        />
+                                                  
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                             }
                             {/* *************************************************** */}
-                            <div className="col-12 card-line ">
+                            <div className="col-12">
 
                                 {this.state.showComments === true &&
                                     <Comments
