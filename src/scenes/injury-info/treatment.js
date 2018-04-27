@@ -8,6 +8,7 @@ import AddTreatmentForm from './treatment-form'
 //actions
 import deleteTreatment from '../../actions/delete-treatment'; //move to index.js
 
+
 class Treatment extends Component {
     constructor(props) {
         super(props);
@@ -29,14 +30,9 @@ class Treatment extends Component {
         this.editTreatment = this.editTreatment.bind(this);
     }
 
-    handleClick() {
-        //this.props.handleClick(this.props.injury._id);
-    }
-
     deleteTreatment() {
         console.log('deleteTreatment');
         console.log(this.props.treatment._id);
-
         this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
     }
 
@@ -44,14 +40,12 @@ class Treatment extends Component {
         this.setState({
             treatmentId: this.props.treatment._id
         });
-
     }
 
     cancelReply() {
         this.setState({
             treatmentId: ''
         });
-
     }
 
     showEditForm(treatmentId) {
@@ -60,9 +54,12 @@ class Treatment extends Component {
         });
     }
 
-    editTreatment() {
+    editTreatment(newTreatment) {
         console.log('editTreatment called');
-        
+        this.props.editTreatment(newTreatment);
+        this.setState({
+            showEditTreatmentForm: ''
+        });
     }
     cancelTreatment() {
         this.setState({

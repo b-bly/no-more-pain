@@ -3,6 +3,7 @@ const router = express.Router()
 const passport = require('../passport')
 const Injury = require('../database/models/injury')
 const Comment = require('../database/models/comments')
+const mongoose = require('mongoose');
 
 router.post('/', (req, res) => {
     console.log('*** add injury ***');
@@ -68,7 +69,7 @@ router.get('/info', (req, res) => {
                             console.log(err);
                             res.send(err)
                         } else {
-                            console.log('get comments: ');                          
+                            console.log('get comments: ');
                             //add comments to injury object
 
                             injuryObject.treatments = injuryObject.treatments.map((treatment, i) => {
@@ -168,33 +169,67 @@ router.post('/add-treatment/:injuryId', (req, res) => {
             console.log(data);
             res.send(data);
         });
-})
+});
 
-const mongoose = require('mongoose');
 router.put('/info', (req, res) => {
-    console.log('info put, req.body: ');
-    console.log();
-
     //https://docs.mongodb.com/manual/reference/operator/update/pull/
-//https://github.com/Automattic/mongoose/issues/542 
+    //https://github.com/Automattic/mongoose/issues/542 
+
     Injury.collection.update({ _id: new mongoose.Types.ObjectId(req.body.injuryId) },
-        { $pull: { 'treatments': { _id: new mongoose.Types.ObjectId(req.body.treatmentId) } }},
+        { $pull: { 'treatments': { _id: new mongoose.Types.ObjectId(req.body.treatmentId) } } },
         (err, data) => {
             if (err) {
                 console.log(err);
-
             } else {
                 console.log('treatment update successful');
                 console.log(data.result);
-                
                 console.log(req.body.treatmentId);
-                
             }
         });
-
-
 });
 
+
+router.put('/edit-treatment:injuryId', (req, res) => {
+    console.log('info put, req.body: ');
+    //const injuryId = req.params.injuryId;
+    const name = req.body.name;
+    const description = req.body.description;
+    const treatmentId = req.body.treatmentId;
+    console.log(req.body);
+    console.log(req.params.injuryId);
+    https://docs.mongodb.com/manual/reference/operator/update/positional/
+    // https://stackoverflow.com/questions/15691224/mongoose-update-values-in-array-of-objects/15691950
+
+    // Person.update({'items.id': 2}, {'$set': {
+    //     'items.$.name': 'updated item2',
+    //     'items.$.value': 'two updated'
+    // }}, function(err) { ...
+
+    // treatments: [{
+    //     //add id
+    //     id: Schema.Types.ObjectId,
+    //     name: String,
+    //     // comments: [String], //needs to be it's own schema?
+    //     description: String,
+    //     upvotes: Number
+    // }]
+    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
+        {
+            $set:
+                {                  
+                    'treatments.$.name': name,
+                    'treatments.$.description': description
+                }
+        }, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('treatment update successful');
+                console.log(data.result);
+                console.log(req.body.treatmentId);
+            }
+        });
+});
 //should move this to comments module?
 
 

@@ -22,10 +22,10 @@ export default class TreatmentForm extends Component {
     componentWillMount() {
         if (this.props.mode === 'edit') {
             this.setState({
-                treatmentId: this.props._id,
-                name: this.props.name,
-                description: this.props.description,
-                upvotes: this.props.upvotes,
+                treatmentId: this.props.treatment._id,
+                name: this.props.treatment.name,
+                description: this.props.treatment.description,
+                upvotes: this.props.treatment.upvotes,
                 injuryId: this.props.injuryId,
             });
         }
@@ -39,7 +39,7 @@ export default class TreatmentForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log('reply component, state: ');
+        console.log('treatment-form.js, state: ');
         console.log(this.state);
         const newTreatment = {
             name: this.state.name,
@@ -53,6 +53,7 @@ export default class TreatmentForm extends Component {
             //need treatmentId for editing, but not for adding a new treatment
             newTreatment.treatmentId = this.state.treatmentId;
             this.props.editTreatment(newTreatment);
+         
         }
         //need to figure out how to get access to injury and treatment ids  
     }
@@ -61,8 +62,9 @@ export default class TreatmentForm extends Component {
         this.props.cancelTreatment();
     }
     render() {
-        console.log('treatment-form rendered');
-
+        console.log('treatment-form rendered, props: ');
+        console.log(this.props);
+        
         return (
             <div >
                 {/* <h4>Add New Treatment to {this.props.injuryInfo.title}</h4> */}
