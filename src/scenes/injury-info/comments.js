@@ -102,8 +102,10 @@ class Comments extends Component {
                                             &nbsp;
                                             <span className="list-links">Upvotes: {commentObj.upvotes} &nbsp;
                                         </span>
-
+                                        {/* ****************** */}
+                                        {/* Should move edit button to separate component */}
                                             <span className="list-links toggle"
+                                            
                                                 onClick={() => this.showForm(commentObj._id)}
                                             >Edit &nbsp;</span>
                                             <span className="list-links toggle">Delete &nbsp;

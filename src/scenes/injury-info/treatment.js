@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 // components
 import Reply from './add-reply';
 import Comments from './comments';
-
+import AddTreatmentForm from './treatment-form'
 //actions
 import deleteTreatment from '../../actions/delete-treatment'; //move to index.js
 
@@ -15,14 +15,18 @@ class Treatment extends Component {
             treatmentId: '', //selected treatment
             commentId: '',
             commentParentId: '', //will need eventually for nested comments
-            showComments: true
+            showComments: true,
+            showEditTreatmentForm: '',
         }
+        this.toggleComments = this.toggleComments.bind(this);
         this.showReplyForm = this.showReplyForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
         this.addReply = this.addReply.bind(this);
-        this.toggleComments = this.toggleComments.bind(this);
-        this.deleteTreatment = this.deleteTreatment.bind(this);
         this.editReply = this.editReply.bind(this);
+        this.deleteTreatment = this.deleteTreatment.bind(this);
+        this.showEditForm = this.showEditForm.bind(this);
+        this.cancelTreatment = this.cancelTreatment.bind(this);
+        this.editTreatment = this.editTreatment.bind(this);
     }
 
     handleClick() {
@@ -50,8 +54,20 @@ class Treatment extends Component {
 
     }
 
-    showEditForm() {
+    showEditForm(treatmentId) {
+        this.setState({
+            showEditTreatmentForm: treatmentId
+        });
+    }
 
+    editTreatment() {
+        console.log('editTreatment called');
+        
+    }
+    cancelTreatment() {
+        this.setState({
+            showEditTreatmentForm: ''
+        });
     }
 
     addReply(comment) {
@@ -95,84 +111,102 @@ class Treatment extends Component {
                 <div className="column col-4"></div>
                 <div className="column col-6">
                     <div className="card">
-                        <div className="columns card-bdy">
-                            <div className="col-12 card-title-line">
-                                <span className="treatment-name" >{this.props.treatment.name} &nbsp; </span>
 
+                    {/* *** show form *** */}
+                        {this.state.showEditTreatmentForm === this.props.treatment._id ?
+                            <div>
+                                <AddTreatmentForm 
+                                treatment={this.props.treatment}
+                                injuryId={this.props.injuryId}
+                                editTreatment={this.editTreatment}
+                                cancelTreatment={this.cancelTreatment}
+                                mode={'edit'}
+                                />
                             </div>
+                            :
 
-                            <div className="col-12 card-line" >
-                                <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
-                                &nbsp;
+                            <div className="columns card-bdy">
+                                <div className="col-12 card-title-line">
+                                    <span className="treatment-name" >{this.props.treatment.name} &nbsp; </span>
+
+                                </div>
+
+                                <div className="col-12 card-line" >
+                                    <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                    &nbsp;
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
-                                <span className="toggle">
-                                    <span className="list-links"
-                                        onClick={this.toggleDescription.bind(this)}>
-                                        description
+                                    <span className="toggle">
+                                        <span className="list-links"
+                                            onClick={this.toggleDescription.bind(this)}>
+                                            description
                         {this.props.showDescription === this.props.treatment._id ?
-                                            <span>: {this.props.treatment.description}</span>
-                                            : null}
-                                        &nbsp;
-                                        &nbsp;
+                                                <span>: {this.props.treatment.description}</span>
+                                                : null}
+                                            &nbsp;
+                                            &nbsp;
                                 <span
-                                            onClick={this.showReplyForm}
-                                        > reply </span>
-                                        &nbsp;
-                                        &nbsp;
+                                                onClick={this.showReplyForm}
+                                            > reply </span>
+                                            &nbsp;
+                                            &nbsp;
                                         <span
-                                            onClick={this.showEditForm}
-                                        > edit </span>
-                                        &nbsp;
-                                        &nbsp;
+                                                onClick={() => this.showEditForm(this.props.treatment._id)}
+                                            > edit </span>
+                                            &nbsp;
+                                            &nbsp;
                                 <span
-                                            onClick={this.deleteTreatment}
-                                        > delete </span>
-                                        &nbsp;
-                                        &nbsp;
+                                                onClick={this.deleteTreatment}
+                                            > delete </span>
+                                            &nbsp;
+                                            &nbsp;
                                 <span className="heading"
-                                            onClick={this.toggleComments}>
-                                            show comments </span>
+                                                onClick={this.toggleComments}>
+                                                show comments </span>
+                                        </span>
                                     </span>
-                                </span>
-                            </div>
-                            {/* ************************************************************ */}
+                                </div>
+                                {/* ************************************************************ */}
 
-                            {this.state.treatmentId !== '' &&
-                                <div className="col-12">
-                                    <div className="columns" >
+                                {this.state.treatmentId !== '' &&
+                                    <div className="col-12">
+                                        <div className="columns" >
 
-                                        <div className="col-1"></div>
-                                        <div className="col-11">
-                                            <div className="card columns">
+                                            <div className="col-1"></div>
+                                            <div className="col-11">
+                                                <div className="card columns">
 
-                                                
-                                                        <Reply
-                                                            addReply={this.addReply}
-                                                            cancelReply={this.cancelReply}
-                                                            mode={'add'}
-                                                        />
-                                                  
+
+                                                    <Reply
+                                                        addReply={this.addReply}
+                                                        cancelReply={this.cancelReply}
+                                                        mode={'add'}
+                                                    />
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            }
-                            {/* *************************************************** */}
-                            <div className="col-12">
-
-                                {this.state.showComments === true &&
-                                    <Comments
-                                        comments={this.props.comments}
-                                        toggleComments={this.toggleComments}
-                                        injuryId={this.props.injuryId}
-                                        editReply={this.editReply}
-                                    />
                                 }
+                                {/* *************************************************** */}
+                                <div className="col-12">
 
+                                    {this.state.showComments === true &&
+                                        <Comments
+                                            comments={this.props.comments}
+                                            toggleComments={this.toggleComments}
+                                            injuryId={this.props.injuryId}
+                                            editReply={this.editReply}
+                                        />
+                                    }
+
+                                </div>
+                                {/* *** end comments *** */}
                             </div>
-                        </div>
+
+                        }
+                        {/* *** end treatment if statement *** */}
                     </div>
                 </div>
             </div >

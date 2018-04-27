@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-//actions
-//import addReply from '../../actions/add-reply'
-//styles
+
+// Style
 import './styles.css';
 import '../../index.css';
 
