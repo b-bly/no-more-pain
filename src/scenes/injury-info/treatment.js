@@ -14,11 +14,11 @@ class Treatment extends Component {
         super(props);
         this.state = {
             treatmentId: '', //selected treatment
-            showDescription: '', //show or hide description
+            showDescription: false, //show or hide description, adds treatmentIds
             commentId: '', // for edit comment
             commentParentId: '', //will need eventually for nested comments
             showComments: true, // show / hide comments
-            showEditTreatmentForm: '',
+            showEditTreatmentForm: false,
         }
         this.toggleComments = this.toggleComments.bind(this);
         this.showReplyForm = this.showReplyForm.bind(this);
@@ -29,6 +29,7 @@ class Treatment extends Component {
         this.showEditForm = this.showEditForm.bind(this);
         this.cancelTreatment = this.cancelTreatment.bind(this);
         this.editTreatment = this.editTreatment.bind(this);
+        this.toggleDescription = this.toggleDescription.bind(this);
     }
 
     deleteTreatment() {
@@ -38,10 +39,11 @@ class Treatment extends Component {
         const permission = this.confirm("Are you sure you want to delete " + this.props.treatment.name);
         if (permission == true) {
             this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
-        } 
+        }
     }
 
-    showReplyForm() {
+    showReplyForm(e) {
+        e.preventDefault();
         this.setState({
             treatmentId: this.props.treatment._id
         });
@@ -53,15 +55,18 @@ class Treatment extends Component {
         });
     }
 
-    showEditForm(treatmentId) {
+    showEditForm(e) {
+        e.preventDefault();    
         this.setState({
-            showEditTreatmentForm: treatmentId
+            showEditTreatmentForm: !this.showEditTreatmentForm,
         });
+        
     }
 
     editTreatment(newTreatment) {
         console.log('editTreatment called');
         this.props.editTreatment(newTreatment);
+    
         this.setState({
             showEditTreatmentForm: ''
         });
@@ -84,6 +89,8 @@ class Treatment extends Component {
         console.log('treatment.js, editReply, commentObject: ');
         console.log(commentObject);
 
+
+
         // {
         //     comment: comment,
         //     commentId: commentId,
@@ -91,11 +98,15 @@ class Treatment extends Component {
         // }
     }
 
-    toggleDescription() {
-        this.props.toggleDescription(this.props.treatment._id);
+    toggleDescription(e) {
+        e.preventDefault();
+        this.setState({
+            showDescription: !this.state.showDescription
+        });
     }
 
-    toggleComments() {
+    toggleComments(e) {
+        e.preventDefault();
         this.setState({
             showComments: !this.state.showComments
         });
@@ -115,7 +126,7 @@ class Treatment extends Component {
                     <div className="card">
 
                         {/* *** show form *** */}
-                        {this.state.showEditTreatmentForm === this.props.treatment._id ?
+                        {this.state.showEditTreatmentForm ?
                             <div>
                                 <AddTreatmentForm
                                     treatment={this.props.treatment}
@@ -133,27 +144,32 @@ class Treatment extends Component {
 
                                 </div>
 
+                                {this.state.showDescription ?
+                                    <div className="col-12 card-line">
+                                        <span className="card-description">
+                                            Description: {this.props.treatment.description}</span>
+                                    </div>
+                                    : null}
+
                                 <div className="col-12 card-line" >
                                     <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
                                     &nbsp;
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
-                                    <span className="toggle">
+                                    <span className="toggle list-links">
                                         <span className="list-links"
-                                            onClick={this.toggleDescription.bind(this)}>
+                                            onClick={this.toggleDescription}>
                                             description
-                        {this.props.showDescription === this.props.treatment._id ?
-                                                <span>: {this.props.treatment.description}</span>
-                                                : null}
+                                            </span>
                                             &nbsp;
                                             &nbsp;
-                                <span
+                                        <span
                                                 onClick={this.showReplyForm}
                                             > reply </span>
                                             &nbsp;
                                             &nbsp;
                                         <span
-                                                onClick={() => this.showEditForm(this.props.treatment._id)}
+                                                onClick={this.showEditForm}
                                             > edit </span>
                                             &nbsp;
                                             &nbsp;
@@ -165,7 +181,7 @@ class Treatment extends Component {
                                 <span className="heading"
                                                 onClick={this.toggleComments}>
                                                 show comments </span>
-                                        </span>
+                                        
                                     </span>
                                 </div>
                                 {/* ************************************************************ */}
