@@ -48,8 +48,11 @@ class AddInjuryForm extends Component {
 			title: this.state.title,
 			description: this.state.description
 		})
-	
-	
+		this.setState({
+			redirectTo: '/injury-list',
+			title: '',
+			description: ''
+		})
 	}
 
 	cancel() {

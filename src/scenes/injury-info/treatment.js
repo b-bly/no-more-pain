@@ -14,9 +14,10 @@ class Treatment extends Component {
         super(props);
         this.state = {
             treatmentId: '', //selected treatment
-            commentId: '',
+            showDescription: '', //show or hide description
+            commentId: '', // for edit comment
             commentParentId: '', //will need eventually for nested comments
-            showComments: true,
+            showComments: true, // show / hide comments
             showEditTreatmentForm: '',
         }
         this.toggleComments = this.toggleComments.bind(this);
@@ -33,7 +34,11 @@ class Treatment extends Component {
     deleteTreatment() {
         console.log('deleteTreatment');
         console.log(this.props.treatment._id);
-        this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
+        var txt;
+        const permission = this.confirm("Are you sure you want to delete " + this.props.treatment.name);
+        if (permission == true) {
+            this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
+        } 
     }
 
     showReplyForm() {
@@ -109,15 +114,15 @@ class Treatment extends Component {
                 <div className="column col-6">
                     <div className="card">
 
-                    {/* *** show form *** */}
+                        {/* *** show form *** */}
                         {this.state.showEditTreatmentForm === this.props.treatment._id ?
                             <div>
-                                <AddTreatmentForm 
-                                treatment={this.props.treatment}
-                                injuryId={this.props.injuryId}
-                                editTreatment={this.editTreatment}
-                                cancelTreatment={this.cancelTreatment}
-                                mode={'edit'}
+                                <AddTreatmentForm
+                                    treatment={this.props.treatment}
+                                    injuryId={this.props.injuryId}
+                                    editTreatment={this.editTreatment}
+                                    cancelTreatment={this.cancelTreatment}
+                                    mode={'edit'}
                                 />
                             </div>
                             :

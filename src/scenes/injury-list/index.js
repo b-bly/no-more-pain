@@ -8,6 +8,8 @@ import { Link, Redirect } from 'react-router-dom';
 //import AddInjuryForm from './add-injury-form';
 import InjuryForm from './injury-form';
 //ACTIONS
+//actions
+import addInjury from '../../actions/add-injury'
 import getInjuryInfo from '../../actions/getInjuryInfo'
 import deleteInjury from '../../actions/delete-injury'
 import updateInjury from '../../actions/update-injury'
@@ -75,7 +77,10 @@ class InjuryList extends Component {
     delete(id) {
         console.log('injury-list, delete called, id: ');
         console.log(id);
-        this.props.deleteInjury(id);
+        
+        if (window.confirm('Are you sure?')) {
+            this.props.deleteInjury(id);
+        }
     }
 
     showForm(id) {
@@ -176,7 +181,8 @@ function mapDispatchToProps(dispatch) {
         getInjuryList: getInjuryList,
         deleteInjury: deleteInjury,
         updateInjury: updateInjury,
-        getInjuryInfo: getInjuryInfo
+        getInjuryInfo: getInjuryInfo,
+        addInjury: addInjury,
     }, dispatch);
 }
 
