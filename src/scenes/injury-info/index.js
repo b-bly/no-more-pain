@@ -8,6 +8,8 @@ import getInjuryInfo from '../../actions/getInjuryInfo';
 import addReply from '../../actions/add-reply';
 import editReply from '../../actions/edit-reply';
 import editTreatment from '../../actions/edit-treatment';
+import treatmentUpvote from '../../actions/treatment-upvote';
+import commentUpvote from '../../actions/comment-upvote';
 //components
 import Treatment from './treatment';
 //react router dom
@@ -30,6 +32,8 @@ class InjuryInfo extends Component {
         this.addReply = this.addReply.bind(this);
         this.editReply = this.editReply.bind(this);
         this.editTreatment = this.editTreatment.bind(this);
+        this.treatmentUpvote = this.treatmentUpvote.bind(this);
+        this.commentUpvote = this.commentUpvote.bind(this);
     }
     componentWillMount() {
         // if (this.props.injuryInfo.title.length < 1) {
@@ -91,6 +95,14 @@ class InjuryInfo extends Component {
         this.props.editReply(commentObject);
     }
 
+    treatmentUpvote(treatmentUpvoteData) {
+        this.props.treatmentUpvote(treatmentUpvoteData);
+    }
+
+    commentUpvote(commentData) {
+        this.props.commentUpvote(commentData);
+    }
+
     render() {
         console.log('injury info props.injuryInfo: ');
         console.log(this.props.injuryInfo);
@@ -143,12 +155,15 @@ class InjuryInfo extends Component {
                         showForm={this.state.showForm}
                         toggleDescription={this.toggleDescription}
                         treatment={treatment}
+                        treatmentId={treatment._id}
                         injuryId={this.props.injuryInfo._id}
                         comments={treatment.comments}
                         // *********************** treatmentCopy.comments
                         addReply={this.addReply}
                         editReply={this.editReply}
                         editTreatment={this.editTreatment}
+                        treatmentUpvote={this.treatmentUpvote}
+                        commentUpvote={this.commentUpvote}
                     />
 
                 </div>
@@ -219,6 +234,8 @@ function mapDispatchToProps(dispatch) {
         addReply: addReply,
         editReply: editReply,
         editTreatment: editTreatment,
+        treatmentUpvote: treatmentUpvote,
+        commentUpvote: commentUpvote
     }, dispatch);
 }
 

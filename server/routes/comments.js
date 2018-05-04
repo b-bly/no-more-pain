@@ -40,7 +40,7 @@ router.post('/add-reply/:injuryId', (req, res) => {
 router.put('/', (req, res) => {
     console.log('comment put, req.body: ');
     console.log(req.body);
-    
+
     const id = req.body.commentId;
     const comment = {
         text: req.body.comment
@@ -55,11 +55,37 @@ router.put('/', (req, res) => {
                 res.sendStatus(500);
             } else {
                 console.log('comments update success: ');
-                console.log(data);              
+                console.log(data);
                 res.sendStatus(200);
             }
         }
     );
 });
+
+router.put('/comment-upvote/:commentId', (req, res) => {
+    console.log('comment upvote put, req.query: ');
+    const id = req.query.commentId; //logs undefined for some reason...
+    const commentId = req.body.commentId
+    console.log(commentId);
+    console.log(id);
+    
+    Comment.findByIdAndUpdate(
+        { _id: commentId },
+        {
+            $inc: { 'upvotes': 1 }
+        },
+        (err, data) => {
+            if (err) {
+                console.log('put error: ', err);
+                res.sendStatus(500);
+            } else {
+                console.log('comments update success: ');
+                console.log(data);
+                res.sendStatus(200);
+            }
+        }
+    );
+});
+
 
 module.exports = router;

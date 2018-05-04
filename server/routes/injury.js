@@ -184,6 +184,7 @@ router.put('/info', (req, res) => {
                 console.log('treatment update successful');
                 console.log(data.result);
                 console.log(req.body.treatmentId);
+                res.send(data);
             }
         });
 });
@@ -197,7 +198,7 @@ router.put('/edit-treatment:injuryId', (req, res) => {
     const treatmentId = req.body.treatmentId;
     console.log(req.body);
     console.log(req.params.injuryId);
-    https://docs.mongodb.com/manual/reference/operator/update/positional/
+    //https://docs.mongodb.com/manual/reference/operator/update/positional/
     // https://stackoverflow.com/questions/15691224/mongoose-update-values-in-array-of-objects/15691950
 
     // Person.update({'items.id': 2}, {'$set': {
@@ -216,7 +217,7 @@ router.put('/edit-treatment:injuryId', (req, res) => {
     Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
         {
             $set:
-                {                  
+                {
                     'treatments.$.name': name,
                     'treatments.$.description': description
                 }
@@ -227,12 +228,42 @@ router.put('/edit-treatment:injuryId', (req, res) => {
                 console.log('treatment update successful');
                 console.log(data.result);
                 console.log(req.body.treatmentId);
+                res.send(data);
             }
         });
 });
 //should move this to comments module?
 
+router.put('/treatment-upvote:injuryId', (req, res) => {
+    console.log('treatment-upvote put, req.body: ');
+    const treatmentId = req.body.treatmentId;
+    const injuryId = req.query.injuryId;
+    console.log(req.body);
+    console.log(injuryId);
+    //treatments doc sample:
+    // treatments: [{
+    //     //add id
+    //     id: Schema.Types.ObjectId,
+    //     name: String,
+    //     // comments: [String], //needs to be it's own schema?
+    //     description: String,
+    //     upvotes: Number
+    // }]
 
+    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
+        {
+            $inc: { 'treatments.$.upvotes': 1 }
+        }, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('treatment update successful');
+            console.log(data.result);
+            console.log(req.body.treatmentId);
+            res.send(data);
+        }
+    });
+});
 
 // check if logged in (authenticated)
 function loggedIn(req, res, next) {

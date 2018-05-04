@@ -13,6 +13,7 @@ class Comments extends Component {
         this.showForm = this.showForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
         this.editReply = this.editReply.bind(this);
+        this.commentUpvote = this.commentUpvote.bind(this);
     }
 
     showForm(id) {
@@ -40,6 +41,14 @@ class Comments extends Component {
         this.setState({
             showForm: '',
         })
+    }
+
+    commentUpvote (commentId) {
+        const commentData = {
+            injuryId: this.props.injuryId,
+            commentId: commentId,
+        };
+        this.props.commentUpvote(commentData);
     }
 
     render() {
@@ -98,7 +107,10 @@ class Comments extends Component {
                                         </div>
 
                                         <div className=" col-12 card-line list-links">
-                                            <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                            <button className="btn btn-sm" 
+                                            aria-label="up vote"
+                                            // should move to separate component to avoid () => syntax
+                                            onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
                                             &nbsp;
                                             <span className="list-links">Upvotes: {commentObj.upvotes} &nbsp;
                                         </span>

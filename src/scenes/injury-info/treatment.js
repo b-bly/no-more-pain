@@ -30,6 +30,8 @@ class Treatment extends Component {
         this.cancelTreatment = this.cancelTreatment.bind(this);
         this.editTreatment = this.editTreatment.bind(this);
         this.toggleDescription = this.toggleDescription.bind(this);
+        this.treatmentUpvote = this.treatmentUpvote.bind(this);
+        this.commentUpvote = this.commentUpvote.bind(this);
     }
 
     deleteTreatment() {
@@ -88,9 +90,7 @@ class Treatment extends Component {
         this.props.editReply(commentObject)
         console.log('treatment.js, editReply, commentObject: ');
         console.log(commentObject);
-
-
-
+        // comment object definition:
         // {
         //     comment: comment,
         //     commentId: commentId,
@@ -112,6 +112,21 @@ class Treatment extends Component {
         });
     }
 
+    treatmentUpvote (e) {
+        e.preventDefault();
+        console.log('treatmentUpvotes clicked');
+        const treatmentUpvoteData = {
+            injuryId: this.props.injuryId,
+            treatmentId: this.props.treatmentId,
+        };
+        console.log(treatmentUpvoteData);
+        
+        this.props.treatmentUpvote(treatmentUpvoteData);
+    }
+    
+    commentUpvote (commentData) {
+        this.props.commentUpvote(commentData);
+    }
     render() {
 
         return (
@@ -152,7 +167,10 @@ class Treatment extends Component {
                                     : null}
 
                                 <div className="col-12 card-line" >
-                                    <button className="btn btn-sm" aria-label="up vote"><i className="icon icon-upward"></i></button>
+                                    <button 
+                                    className="btn btn-sm" 
+                                    aria-label="up vote"
+                                    onClick={this.treatmentUpvote}><i className="icon icon-upward"></i></button>
                                     &nbsp;
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
@@ -189,23 +207,18 @@ class Treatment extends Component {
                                 {this.state.treatmentId !== '' &&
                                     <div className="col-12">
                                         <div className="columns" >
-
                                             <div className="col-1"></div>
                                             <div className="col-11">
                                                 <div className="card columns">
-
-
                                                     <Reply
                                                         addReply={this.addReply}
                                                         cancelReply={this.cancelReply}
                                                         mode={'add'}
                                                     />
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 }
                                 {/* *************************************************** */}
                                 <div className="col-12">
@@ -216,6 +229,7 @@ class Treatment extends Component {
                                             toggleComments={this.toggleComments}
                                             injuryId={this.props.injuryId}
                                             editReply={this.editReply}
+                                            commentUpvote={this.commentUpvote}
                                         />
                                     }
 
