@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 //actions
 import addInjury from '../../actions/add-injury'
 
+
 class AddInjuryForm extends Component {
 	constructor(props) {
 		super(props)
@@ -30,7 +31,8 @@ class AddInjuryForm extends Component {
 			this.setState({
 				redirectTo: '/injury-info',
 				title: '',
-				description: ''
+				description: '',
+				
 			})
 		}
 	}
@@ -46,7 +48,8 @@ class AddInjuryForm extends Component {
 		console.log(this.state);
 		this.props.addInjury({
 			title: this.state.title,
-			description: this.state.description
+			description: this.state.description,
+			username: this.props.user.username ? this.props.user.username : 'anonymous',
 		})
 		this.setState({
 			redirectTo: '/injury-list',
@@ -65,7 +68,8 @@ class AddInjuryForm extends Component {
 	render() {
 		//const user = this.props.user;
 		console.log('add-injury rendered');
-
+		console.log(this.props);
+		
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
@@ -135,7 +139,8 @@ function mapStateToProps(state) {
 	console.log('add-injury mapStateToProps called, state: ');
 	console.log(state);
 	return {
-		injuryInfo: state.injuryInfo
+		injuryInfo: state.injuryInfo,
+		user: state.user
 		 //users is labeled in reducers/index.js
 	};
 }

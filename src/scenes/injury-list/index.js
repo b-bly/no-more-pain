@@ -13,6 +13,7 @@ import addInjury from '../../actions/add-injury'
 import getInjuryInfo from '../../actions/getInjuryInfo'
 import deleteInjury from '../../actions/delete-injury'
 import updateInjury from '../../actions/update-injury'
+import getUser from '../../actions/get-user'
 
 //STYLES
 import './styles.css';
@@ -42,6 +43,13 @@ class InjuryListItem extends Component {
                 <li className="injury-list-item"
                     onClick={this.handleClick.bind(this)}
                 >{this.props.injury.title}</li>
+                {this.props.injury.author ? (
+                                <p>Author: {this.props.injury.author.username}</p>
+                )
+                : (
+                    <p>Author: Anonymous</p>
+                )}
+
                 <a className="list-links"
                     onClick={this.showForm.bind(this)}>edit</a>
                 &nbsp;
@@ -61,6 +69,10 @@ class InjuryList extends Component {
         };
         this.injuryInfo = this.injuryInfo.bind(this);
         this.delete = this.delete.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.getUser();
     }
 
     injuryInfo(id) {
@@ -172,7 +184,8 @@ function mapStateToProps(state) {
     // console.log(state);
 
     return {
-        injuryList: state.injuryList
+        injuryList: state.injuryList,
+        user: state.user
     };
 }
 
@@ -183,6 +196,7 @@ function mapDispatchToProps(dispatch) {
         updateInjury: updateInjury,
         getInjuryInfo: getInjuryInfo,
         addInjury: addInjury,
+        getUser: getUser,
     }, dispatch);
 }
 

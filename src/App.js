@@ -11,8 +11,8 @@ import InjuryInfo from './scenes/injury-info'
 import AddTreatmentForm from './scenes/injury-info/add-treatment'
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loggedIn: false,
       username: null

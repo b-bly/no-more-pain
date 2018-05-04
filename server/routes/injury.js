@@ -5,39 +5,51 @@ const Injury = require('../database/models/injury')
 const Comment = require('../database/models/comments')
 const mongoose = require('mongoose');
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     console.log('*** add injury ***');
     console.log(req.body);
 
     const title = req.body.title;
     const description = req.body.description;
+    const author = { username: req.body.username, id: req.user._id };
+    const injury = {
+        title: title,
+        description: description,
+        author: author
+    };
+    if (req.isAuthenticated()) { //need to be logged in
 
-    Injury.findOne({ title: title }, (err, title) => {
-        if (err) {
-            console.log('User.js post error: ', err)
-        } else if (title) {
-            res.json({
-                error: `Sorry, already an injury called, \"${title}\"`
-            })
-        }
-        else {
-            console.log('adding new injury, newInjury: ');
+        Injury.findOne({ title: title }, (err, title) => {
+            if (err) {
+                console.log('User.js post error: ', err)
+            } else if (title) {
+                res.json({
+                    error: `Sorry, already an injury called, \"${title}\"`
+                })
+            }
+            else {
+                console.log('adding new injury, newInjury: ');
 
-            const newInjury = new Injury(req.body);
-            //this didn't work:
-            //const newInjury = new Injury ({
-            //title: title,
-            //description: description
-            // })          
-            console.log(newInjury);
-            newInjury.save((err, injury) => {
-                if (err) return res.json(err)
-                console.log('success');
-
-                res.json(injury)
-            })
-        }
-    })
+                const newInjury = new Injury(injury);
+                //this didn't work:
+                //const newInjury = new Injury ({
+                //title: title,
+                //description: description
+                // })          
+                console.log(newInjury);
+                newInjury.save((err, injurySaved) => {
+                    if (err) {
+                        return res.json(err)
+                    } else {
+                        console.log('success');
+                        res.json(injurySaved)
+                    }
+                })
+            }
+        })
+    } else {
+        res.sendStatus(403); //forbidden
+    }
 })
 
 router.get('/', (req, res) => {
@@ -254,24 +266,16 @@ router.put('/treatment-upvote:injuryId', (req, res) => {
         {
             $inc: { 'treatments.$.upvotes': 1 }
         }, (err, data) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('treatment update successful');
-            console.log(data.result);
-            console.log(req.body.treatmentId);
-            res.send(data);
-        }
-    });
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('treatment update successful');
+                console.log(data.result);
+                console.log(req.body.treatmentId);
+                res.send(data);
+            }
+        });
 });
 
-// check if logged in (authenticated)
-function loggedIn(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.send({ redirect: 'login' })
-    }
-}
 
 module.exports = router

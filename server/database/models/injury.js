@@ -13,8 +13,16 @@ const injuriesSchema = new Schema({
         name: String,
         // comments: [String], //needs to be it's own schema?
         description: String,
-        upvotes: Number
-    }]
+        upvotes: Number,
+        author: {
+            id: Schema.Types.ObjectId,
+            username: String
+           }
+    }],
+    author: {
+        id: Schema.Types.ObjectId,
+        username: String
+       }
 },
 {
     collection: 'injuries'
