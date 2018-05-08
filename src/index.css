@@ -23,7 +23,7 @@ body {
   margin-bottom: 7px;
   margin-top: 7px;
   box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .3);
-  padding: 15px;
+  padding: 15px 30px;
   display: flex;
   justify-content: flex-start;
 }
@@ -34,6 +34,7 @@ body {
 
 .card-bdy, .card-description  {
   font-size: .8rem;
+
 }
 
 /* .padding-medium {
@@ -53,10 +54,6 @@ body {
   font-size: 0.6rem;
 }
 
-.card-padding {
-  padding-left: 10px;
-  padding-right: 10px;
-}
 
 .column {
   display: flex;
