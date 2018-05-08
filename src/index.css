@@ -53,8 +53,7 @@ body {
 }
 
 .card-bdy, .card-description  {
-  font-size: 1rem;
-  font-weight: 200;
+  font-size: .8rem;
 }
 
 .padding-medium {
@@ -67,11 +66,16 @@ body {
 }
 .card-title-line {
   height: 35px;
+  font-size: 1rem;
 }
 .card-line, .card-title-line {
   padding-left: 10px;
   padding-right: 10px;
   text-align: left;
+}
+
+.card-line {
+  font-size: 0.6rem;
 }
 
 .column {
@@ -113,7 +117,6 @@ body {
 .list-links {
     font-size: 0.6rem;
     font-weight: 200;
-  
 }
 
 .register {

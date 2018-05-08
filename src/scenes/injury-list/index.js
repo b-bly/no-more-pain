@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import getInjuryList from '../../actions/getInjuryList';
 import { Link, Redirect } from 'react-router-dom';
 //COMPONENTS
-//import AddInjuryForm from './add-injury-form';
+import InjuryListItem from './injury-list-item';
 import InjuryForm from './injury-form';
 //ACTIONS
 //actions
@@ -18,47 +18,7 @@ import getUser from '../../actions/get-user'
 //STYLES
 import './styles.css';
 
-class InjuryListItem extends Component {
-    //When you pass a parameter to an onClick function, you can't just write it like
-    //handleClick(parameter) or react will call it repeatedly.
-    //I am externalizing item to avoid using an arrow
-    //function, which creates a new function every click
-    //https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md#protips
-    //https://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
-    handleClick() {
-        this.props.handleClick(this.props.injury._id);
-    }
 
-    delete() {
-        this.props.delete(this.props.injury._id);
-    }
-
-    showForm() {
-        this.props.showForm(this.props.injury._id);
-    }
-
-    render() {
-        return (
-            <div>
-                <li className="injury-list-item"
-                    onClick={this.handleClick.bind(this)}
-                >{this.props.injury.title}</li>
-                {this.props.injury.author ? (
-                                <p>Author: {this.props.injury.author.username}</p>
-                )
-                : (
-                    <p>Author: Anonymous</p>
-                )}
-
-                <a className="list-links"
-                    onClick={this.showForm.bind(this)}>edit</a>
-                &nbsp;
-            <a className="list-links"
-                    onClick={this.delete.bind(this)}>delete</a>
-            </div>
-        );
-    }
-}
 
 class InjuryList extends Component {
     constructor(props) {
@@ -89,7 +49,6 @@ class InjuryList extends Component {
     delete(id) {
         console.log('injury-list, delete called, id: ');
         console.log(id);
-        
         if (window.confirm('Are you sure?')) {
             this.props.deleteInjury(id);
         }
@@ -105,20 +64,20 @@ class InjuryList extends Component {
         if (this.props.injuryList.length < 1) {
             this.props.getInjuryList();
         }
-        
+
     }
 
     updateInjury(updatedInjury) {
         this.props.updateInjury(updatedInjury);
         console.log('updateInjury called, updatedInjury: ');
         console.log(updatedInjury);
-        
+
         this.setState({
             showForm: ''
         });
     }
 
-    cancel () {
+    cancel() {
         this.setState({
             showForm: ''
         });
@@ -134,11 +93,10 @@ class InjuryList extends Component {
                 <div key={i.toString()}>
                     {injury._id === this.state.showForm ? (
                         <InjuryForm
-                        updateInjury={this.updateInjury.bind(this)} 
-                        cancel={this.cancel.bind(this)}
-                        injury={injury} />
-                    )
-                        : (
+                            updateInjury={this.updateInjury.bind(this)}
+                            cancel={this.cancel.bind(this)}
+                            injury={injury} />
+                    ) : (
                             <InjuryListItem
                                 handleClick={this.injuryInfo}
                                 delete={this.delete}
@@ -165,7 +123,6 @@ class InjuryList extends Component {
                     <ol>
                         {injuryList}
                     </ol>
-                    <Link to='/injury-info'>Injury Info</Link> <br></br>
 
 
                 </div>
