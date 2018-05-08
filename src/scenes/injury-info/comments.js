@@ -43,7 +43,7 @@ class Comments extends Component {
         })
     }
 
-    commentUpvote (commentId) {
+    commentUpvote(commentId) {
         const commentData = {
             injuryId: this.props.injuryId,
             commentId: commentId,
@@ -82,63 +82,63 @@ class Comments extends Component {
             //             <div className="card-header">
             //                 <div className="card-title-line">
 
-            <div className="columns" key={j.toString()}>
+            <div  key={j.toString()}>
 
-                <div className="col-1"></div>
-                <div className="col-11">
-                    <div className="card columns">
-                  {/* Reply in treatment.js needs same layout */}
-                            {
-                                this.state.showForm === commentObj._id ?
-                                    <div>
-                                        <Reply
-                                            addReply={this.addReply}
-                                            cancelReply={this.cancelReply}
-                                            comment={commentObj.text}
-                                            comment_id={commentObj._id}
-                                            editReply={this.editReply}
-                                            mode={'edit'} />
-                                    </div>
-                                    :
-                                    <div>
-                                        <div className="col-12 card-line">
-                                            <span><strong>Comment: </strong><span className="comment"> {commentObj.text} &nbsp;
+
+                <div className="card columns">
+                    {/* Reply in treatment.js needs same layout */}
+                    {
+                        this.state.showForm === commentObj._id ?
+                            <div>
+                                <Reply
+                                    addReply={this.addReply}
+                                    cancelReply={this.cancelReply}
+                                    comment={commentObj.text}
+                                    comment_id={commentObj._id}
+                                    editReply={this.editReply}
+                                    mode={'edit'} />
+                            </div>
+                            :
+                            <div>
+                                <div className="col-12 card-line comment-line">
+                                    <span className="comment"><strong> </strong><span > {commentObj.text} &nbsp;
                                         </span></span>
-                                        </div>
+                                </div>
 
-                                        <div className=" col-12 card-line list-links">
-                                            <button className="btn btn-sm" 
-                                            aria-label="up vote"
-                                            // should move to separate component to avoid () => syntax
-                                            onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
-                                            &nbsp;
+                                <div className=" col-12 card-line list-links">
+                                    <button className="btn btn-sm"
+                                        aria-label="up vote"
+                                        // should move to separate component to avoid () => syntax
+                                        onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
+                                    &nbsp;
                                             <span className="list-links">Upvotes: {commentObj.upvotes} &nbsp;
                                         </span>
-                                        {/* ****************** */}
-                                        {/* Should move edit button to separate component */}
-                                            <span className="list-links toggle"
-                                            
-                                                onClick={() => this.showForm(commentObj._id)}
-                                            >Edit &nbsp;</span>
-                                            <span className="list-links toggle">Delete &nbsp;
-                                         </span>
-                                        </div>
-                                    </div>
-                            }
+                                    {/* ****************** */}
+                                    {/* Should move edit button to separate component */}
+                                    <span className="list-links toggle"
 
-                     
-                    </div>
+                                        onClick={() => this.showForm(commentObj._id)}
+                                    >Edit &nbsp;</span>
+                                    <span className="list-links toggle">Delete &nbsp;
+                                         </span>
+                                </div>
+                            </div>
+                    }
+
+
                 </div>
-                {/* <div className=" col-6"></div> */}
             </div>
 
         )
 
 
         return (
-            <div>
-                {comments}
-            </div >
+            <div className="columns">
+                <div className="col-1"></div>
+                <div className="col-11">
+                    {comments}
+                </div>
+            </div>
         );
     }
 }

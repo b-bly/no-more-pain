@@ -153,7 +153,7 @@ class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="columns card-bdy">
+                            <div className="columns card-bdy card-padding">
                                 <div className="col-12 card-title-line">
                                     <span className="treatment-name" >{this.props.treatment.name} &nbsp; </span>
 
