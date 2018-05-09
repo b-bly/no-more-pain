@@ -7,11 +7,9 @@ const mongoose = require('mongoose');
 
 router.post('/', (req, res, next) => {
     console.log('*** add injury ***');
-    console.log(req.body);
-
     const title = req.body.title;
     const description = req.body.description;
-    const author = { username: req.body.username, id: req.user._id };
+    const author = { username: req.user.username, id: req.user._id };
     const injury = {
         title: title,
         description: description,
@@ -159,6 +157,7 @@ router.post('/add-treatment/:injuryId', (req, res) => {
 
     const treatment = req.body;
     const injuryId = req.params.injuryId;
+    treatment.author = { username: req.user.username, id: req.user._id };
     treatment.upvotes = 0;
     console.log('treatment: ');
     console.log(treatment);
@@ -169,18 +168,22 @@ router.post('/add-treatment/:injuryId', (req, res) => {
     //update wasn't working.  Find out why
     //because you need to find the record first?
     // https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose2
-    Injury.findOneAndUpdate({ _id: injuryId },
-        { $push: { treatments: treatment } })
-        .exec((err, data) => {
-            if (err) {
-                console.log('post treatment error:');
-                console.log(err)
-                res.send(err)
-            }
-            console.log('post treatment, data:');
-            console.log(data);
-            res.send(data);
-        });
+    if (req.isAuthenticated()) { //need to be logged in
+        Injury.findOneAndUpdate({ _id: injuryId },
+            { $push: { treatments: treatment } })
+            .exec((err, data) => {
+                if (err) {
+                    console.log('post treatment error:');
+                    console.log(err)
+                    res.send(err)
+                }
+                console.log('post treatment, data:');
+                console.log(data);
+                res.send(data);
+            });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 router.put('/info', (req, res) => {

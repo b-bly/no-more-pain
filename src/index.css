@@ -96,9 +96,13 @@ body {
   margin-top: auto;
 }
 
-.list-links {
+.list-links{
     font-size: 0.6rem;
     font-weight: 200;
+}
+
+.font-small {
+  font-size: 0.6rem;
 }
 
 .color-picker-container {

@@ -156,9 +156,12 @@ class Treatment extends Component {
                             <div className="columns card-bdy">
                                 <div className="col-12 card-title-line">
                                     <span className="treatment-name" >{this.props.treatment.name} &nbsp; </span>
-
                                 </div>
-
+                                {this.props.treatment.author && (
+                                    <div className="col-12 card-line">
+                                        <span className="font-small" >Author: {this.props.treatment.author.username} &nbsp; </span>
+                                    </div>
+                                )}
                                 {this.state.showDescription ?
                                     <div className="col-12 card-line">
                                         <span className="card-description">
@@ -190,7 +193,7 @@ class Treatment extends Component {
                                             {/* Only show if user === author  */}
                                         {this.props.treatment.author ? (
                                             <div>
-                                                { 
+                                                {
                                                     this.props.user.userId === this.props.treatment.author.id &&
                                                     (
                                                         <div>
