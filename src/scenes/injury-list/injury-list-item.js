@@ -20,12 +20,10 @@ export default class InjuryListItem extends Component {
     }
 
     render() {
+        console.log('injury-list-item props:');
+        console.log(this.props);
         return (
-
-            // <div className="card">
-            //     <div className="columns card-bdy">
-            //         <div className="col-12 card-title-line">
-            //             <span className="treatment-name
+    
             <div className="columns">
                 <div className="col-4 col-mx-auto">
                     <div className="card">
@@ -46,11 +44,23 @@ export default class InjuryListItem extends Component {
                             </div>
                                 )}
 
-                            <a className="list-links card-line"
-                                onClick={this.showForm.bind(this)}>edit</a>
-                            &nbsp;
-            <a className="list-links"
-                                onClick={this.delete.bind(this)}>delete</a>
+                            {   this.props.injury.author ?(
+                            <div>
+                            {
+                                this.props.username === this.props.injury.author.username &&
+                                 (
+                                    <div>
+                                        <a className="list-links card-line"
+                                            onClick={this.showForm.bind(this)}>edit</a>
+                                        &nbsp;
+                            <a className="list-links"
+                                            onClick={this.delete.bind(this)}>delete</a>
+                                    </div>
+                                )}
+                                </div>
+                            ) : 
+                            <div></div>
+                            }
                         </div>
                     </div>
                 </div>

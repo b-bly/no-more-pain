@@ -84,6 +84,10 @@ class InjuryList extends Component {
     }
 
     render() {
+        console.log('injury-list props: ');
+        
+        console.log(this.props);
+        
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
@@ -101,7 +105,8 @@ class InjuryList extends Component {
                                 handleClick={this.injuryInfo}
                                 delete={this.delete}
                                 showForm={this.showForm.bind(this)}
-                                injury={injury} />
+                                injury={injury}
+                                username={this.props.user.username} />
 
                         )}
 

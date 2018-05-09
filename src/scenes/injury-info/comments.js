@@ -82,7 +82,7 @@ class Comments extends Component {
             //             <div className="card-header">
             //                 <div className="card-title-line">
 
-            <div  key={j.toString()}>
+            <div key={j.toString()}>
 
 
                 <div className="card columns">
@@ -111,7 +111,7 @@ class Comments extends Component {
                                         // should move to separate component to avoid () => syntax
                                         onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
                                     &nbsp;
-                                            <span className="list-links">Upvotes: {commentObj.upvotes} &nbsp;
+                                    <span className="list-links no-pointer">Upvotes: {commentObj.upvotes} &nbsp;
                                         </span>
                                     {/* ****************** */}
                                     {/* Should move edit button to separate component */}

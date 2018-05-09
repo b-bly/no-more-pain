@@ -45,8 +45,12 @@ body {
   height: 35px;
   font-size: 1rem;
 }
+
+.no-pointer {
+  cursor: default;
+}
+
 .card-line, .card-title-line {
-  
   text-align: left;
 }
 

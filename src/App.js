@@ -27,15 +27,17 @@ class App extends Component {
         {/* greet user if logged in: */}
         <UserGreeting />
         {/* Routes to different components */}
-        <Route
+        {/* <Route
           exact path="/"
           render={() =>
             <Home
               username={this.state.username}
               loggedIn={this.state.loggedIn}
             />}
-        />
-
+        /> */}
+        <Route
+          path="/"
+          component={InjuryList} />
         <Route
           path="/login"
           component={User}
@@ -45,7 +47,7 @@ class App extends Component {
           component={User}
         />
 
-  <Route
+        <Route
           path="/add-treatment"
           component={AddTreatmentForm} />
         <Route
