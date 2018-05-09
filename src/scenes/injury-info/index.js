@@ -164,6 +164,8 @@ class InjuryInfo extends Component {
                         editTreatment={this.editTreatment}
                         treatmentUpvote={this.treatmentUpvote}
                         commentUpvote={this.commentUpvote}
+                        user={this.props.user}
+                        
                     />
 
                 </div>
@@ -224,7 +226,8 @@ function mapStateToProps(state) {
     console.log('InjuryInfo mapStateToProps called, state: ');
     console.log(state);
     return {
-        injuryInfo: state.injuryInfo
+        injuryInfo: state.injuryInfo,
+        user: state.user,
     };
 }
 

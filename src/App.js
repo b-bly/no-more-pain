@@ -9,20 +9,40 @@ import InjuryList from './scenes/injury-list/index.js'
 import AddInjuryForm from './scenes/injury-list/add-injury-form'
 import InjuryInfo from './scenes/injury-info'
 import AddTreatmentForm from './scenes/injury-info/add-treatment'
+import UserData from './user-data';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      userId: null,
+    }
+    this.reportUser = this.reportUser.bind(this);
+  }
+
+  reportUser(user) {
+    if (user) {
+      this.setState({
+        loggedIn: true,
+        username: user.username,
+        userId: user.id,
+    });
+    } else {
+      this.setState({
+        loggedIn: false,
+        username: null,
+        userId: null,
+      })
     }
   }
 
   render() {
     return (
       <div className="App">
-
+        <UserData 
+          reportUser={this.reportUser}/>
         <Navbar loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         <UserGreeting />
@@ -59,7 +79,7 @@ class App extends Component {
         <Route
           path="/injury-info"
           component={InjuryInfo} />
-         
+
 
       </div>
     );
@@ -82,4 +102,5 @@ export default App;
 
 //TO DO
 // Clean up CSS file
-// 
+// Hide edit/delete buttons for user != author
+// Check server side for authentication on edit/delete routes

@@ -58,17 +58,17 @@ class Treatment extends Component {
     }
 
     showEditForm(e) {
-        e.preventDefault();    
+        e.preventDefault();
         this.setState({
             showEditTreatmentForm: !this.showEditTreatmentForm,
         });
-        
+
     }
 
     editTreatment(newTreatment) {
         console.log('editTreatment called');
         this.props.editTreatment(newTreatment);
-    
+
         this.setState({
             showEditTreatmentForm: ''
         });
@@ -112,7 +112,7 @@ class Treatment extends Component {
         });
     }
 
-    treatmentUpvote (e) {
+    treatmentUpvote(e) {
         e.preventDefault();
         console.log('treatmentUpvotes clicked');
         const treatmentUpvoteData = {
@@ -120,11 +120,11 @@ class Treatment extends Component {
             treatmentId: this.props.treatmentId,
         };
         console.log(treatmentUpvoteData);
-        
+
         this.props.treatmentUpvote(treatmentUpvoteData);
     }
-    
-    commentUpvote (commentData) {
+
+    commentUpvote(commentData) {
         this.props.commentUpvote(commentData);
     }
     render() {
@@ -167,10 +167,10 @@ class Treatment extends Component {
                                     : null}
 
                                 <div className="col-12 card-line" >
-                                    <button 
-                                    className="btn btn-sm" 
-                                    aria-label="up vote"
-                                    onClick={this.treatmentUpvote}><i className="icon icon-upward"></i></button>
+                                    <button
+                                        className="btn btn-sm"
+                                        aria-label="up vote"
+                                        onClick={this.treatmentUpvote}><i className="icon icon-upward"></i></button>
                                     &nbsp;
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
@@ -179,29 +179,45 @@ class Treatment extends Component {
                                             onClick={this.toggleDescription}>
                                             description
                                             </span>
-                                            &nbsp;
-                                            &nbsp;
+                                        &nbsp;
+                                        &nbsp;
                                         <span
-                                                onClick={this.showReplyForm}
-                                            > reply </span>
-                                            &nbsp;
-                                            &nbsp;
-                                        <span
-                                                onClick={this.showEditForm}
-                                            > edit </span>
-                                            &nbsp;
-                                            &nbsp;
-                                <span
-                                                onClick={this.deleteTreatment}
-                                            > delete </span>
-                                            &nbsp;
-                                            &nbsp;
-                                <span className="heading"
-                                                onClick={this.toggleComments}>
-                                                show comments </span>
-                                        
+                                            onClick={this.showReplyForm}
+                                        > reply </span>
+                                        &nbsp;
+                                        &nbsp;
+
+                                            {/* Only show if user === author  */}
+                                        {this.props.treatment.author ? (
+                                            <div>
+                                                { 
+                                                    this.props.user.userId === this.props.treatment.author.id &&
+                                                    (
+                                                        <div>
+                                                            <span
+                                                                onClick={this.showEditForm}
+                                                            > edit </span>
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            <span
+                                                                onClick={this.deleteTreatment}
+                                                            > delete </span>
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            <span className="heading"
+                                                                onClick={this.toggleComments}>
+                                                                show comments </span>
+
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>)
+                                            :
+                                            (null)
+                                        }
                                     </span>
                                 </div>
+
                                 {/* ************************************************************ */}
 
                                 {this.state.treatmentId !== '' &&
