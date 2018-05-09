@@ -22,8 +22,6 @@ class Navbar extends Component {
 
     render() {
         const loggedIn = this.props.user.loggedIn;
-        console.log('navbar render, props: ')
-        console.log(this.props);
         
         return (
             <div>
@@ -65,8 +63,6 @@ class Navbar extends Component {
 
 
 function mapStateToProps(state) {
-	console.log('login - mapStateToProps called, state: ');
-	console.log(state);
 	return {
 		user: state.user //users is labeled in reducers/index.js
 	};

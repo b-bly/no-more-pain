@@ -1,5 +1,4 @@
 import axios from 'axios';
-import getInjuryList from './getInjuryList'
 const url = '/injury/';
 
 export default function deleteInjury(id) {

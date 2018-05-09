@@ -19,8 +19,6 @@ export default function getInjuryList() {
 }
 
 function getInjuriesListAsync(injuryList) {
-    console.log('getInjuriesListAsync: ');
-    console.log(injuryList);
     
     // console.log('getInjuryList action, data: ');
     // console.log(injuryList);

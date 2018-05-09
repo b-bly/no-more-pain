@@ -1,14 +1,9 @@
 export default function (state = {}, action) {
     switch (action.type) {
-
         case 'GET_INJURY_INFO':
-
-            console.log('injury info reducer, payload:');
-            console.log(action.payload);
-            
-            return action.payload;
-
-            
+            // console.log('injury info reducer, payload:');
+            // console.log(action.payload);           
+            return action.payload;           
         case 'ADD_TREATMENT':
             return action.payload;
         case 'ADD_REPLY':

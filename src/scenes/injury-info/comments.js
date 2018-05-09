@@ -105,6 +105,12 @@ class Comments extends Component {
                                         </span></span>
                                 </div>
 
+                                {commentObj.author && (
+                                    <div className="col-12 card-line">
+                                        <span className="font-small" >Author: <strong>{commentObj.author.username} </strong>&nbsp; </span>
+                                    </div>
+                                )}
+
                                 <div className=" col-12 card-line list-links">
                                     <button className="btn btn-sm"
                                         aria-label="up vote"

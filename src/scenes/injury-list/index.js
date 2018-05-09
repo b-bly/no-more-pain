@@ -33,11 +33,12 @@ class InjuryList extends Component {
 
     componentWillMount() {
         this.props.getUser();
+        if (this.props.injuryList.length < 1) {
+            this.props.getInjuryList();
+        }
     }
 
     injuryInfo(id) {
-        console.log('injuryInfo called, id:');
-        console.log(id);
         //call getInjuryInfo to set store injuryInfo to clicked injury
         this.props.getInjuryInfo(id);
         //set state to redirect
@@ -47,8 +48,6 @@ class InjuryList extends Component {
     }
 
     delete(id) {
-        console.log('injury-list, delete called, id: ');
-        console.log(id);
         if (window.confirm('Are you sure?')) {
             this.props.deleteInjury(id);
         }
@@ -60,18 +59,8 @@ class InjuryList extends Component {
         })
     }
 
-    componentWillMount() {
-        if (this.props.injuryList.length < 1) {
-            this.props.getInjuryList();
-        }
-
-    }
-
     updateInjury(updatedInjury) {
         this.props.updateInjury(updatedInjury);
-        console.log('updateInjury called, updatedInjury: ');
-        console.log(updatedInjury);
-
         this.setState({
             showForm: ''
         });
@@ -84,15 +73,12 @@ class InjuryList extends Component {
     }
 
     render() {
-        console.log('injury-list props: ');
-        
-        console.log(this.props);
+        // console.log('injury-list props: ');      
+        // console.log(this.props);
         
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
-            console.log('injury list props: ');
-            console.log(this.props);
             const injuryList = this.props.injuryList.map((injury, i) =>
                 <div key={i.toString()}>
                     {injury._id === this.state.showForm ? (

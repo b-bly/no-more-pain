@@ -19,6 +19,7 @@ class Treatment extends Component {
             commentParentId: '', //will need eventually for nested comments
             showComments: true, // show / hide comments
             showEditTreatmentForm: false,
+
         }
         this.toggleComments = this.toggleComments.bind(this);
         this.showReplyForm = this.showReplyForm.bind(this);
@@ -35,11 +36,8 @@ class Treatment extends Component {
     }
 
     deleteTreatment() {
-        console.log('deleteTreatment');
-        console.log(this.props.treatment._id);
-        var txt;
         const permission = this.confirm("Are you sure you want to delete " + this.props.treatment.name);
-        if (permission == true) {
+        if (permission === true) {
             this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
         }
     }
@@ -66,7 +64,6 @@ class Treatment extends Component {
     }
 
     editTreatment(newTreatment) {
-        console.log('editTreatment called');
         this.props.editTreatment(newTreatment);
 
         this.setState({
@@ -88,8 +85,6 @@ class Treatment extends Component {
 
     editReply(commentObject) {
         this.props.editReply(commentObject)
-        console.log('treatment.js, editReply, commentObject: ');
-        console.log(commentObject);
         // comment object definition:
         // {
         //     comment: comment,
@@ -114,12 +109,10 @@ class Treatment extends Component {
 
     treatmentUpvote(e) {
         e.preventDefault();
-        console.log('treatmentUpvotes clicked');
         const treatmentUpvoteData = {
             injuryId: this.props.injuryId,
             treatmentId: this.props.treatmentId,
         };
-        console.log(treatmentUpvoteData);
 
         this.props.treatmentUpvote(treatmentUpvoteData);
     }
@@ -204,7 +197,7 @@ class Treatment extends Component {
                                                             &nbsp;
                                                             <span
                                                                 onClick={this.deleteTreatment}
-                                                            > delete </span>                                                       
+                                                            > delete </span>
                                                         </span>
                                                     )
                                                 }
@@ -212,11 +205,22 @@ class Treatment extends Component {
                                             :
                                             (null)
                                         }
-                                         &nbsp;
-                                        &nbsp;
-                                        <span className=""
-                                            onClick={this.toggleComments}>
-                                            show comments </span>
+
+                                        {this.props.comments.length > 0 && (
+                                            <span>
+                                                &nbsp;
+                                                &nbsp;
+                                                <span className=""
+                                                    onClick={this.toggleComments}>
+                                                    {this.state.showComments === true ?
+                                                        (<span>hide </span>)
+                                                        :
+                                                        (<span>show </span>)
+                                                    }
+                                                    comments
+                                                </span>
+                                            </span>
+                                        )}
                                     </span>
                                 </div>
 
@@ -265,8 +269,6 @@ class Treatment extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('Treatment mapStateToProps called, state: ');
-    console.log(state);
     return {
 
     };

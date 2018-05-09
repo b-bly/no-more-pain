@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 //actions
 import getInjuryInfo from '../../actions/getInjuryInfo';
@@ -60,10 +60,6 @@ class InjuryInfo extends Component {
     }
 
     addReply(treatmentId, comment) {
-        console.log('injury-info index, addReply, treatmentId, comment, injuryId: ');
-        console.log(treatmentId);
-        console.log(comment);
-        console.log(this.props.injuryInfo._id);
 
         // const commentsSchema = {
         //     injury_id: Schema.Types.ObjectId,
@@ -91,7 +87,6 @@ class InjuryInfo extends Component {
     }
 
     editReply(commentObject) {
-        console.log('index.js, editReply, commentObj: ');      
         this.props.editReply(commentObject);
     }
 
@@ -121,28 +116,24 @@ class InjuryInfo extends Component {
         //need this if replies to replies are allowed
         // https://stackoverflow.com/questions/19323699/iterating-through-json-object-javascript
 
-        const practiceData = {
-            description: "pain in elbow",
-            title: "Tennis elbow",
-            treatments: [{
-                _id: "5a8a185f3dbc572f6c349c81", name: "stretch", description: "stretch", upvotes: 0,
-                comments: [
-                    { text: 'worked for me.  But then again, everything works for me.  That\s just how things go for me.', upvotes: 1, _id: 1},
-                    { text: 'do these every day', upvotes: 0, _id: 2 },
-                    { text: 'warm up first', upvotes: 99, _id: 3 }
-                ]
-            },
-            { _id: "5a8f704f05f1287b39e0994f", name: "ice", description: "", upvotes: 0 },
-            { _id: "5a8f71063f68287b56b9f45e", name: "rest", description: "", upvotes: 0 },
-            { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
-        }
+        // const practiceData = {
+        //     description: "pain in elbow",
+        //     title: "Tennis elbow",
+        //     treatments: [{
+        //         _id: "5a8a185f3dbc572f6c349c81", name: "stretch", description: "stretch", upvotes: 0,
+        //         comments: [
+        //             { text: 'worked for me.  But then again, everything works for me.  That\s just how things go for me.', upvotes: 1, _id: 1},
+        //             { text: 'do these every day', upvotes: 0, _id: 2 },
+        //             { text: 'warm up first', upvotes: 99, _id: 3 }
+        //         ]
+        //     },
+        //     { _id: "5a8f704f05f1287b39e0994f", name: "ice", description: "", upvotes: 0 },
+        //     { _id: "5a8f71063f68287b56b9f45e", name: "rest", description: "", upvotes: 0 },
+        //     { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
+        // }
 
         //**************** this.props.injuryInfo.treatments
         let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
-        const firstTreatment = Object.assign({}, treatments[0]);
-        const comments = Object.assign({}, firstTreatment.comments);
-        console.log('comments');
-        console.log(comments);
         treatments = treatments.map((treatmentCopy, i) => {
             const treatment = Object.assign({}, treatmentCopy);
 
@@ -223,8 +214,6 @@ class InjuryInfo extends Component {
 // }
 
 function mapStateToProps(state) {
-    console.log('InjuryInfo mapStateToProps called, state: ');
-    console.log(state);
     return {
         injuryInfo: state.injuryInfo,
         user: state.user,

@@ -39,8 +39,6 @@ UserGreeting.propTypes = {
 };
 
 function mapStateToProps(state) {
-    console.log('login - mapStateToProps called, state: ');
-    console.log(state);
     return {
         user: state.user //users is labeled in reducers/index.js
     };

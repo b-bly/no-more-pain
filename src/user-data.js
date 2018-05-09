@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 //REDUX
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 //actions
 import getUser from './actions/get-user';
 
@@ -21,9 +20,7 @@ class UserData extends Component {
         this.props.getUser();
      }
 
-    render() {
-        console.log('UserData rendered');
-        console.log(this.props);
+     componentWillReceiveProps() {
         if (this.props.user.username) {
             // tell App.js there's a user
             // this.props.reportUser(this.props.user);
@@ -31,6 +28,10 @@ class UserData extends Component {
             // tell App.js there is no user logged in
             this.props.reportUser(false);
         }
+     }
+
+    render() {
+
   
             return (
                 <div>
@@ -47,8 +48,6 @@ class UserData extends Component {
 // };
 
 function mapStateToProps(state) {
-    console.log('login - mapStateToProps called, state: ');
-    console.log(state);
     return {
         user: state.user //users is labeled in reducers/index.js
     };

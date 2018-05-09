@@ -20,8 +20,6 @@ export default class InjuryListItem extends Component {
     }
 
     render() {
-        console.log('injury-list-item props:');
-        console.log(this.props);
         return (
     
             <div className="columns">

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 // components
 import User from './scenes/user'
 import Navbar from './components/navbar'
-import Home from './scenes/home/index.js'
+// import Home from './scenes/home/index.js'
 import UserGreeting from './scenes/home/user-greeting'
 import InjuryList from './scenes/injury-list/index.js'
 import AddInjuryForm from './scenes/injury-list/add-injury-form'

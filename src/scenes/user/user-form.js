@@ -13,7 +13,6 @@ class UserForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log('user-form, handleSubmit')
         this.props.handleSubmit(event);
     }
 

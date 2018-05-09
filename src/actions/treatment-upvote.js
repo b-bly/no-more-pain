@@ -4,7 +4,7 @@ const url = '/injury/treatment-upvote';
 export default function treatmentUpvote(treatmentUpvoteData) {
         console.log('treatmentUpvote action treatment id: ');
         console.log(treatmentUpvoteData);
-        const treatmentId = treatmentUpvoteData.treatmentId;
+        // const treatmentId = treatmentUpvoteData.treatmentId;
         const injuryId = treatmentUpvoteData.injuryId
     return dispatch => {
 

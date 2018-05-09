@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import PropTypes from 'prop-types'
-//actions
 
 class InjuryForm extends Component {
 	constructor(props) {

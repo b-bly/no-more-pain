@@ -46,7 +46,6 @@ class User extends Component {
 
     login(event) {
         event.preventDefault()
-        console.log('handleSubmit')
 
         this.props.login({
             username: this.state.username,
@@ -56,9 +55,6 @@ class User extends Component {
 
     signup(event) {
         event.preventDefault()
-        console.log('sign-up-form, username: ');
-        console.log(this.state.username);
-
         this.props.signUp({
             username: this.state.username,
             password: this.state.password
@@ -66,11 +62,7 @@ class User extends Component {
     }
 
     render() {
-        console.log('login rendered');
-        console.log(this.props);
         const match = this.props.match;
-        console.log('match: ');
-        console.log(match);
         
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
@@ -117,8 +109,6 @@ User.propTypes = {
 };
 
 function mapStateToProps(state) {
-    console.log('login - mapStateToProps called, state: ');
-    console.log(state);
     return {
         user: state.user //users is labeled in reducers/index.js
     };
