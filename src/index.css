@@ -110,13 +110,7 @@ body {
   align-items: center;
 }
 
-.treatment-title {
-  text-align: left;
-  
-}
-.treatment-name {
-  font-weight: 400;
-}
+
 
 .toggle {
   opacity: 0.8;
@@ -145,4 +139,13 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.upvote {
+  margin-right: 10px;
 }

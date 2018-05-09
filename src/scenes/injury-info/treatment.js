@@ -159,7 +159,7 @@ class Treatment extends Component {
                                 </div>
                                 {this.props.treatment.author && (
                                     <div className="col-12 card-line">
-                                        <span className="font-small" >Author: {this.props.treatment.author.username} &nbsp; </span>
+                                        <span className="font-small" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
                                     </div>
                                 )}
                                 {this.state.showDescription ?
@@ -171,7 +171,7 @@ class Treatment extends Component {
 
                                 <div className="col-12 card-line" >
                                     <button
-                                        className="btn btn-sm"
+                                        className="btn btn-sm upvote"
                                         aria-label="up vote"
                                         onClick={this.treatmentUpvote}><i className="icon icon-upward"></i></button>
                                     &nbsp;
@@ -192,11 +192,11 @@ class Treatment extends Component {
 
                                             {/* Only show if user === author  */}
                                         {this.props.treatment.author ? (
-                                            <div>
+                                            <span>
                                                 {
-                                                    this.props.user.userId === this.props.treatment.author.id &&
+                                                    this.props.user.id === this.props.treatment.author.id &&
                                                     (
-                                                        <div>
+                                                        <span>
                                                             <span
                                                                 onClick={this.showEditForm}
                                                             > edit </span>
@@ -204,20 +204,19 @@ class Treatment extends Component {
                                                             &nbsp;
                                                             <span
                                                                 onClick={this.deleteTreatment}
-                                                            > delete </span>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            <span className="heading"
-                                                                onClick={this.toggleComments}>
-                                                                show comments </span>
-
-                                                        </div>
+                                                            > delete </span>                                                       
+                                                        </span>
                                                     )
                                                 }
-                                            </div>)
+                                            </span>)
                                             :
                                             (null)
                                         }
+                                         &nbsp;
+                                        &nbsp;
+                                        <span className=""
+                                            onClick={this.toggleComments}>
+                                            show comments </span>
                                     </span>
                                 </div>
 
