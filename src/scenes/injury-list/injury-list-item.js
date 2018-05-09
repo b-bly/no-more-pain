@@ -28,7 +28,7 @@ export default class InjuryListItem extends Component {
                 <div className="col-4 col-mx-auto">
                     <div className="card">
                         <div className="columns card-bdy">
-                            <div className=" col-12 card-title-line"
+                            <div className="col-12 card-title-line pointer"
                                 onClick={this.handleClick.bind(this)}
                             >
                                 {this.props.injury.title}
@@ -47,7 +47,7 @@ export default class InjuryListItem extends Component {
                             {   this.props.injury.author ?(
                             <div>
                             {
-                                this.props.username === this.props.injury.author.username &&
+                                this.props.userId === this.props.injury.author.id &&
                                  (
                                     <div>
                                         <a className="list-links card-line"

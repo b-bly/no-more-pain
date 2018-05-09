@@ -106,7 +106,8 @@ class InjuryList extends Component {
                                 delete={this.delete}
                                 showForm={this.showForm.bind(this)}
                                 injury={injury}
-                                username={this.props.user.username} />
+                                username={this.props.user.username} 
+                                userId={this.props.user.id}/>
 
                         )}
 

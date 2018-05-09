@@ -10,6 +10,7 @@ export default function getUser() {
             console.log(res.data);
             const user = {
                 username: res.data.user.username,
+                id: res.data.user._id,
                 loggedIn: true 
             };
             if (!res.data.user.username) user.loggedIn = false;

@@ -36,7 +36,7 @@ class App extends Component {
             />}
         /> */}
         <Route
-          path="/"
+          exact path="/"
           component={InjuryList} />
         <Route
           path="/login"
