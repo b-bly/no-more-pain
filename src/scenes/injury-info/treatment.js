@@ -169,120 +169,136 @@ class Treatment extends Component {
                                     : null}
 
                                 <div className="col-12 card-line" >
-                                    <button
-                                        className="btn btn-sm upvote"
-                                        aria-label="up vote"
-                                        onClick={this.treatmentUpvote}><i className="icon icon-upward"></i></button>
-                                    &nbsp;
+                                    {this.props.treatment.author ? (
+                                        <span>
+                                            {
+                                                this.props.user.id === this.props.treatment.author.id &&
+                                                (
+                                                    <span>
+                                                        <button
+                                                            className="btn btn-sm upvote"
+                                                            aria-label="up vote"
+                                                            onClick={this.treatmentUpvote}><i className="icon icon-upward">
+                                                            </i>
+                                                        </button>
+                                                        &nbsp;
+                                                    </span>
+                                                )
+                                            }
+                                        </span>
+                                    )
+                                    :
+                                        (null)
+                                    }
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
-                                    <span className="toggle list-links">
-                                        <span className="list-links"
-                                            onClick={this.toggleDescription}>
-                                            description
+                                            <span className="toggle list-links">
+                                                <span className="list-links"
+                                                    onClick={this.toggleDescription}>
+                                                    description
                                             </span>
-                                        &nbsp;
-                                        &nbsp;
+                                                &nbsp;
+                                                &nbsp;
                                         <span
-                                            onClick={this.showReplyForm}
-                                        > reply </span>
-                                        &nbsp;
-                                        &nbsp;
-
+                                                    onClick={this.showReplyForm}
+                                                > reply </span>
+                                                &nbsp;
+                                                &nbsp;
+        
                                             {/* Only show if user === author  */}
-                                        {this.props.treatment.author ? (
-                                            <span>
-                                                {
-                                                    this.props.user.id === this.props.treatment.author.id &&
-                                                    (
-                                                        <span>
+                                                {this.props.treatment.author ? (
+                                                    <span>
+                                                        {
+                                                            this.props.user.id === this.props.treatment.author.id &&
+                                                            (
+                                                                <span>
+                                                                    <span
+                                                                        onClick={this.showEditForm}
+                                                                    > edit </span>
+                                                                    &nbsp;
+                                                                    &nbsp;
                                                             <span
-                                                                onClick={this.showEditForm}
-                                                            > edit </span>
-                                                            &nbsp;
-                                                            &nbsp;
-                                                            <span
-                                                                onClick={this.deleteTreatment}
-                                                            > delete </span>
-                                                        </span>
-                                                    )
+                                                                        onClick={this.deleteTreatment}
+                                                                    > delete </span>
+                                                                </span>
+                                                            )
+                                                        }
+                                                    </span>)
+                                                    :
+                                                    (null)
                                                 }
-                                            </span>)
-                                            :
-                                            (null)
-                                        }
 
-                                        {this.props.comments.length > 0 && (
-                                            <span>
-                                                &nbsp;
-                                                &nbsp;
+                                                {this.props.comments.length > 0 && (
+                                                    <span>
+                                                        &nbsp;
+                                                        &nbsp;
                                                 <span className=""
-                                                    onClick={this.toggleComments}>
-                                                    {this.state.showComments === true ?
-                                                        (<span>hide </span>)
-                                                        :
-                                                        (<span>show </span>)
-                                                    }
-                                                    comments
+                                                            onClick={this.toggleComments}>
+                                                            {this.state.showComments === true ?
+                                                                (<span>hide </span>)
+                                                                :
+                                                                (<span>show </span>)
+                                                            }
+                                                            comments
                                                 </span>
+                                                    </span>
+                                                )}
                                             </span>
-                                        )}
-                                    </span>
                                 </div>
 
                                 {/* ************************************************************ */}
-
+    
                                 {this.state.treatmentId !== '' &&
-                                    <div className="col-12">
-                                        <div className="columns" >
-                                            <div className="col-1"></div>
-                                            <div className="col-11">
-                                                <div className="card columns">
-                                                    <Reply
-                                                        addReply={this.addReply}
-                                                        cancelReply={this.cancelReply}
-                                                        mode={'add'}
-                                                    />
+                                        <div className="col-12">
+                                            <div className="columns" >
+                                                <div className="col-1"></div>
+                                                <div className="col-11">
+                                                    <div className="card columns">
+                                                        <Reply
+                                                            addReply={this.addReply}
+                                                            cancelReply={this.cancelReply}
+                                                            mode={'add'}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                                {/* *************************************************** */}
-                                <div className="col-12">
-                                    { this.state.showComments === true &&
-                                        <Comments
-                                            comments={this.props.comments}
-                                            toggleComments={this.toggleComments}
-                                            injuryId={this.props.injuryId}
-                                            editReply={this.editReply}
-                                            commentUpvote={this.commentUpvote}
-                                            deleteComment={this.deleteComment}
-                                        />
                                     }
+                                    {/* *************************************************** */}
+                                    <div className="col-12">
+                                        {this.state.showComments === true &&
+                                            <Comments
+                                                comments={this.props.comments}
+                                                toggleComments={this.toggleComments}
+                                                injuryId={this.props.injuryId}
+                                                editReply={this.editReply}
+                                                commentUpvote={this.commentUpvote}
+                                                deleteComment={this.deleteComment}
+                                            />
+                                        }
+                                    </div>
+                                    {/* *** end comments *** */}
                                 </div>
-                                {/* *** end comments *** */}
-                            </div>
 
-                        }
+                                }
                         {/* *** end treatment if statement *** */}
-                    </div>
+                            </div>
                 </div>
             </div >
-        );
-    }
-}
-
+                    );
+                }
+            }
+            
 function mapStateToProps(state) {
     return {
 
-    };
-}
-
+                    };
+                }
+                
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        deleteTreatment: deleteTreatment
-    }, dispatch);
-}
-
+                        deleteTreatment: deleteTreatment
+                }, dispatch);
+            }
+            
 export default connect(mapStateToProps, mapDispatchToProps)(Treatment);
