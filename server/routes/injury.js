@@ -141,22 +141,23 @@ router.put('/update', function (req, res) {
 });
 
 router.delete('/', (req, res) => {
-    const id = req.query.id;
-    console.log('delete injury, req.query:');
-    console.log(req.query);
+    const userId = req.user._id.toString();
+    const authorId = req.user._id.toString();
 
-    Injury.remove({ _id: id })
-        .exec((err, data) => {
-            if (err) {
-                console.log('delete injury error:');
-                console.log(err)
-                res.send(err)
-            }
-            console.log('get injury info, data:');
-            console.log(data);
-            res.send(data);
-        });
-
+    if (req.isAuthenticated() &&
+        userId === authorId) {
+        Injury.remove({ _id: id })
+            .exec((err, data) => {
+                if (err) {
+                    console.log('delete injury error:');
+                    console.log(err)
+                    res.send(err)
+                }
+                console.log('get injury info, data:');
+                console.log(data);
+                res.send(data);
+            });
+    }
 });
 
 // Treatments

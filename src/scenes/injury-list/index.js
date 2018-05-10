@@ -45,9 +45,9 @@ class InjuryList extends Component {
         });
     }
 
-    delete(id) {
+    delete(injuryData) {
         if (window.confirm('Are you sure?')) {
-            this.props.deleteInjury(id);
+            this.props.deleteInjury(injuryData);
         }
     }
 

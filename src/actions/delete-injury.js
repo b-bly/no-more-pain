@@ -1,13 +1,13 @@
 import axios from 'axios';
 const url = '/injury/';
 
-export default function deleteInjury(id) {
+export default function deleteInjury(injuryData) {
     return dispatch => {
-        console.log('deleteInjury action injury: ');
-        console.log(id);
+
         axios.delete(url, {
             params: {
-                id: id
+                injuryId: injuryData.injuryId,
+                authorId: injuryData.author.id,
             }
         }).then(res => {
             console.log('deleteInjury action res.data');

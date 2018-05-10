@@ -12,7 +12,11 @@ export default class InjuryListItem extends Component {
     }
 
     delete() {
-        this.props.delete(this.props.injury._id);
+        const injuryData = {
+            injuryId: this.props.injury._id,
+            author: this.props.injury.author
+        };
+        this.props.delete(injuryData);
     }
 
     showForm() {
