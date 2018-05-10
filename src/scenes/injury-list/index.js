@@ -12,7 +12,7 @@ import InjuryForm from './injury-form';
 import addInjury from '../../actions/add-injury'
 import getInjuryInfo from '../../actions/getInjuryInfo'
 import deleteInjury from '../../actions/delete-injury'
-import updateInjury from '../../actions/update-injury'
+import editInjury from '../../actions/edit-injury'
 import getUser from '../../actions/get-user'
 
 //STYLES
@@ -33,9 +33,7 @@ class InjuryList extends Component {
 
     componentWillMount() {
         this.props.getUser();
-        if (this.props.injuryList.length < 1) {
-            this.props.getInjuryList();
-        }
+            this.props.getInjuryList();  
     }
 
     injuryInfo(id) {
@@ -59,8 +57,8 @@ class InjuryList extends Component {
         })
     }
 
-    updateInjury(updatedInjury) {
-        this.props.updateInjury(updatedInjury);
+    editInjury(updatedInjury) {
+        this.props.editInjury(updatedInjury);
         this.setState({
             showForm: ''
         });
@@ -83,7 +81,7 @@ class InjuryList extends Component {
                 <div key={i.toString()}>
                     {injury._id === this.state.showForm ? (
                         <InjuryForm
-                            updateInjury={this.updateInjury.bind(this)}
+                            editInjury={this.editInjury.bind(this)}
                             cancel={this.cancel.bind(this)}
                             injury={injury} />
                     ) : (
@@ -144,7 +142,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getInjuryList: getInjuryList,
         deleteInjury: deleteInjury,
-        updateInjury: updateInjury,
+        editInjury: editInjury,
         getInjuryInfo: getInjuryInfo,
         addInjury: addInjury,
         getUser: getUser,

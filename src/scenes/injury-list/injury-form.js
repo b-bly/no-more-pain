@@ -33,10 +33,11 @@ class InjuryForm extends Component {
 		event.preventDefault()
 		console.log('injury-form, injury:: ');
 		console.log(this.state);
-		this.props.updateInjury({
+		this.props.editInjury({
             id: this.state.id,
 			title: this.state.title,
-			description: this.state.description
+			description: this.state.description,
+			author: this.props.injury.author,
 		})
 		//set state of parent, don't show form
         		

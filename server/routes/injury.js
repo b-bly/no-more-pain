@@ -116,18 +116,28 @@ router.put('/update', function (req, res) {
     const id = req.body.id;
     console.log('update, req.body: ');
     console.log(req.body);
-    Injury.findByIdAndUpdate(
-        { _id: id },
-        { $set: injury },
-        (err, data) => {
-            if (err) {
-                console.log('put error: ', err);
-                res.sendStatus(500);
-            } else {
-                res.sendStatus(200);
-            }
+
+    if (req.isAuthenticated()) {
+        if (req.user._id.toString() === req.body.author.id.toString()) {
+            console.log('ids match');
+            Injury.findByIdAndUpdate(
+                { _id: id },
+                { $set: injury },
+                (err, data) => {
+                    if (err) {
+                        console.log('put error: ', err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                }
+            );
+        } else {
+            res.sendStatus(403);
         }
-    );
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 router.delete('/', (req, res) => {
@@ -146,6 +156,7 @@ router.delete('/', (req, res) => {
             console.log(data);
             res.send(data);
         });
+
 });
 
 // Treatments
@@ -189,19 +200,21 @@ router.post('/add-treatment/:injuryId', (req, res) => {
 router.put('/info', (req, res) => {
     //https://docs.mongodb.com/manual/reference/operator/update/pull/
     //https://github.com/Automattic/mongoose/issues/542 
-
-    Injury.collection.update({ _id: new mongoose.Types.ObjectId(req.body.injuryId) },
-        { $pull: { 'treatments': { _id: new mongoose.Types.ObjectId(req.body.treatmentId) } } },
-        (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('treatment update successful');
-                console.log(data.result);
-                console.log(req.body.treatmentId);
-                res.send(data);
-            }
-        });
+    if (req.isAuthenticated() &&
+        req.user._id.toString() === req.body.author.id.toString()) {
+        Injury.collection.update({ _id: new mongoose.Types.ObjectId(req.body.injuryId) },
+            { $pull: { 'treatments': { _id: new mongoose.Types.ObjectId(req.body.treatmentId) } } },
+            (err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('treatment update successful');
+                    console.log(data.result);
+                    console.log(req.body.treatmentId);
+                    res.send(data);
+                }
+            });
+    }
 });
 
 
