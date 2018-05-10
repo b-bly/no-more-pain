@@ -35,7 +35,6 @@ class UserData extends Component {
   
             return (
                 <div>
-
                 </div>
             )
         

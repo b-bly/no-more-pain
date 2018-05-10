@@ -28,7 +28,7 @@ class App extends Component {
         loggedIn: true,
         username: user.username,
         userId: user.id,
-    });
+      });
     } else {
       this.setState({
         loggedIn: false,
@@ -40,14 +40,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <UserData 
-          reportUser={this.reportUser}/>
-        <Navbar loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        <UserGreeting />
-        {/* Routes to different components */}
-        {/* <Route
+      <div className="App background-image">
+        <div className="opacity-adjust">
+          <UserData
+            reportUser={this.reportUser} />
+          <Navbar loggedIn={this.state.loggedIn} />
+          {/* greet user if logged in: */}
+          {/* <UserGreeting /> */}
+          {/* Routes to different components */}
+          {/* <Route
           exact path="/"
           render={() =>
             <Home
@@ -55,32 +56,31 @@ class App extends Component {
               loggedIn={this.state.loggedIn}
             />}
         /> */}
-        <Route
-          exact path="/"
-          component={InjuryList} />
-        <Route
-          path="/login"
-          component={User}
-        />
-        <Route
-          path="/signup"
-          component={User}
-        />
+          <Route
+            exact path="/"
+            component={InjuryList} />
+          <Route
+            path="/login"
+            component={User}
+          />
+          <Route
+            path="/signup"
+            component={User}
+          />
 
-        <Route
-          path="/add-treatment"
-          component={AddTreatmentForm} />
-        <Route
-          path="/injury-list"
-          component={InjuryList} />
-        <Route
-          path="/add-injury"
-          component={AddInjuryForm} />
-        <Route
-          path="/injury-info"
-          component={InjuryInfo} />
-
-
+          <Route
+            path="/add-treatment"
+            component={AddTreatmentForm} />
+          <Route
+            path="/injury-list"
+            component={InjuryList} />
+          <Route
+            path="/add-injury"
+            component={AddInjuryForm} />
+          <Route
+            path="/injury-info"
+            component={InjuryInfo} />
+        </div>
       </div>
     );
   }

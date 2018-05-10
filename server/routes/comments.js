@@ -7,7 +7,6 @@ router.post('/add-reply/:injuryId', (req, res) => {
 
     const author = { username: req.user.username, id: req.user._id };
     req.body.author = { username: req.user.username, id: req.user._id };
-
     console.log('*** add reply req.body: ***');
     console.log(req.body);
     console.log('injuryId:');
@@ -57,7 +56,7 @@ router.put('/comment-upvote/:commentId', (req, res) => {
     const commentId = req.body.commentId
     console.log(commentId);
     console.log(id);
-    
+
     Comment.findByIdAndUpdate(
         { _id: commentId },
         {
@@ -76,5 +75,23 @@ router.put('/comment-upvote/:commentId', (req, res) => {
     );
 });
 
+// finish
+router.delete('/', (req, res) => {
+    console.log('*** Delete comment ***');
+    console.log('id: ');
+    console.log(req.query.commentId);
+    
+    Comment.remove({ _id: req.query.commentId })
+        .exec((err, data) => {
+            if (err) {
+                console.log('delete comment error:');
+                console.log(err)
+                res.send(err)
+            }
+            console.log('delete comment, data:');
+            console.log(data);
+            res.send(data);
+        });
+});
 
 module.exports = router;

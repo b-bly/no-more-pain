@@ -75,7 +75,7 @@ class InjuryList extends Component {
     render() {
         // console.log('injury-list props: ');      
         // console.log(this.props);
-        
+
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
@@ -92,8 +92,8 @@ class InjuryList extends Component {
                                 delete={this.delete}
                                 showForm={this.showForm.bind(this)}
                                 injury={injury}
-                                username={this.props.user.username} 
-                                userId={this.props.user.id}/>
+                                username={this.props.user.username}
+                                userId={this.props.user.id} />
 
                         )}
 
@@ -106,17 +106,19 @@ class InjuryList extends Component {
             //     <li key={i.toString()}> {titleObj.title} </li>
             // );
             return (
-                <div className="container">
-                    <div className="center columns">
-                        <div className="col-2 list-title"><h3>Injury List</h3></div>
-                        <Link to='/add-injury' className="btn list-title">Add injury</Link>
+                <div>
+                    <div className="container">
+                        <div className="center columns">
+                            <div className="col-2 list-title"><h3>Injury List</h3></div>
+                            <Link to='/add-injury' className="btn list-title">Add injury</Link>
+                        </div>
+                        {/* search box */}
+                        <ol>
+                            {injuryList}
+                        </ol>
+
+
                     </div>
-                    {/* search box */}
-                    <ol>
-                        {injuryList}
-                    </ol>
-
-
                 </div>
             );
         }

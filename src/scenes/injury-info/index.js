@@ -1,6 +1,8 @@
+// React / redux
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 //actions
@@ -10,10 +12,11 @@ import editReply from '../../actions/edit-reply';
 import editTreatment from '../../actions/edit-treatment';
 import treatmentUpvote from '../../actions/treatment-upvote';
 import commentUpvote from '../../actions/comment-upvote';
+import deleteComment from '../../actions/delete-comment';
+
 //components
 import Treatment from './treatment';
-//react router dom
-import { Link } from 'react-router-dom';
+
 
 
 //need to modify injuryInfo to include _id and title or import injuryList props in mapstatetoprops
@@ -34,6 +37,7 @@ class InjuryInfo extends Component {
         this.editTreatment = this.editTreatment.bind(this);
         this.treatmentUpvote = this.treatmentUpvote.bind(this);
         this.commentUpvote = this.commentUpvote.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
     }
     componentWillMount() {
         // if (this.props.injuryInfo.title.length < 1) {
@@ -98,6 +102,10 @@ class InjuryInfo extends Component {
         this.props.commentUpvote(commentData);
     }
 
+    deleteComment(commentId) {
+        this.props.deleteComment(commentId, this.props.injuryInfo._id);
+    }
+
     render() {
         console.log('injury info props.injuryInfo: ');
         console.log(this.props.injuryInfo);
@@ -156,7 +164,7 @@ class InjuryInfo extends Component {
                         treatmentUpvote={this.treatmentUpvote}
                         commentUpvote={this.commentUpvote}
                         user={this.props.user}
-                        
+                        deleteComment={this.deleteComment}
                     />
 
                 </div>
@@ -227,7 +235,8 @@ function mapDispatchToProps(dispatch) {
         editReply: editReply,
         editTreatment: editTreatment,
         treatmentUpvote: treatmentUpvote,
-        commentUpvote: commentUpvote
+        commentUpvote: commentUpvote,
+        deleteComment: deleteComment,
     }, dispatch);
 }
 

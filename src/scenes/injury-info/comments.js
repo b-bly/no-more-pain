@@ -14,6 +14,7 @@ class Comments extends Component {
         this.cancelReply = this.cancelReply.bind(this);
         this.editReply = this.editReply.bind(this);
         this.commentUpvote = this.commentUpvote.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
     }
 
     showForm(id) {
@@ -49,6 +50,13 @@ class Comments extends Component {
             commentId: commentId,
         };
         this.props.commentUpvote(commentData);
+    }
+
+    deleteComment(commentId) {
+        const permission = window.confirm("Are you sure you want to delete your comment?");
+        if (permission) {
+            this.props.deleteComment(commentId);
+        }
     }
 
     render() {
@@ -125,7 +133,9 @@ class Comments extends Component {
 
                                         onClick={() => this.showForm(commentObj._id)}
                                     >Edit &nbsp;</span>
-                                    <span className="list-links toggle">Delete &nbsp;
+                                    <span className="list-links toggle"
+                                        onClick={() => this.deleteComment(commentObj._id)}
+                                    >Delete &nbsp;
                                          </span>
                                 </div>
                             </div>

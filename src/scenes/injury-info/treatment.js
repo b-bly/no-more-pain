@@ -33,6 +33,7 @@ class Treatment extends Component {
         this.toggleDescription = this.toggleDescription.bind(this);
         this.treatmentUpvote = this.treatmentUpvote.bind(this);
         this.commentUpvote = this.commentUpvote.bind(this);
+        this.deleteComment = this.deleteComment.bind(this);
     }
 
     deleteTreatment() {
@@ -119,6 +120,10 @@ class Treatment extends Component {
 
     commentUpvote(commentData) {
         this.props.commentUpvote(commentData);
+    }
+
+    deleteComment(commentId) {
+        this.props.deleteComment(commentId);
     }
     render() {
 
@@ -244,17 +249,16 @@ class Treatment extends Component {
                                 }
                                 {/* *************************************************** */}
                                 <div className="col-12">
-
-                                    {this.state.showComments === true &&
+                                    { this.state.showComments === true &&
                                         <Comments
                                             comments={this.props.comments}
                                             toggleComments={this.toggleComments}
                                             injuryId={this.props.injuryId}
                                             editReply={this.editReply}
                                             commentUpvote={this.commentUpvote}
+                                            deleteComment={this.deleteComment}
                                         />
                                     }
-
                                 </div>
                                 {/* *** end comments *** */}
                             </div>
