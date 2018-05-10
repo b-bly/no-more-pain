@@ -27,6 +27,7 @@ export default class TreatmentForm extends Component {
                 description: this.props.treatment.description,
                 upvotes: this.props.treatment.upvotes,
                 injuryId: this.props.injuryId,
+                user: this.props.user,
             });
         }
     }
@@ -39,8 +40,7 @@ export default class TreatmentForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log('treatment-form.js, state: ');
-        console.log(this.state);
+
         const newTreatment = {
             name: this.state.name,
             description: this.state.description,
@@ -52,8 +52,8 @@ export default class TreatmentForm extends Component {
         } else if (this.props.mode === 'edit') {
             //need treatmentId for editing, but not for adding a new treatment
             newTreatment.treatmentId = this.state.treatmentId;
-            this.props.editTreatment(newTreatment);
-         
+            newTreatment.authorId = this.props.user.id;
+            this.props.editTreatment(newTreatment);      
         }
         //need to figure out how to get access to injury and treatment ids  
     }
@@ -62,8 +62,6 @@ export default class TreatmentForm extends Component {
         this.props.cancelTreatment();
     }
     render() {
-        console.log('treatment-form rendered, props: ');
-        console.log(this.props);
         
         return (
             <div >

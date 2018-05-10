@@ -147,6 +147,7 @@ class Treatment extends Component {
                                     editTreatment={this.editTreatment}
                                     cancelTreatment={this.cancelTreatment}
                                     mode={'edit'}
+                                    user={this.props.user}
                                 />
                             </div>
                             :

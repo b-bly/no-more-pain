@@ -225,8 +225,12 @@ router.put('/edit-treatment:injuryId', (req, res) => {
     const name = req.body.name;
     const description = req.body.description;
     const treatmentId = req.body.treatmentId;
+    const userId = req.user._id.toString();
+    const authorId = req.body.authorId.toString();
     console.log(req.body);
-    console.log(req.params.injuryId);
+    // console.log(req.params.injuryId); works, but should probably be attached in params object
+    //in edit-treatment.js, not concatenated to the url
+
     //https://docs.mongodb.com/manual/reference/operator/update/positional/
     // https://stackoverflow.com/questions/15691224/mongoose-update-values-in-array-of-objects/15691950
 
@@ -235,31 +239,26 @@ router.put('/edit-treatment:injuryId', (req, res) => {
     //     'items.$.value': 'two updated'
     // }}, function(err) { ...
 
-    // treatments: [{
-    //     //add id
-    //     id: Schema.Types.ObjectId,
-    //     name: String,
-    //     // comments: [String], //needs to be it's own schema?
-    //     description: String,
-    //     upvotes: Number
-    // }]
-    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
-        {
-            $set:
-                {
-                    'treatments.$.name': name,
-                    'treatments.$.description': description
+    if (req.isAuthenticated() &&
+        userId === authorId) {
+        Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
+            {
+                $set:
+                    {
+                        'treatments.$.name': name,
+                        'treatments.$.description': description
+                    }
+            }, (err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('treatment update successful');
+                    console.log(data.result);
+                    console.log(req.body.treatmentId);
+                    res.send(data);
                 }
-        }, (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('treatment update successful');
-                console.log(data.result);
-                console.log(req.body.treatmentId);
-                res.send(data);
-            }
-        });
+            });
+    }
 });
 //should move this to comments module?
 
