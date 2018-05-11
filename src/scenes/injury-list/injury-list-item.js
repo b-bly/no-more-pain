@@ -49,7 +49,7 @@ export default class InjuryListItem extends Component {
                             {   this.props.injury.author ?(
                             <div>
                             {
-                                this.props.userId === this.props.injury.author.id &&
+                                this.props.user.id === this.props.injury.author.id &&
                                  (
                                     <div>
                                         <a className="list-links card-line"

@@ -200,11 +200,14 @@ class Treatment extends Component {
                                             </span>
                                                 &nbsp;
                                                 &nbsp;
-                                        <span
-                                                    onClick={this.showReplyForm}
-                                                > reply </span>
-                                                &nbsp;
-                                                &nbsp;
+                                        {this.props.user.loggedIn === true && (
+                                            <span
+                                                onClick={this.showReplyForm}
+                                                > reply 
+                                            </span>
+                                        )}
+                                            &nbsp;
+                                            &nbsp;
         
                                             {/* Only show if user === author  */}
                                                 {this.props.treatment.author ? (
