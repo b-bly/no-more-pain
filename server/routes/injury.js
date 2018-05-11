@@ -268,32 +268,46 @@ router.put('/treatment-upvote:injuryId', (req, res) => {
     const userId = req.user._id;
     console.log(req.body);
     console.log(injuryId);
+    console.log(req.user);
 
+    // 'treatments._id' : new mongoose.Types.ObjectId(treatmentId),
+    // 'treatments.upvotes': new mongoose.Types.ObjectId(userId)
     if (req.isAuthenticated()) {
-        Injury.collection.findOne({ 'treatments.$.upvotes': new mongoose.Types.ObjectId(userId) },
-            (err, data) => {
+        Injury.collection.findOne({
+            'treatments': {
+                $elemMatch: {
+                    '_id': new mongoose.Types.ObjectId(treatmentId),
+                    'upvotes': new mongoose.Types.ObjectId(userId)
+                }
+            }
+
+        }, (err, data) => {
                 if (err) {
                     console.log('Treatment upvote error: ', err)
                 } else if (data) {
+                    console.log(data);
+                    
+                    console.log('This user already upvoted the treatment');
+
                     res.json({
                         error: `Sorry, user already upvoted this treatment`
                     })
                 }
                 else {
                     console.log('upvoted the treatment ');
-                    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
-                        {
-                            $push: { 'treatments.$.upvotes': userId }
-                        }, (err, data) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log('upvote successful');
-                                console.log(data);
-                                
-                                res.send(data);
-                            }
-                        });
+                    // Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
+                    //     {
+                    //         $push: { 'treatments.$.upvotes': userId }
+                    //     }, (err, data) => {
+                    //         if (err) {
+                    //             console.log(err);
+                    //         } else {
+                    //             console.log('upvote successful');
+                    //             console.log(data);
+
+                    //             res.send(data);
+                    //         }
+                    //     });
 
                 }
             });

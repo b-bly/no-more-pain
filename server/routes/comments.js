@@ -63,24 +63,27 @@ router.put('/comment-upvote/:commentId', (req, res) => {
                 if (err) {
                     console.log('Comment upvote error: ', err)
                 } else if (data) {
+                    console.log('user already upvoted');
+                    console.log(data);
+                    
                     res.json({
                         error: `Sorry, user already upvoted this comment`
                     })
                 }
                 else {
                     console.log('upvoting the comment ');
-                    Comment.collection.updateOne({ '_id': new mongoose.Types.ObjectId(commentId) },
-                        {
-                            $push: { 'upvotes': userId }
-                        }, (err, data) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log('upvote successful');
-                                console.log(data);
-                                res.send(data);
-                            }
-                        });
+                    // Comment.collection.updateOne({ '_id': new mongoose.Types.ObjectId(commentId) },
+                    //     {
+                    //         $push: { 'upvotes': userId }
+                    //     }, (err, data) => {
+                    //         if (err) {
+                    //             console.log(err);
+                    //         } else {
+                    //             console.log('upvote successful');
+                    //             console.log(data);
+                    //             res.send(data);
+                    //         }
+                    //     });
                 }
             });
     } else {

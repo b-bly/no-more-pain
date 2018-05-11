@@ -177,9 +177,9 @@ class Treatment extends Component {
                                                 (
                                                     <span>
                                                         <button
-                                                            className="btn btn-sm upvote"
+                                                            className="btn btn-sm upvote small-btn"
                                                             aria-label="up vote"
-                                                            onClick={this.treatmentUpvote}><i className="icon icon-upward">
+                                                            onClick={this.treatmentUpvote}><i className="icon icon-upward ">
                                                             </i>
                                                         </button>
                                                         &nbsp;
@@ -203,6 +203,7 @@ class Treatment extends Component {
                                         {this.props.user.loggedIn === true && (
                                             <span
                                                 onClick={this.showReplyForm}
+                                                className="btn list-links"
                                                 > reply 
                                             </span>
                                         )}
@@ -218,11 +219,13 @@ class Treatment extends Component {
                                                                 <span>
                                                                     <span
                                                                         onClick={this.showEditForm}
+                                                                        className="btn list-links"
                                                                     > edit </span>
                                                                     &nbsp;
                                                                     &nbsp;
                                                             <span
                                                                         onClick={this.deleteTreatment}
+                                                                        className="btn list-links"
                                                                     > delete </span>
                                                                 </span>
                                                             )
