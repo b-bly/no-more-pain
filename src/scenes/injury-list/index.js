@@ -103,9 +103,9 @@ class InjuryList extends Component {
             //     <li key={i.toString()}> {titleObj.title} </li>
             // );
             return (
-                <div>
+                <div className="App background-image">
                     <div className="container">
-                        <div className="center columns">
+                        <div className="center columns list-columns">
                             <div className="col-2 list-title text-black"><h3>Injury List</h3></div>
                             <Link to='/add-injury' className="btn list-title">Add injury</Link>
                         </div>

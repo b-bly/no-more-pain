@@ -30,7 +30,7 @@ export default class InjuryListItem extends Component {
                 <div className="col-4 col-mx-auto">
                     <div className="card">
                         <div className="columns card-bdy">
-                            <div className="col-12 card-title-line pointer"
+                            <div className="col-12 card-title-line pointer title"
                                 onClick={this.handleClick.bind(this)}
                             >
                                 {this.props.injury.title}

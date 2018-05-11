@@ -23,3 +23,8 @@
     height: 100vh;
     background-size: cover;
   } */
+
+  .title:hover {
+    color: rgb(61, 61, 214);
+    font-weight: 500;
+  }

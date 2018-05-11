@@ -40,10 +40,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App background-image">
-        <div className="opacity-adjust">
+
+      <div className="">
+        
           <UserData
             reportUser={this.reportUser} />
+            <div className="App">
           <Navbar loggedIn={this.state.loggedIn} />
           {/* greet user if logged in: */}
           {/* <UserGreeting /> */}

@@ -31,19 +31,19 @@ class Navbar extends Component {
                         {loggedIn ? (
                             <section className="navbar-section">
                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary">logout</span></Link>
+                                <span className="text-secondary nav-link">logout</span></Link>
 
                             </section>
                         ) : (
                                 <section className="navbar-section">
                                     <Link to="/" className="btn btn-link text-secondary">
-                                        <span className="text-secondary">home</span>
+                                        <span className="text-secondary nav-link">home</span>
                                         </Link>
                                     <Link to="/login" className="btn btn-link text-secondary">
-                                    <span className="text-secondary">login</span>
+                                    <span className="text-secondary nav-link">login</span>
 				</Link>
                                     <Link to="/signup" className="btn btn-link">
-                                    <span className="text-secondary">sign up</span>
+                                    <span className="text-secondary nav-link">sign up</span>
 				</Link>
                                 </section>
                             )}
@@ -51,7 +51,7 @@ class Navbar extends Component {
                     <div className="col-4 col-mr-auto">
                     <div id="top-filler"></div>
                         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                        <h1 className="App-title">No More Pain</h1>
+                        <span className="App-title">No More Pain</span>
                     </div>
                 </header>
             </div>

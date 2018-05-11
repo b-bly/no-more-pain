@@ -19,20 +19,15 @@
   .App-header {
     background-color: #222;
    
-    padding: 20px;
+    padding: .5rem;
     color: white;
   }
   
   .App-title {
-    font-size: 1.5em;
+    font-size: 1.4rem;
   }
   
-  .App-intro {
-    font-size: large;
-  }
-  
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
+
+.nav-link:hover {
+  opacity: 0.8;
+}

@@ -168,11 +168,11 @@ class InjuryInfo extends Component {
                 </div>
             );
         });
-       
+
         return (
             <div>
 
-              
+
 
                 <div className="container">
                     <div className="columns">
@@ -184,28 +184,35 @@ class InjuryInfo extends Component {
                                         <Link to='/injury-list'><button className="btn btn-sm arrow-left" aria-label="back"><i className="icon icon-arrow-left"></i></button></Link>
                                     </div>
                                     <div className="card-title-line">
-                                        <h4 className="card-title ">&nbsp; {this.props.injuryInfo.title}</h4>
+                                        <h4 className="card-title">&nbsp; {this.props.injuryInfo.title}</h4>
                                         {/* this.props.injuryInfo.title */}
 
                                     </div>
                                 </div>
                                 <div className="card-description">
-                                {this.props.injuryInfo.description}
+                                    {this.props.injuryInfo.description}
 
                                     {/* *****************{this.props.injuryInfo.description} */}
                                 </div>
                                 <div className="col-2- col-mr-auto">
-                            <Link to='/add-treatment'
-                                className="btn list-title">Add Treatment</Link>
-                        </div>
+
+                                </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div className="columns">
-                    <div className="column col-4"></div>
-                    <div className="column col-6 col-mr-auto treatment-title text-black"><h4>Treatments: </h4></div>
+                    <div className=" col-4"></div>
+                    <div className=" col-6 col-mr-auto  text-black column">
+                        <div className="treatment-title">
+                            <div>Treatments: </div>
+                            <div><Link to='/add-treatment'
+                                className="btn list-title">Add Treatment</Link>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 {/* TREATMENTS LIST */}
                 {treatments}
