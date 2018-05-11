@@ -14,7 +14,10 @@ export default function getUser() {
         }).catch(function (error) {
             console.log('error get user : ');
             console.log(error);
-            dispatch(getUserAsync('fail'));
+            const user = {
+                loggedIn: false
+            }
+            dispatch(getUserAsync(user));
         });
     }
 }

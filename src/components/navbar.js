@@ -24,7 +24,7 @@ class Navbar extends Component {
         const loggedIn = this.props.user.loggedIn;
         
         return (
-            <div>
+            <div className="text-center">
 
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
@@ -50,7 +50,7 @@ class Navbar extends Component {
                     </div>
                     <div className="col-4 col-mr-auto">
                     <div id="top-filler"></div>
-                        <img src={logo} className="App-logo" alt="logo" />
+                        {/* <img src={logo} className="App-logo" alt="logo" /> */}
                         <h1 className="App-title">No More Pain</h1>
                     </div>
                 </header>

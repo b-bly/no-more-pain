@@ -16,7 +16,10 @@ export default function logout() {
         }).catch(function (error) {
             console.log('error logout : ');
             console.log(error);
-            dispatch(logoutAsync('fail'));
+            const user = {
+                loggedIn: false
+            };
+            dispatch(logoutAsync(user));
         });
     }
 }

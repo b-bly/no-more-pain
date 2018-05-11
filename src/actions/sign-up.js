@@ -16,7 +16,10 @@ export default function signUp(userInfo) {
         }).catch(function (error) {
             console.log('error postNewUser : ');
             console.log(error);
-            dispatch(postNewUserAsync('fail'));
+            const user = {
+                loggedIn: false
+            };
+            dispatch(postNewUserAsync(user));
         });
     }
 }

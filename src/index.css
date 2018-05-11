@@ -94,11 +94,17 @@ body {
   align-items: center;
   height: 35px;
   margin-top: auto;
+ 
+}
+.text-black {
+  color: black;
 }
 
 .list-links{
-    font-size: 0.6rem;
+    font-size: 0.6rem !important;
     font-weight: 200;
+    line-height: .2rem !important;
+    height: 1.0rem !important;
 }
 
 .font-small {

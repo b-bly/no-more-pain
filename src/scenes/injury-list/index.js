@@ -107,7 +107,7 @@ class InjuryList extends Component {
                 <div>
                     <div className="container">
                         <div className="center columns">
-                            <div className="col-2 list-title"><h3>Injury List</h3></div>
+                            <div className="col-2 list-title text-black"><h3>Injury List</h3></div>
                             <Link to='/add-injury' className="btn list-title">Add injury</Link>
                         </div>
                         {/* search box */}

@@ -205,7 +205,7 @@ class InjuryInfo extends Component {
                 </div>
                 <div className="columns">
                     <div className="column col-4"></div>
-                    <div className="column col-6 col-mr-auto treatment-title"><h4>Treatments: </h4></div>
+                    <div className="column col-6 col-mr-auto treatment-title text-black"><h4>Treatments: </h4></div>
                 </div>
                 {/* TREATMENTS LIST */}
                 {treatments}

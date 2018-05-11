@@ -194,7 +194,7 @@ class Treatment extends Component {
 
                                     <span className="list-links">Upvotes: {this.props.treatment.upvotes.length} &nbsp;</span>
                                             <span className="toggle list-links">
-                                                <span className="list-links"
+                                                <span className="btn list-links"
                                                     onClick={this.toggleDescription}>
                                                     description
                                             </span>

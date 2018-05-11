@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 const url = '/user/login';
 
 export default function login(userInfo) {
@@ -17,7 +18,10 @@ export default function login(userInfo) {
         }).catch(function (error) {
             console.log('error login : ');
             console.log(error);
-            dispatch(loginAsync('fail'));
+            const user = {
+                loggedIn: false
+            };
+            dispatch(loginAsync(user));
         });
     }
 }
