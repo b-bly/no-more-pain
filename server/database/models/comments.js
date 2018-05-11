@@ -11,7 +11,7 @@ const commentsSchema = new Schema({
     posted: { type: Date, default: Date.now },
     upvotes: Number,
     author: {
-              id: Schema.Types.ObjectId,
+              id: { type: Schema.Types.ObjectId, ref: 'User' },
               username: String
              },
     text: String

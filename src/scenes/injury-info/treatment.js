@@ -113,6 +113,7 @@ class Treatment extends Component {
         const treatmentUpvoteData = {
             injuryId: this.props.injuryId,
             treatmentId: this.props.treatmentId,
+            authorId: this.props.user.id,
         };
 
         this.props.treatmentUpvote(treatmentUpvoteData);
@@ -191,7 +192,7 @@ class Treatment extends Component {
                                         (null)
                                     }
 
-                                    <span className="list-links">Upvotes: {this.props.treatment.upvotes} &nbsp;</span>
+                                    <span className="list-links">Upvotes: {this.props.treatment.upvotes.length} &nbsp;</span>
                                             <span className="toggle list-links">
                                                 <span className="list-links"
                                                     onClick={this.toggleDescription}>

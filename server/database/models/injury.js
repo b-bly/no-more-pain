@@ -13,20 +13,23 @@ const injuriesSchema = new Schema({
         name: String,
         // comments: [String], //needs to be it's own schema?
         description: String,
-        upvotes: Number,
+        upvotes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         author: {
-            id: Schema.Types.ObjectId,
+            id: { type: Schema.Types.ObjectId, ref: 'User' },
             username: String
            }
     }],
     author: {
-        id: Schema.Types.ObjectId,
+        id: { type: Schema.Types.ObjectId, ref: 'User' },
         username: String
        }
 },
 {
     collection: 'injuries'
 })
+
+//https://alexanderzeitler.com/articles/mongoose-referencing-schema-in-properties-and-arrays/
+// Populate function of mongoose for joining user doc to author.
 
 //embeding comments in this injuriesSchema will only let me display comments
 //as they are structured in the schema.

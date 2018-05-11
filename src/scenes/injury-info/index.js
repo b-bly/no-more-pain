@@ -40,9 +40,7 @@ class InjuryInfo extends Component {
         this.deleteComment = this.deleteComment.bind(this);
     }
     componentWillMount() {
-        // if (this.props.injuryInfo.title.length < 1) {
-        //     this.props.getInjuryInfo();
-        // }
+
     }
 
     editTreatment(newTreatment) {

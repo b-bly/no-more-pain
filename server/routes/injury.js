@@ -16,7 +16,6 @@ router.post('/', (req, res, next) => {
         author: author
     };
     if (req.isAuthenticated()) { //need to be logged in
-
         Injury.findOne({ title: title }, (err, title) => {
             if (err) {
                 console.log('User.js post error: ', err)
@@ -170,7 +169,7 @@ router.post('/add-treatment/:injuryId', (req, res) => {
     const treatment = req.body;
     const injuryId = req.params.injuryId;
     treatment.author = { username: req.user.username, id: req.user._id };
-    treatment.upvotes = 0;
+
     console.log('treatment: ');
     console.log(treatment);
 
@@ -265,33 +264,43 @@ router.put('/edit-treatment:injuryId', (req, res) => {
 router.put('/treatment-upvote:injuryId', (req, res) => {
     console.log('treatment-upvote put, req.body: ');
     const treatmentId = req.body.treatmentId;
-    const injuryId = req.query.injuryId;
+    const injuryId = req.params.injuryId;
+    const userId = req.user._id;
     console.log(req.body);
     console.log(injuryId);
-    //treatments doc sample:
-    // treatments: [{
-    //     //add id
-    //     id: Schema.Types.ObjectId,
-    //     name: String,
-    //     // comments: [String], //needs to be it's own schema?
-    //     description: String,
-    //     upvotes: Number
-    // }]
 
-    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
-        {
-            $inc: { 'treatments.$.upvotes': 1 }
-        }, (err, data) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('treatment update successful');
-                console.log(data.result);
-                console.log(req.body.treatmentId);
-                res.send(data);
-            }
-        });
+    if (req.isAuthenticated()) {
+        Injury.collection.findOne({ 'treatments.$.upvotes': new mongoose.Types.ObjectId(userId) },
+            (err, data) => {
+                if (err) {
+                    console.log('Treatment upvote error: ', err)
+                } else if (data) {
+                    res.json({
+                        error: `Sorry, user already upvoted this treatment`
+                    })
+                }
+                else {
+                    console.log('upvoted the treatment ');
+                    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
+                        {
+                            $push: { 'treatments.$.upvotes': userId }
+                        }, (err, data) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('upvote successful');
+                                console.log(data);
+                                
+                                res.send(data);
+                            }
+                        });
+
+                }
+            });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 
-module.exports = router
+module.exports = router;
