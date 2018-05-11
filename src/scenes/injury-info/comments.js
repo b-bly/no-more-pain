@@ -31,7 +31,8 @@ class Comments extends Component {
         this.props.editReply({
             comment: comment,
             commentId: commentId,
-            injuryId: this.props.injuryId
+            injuryId: this.props.injuryId,
+            authorId: this.props.comments.author.id
         });
         this.setState({
             showForm: '',

@@ -52,9 +52,9 @@ router.put('/', (req, res) => {
 });
 
 router.put('/comment-upvote/:commentId', (req, res) => {
-    console.log('comment upvote put, req.body.commentId: ');
+    console.log('comment upvote put, req.body: ');
     const commentId = req.body.commentId
-    console.log(commentId);
+    console.log(req.body);
     const userId = req.user._id;
 
     if (req.isAuthenticated()) {

@@ -275,6 +275,7 @@ class Treatment extends Component {
                                                 editReply={this.editReply}
                                                 commentUpvote={this.commentUpvote}
                                                 deleteComment={this.deleteComment}
+                                                
                                             />
                                         }
                                     </div>

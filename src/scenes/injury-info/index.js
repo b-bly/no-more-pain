@@ -81,7 +81,7 @@ class InjuryInfo extends Component {
             injury_id: this.props.injuryInfo._id,
             treatment_id: treatmentId,
             parent_id: null, //move values to state?
-            upvotes: 0,
+            //upvotes will be [] by default
             author: null,
             text: comment
         }
