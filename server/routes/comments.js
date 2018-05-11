@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../passport')
 const Comment = require('../database/models/comments')
+const mongoose = require('mongoose');
 
 router.post('/add-reply/:injuryId', (req, res) => {
 
@@ -51,11 +52,40 @@ router.put('/', (req, res) => {
 });
 
 router.put('/comment-upvote/:commentId', (req, res) => {
-    console.log('comment upvote put, req.query: ');
-    const id = req.query.commentId; //logs undefined for some reason...
+    console.log('comment upvote put, req.body.commentId: ');
     const commentId = req.body.commentId
     console.log(commentId);
-    console.log(id);
+    const userId = req.user._id;
+
+    if (req.isAuthenticated()) {
+        Comment.collection.findOne({ 'upvotes': new mongoose.Types.ObjectId(userId) },
+            (err, data) => {
+                if (err) {
+                    console.log('Comment upvote error: ', err)
+                } else if (data) {
+                    res.json({
+                        error: `Sorry, user already upvoted this comment`
+                    })
+                }
+                else {
+                    console.log('upvoting the comment ');
+                    Comment.collection.updateOne({ '_id': new mongoose.Types.ObjectId(commentId) },
+                        {
+                            $push: { 'upvotes': userId }
+                        }, (err, data) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('upvote successful');
+                                console.log(data);
+                                res.send(data);
+                            }
+                        });
+                }
+            });
+    } else {
+        res.sendStatus(403);
+    }
 
     Comment.findByIdAndUpdate(
         { _id: commentId },
@@ -80,7 +110,7 @@ router.delete('/', (req, res) => {
     console.log('*** Delete comment ***');
     console.log('id: ');
     console.log(req.query.commentId);
-    
+
     Comment.remove({ _id: req.query.commentId })
         .exec((err, data) => {
             if (err) {

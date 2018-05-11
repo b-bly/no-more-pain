@@ -9,7 +9,7 @@ const commentsSchema = new Schema({
     treatment_id: Schema.Types.ObjectId,
     parent_id: Schema.Types.ObjectId,
     posted: { type: Date, default: Date.now },
-    upvotes: Number,
+    upvotes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     author: {
               id: { type: Schema.Types.ObjectId, ref: 'User' },
               username: String
