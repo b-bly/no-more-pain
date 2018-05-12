@@ -2,16 +2,14 @@
     cursor: pointer;
 }
 
-.treatment-title {
-    text-align: left;
-    
-  }
+
   .treatment-name {
     font-weight: 400;
   }
 
   .title:hover {
     color: #4b48d6;
+
   }
 
   .list-columns {
@@ -24,9 +22,6 @@
     margin-top: 1rem;
     padding-left: .2rem;
     /* padding: 15px 30px; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
+ 
     margin-top: 10px;
   }

@@ -105,16 +105,16 @@ class InjuryList extends Component {
             return (
                 <div className="App background-image">
                     <div className="container">
-                    
+
                         {/* <div className="font-size-1">One</div>
                         <div className="font-size-2">One</div>
                         <div className="font-size-3">One</div>
                         <div className="font-size-4">One</div> */}
                         <div className="columns">
 
-                            <div className="  col-4 col-mx-auto list-title">
+                            <div className="col-4 col-mx-auto flex-space-between">
 
-                                <div className="font-size-3">Injury List</div>
+                                <div className="font-size-3 text-black">Injury List</div>
                                 <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
 
                             </div>

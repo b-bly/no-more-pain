@@ -127,6 +127,12 @@ class Treatment extends Component {
         this.props.deleteComment(commentId);
     }
     render() {
+        let isTheAuthor = false;
+        if (this.props.treatment.author) {
+            if (this.props.treatment.author.id === this.props.user.id) {
+                isTheAuthor = true;
+            }
+        }
 
         return (
             // <div className="col-mr-auto col-10">
@@ -153,7 +159,7 @@ class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="columns flex-start">
+                            <div className="columns ">
                                 <div className="col-12">
                                     <span className="treatment-name font-size-2" >{this.props.treatment.name} &nbsp; </span>
                                 </div>
@@ -169,144 +175,127 @@ class Treatment extends Component {
                                     </div>
                                     : null}
 
-                                <div className="col-12 card-line" >
-                                    {this.props.treatment.author ? (
-                                        <span>
-                                            {
-                                                this.props.user.id === this.props.treatment.author.id &&
-                                                (
-                                                    <span>
-                                                        <button
-                                                            className="btn btn-sm upvote small-btn"
-                                                            aria-label="up vote"
-                                                            onClick={this.treatmentUpvote}><i className="icon icon-upward ">
-                                                            </i>
-                                                        </button>
-                                                        &nbsp;
-                                                    </span>
-                                                )
-                                            }
-                                        </span>
-                                    )
-                                    :
-                                        (null)
-                                    }
+                                <div className="col-12  flex-start wrap" >
+                                    {isTheAuthor === true && (
+                                        this.props.user.id === this.props.treatment.author.id &&
+                                        <div>
+                                            <button
+                                                className="btn btn-sm upvote list-links"
+                                                aria-label="up vote"
+                                                onClick={this.treatmentUpvote}><i className="icon icon-upward ">
+                                                </i>
+                                            </button>
+                                        </div>
 
-                                    <span className="list-links font-size-1">Upvotes: {this.props.treatment.upvotes.length} &nbsp;</span>
-                                            <span className="toggle list-links">
-                                                <span className="btn list-links "
-                                                    onClick={this.toggleDescription}>
-                                                    description
-                                            </span>
-                                                &nbsp;
-                                                &nbsp;
-                                        {this.props.user.loggedIn === true && (
+                                    )}
+
+                                    <div className="font-size-1" id="upvotes">Upvotes: {this.props.treatment.upvotes.length} &nbsp;
+                                    </div>
+
+                                    <div className="btn btn-sm list-links"
+                                        onClick={this.toggleDescription}>
+                                        description
+                                    </div>
+
+
+                                    {this.props.user.loggedIn === true && (
+                                        <div
+                                            onClick={this.showReplyForm}
+                                            className="btn btn-sm list-links"
+                                        > reply
+                                        </div>
+                                    )}
+
+
+                                    {/* Only show if user === author  */}
+                                    {isTheAuthor === true && (
+                                        <div>
                                             <span
-                                                onClick={this.showReplyForm}
-                                                className="btn list-links "
-                                                > reply 
-                                            </span>
-                                        )}
-                                            &nbsp;
-                                            &nbsp;
-        
-                                            {/* Only show if user === author  */}
-                                                {this.props.treatment.author ? (
-                                                    <span>
-                                                        {
-                                                            this.props.user.id === this.props.treatment.author.id &&
-                                                            (
-                                                                <span>
-                                                                    <span
-                                                                        onClick={this.showEditForm}
-                                                                        className="btn list-links"
-                                                                    > edit </span>
-                                                                    &nbsp;
-                                                                    &nbsp;
-                                                            <span
-                                                                        onClick={this.deleteTreatment}
-                                                                        className="btn list-links"
-                                                                    > delete </span>
-                                                                </span>
-                                                            )
-                                                        }
-                                                    </span>)
-                                                    :
-                                                    (null)
-                                                }
+                                                onClick={this.showEditForm}
+                                                className="btn btn-sm list-links"
+                                            > edit </span>
+                                        </div>
+                                    )}
+                                    {isTheAuthor === true && (
+                                        <div>
+                                            <span
+                                                onClick={this.deleteTreatment}
+                                                className="btn btn-sm list-links"
+                                            > delete </span>
+                                        </div>
+                                    )
+                                    }
+                                    {this.props.comments.length > 0 && (
+                                        <div>
 
-                                                {this.props.comments.length > 0 && (
-                                                    <span>
-                                                        &nbsp;
-                                                        &nbsp;
-                                                <span className=""
-                                                            onClick={this.toggleComments}>
-                                                            {this.state.showComments === true ?
-                                                                (<span>hide </span>)
-                                                                :
-                                                                (<span>show </span>)
-                                                            }
-                                                            comments
+                                            <span className="btn btn-sm list-links"
+                                                onClick={this.toggleComments}>
+                                                {this.state.showComments === true ?
+                                                    (<span>hide </span>)
+                                                    :
+                                                    (<span>show </span>)
+                                                }
+                                                comments
                                                 </span>
-                                                    </span>
-                                                )}
-                                            </span>
+                                        </div>
+                                    )}
+
                                 </div>
 
                                 {/* ************************************************************ */}
-    
+
                                 {this.state.treatmentId !== '' &&
-                                        <div className="col-12">
-                                            <div className="columns" >
-                                                <div className="col-1"></div>
-                                                <div className="col-11">
-                                                    <div className="card columns">
-                                                        <Reply
-                                                            addReply={this.addReply}
-                                                            cancelReply={this.cancelReply}
-                                                            mode={'add'}
-                                                        />
-                                                    </div>
+                                    <div className="col-12">
+                                        <div className="columns" >
+                                            <div className="col-1"></div>
+                                            <div className="col-11">
+                                                <div className="card columns">
+                                                    <Reply
+                                                        addReply={this.addReply}
+                                                        cancelReply={this.cancelReply}
+                                                        mode={'add'}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
-                                    }
-                                    {/* *************************************************** */}
-                                    <div className="col-12">
-                                        {this.state.showComments === true &&
-                                            <Comments
-                                                comments={this.props.comments}
-                                                toggleComments={this.toggleComments}
-                                                injuryId={this.props.injuryId}
-                                                editReply={this.editReply}
-                                                commentUpvote={this.commentUpvote}
-                                                deleteComment={this.deleteComment}
-                                                
-                                            />
-                                        }
                                     </div>
-                                    {/* *** end comments *** */}
-                                </div>
-
                                 }
-                        {/* *** end treatment if statement *** */}
+                                {/* *************************************************** */}
+                                <div className="col-12">
+                                    {this.state.showComments === true &&
+                                        <Comments
+                                            comments={this.props.comments}
+                                            toggleComments={this.toggleComments}
+                                            injuryId={this.props.injuryId}
+                                            editReply={this.editReply}
+                                            commentUpvote={this.commentUpvote}
+                                            deleteComment={this.deleteComment}
+
+                                        />
+                                    }
+                                </div>
+                                {/* *** end comments *** */}
                             </div>
+
+                        }
+                        {/* *** end treatment if statement *** */}
+                    </div>
                 </div>
             </div >
-                    );
-                }
-            }
-            
+        );
+    }
+}
+
 function mapStateToProps(state) {
     return {
 
-                    };
-                }
-                
+    };
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-                        deleteTreatment: deleteTreatment
-                }, dispatch);
-            }
-            
+        deleteTreatment: deleteTreatment
+    }, dispatch);
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(Treatment);

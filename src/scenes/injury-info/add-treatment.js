@@ -58,7 +58,7 @@ class AddTreatmentForm extends Component {
 
     cancel() {
         this.setState({
-            redirectTo: '/injury-list',
+            redirectTo: '/injury-info',
             title: '',
             description: ''
         });
@@ -75,11 +75,11 @@ class AddTreatmentForm extends Component {
         else {
             return (
                 <div className="columns">
-                    <span className="font-size-3 col-8 col-mx-auto">Add New Treatment to {this.props.injuryInfo.title}</span>
+                    <span className="font-size-3 col-6 col-mx-auto">Add New Treatment to {this.props.injuryInfo.title}</span>
                     <div className="col-12">
                         <form className="form-horizontal font-size-2" onSubmit={this.handleSubmit}>
                             <div className="form-group flex-start">
-                                <div className="col-4 col-ml-auto">
+                                <div className="col-2 col-ml-auto">
                                     <label className="form-label" htmlFor="name">Name of Treatment:</label>
                                 </div>
                                 <div className="col-4 col-mr-auto">
@@ -94,7 +94,7 @@ class AddTreatmentForm extends Component {
                                 </div>
                             </div>
                             <div className="form-group flex-start">
-                                <div className="col-4 col-ml-auto">
+                                <div className="col-2 col-ml-auto">
                                     <label className="form-label" htmlFor="password">Description: </label>
                                 </div>
                                 <div className="col-4 col-mr-auto">
@@ -109,7 +109,7 @@ class AddTreatmentForm extends Component {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <div className="col-8"></div>
+                                <div className="col-7"></div>
                                 <input className="btn col-1"
                                     type="button"
                                     value="Cancel"

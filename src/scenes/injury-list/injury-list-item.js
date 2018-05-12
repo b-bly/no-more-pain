@@ -50,10 +50,10 @@ export default class InjuryListItem extends Component {
                                     this.props.user.id === this.props.injury.author.id &&
                                     (
                                         <div>
-                                            <a className="list-links card-line"
+                                            <a className="btn btn-sm card-line"
                                                 onClick={this.showForm.bind(this)}>edit</a>
                                             &nbsp;
-                            <a className="list-links"
+                            <a className="btn btn-sm"
                                                 onClick={this.delete.bind(this)}>delete</a>
                                         </div>
                                     )}

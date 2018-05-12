@@ -106,11 +106,11 @@ class Comments extends Component {
                                     mode={'edit'} />
                             </div>
                             :
-                            <div>
-                                <div className="col-12 card-line comment-line font-size-2">
-                                    <span className="comment"><strong> </strong><span > 
-                                    {commentObj.text} 
-                                    &nbsp;
+                            <div className="columns">
+                                <div className="col-12 card-line font-size-2">
+                                    <span className="comment"><strong> </strong><span >
+                                        {commentObj.text}
+                                        &nbsp;
                                         </span></span>
                                 </div>
 
@@ -120,24 +120,27 @@ class Comments extends Component {
                                     </div>
                                 )}
 
-                                <div className=" col-12 card-line list-links font-size-1">
-                                    <button className="btn btn-sm"
-                                        aria-label="up vote"
+                                <div className="col-12 card-line font-size-1 wrap flex-start">
+                                    <button className="btn btn-sm list-links"
+                                        aria-label="upvote"
                                         // should move to separate component to avoid () => syntax
                                         onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
                                     &nbsp;
-                                    <span className="list-links no-pointer">Upvotes: {commentObj.upvotes} &nbsp;
-                                        </span>
+                                    <div className=" no-pointer">
+                                        Upvotes: {commentObj.upvotes.length} &nbsp;
+                                    </div>
                                     {/* ****************** */}
                                     {/* Should move edit button to separate component */}
-                                    <span className="list-links toggle"
+                                    <div className="btn btn-sm list-links toggle"
 
                                         onClick={() => this.showForm(commentObj._id)}
-                                    >Edit &nbsp;</span>
-                                    <span className="list-links toggle"
+                                    >
+                                        Edit &nbsp;
+                                    </div>
+                                    <div className="btn btn-sm list-links toggle"
                                         onClick={() => this.deleteComment(commentObj._id)}
                                     >Delete &nbsp;
-                                         </span>
+                                     </div>
                                 </div>
                             </div>
                     }

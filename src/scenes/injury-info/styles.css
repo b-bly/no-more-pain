@@ -3,60 +3,19 @@
    color: black;
 }
 
-.form-layout {  
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    justify-content: left;  
-}
-
-.form-group {
-    width: 100%;
-}
-
-.small-btn {
-    font-size: 0.6rem !important;
-    font-weight: 200;
-    line-height: .2rem !important;
-    height: 1.0rem !important;
-}
-
-.title:hover {
-    color: rgb(61, 61, 214);
-    font-weight: 500;
-}
-
-.treatment-title {
-    width: 100%;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-
-}
-
-
 .comment {
     font-weight: 200;
     color: black;   
   }
-  
-  .comment-line {
-    margin-bottom: 10px;
-  }
-  
-  /* .title-line {
-    height: 35px;
-  } */
-
-  .flex-start {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+ 
+  .list-links {
+      margin-right: .5rem;
+      margin-bottom: .5rem;
+      
   }
 
-  .flex-space-between {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+
+
+  #upvotes {
+      min-width: 5rem;
   }
