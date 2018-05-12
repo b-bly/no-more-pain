@@ -33,7 +33,7 @@ class InjuryList extends Component {
 
     componentWillMount() {
         this.props.getUser();
-            this.props.getInjuryList();  
+        this.props.getInjuryList();
     }
 
     injuryInfo(id) {
@@ -90,7 +90,7 @@ class InjuryList extends Component {
                                 delete={this.delete}
                                 showForm={this.showForm.bind(this)}
                                 injury={injury}
-                                user={this.props.user}/>
+                                user={this.props.user} />
 
                         )}
 
@@ -105,16 +105,25 @@ class InjuryList extends Component {
             return (
                 <div className="App background-image">
                     <div className="container">
-                        <div className="center columns list-columns">
-                            <div className="col-2 list-title text-black"><h3>Injury List</h3></div>
-                            <Link to='/add-injury' className="btn list-title">Add injury</Link>
+                    
+                        {/* <div className="font-size-1">One</div>
+                        <div className="font-size-2">One</div>
+                        <div className="font-size-3">One</div>
+                        <div className="font-size-4">One</div> */}
+                        <div className="columns">
+
+                            <div className="  col-4 col-mx-auto list-title">
+
+                                <div className="font-size-3">Injury List</div>
+                                <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
+
+                            </div>
+                            {/* search box */}
+                            <ol className="col-12">
+                                {injuryList}
+                            </ol>
+
                         </div>
-                        {/* search box */}
-                        <ol>
-                            {injuryList}
-                        </ol>
-
-
                     </div>
                 </div>
             );

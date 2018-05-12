@@ -92,8 +92,6 @@ class Comments extends Component {
             //                 <div className="card-title-line">
 
             <div key={j.toString()}>
-
-
                 <div className="card columns">
                     {/* Reply in treatment.js needs same layout */}
                     {
@@ -109,18 +107,20 @@ class Comments extends Component {
                             </div>
                             :
                             <div>
-                                <div className="col-12 card-line comment-line">
-                                    <span className="comment"><strong> </strong><span > {commentObj.text} &nbsp;
+                                <div className="col-12 card-line comment-line font-size-2">
+                                    <span className="comment"><strong> </strong><span > 
+                                    {commentObj.text} 
+                                    &nbsp;
                                         </span></span>
                                 </div>
 
                                 {commentObj.author && (
-                                    <div className="col-12 card-line">
+                                    <div className="col-12 card-line font-size-1">
                                         <span className="font-small" >Author: <strong>{commentObj.author.username} </strong>&nbsp; </span>
                                     </div>
                                 )}
 
-                                <div className=" col-12 card-line list-links">
+                                <div className=" col-12 card-line list-links font-size-1">
                                     <button className="btn btn-sm"
                                         aria-label="up vote"
                                         // should move to separate component to avoid () => syntax

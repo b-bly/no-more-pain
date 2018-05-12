@@ -1,8 +1,3 @@
-.list-links {
-    font-size: .8em;
-}
-
-
 .injury-list-item {
     cursor: pointer;
 }
@@ -15,16 +10,23 @@
     font-weight: 400;
   }
 
-  /* .background-image {
-
-    background-image: url(sunset.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    background-size: cover;
-  } */
-
   .title:hover {
-    color: rgb(61, 61, 214);
-    font-weight: 500;
+    color: #4b48d6;
+  }
+
+  .list-columns {
+    margin-top: 0;
+    padding-top: 1rem;
+  }
+
+  .list-title {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding-left: .2rem;
+    /* padding: 15px 30px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    margin-top: 10px;
   }

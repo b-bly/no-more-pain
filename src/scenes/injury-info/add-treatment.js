@@ -74,16 +74,16 @@ class AddTreatmentForm extends Component {
         } 
         else {
             return (
-                <div >
-                    <h4>Add New Treatment to {this.props.injuryInfo.title}</h4>
-                    <div>
-                        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <div className="col-2 col-ml-auto">
+                <div className="columns">
+                    <span className="font-size-3 col-8 col-mx-auto">Add New Treatment to {this.props.injuryInfo.title}</span>
+                    <div className="col-12">
+                        <form className="form-horizontal font-size-2" onSubmit={this.handleSubmit}>
+                            <div className="form-group flex-start">
+                                <div className="col-4 col-ml-auto">
                                     <label className="form-label" htmlFor="name">Name of Treatment:</label>
                                 </div>
                                 <div className="col-4 col-mr-auto">
-                                    <input className="form-input"
+                                    <input className="form-input font-size-1"
                                         type="text"
                                         id="name"                                        
                                         name="name"
@@ -93,13 +93,13 @@ class AddTreatmentForm extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="form-group">
-                                <div className="col-2 col-ml-auto">
+                            <div className="form-group flex-start">
+                                <div className="col-4 col-ml-auto">
                                     <label className="form-label" htmlFor="password">Description: </label>
                                 </div>
                                 <div className="col-4 col-mr-auto">
                                     <textarea
-                                        className="form-input description"
+                                        className="form-input description font-size-1"
                                         placeholder=" "
                                         type="text"
                                         name="description"
@@ -108,8 +108,8 @@ class AddTreatmentForm extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="form-group ">
-                                <div className="col-7"></div>
+                            <div className="form-group">
+                                <div className="col-8"></div>
                                 <input className="btn col-1"
                                     type="button"
                                     value="Cancel"
@@ -117,10 +117,11 @@ class AddTreatmentForm extends Component {
                                 ></input>
                                 &nbsp;
 								<input
-                                    className="btn btn-primary col-1 col-mr-auto"
+                                    className="btn btn-primary col-1"
                                     type="submit"
                                     value="Submit"
                                 ></input>
+                                <div className="col-1 col-mr-auto"></div>
                             </div>
                         </form>
                     </div>

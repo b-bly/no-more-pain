@@ -25,45 +25,42 @@ export default class InjuryListItem extends Component {
 
     render() {
         return (
-    
-            <div className="columns">
-                <div className="col-4 col-mx-auto">
-                    <div className="card">
-                        <div className="columns card-bdy">
-                            <div className="col-12 card-title-line pointer title"
-                                onClick={this.handleClick.bind(this)}
-                            >
-                                {this.props.injury.title}
-                            </div>
-                            {this.props.injury.author ? (
-                                <div className="col-12 card-line">
-                                    Author: {this.props.injury.author.username}
-                                </div>
-                            )
-                                : (
-                                    <div className="col-12 card-line">
-                                        Author: Anonymous
-                            </div>
-                                )}
-
-                            {   this.props.injury.author ?(
-                            <div>
-                            {
-                                this.props.user.id === this.props.injury.author.id &&
-                                 (
-                                    <div>
-                                        <a className="list-links card-line"
-                                            onClick={this.showForm.bind(this)}>edit</a>
-                                        &nbsp;
-                            <a className="list-links"
-                                            onClick={this.delete.bind(this)}>delete</a>
-                                    </div>
-                                )}
-                                </div>
-                            ) : 
-                            <div></div>
-                            }
+            <div className="col-4 col-mx-auto">
+                <div className="card">
+                    <div className="columns card-bdy font-size-1">
+                        <div className="col-12 card-title-line pointer title font-size-2"
+                            onClick={this.handleClick.bind(this)}
+                        >
+                            <span className="">{this.props.injury.title}</span>
                         </div>
+                        {this.props.injury.author ? (
+                            <div className="col-12 card-line">
+                                Author: {this.props.injury.author.username}
+                            </div>
+                        )
+                            : (
+                                <div className="col-12 card-line">
+                                    Author: Anonymous
+                            </div>
+                            )}
+
+                        {this.props.injury.author ? (
+                            <div>
+                                {
+                                    this.props.user.id === this.props.injury.author.id &&
+                                    (
+                                        <div>
+                                            <a className="list-links card-line"
+                                                onClick={this.showForm.bind(this)}>edit</a>
+                                            &nbsp;
+                            <a className="list-links"
+                                                onClick={this.delete.bind(this)}>delete</a>
+                                        </div>
+                                    )}
+                            </div>
+                        ) :
+                            <div></div>
+                        }
                     </div>
                 </div>
             </div>

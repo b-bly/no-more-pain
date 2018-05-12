@@ -29,7 +29,7 @@ class AddInjuryForm extends Component {
 			nextProps.injuryInfo !== 'fail') {
 			//if successful login
 			this.setState({
-				redirectTo: '/injury-info',
+				redirectTo: '/injury-list',
 				title: '',
 				description: '',
 				
@@ -74,9 +74,9 @@ class AddInjuryForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		} else {
 			return (
-				<div >
-					<h4>Add New Injury</h4>
-					<div>
+				<div className="columns">
+					<div className="col-6 col-mx-auto font-size-3">Add New Injury</div>
+					<div className="col-12">
 						<form className="form-horizontal" onSubmit={this.handleSubmit}>
 							<div className="form-group">
 								<div className="col-2 col-ml-auto">

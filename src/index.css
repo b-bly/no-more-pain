@@ -1,11 +1,5 @@
-a { 
-  cursor: pointer; 
-}
-
-.avatar {
-  margin: 1.5rem  2.5rem  1.5rem  0;
-}
-
+/* columns is spectre */
+/* spectre uses font-size .7 and .9 rem for small and large */
 body {
   margin: 0;
   padding: 0;
@@ -20,60 +14,40 @@ body {
 .card { 
   /* width: max-content; */
   max-width: 100%;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .3);
-  padding: 15px 30px;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: flex-start;
+  text-align: left;
 }
+
 .card-header, .card-header-treatment, .card-bdy, .card-description {
   display: flex;
   align-items: center;
 }
 
-.card-bdy, .card-description  {
-  font-size: .8rem;
 
-}
 
 /* .padding-medium {
   padding-left: 8px;
 } */
 
-.card-title-line {
-  height: 35px;
-  font-size: 1rem;
-}
+
 
 .no-pointer {
   cursor: default;
 }
 
-.card-line, .card-title-line {
+/* .card-line, .card-title-line {
   text-align: left;
-}
-
-.card-line {
-  font-size: 0.6rem;
-}
-
+} */
 
 .column {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.comment {
-  font-size: .8rem;
-  font-weight: 200;
-  color: black;
-  
-}
-
-.comment-line {
-  margin-bottom: 10px;
 }
 
 .form {
@@ -101,14 +75,9 @@ body {
 }
 
 .list-links{
-    font-size: 0.6rem !important;
     font-weight: 200;
     line-height: .2rem !important;
     height: 1.0rem !important;
-}
-
-.font-small {
-  font-size: 0.6rem;
 }
 
 .color-picker-container {
@@ -121,26 +90,6 @@ body {
 .toggle {
   opacity: 0.8;
   cursor: pointer;
-}
-
-@media screen and (max-width: 700px) {
-  .card {
-    padding: .5rem;
-  }
-  h2 {
-    font-size: 2rem;
-  }
-  .card .card-title {
-    font-size: 1rem;
-  }
-  .card-body p {
-    font-size: 1.4rem;
-    font-weight: 300;
-  }
-  .card-header {
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 
 .pointer {
@@ -166,8 +115,38 @@ body {
   background-size: cover;
   z-index: -1;
 }
-.list-columns {
-  margin-top: 0;
-  padding-top: 1rem;
+
+
+.font-size-1 {
+  font-size: 0.7rem;
+}
+.font-size-2 {
+  font-size: .9rem;
+}
+.font-size-3 {
+  font-size: 1.9rem;
+}
+.font-size-4 {
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    padding: .5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  .card .card-title {
+    font-size: 1rem;
+  }
+  .card-body p {
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+  .card-header {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 

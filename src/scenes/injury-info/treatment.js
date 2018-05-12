@@ -153,18 +153,18 @@ class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="columns card-bdy">
-                                <div className="col-12 card-title-line">
-                                    <span className="treatment-name" >{this.props.treatment.name} &nbsp; </span>
+                            <div className="columns flex-start">
+                                <div className="col-12">
+                                    <span className="treatment-name font-size-2" >{this.props.treatment.name} &nbsp; </span>
                                 </div>
                                 {this.props.treatment.author && (
                                     <div className="col-12 card-line">
-                                        <span className="font-small" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
+                                        <span className="font-size-1" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
                                     </div>
                                 )}
                                 {this.state.showDescription ?
                                     <div className="col-12 card-line">
-                                        <span className="card-description">
+                                        <span className="card-description font-size-2">
                                             Description: {this.props.treatment.description}</span>
                                     </div>
                                     : null}
@@ -192,9 +192,9 @@ class Treatment extends Component {
                                         (null)
                                     }
 
-                                    <span className="list-links">Upvotes: {this.props.treatment.upvotes.length} &nbsp;</span>
+                                    <span className="list-links font-size-1">Upvotes: {this.props.treatment.upvotes.length} &nbsp;</span>
                                             <span className="toggle list-links">
-                                                <span className="btn list-links"
+                                                <span className="btn list-links "
                                                     onClick={this.toggleDescription}>
                                                     description
                                             </span>
@@ -203,7 +203,7 @@ class Treatment extends Component {
                                         {this.props.user.loggedIn === true && (
                                             <span
                                                 onClick={this.showReplyForm}
-                                                className="btn list-links"
+                                                className="btn list-links "
                                                 > reply 
                                             </span>
                                         )}
