@@ -5,8 +5,8 @@ export default function getInjuryList() {
     return dispatch => {
         axios.get(`${url}`)
             .then(res => {
-                // console.log('get injuries');
-                // console.log(res.data);
+                console.log('get injuries');
+                console.log(res.data);
                 dispatch(getInjuriesListAsync(res.data));
             }).catch(function (error) {
                 console.log('error get injuries');

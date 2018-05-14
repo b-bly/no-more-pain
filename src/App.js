@@ -103,6 +103,8 @@ export default App;
 // )}
 
 //TO DO
-// Clean up CSS file
 // Hide edit/delete buttons for user != author
 // Check server side for authentication on edit/delete routes
+// Handle error from server client side--redirect and get data
+// Don't let author upvote their own treatment/comment
+// hide edit delete on comments

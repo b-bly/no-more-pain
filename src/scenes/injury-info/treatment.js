@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Reply from './add-reply';
 import Comments from './comments';
 import AddTreatmentForm from './treatment-form'
+import Button from './button';
 //actions
 import deleteTreatment from '../../actions/delete-treatment'; //move to index.js
 
@@ -37,7 +38,7 @@ class Treatment extends Component {
     }
 
     deleteTreatment() {
-        const permission = this.confirm("Are you sure you want to delete " + this.props.treatment.name);
+        const permission = window.confirm("Are you sure you want to delete " + this.props.treatment.name);
         if (permission === true) {
             this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
         }

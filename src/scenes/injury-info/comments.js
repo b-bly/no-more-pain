@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 //components
 import Reply from './add-reply';
+import Button from './button'
 
 class Comments extends Component {
     constructor(props) {
@@ -127,20 +128,30 @@ class Comments extends Component {
                                         onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
                                     &nbsp;
                                     <div className=" no-pointer">
-                                        Upvotes: {commentObj.upvotes.length} &nbsp;
+                                        upvotes: {commentObj.upvotes.length} &nbsp;
                                     </div>
                                     {/* ****************** */}
                                     {/* Should move edit button to separate component */}
-                                    <div className="btn btn-sm list-links toggle"
+                          
+                                    <Button
+                                        handleClick={this.showForm}
+                                        commentId={commentObj._id}
+                                        icon="fa fa-edit"
+                                        aria="edit"
+                                    />
 
-                                        onClick={() => this.showForm(commentObj._id)}
-                                    >
-                                        Edit &nbsp;
-                                    </div>
-                                    <div className="btn btn-sm list-links toggle"
+
+                                    <Button
+                                        handleClick={this.deleteComment}
+                                        commentId={commentObj._id}
+                                        icon="fa fa-trash"
+                                        aria="delete"
+                                    />
+
+                                    {/* <div className="btn btn-sm list-links toggle"
                                         onClick={() => this.deleteComment(commentObj._id)}
                                     >Delete &nbsp;
-                                     </div>
+                                     </div> */}
                                 </div>
                             </div>
                     }
@@ -162,6 +173,7 @@ class Comments extends Component {
         );
     }
 }
+
 
 function mapStateToProps(state) {
     console.log('Comments mapStateToProps called, state: ');

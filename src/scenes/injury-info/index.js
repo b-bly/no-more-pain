@@ -280,3 +280,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
                 // const treatmentsJSX = treatments.map((treatment, i) => {
         //     const comments = Object.assign([], treatment.comments);
         // });
+
+
+//Card
+// get rid of description button
+// Title: fjdkls;a
+// Description:
+// Upvotes on left margin -- thumbs up with vote number underneath
+// toggle comments by clicking a '...' below first comment?
+// Decide which fonts will be black / gray / bold
