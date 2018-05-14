@@ -6,7 +6,7 @@ export default class Button extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
-        this.props.handleClick(this.props.commentId);
+        this.props.data? this.props.handleClick(this.props.data) : this.props.handleClick();
     }
     render() {
         return (

@@ -135,7 +135,7 @@ class Comments extends Component {
                           
                                     <Button
                                         handleClick={this.showForm}
-                                        commentId={commentObj._id}
+                                        data={commentObj._id}
                                         icon="fa fa-edit"
                                         aria="edit"
                                     />
@@ -143,7 +143,7 @@ class Comments extends Component {
 
                                     <Button
                                         handleClick={this.deleteComment}
-                                        commentId={commentObj._id}
+                                        data={commentObj._id}
                                         icon="fa fa-trash"
                                         aria="delete"
                                     />

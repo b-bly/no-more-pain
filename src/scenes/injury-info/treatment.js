@@ -44,8 +44,8 @@ class Treatment extends Component {
         }
     }
 
-    showReplyForm(e) {
-        e.preventDefault();
+    showReplyForm() {
+       
         this.setState({
             treatmentId: this.props.treatment._id
         });
@@ -57,8 +57,8 @@ class Treatment extends Component {
         });
     }
 
-    showEditForm(e) {
-        e.preventDefault();
+    showEditForm() {
+      
         this.setState({
             showEditTreatmentForm: !this.showEditTreatmentForm,
         });
@@ -67,7 +67,6 @@ class Treatment extends Component {
 
     editTreatment(newTreatment) {
         this.props.editTreatment(newTreatment);
-
         this.setState({
             showEditTreatmentForm: ''
         });
@@ -95,15 +94,14 @@ class Treatment extends Component {
         // }
     }
 
-    toggleDescription(e) {
-        e.preventDefault();
+    toggleDescription() {
+
         this.setState({
             showDescription: !this.state.showDescription
         });
     }
 
-    toggleComments(e) {
-        e.preventDefault();
+    toggleComments() {
         this.setState({
             showComments: !this.state.showComments
         });
@@ -200,32 +198,30 @@ class Treatment extends Component {
 
 
                                     {this.props.user.loggedIn === true && (
-                                        <div
-                                            onClick={this.showReplyForm}
-                                            className="btn btn-sm list-links"
-                                        > reply
-                                        </div>
+                                        <Button
+                                        handleClick={this.showReplyForm}
+                                            icon="fa fa-reply"
+                                            aria="comment"
+                                        />
                                     )}
 
 
                                     {/* Only show if user === author  */}
                                     {isTheAuthor === true && (
-                                        <div>
-                                            <span
-                                                onClick={this.showEditForm}
-                                                className="btn btn-sm list-links"
-                                            > edit </span>
-                                        </div>
+                                        <Button
+                                        handleClick={this.showEditForm}
+                                            icon="fa fa-edit"
+                                            aria="edit"
+                                        />
+
                                     )}
                                     {isTheAuthor === true && (
-                                        <div>
-                                            <span
-                                                onClick={this.deleteTreatment}
-                                                className="btn btn-sm list-links"
-                                            > delete </span>
-                                        </div>
-                                    )
-                                    }
+                                        <Button
+                                            handleClick={this.deleteTreatment}
+                                            icon="fa fa-trash"
+                                            aria="delete"
+                                        />
+                                    )}
                                     {this.props.comments.length > 0 && (
                                         <div>
 
