@@ -15,7 +15,6 @@ class Treatment extends Component {
         super(props);
         this.state = {
             treatmentId: '', //selected treatment
-            showDescription: false, //show or hide description, adds treatmentIds
             commentId: '', // for edit comment
             commentParentId: '', //will need eventually for nested comments
             showComments: true, // show / hide comments
@@ -31,7 +30,6 @@ class Treatment extends Component {
         this.showEditForm = this.showEditForm.bind(this);
         this.cancelTreatment = this.cancelTreatment.bind(this);
         this.editTreatment = this.editTreatment.bind(this);
-        this.toggleDescription = this.toggleDescription.bind(this);
         this.treatmentUpvote = this.treatmentUpvote.bind(this);
         this.commentUpvote = this.commentUpvote.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
@@ -45,7 +43,7 @@ class Treatment extends Component {
     }
 
     showReplyForm() {
-       
+
         this.setState({
             treatmentId: this.props.treatment._id
         });
@@ -58,7 +56,7 @@ class Treatment extends Component {
     }
 
     showEditForm() {
-      
+
         this.setState({
             showEditTreatmentForm: !this.showEditTreatmentForm,
         });
@@ -93,14 +91,7 @@ class Treatment extends Component {
         //     injuryId: this.props.injuryId
         // }
     }
-
-    toggleDescription() {
-
-        this.setState({
-            showDescription: !this.state.showDescription
-        });
-    }
-
+    
     toggleComments() {
         this.setState({
             showComments: !this.state.showComments
@@ -160,19 +151,27 @@ class Treatment extends Component {
 
                             <div className="columns ">
                                 <div className="col-12">
-                                    <span className="treatment-name font-size-2" >{this.props.treatment.name} &nbsp; </span>
+                                    <span className="treatment-name font-size-2" >
+                                        <strong >Treatment: </strong>
+                                        {this.props.treatment.name} &nbsp;
+                                    </span>
                                 </div>
+
+                                <div className="col-12 card-line">
+                                    <span className="card-description font-size-2">
+                                        <strong>Description: </strong> 
+                                        {this.props.treatment.description}
+                                        </span>
+                                </div>
+
                                 {this.props.treatment.author && (
                                     <div className="col-12 card-line">
                                         <span className="font-size-1" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
                                     </div>
                                 )}
-                                {this.state.showDescription ?
-                                    <div className="col-12 card-line">
-                                        <span className="card-description font-size-2">
-                                            Description: {this.props.treatment.description}</span>
-                                    </div>
-                                    : null}
+
+
+
 
                                 <div className="col-12  flex-start wrap" >
                                     {isTheAuthor === true && (
@@ -191,25 +190,18 @@ class Treatment extends Component {
                                     <div className="font-size-1" id="upvotes">Upvotes: {this.props.treatment.upvotes.length} &nbsp;
                                     </div>
 
-                                    <div className="btn btn-sm list-links"
-                                        onClick={this.toggleDescription}>
-                                        description
-                                    </div>
-
-
                                     {this.props.user.loggedIn === true && (
                                         <Button
-                                        handleClick={this.showReplyForm}
+                                            handleClick={this.showReplyForm}
                                             icon="fa fa-reply"
                                             aria="comment"
                                         />
                                     )}
 
-
                                     {/* Only show if user === author  */}
                                     {isTheAuthor === true && (
                                         <Button
-                                        handleClick={this.showEditForm}
+                                            handleClick={this.showEditForm}
                                             icon="fa fa-edit"
                                             aria="edit"
                                         />

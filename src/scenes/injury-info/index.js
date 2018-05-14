@@ -203,7 +203,7 @@ class InjuryInfo extends Component {
                 </div>
                 <div className="columns">
                     <div className="col-4"></div>
-                    <div className="col-6 col-mr-auto  text-black column">
+                    <div className="col-6 col-mr-auto column">
                         <div className="treatment-title flex-space-between">
                             <div className="font-size-3">Treatments: </div>
                             <div><Link to='/add-treatment'

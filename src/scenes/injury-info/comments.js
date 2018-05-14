@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 //components
 import Reply from './add-reply';
-import Button from './button'
+import Button from './button';
+import Comment from './comment';
 
-class Comments extends Component {
+export default class Comments extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -107,53 +106,16 @@ class Comments extends Component {
                                     mode={'edit'} />
                             </div>
                             :
-                            <div className="columns">
-                                <div className="col-12 card-line font-size-2">
-                                    <span className="comment"><strong> </strong><span >
-                                        {commentObj.text}
-                                        &nbsp;
-                                        </span></span>
-                                </div>
-
-                                {commentObj.author && (
-                                    <div className="col-12 card-line font-size-1">
-                                        <span className="font-small" >Author: <strong>{commentObj.author.username} </strong>&nbsp; </span>
-                                    </div>
-                                )}
-
-                                <div className="col-12 card-line font-size-1 wrap flex-start">
-                                    <button className="btn btn-sm list-links"
-                                        aria-label="upvote"
-                                        // should move to separate component to avoid () => syntax
-                                        onClick={() => this.commentUpvote(commentObj._id)}><i className="icon icon-upward"></i></button>
-                                    &nbsp;
-                                    <div className=" no-pointer">
-                                        upvotes: {commentObj.upvotes.length} &nbsp;
-                                    </div>
-                                    {/* ****************** */}
-                                    {/* Should move edit button to separate component */}
-                          
-                                    <Button
-                                        handleClick={this.showForm}
-                                        data={commentObj._id}
-                                        icon="fa fa-edit"
-                                        aria="edit"
-                                    />
-
-
-                                    <Button
-                                        handleClick={this.deleteComment}
-                                        data={commentObj._id}
-                                        icon="fa fa-trash"
-                                        aria="delete"
-                                    />
-
-                                    {/* <div className="btn btn-sm list-links toggle"
-                                        onClick={() => this.deleteComment(commentObj._id)}
-                                    >Delete &nbsp;
-                                     </div> */}
-                                </div>
-                            </div>
+                            <Comment
+                                text={commentObj.text}
+                                author={commentObj.author}
+                                id={commentObj._id}
+                                upvotes={commentObj.upvotes}
+                                commentUpvote={this.commentUpvote}
+                                showForm={this.showForm}
+                                deleteComment={this.deleteComment}
+                                
+                            />
                     }
 
 
@@ -173,20 +135,3 @@ class Comments extends Component {
         );
     }
 }
-
-
-function mapStateToProps(state) {
-    console.log('Comments mapStateToProps called, state: ');
-    console.log(state);
-    return {
-
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
