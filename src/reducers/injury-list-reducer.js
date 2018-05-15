@@ -13,7 +13,7 @@ export default function (state = [], action) {
         case 'DELETE_INJURY':
             console.log('injury list reducer, action:');
             console.log(action.payload);
-            return action.payload;
+            return state.filter(injury => injury._id !== action.payload.injuryId);
         default:
             return state;           
     }

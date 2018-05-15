@@ -61,15 +61,8 @@ export default class Comments extends Component {
     }
 
     render() {
-        console.log('comments props');
-        console.log(this.props);
-        console.log('state');
-        console.log(this.state);
-
         const commentsCopy = Object.assign([], this.props.comments);
-
-
-
+        // Injury schema
         // injury_id: Schema.Types.ObjectId,
         // treatment_id: Schema.Types.ObjectId,
         // parent_id: Schema.Types.ObjectId,
@@ -80,7 +73,7 @@ export default class Comments extends Component {
         //           username: String
         //          },
         // text: String
-
+        
         const comments = commentsCopy.map((commentObj, j) =>
 
             // <div className="container">
@@ -92,11 +85,11 @@ export default class Comments extends Component {
             //                 <div className="card-title-line">
 
             <div key={j.toString()}>
-                <div className="card columns">
+                <div className="card">
                     {/* Reply in treatment.js needs same layout */}
                     {
                         this.state.showForm === commentObj._id ?
-                            <div>
+                            
                                 <Reply
                                     addReply={this.addReply}
                                     cancelReply={this.cancelReply}
@@ -104,7 +97,7 @@ export default class Comments extends Component {
                                     comment_id={commentObj._id}
                                     editReply={this.editReply}
                                     mode={'edit'} />
-                            </div>
+                            
                             :
                             <Comment
                                 text={commentObj.text}
@@ -114,7 +107,7 @@ export default class Comments extends Component {
                                 commentUpvote={this.commentUpvote}
                                 showForm={this.showForm}
                                 deleteComment={this.deleteComment}
-                                
+                                user={this.props.user}
                             />
                     }
 

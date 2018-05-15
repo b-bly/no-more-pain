@@ -141,8 +141,9 @@ router.put('/update', function (req, res) {
 
 router.delete('/', (req, res) => {
     const userId = req.user._id.toString();
-    const authorId = req.user._id.toString();
-
+    const authorId = req.query.authorId.toString(); 
+    const id = req.query.injuryId;
+    
     if (req.isAuthenticated() &&
         userId === authorId) {
         Injury.remove({ _id: id })

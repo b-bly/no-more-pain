@@ -18,38 +18,50 @@ export default class Comment extends Component {
     }
 
     render() {
+        const isTheAuthor = this.props.author.id === this.props.user.id;
+     
+        
         return (
             //text={this.props.text}
             //author={this.props.author}  //.username, .id
             //id={this.props.id}
             //upvotes={this.props.upvotes}
 
-            <div className="columns">
-                <div className="col-12 card-line font-size-2">
-                    <span className="comment"><strong> </strong><span >
-                        {this.props.text}
-                        &nbsp;
-                    </span></span>
-                </div>
-
-                {this.props.author && (
-                    <div className="col-12 card-line font-size-1">
-                        <span className="font-small" >Author: <strong>{this.props.author.username} </strong>&nbsp; </span>
+            <div className="">
+                <div className="flex-row">
+                    <div className="flex-column align-items-center upvote">
+                        <Button
+                            handleClick={this.commentUpvote.bind(this)}
+                            data={this.props.id} //comment id
+                            icon="fa fa-thumbs-up"
+                            aria="upvote"
+                            isTheAuthor={isTheAuthor}
+                        />
+                        
+                            <div className=" font-size-2 upvote">
+                                {this.props.upvotes.length}
+                            </div>
+                        
                     </div>
-                )}
 
-                <div className="col-12 card-line font-size-1 wrap flex-start">
-                    <Button 
-                        handleClick={this.commentUpvote.bind(this)}
-                        data={this.props.id} //comment id
-                        icon="fa fa-thumbs-up"
-                        aria="upvote"
-                    />
+                    <div className="flex-column">
+                        <div className="font-size-2">
+                            <span className="comment"><strong> </strong>
+                                <span>
+                                    {this.props.text}
+                                    &nbsp;
+                                </span>
+                            </span>
+                        </div>
 
-                    &nbsp;
-                <div className="no-pointer">
-                        upvotes: {this.props.upvotes.length} &nbsp;
+                        {this.props.author && (
+                            <div className="font-size-1">
+                                <span className="font-small" >Author: <strong>{this.props.author.username} </strong>&nbsp; </span>
+                            </div>
+                        )}
+                    </div>
                 </div>
+                <div className="col-12 card-line font-size-1 wrap flex-start">
                     {/* ****************** */}
                     {/* Should move edit button to separate component */}
 
@@ -74,6 +86,7 @@ export default class Comment extends Component {
                  </div> */}
                 </div>
             </div>
+
         );
     }
 }

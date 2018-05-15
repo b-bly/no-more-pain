@@ -152,9 +152,9 @@ class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="columns">
+                            <div className="">
                                 <div className="flex-row">
-                                    <div className="flex-column align-items-flex-start">
+                                    <div className="flex-column align-items-center">
                                             <Button
                                             handleClick={this.treatmentUpvote}
                                             icon="fa fa-thumbs-up"
@@ -262,7 +262,7 @@ class Treatment extends Component {
                                             editReply={this.editReply}
                                             commentUpvote={this.commentUpvote}
                                             deleteComment={this.deleteComment}
-
+                                            user={this.props.user}
                                         />
                                     }
                                 </div>
