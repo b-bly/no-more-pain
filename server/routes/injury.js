@@ -112,7 +112,7 @@ router.put('/update', function (req, res) {
         title: req.body.title,
         description: req.body.description
     };
-    const id = req.body.id;
+    const id = req.body._id;
     console.log('update, req.body: ');
     console.log(req.body);
 
@@ -169,7 +169,7 @@ router.post('/add-treatment/:injuryId', (req, res) => {
 
     const treatment = req.body;
     const injuryId = req.params.injuryId;
-    treatment.author = { username: req.user.username, id: req.user._id };
+  
 
     console.log('treatment: ');
     console.log(treatment);
@@ -181,6 +181,8 @@ router.post('/add-treatment/:injuryId', (req, res) => {
     //because you need to find the record first?
     // https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose2
     if (req.isAuthenticated()) { //need to be logged in
+        //add statement that author.id === req.user._id ?  To make sure the user info sent matches?
+        
         Injury.findOneAndUpdate({ _id: injuryId },
             { $push: { treatments: treatment } })
             .exec((err, data) => {
@@ -198,11 +200,15 @@ router.post('/add-treatment/:injuryId', (req, res) => {
     }
 });
 
+//Delete treatment
 router.put('/info', (req, res) => {
     //https://docs.mongodb.com/manual/reference/operator/update/pull/
     //https://github.com/Automattic/mongoose/issues/542 
+
+    //console.log(req.body);
+    
     if (req.isAuthenticated() &&
-        req.user._id.toString() === req.body.author.id.toString()) {
+        req.user._id.toString() === req.body.authorId.toString()) {
         Injury.collection.update({ _id: new mongoose.Types.ObjectId(req.body.injuryId) },
             { $pull: { 'treatments': { _id: new mongoose.Types.ObjectId(req.body.treatmentId) } } },
             (err, data) => {

@@ -284,8 +284,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
 
 //Card
 //x  get rid of description button
-// Title: fjdkls;a
-// Description:
-// Upvotes on left margin -- thumbs up with vote number underneath
+//x Upvotes on left margin -- thumbs up with vote number underneath
 // toggle comments by clicking a '...' below first comment?
 // Decide which fonts will be black / gray / bold
+// restructure database with separate treatments schema.  Will make redux management much simpler
+    //and simpler db queries 
+    //https://github.com/reduxjs/redux/issues/432
+// fix styling on edit injury

@@ -2,14 +2,15 @@ import axios from 'axios';
 const url = '/injury/info';
 
 //deletes treatment and comments
-export default function deleteTreatment(treatmentId, injuryId) {
+export default function deleteTreatment(treatmentData) {
+    // from treatments.js:
+    //const treatmentData = {
+        //     treatmentId: this.props.treatment._id,
+        //     injuryId: this.props.injuryId,
+        //     authorId: this.props.treatment.author._id
+        // }
     return dispatch => {
-        axios.put(url, 
-            {
-                treatmentId: treatmentId,
-                injuryId: injuryId
-            }
-        ).then(res => {
+        axios.put(url, treatmentData).then(res => {
             console.log('deleteTreatment action res.data');
             console.log(res.data);
             //get injury list           

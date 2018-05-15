@@ -9,7 +9,20 @@ export default function (state = [], action) {
         case 'GET_INJURIES_LIST':
             console.log('injuries reducer, action: ');
             console.log({...action.payload});
-            return action.payload;        
+            return action.payload;    
+        case 'EDIT_INJURY':
+            console.log('edit injury reducer');
+            console.log(...action.payload);
+            return state.map(injury => {
+                if (injury._id === action.payload._id) {
+                    const updatedInjury = action.payload;
+                    updatedInjury.treatments = injury.treatments;
+                    return updatedInjury;
+                } else {
+                    return injury;
+                }
+            
+            });
         case 'DELETE_INJURY':
             console.log('injury list reducer, action:');
             console.log(action.payload);

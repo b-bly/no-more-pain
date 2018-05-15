@@ -5,28 +5,18 @@ export default function addTreatment(treatmentObject) {
     return dispatch => {
         console.log('addTreatment action treatment: ');
         console.log(treatmentObject);
+
         axios.post(url + treatmentObject.injuryId, treatmentObject.treatment).then(res => {
             console.log('addTreatment action res.data');
             console.log(res.data);
-            //dispatch(addTreatmentAsync(res.data));
-            axios.get('injury/info', {
-                params: {
-                    id: treatmentObject.injuryId
-                }
-            }).then(res => {
-                console.log('add-treatment, get action res.data');
-                console.log(res.data);
-                
-                dispatch(addTreatmentAsync(res.data));
-            }).catch(function (error) {
-                console.log('error getInjuryInfo : ');
-                console.log(error);
-            });
-
+            treatmentObject.treatment.upvotes = [];
+            treatmentObject.treatment.comments = [];
+            dispatch(addTreatmentAsync(treatmentObject.treatment));
+            
         }).catch(function (error) {
-            console.log('error addTreatment : ');
+            console.log('error addTreatment: ');
             console.log(error);
-            dispatch(addTreatmentAsync('fail'));
+            //To do: error handling
         });
     }
 }

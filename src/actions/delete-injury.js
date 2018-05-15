@@ -9,8 +9,6 @@ export default function deleteInjury(injuryData) {
                 authorId: injuryData.author.id,
             }
         }).then(res => {
-            console.log('deleteInjury action res.data');
-            console.log(res.data);
             dispatch(deleteInjuryAsync(injuryData));
             
         }).catch( (error) => {

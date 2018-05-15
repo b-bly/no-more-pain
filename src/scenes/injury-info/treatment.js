@@ -38,7 +38,12 @@ class Treatment extends Component {
     deleteTreatment() {
         const permission = window.confirm("Are you sure you want to delete " + this.props.treatment.name);
         if (permission === true) {
-            this.props.deleteTreatment(this.props.treatment._id, this.props.injuryId);
+            const treatmentData = {
+                treatmentId: this.props.treatment._id,
+                injuryId: this.props.injuryId,
+                authorId: this.props.treatment.author.id
+            }
+            this.props.deleteTreatment(treatmentData);
         }
     }
 
@@ -103,7 +108,7 @@ class Treatment extends Component {
         const treatmentUpvoteData = {
             injuryId: this.props.injuryId,
             treatmentId: this.props.treatmentId,
-            authorId: this.props.user.id,
+            authorId: this.props.treatment.author._id, //this should be the treatment author
         };
 
         this.props.treatmentUpvote(treatmentUpvoteData);
@@ -123,9 +128,6 @@ class Treatment extends Component {
                 isTheAuthor = true;
             }
         }
-        console.log('treatment isTheAuthor');
-        console.log(isTheAuthor);
-        
 
         return (
             // <div className="col-mr-auto col-10">

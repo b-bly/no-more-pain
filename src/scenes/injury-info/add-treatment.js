@@ -50,7 +50,8 @@ class AddTreatmentForm extends Component {
             injuryId: this.props.injuryInfo._id,
             treatment: {
                 name: this.state.name,
-                description: this.state.description
+                description: this.state.description,
+                author: this.props.user,
             }
         });
         //redirect in componentWillReceiveProps--response from actions
