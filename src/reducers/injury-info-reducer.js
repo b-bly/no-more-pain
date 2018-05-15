@@ -16,7 +16,12 @@ export default function (state = [], action) {
         case 'ADD_REPLY':
             return state;
         case 'DELETE_TREATMENT':
-            return action.payload;
+            return {
+                ...state,
+                treatments: state.treatments.filter(treatment => treatment._id !== action.payload.treatmentId)
+            };
+            // return state.
+            //return action.payload;
         default:
             return state;
     }
