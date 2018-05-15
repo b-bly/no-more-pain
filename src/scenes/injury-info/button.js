@@ -9,8 +9,15 @@ export default class Button extends Component {
         this.props.data? this.props.handleClick(this.props.data) : this.props.handleClick();
     }
     render() {
+        let isTheAuthor = this.props.isTheAuthor;;
+        // if (this.props.isTheAuthor) {
+        //     isTheAuthor = this.props.isTheAuthor;
+        //     console.log('isTheAuthor button');
+            
+        // }
         return (
-            <div className="btn btn-sm list-links"
+            <button className="btn btn-sm list-links"
+                disabled={ isTheAuthor }
                 onClick={this.handleClick}>
                 { this.props.icon ?
                     (
@@ -20,7 +27,7 @@ export default class Button extends Component {
                         <span>{ this.props.text }</span>
                     )
                 }
-            </div>
+            </button>
         );
     }
 }

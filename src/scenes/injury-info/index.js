@@ -283,7 +283,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
 
 
 //Card
-// get rid of description button
+//x  get rid of description button
 // Title: fjdkls;a
 // Description:
 // Upvotes on left margin -- thumbs up with vote number underneath

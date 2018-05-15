@@ -91,7 +91,7 @@ class Treatment extends Component {
         //     injuryId: this.props.injuryId
         // }
     }
-    
+
     toggleComments() {
         this.setState({
             showComments: !this.state.showComments
@@ -123,6 +123,9 @@ class Treatment extends Component {
                 isTheAuthor = true;
             }
         }
+        console.log('treatment isTheAuthor');
+        console.log(isTheAuthor);
+        
 
         return (
             // <div className="col-mr-auto col-10">
@@ -149,46 +152,46 @@ class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="columns ">
-                                <div className="col-12">
-                                    <span className="treatment-name font-size-2" >
-                                        <strong >Treatment: </strong>
-                                        {this.props.treatment.name} &nbsp;
-                                    </span>
-                                </div>
-
-                                <div className="col-12 card-line">
-                                    <span className="card-description font-size-2">
-                                        <strong>Description: </strong> 
-                                        {this.props.treatment.description}
-                                        </span>
-                                </div>
-
-                                {this.props.treatment.author && (
-                                    <div className="col-12 card-line">
-                                        <span className="font-size-1" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
+                            <div className="columns">
+                                <div className="flex-row">
+                                    <div className="flex-column align-items-flex-start">
+                                            <Button
+                                            handleClick={this.treatmentUpvote}
+                                            icon="fa fa-thumbs-up"
+                                            aria="upvote"
+                                            isTheAuthor={isTheAuthor}
+                                        />
+                                        <div><div className="font-size-2" id="upvotes">{this.props.treatment.upvotes.length} &nbsp;
+                                        </div></div>
                                     </div>
-                                )}
+                                    <div className="flex-column">
+                                        <div className="">
+                                            <span className="treatment-name font-size-2" >
+                                                <strong >Treatment: </strong>
+                                                {this.props.treatment.name} &nbsp;
+                                    </span>
+                                        </div>
+
+                                        <div className="">
+                                            <span className="card-description font-size-2">
+                                                <strong>Description: </strong>
+                                                {this.props.treatment.description}
+                                            </span>
+                                        </div>
+
+                                        {this.props.treatment.author && (
+                                            <div className="">
+                                                <span className="font-size-1" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
 
 
 
 
                                 <div className="col-12  flex-start wrap" >
-                                    {isTheAuthor === true && (
-                                        this.props.user.id === this.props.treatment.author.id &&
-                                        <div>
-                                            <button
-                                                className="btn btn-sm upvote list-links"
-                                                aria-label="up vote"
-                                                onClick={this.treatmentUpvote}><i className="icon icon-upward ">
-                                                </i>
-                                            </button>
-                                        </div>
 
-                                    )}
-
-                                    <div className="font-size-1" id="upvotes">Upvotes: {this.props.treatment.upvotes.length} &nbsp;
-                                    </div>
 
                                     {this.props.user.loggedIn === true && (
                                         <Button
