@@ -55,10 +55,10 @@ export default class Comments extends Component {
         this.props.commentUpvote(commentData);
     }
 
-    deleteComment(commentId) {
+    deleteComment(commentData) {
         const permission = window.confirm("Are you sure you want to delete your comment?");
         if (permission) {
-            this.props.deleteComment(commentId);
+            this.props.deleteComment(commentData);
         }
     }
 
@@ -114,6 +114,7 @@ export default class Comments extends Component {
                                 author={commentObj.author}
                                 id={commentObj._id}
                                 upvotes={commentObj.upvotes}
+                                treatment={this.props.treatment}
                                 commentUpvote={this.commentUpvote}
                                 showForm={this.showForm}
                                 deleteComment={this.deleteComment}

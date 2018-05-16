@@ -2,36 +2,26 @@ import axios from 'axios';
 const url = '/comment';
 
 //deletes comment 
-export default function deleteComment(commentId, injuryId) {
+export default function deleteComment(commentData) {
     console.log('***** deleteComment action *******');
-    console.log(commentId);
-    
-    
+    console.log(commentData);
+    // from comment.js
+    // const commentData = {
+    //     treatmentId = this.props.treatment._id,
+    //     commentId = this.props.id,
+    // }
     return dispatch => {
+
         axios.delete(url, {
             params: {
-                commentId: commentId
+                commentId: commentData.commentId
             }
         }
         ).then(res => {
             console.log('deleteComment action res.data');
             console.log(res.data);
-            //get injury list           
-            axios.get('/injury/info', {
-                params: {
-                    id: injuryId
-                }
-            })
-                .then(res => {
-         
-                    dispatch(deleteCommentAsync(res.data));
-                }).catch(function (error) {
-                    console.log('error get injuries');
-                    console.log(error);
-                    if (error.response.status === 404) {
-                        alert('Restart the server!');
-                    }
-                });
+            dispatch(deleteCommentAsync(commentData))
+  
 
         }).catch((error) => {
             console.log('error deleteComment : ');
@@ -43,7 +33,7 @@ export default function deleteComment(commentId, injuryId) {
 
 function deleteCommentAsync(payload) {
     return {
-        type: 'DELETE_TREATMENT',
+        type: 'DELETE_COMMENT',
         payload: payload
     }
 }

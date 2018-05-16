@@ -61,14 +61,16 @@ class InjuryForm extends Component {
 		} else {
 			return (
 				<div >
-					<h4>Edit Injury</h4>
-					<div>
+					
+					
+					<div className="card col-6 col-mx-auto">
+					<div className="font-size-3 col-12 col-mx-auto">Edit Injury</div>
 						<form className="form-horizontal" onSubmit={this.handleSubmit}>
 							<div className="form-group">
-								<div className="col-2 col-ml-auto">
+								<div className="col-4 col-ml-auto">
 									<label className="form-label" htmlFor="title">Name of injury:</label>
 								</div>
-								<div className="col-4 col-mr-auto">
+								<div className="col-8 col-mr-auto">
 									<input className="form-input"
 										type="text"
 										id="title"
@@ -80,10 +82,10 @@ class InjuryForm extends Component {
 								</div>
 							</div>
 							<div className="form-group">
-								<div className="col-2 col-ml-auto">
+								<div className="col-4 col-ml-auto">
 									<label className="form-label" htmlFor="password">Description: </label>
 								</div>
-								<div className="col-4 col-mr-auto">
+								<div className="col-8 col-mr-auto">
 									<input className="form-input"
 										placeholder="description"
 										type="description"
@@ -94,15 +96,15 @@ class InjuryForm extends Component {
 								</div>
 							</div>
 							<div className="form-group ">
-								<div className="col-7"></div>
-								<input className="btn col-1"
+								<div className="col-8"></div>
+								<input className="btn col-2"
 								type="button"
 								value="Cancel"
 								onClick={this.cancel}
 								></input>
 								&nbsp;
 								<input
-									className="btn btn-primary col-1 col-mr-auto"
+									className="btn btn-primary col-2 col-mr-auto"
 									type="submit" 
 									value="Submit"
 									></input>

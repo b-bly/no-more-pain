@@ -13,8 +13,12 @@ export default class Comment extends Component {
     showForm(id) {
         this.props.showForm(id);
     }
-    deleteComment(id) {
-        this.props.deleteComment(id);
+    deleteComment() {
+        const commentData = {
+            treatmentId : this.props.treatment._id,
+            commentId : this.props.id,
+        }
+        this.props.deleteComment(commentData);
     }
 
     render() {
@@ -75,7 +79,7 @@ export default class Comment extends Component {
 
                     <Button
                         handleClick={this.deleteComment.bind(this)}
-                        data={this.props.id}
+                        
                         icon="fa fa-trash"
                         aria="delete"
                     />

@@ -28,22 +28,46 @@ export default function (state = [], action) {
                     return treatment;
                 })
             };
-            //return state;
+        //return state;
         case 'DELETE_TREATMENT':
             return {
                 ...state,
                 treatments: state.treatments.filter(treatment => treatment._id !== action.payload.treatmentId)
             };
-            // return state.
-            //return action.payload;
+        // return state.
+        //return action.payload;
+        case 'DELETE_COMMENT':
+        console.log('DELETE_COMMENT reducer, action.payload:');
+        console.log(action.payload);
+        
+            return {
+                ...state,
+                treatments: state.treatments.map(treatment => {
+                    if (treatment._id === action.payload.treatmentId) {
+                        return {
+                            ...treatment,
+                            comments: treatment.comments.filter((comment) => {
+                                console.log(comment);
+                                
+                                if (comment._id === action.payload.commentId) {
+                                    return false;
+                                }
+                                return true;
+                            })
+                        }
+                    }
+                    return treatment;
+                })
+            };
+
         case 'COMMENT_UPVOTE':
-              //from comments.js
-        // const commentData = {
-        //     injuryId: this.props.injuryId,
-        //     commentId: commentId,
-        //     author: this.props.user,
-        //     treatment_id: this.props.treatment._id,
-        // };
+            //from comments.js
+            // const commentData = {
+            //     injuryId: this.props.injuryId,
+            //     commentId: commentId,
+            //     author: this.props.user,
+            //     treatment_id: this.props.treatment._id,
+            // };
             return {
                 ...state,
                 treatments: state.treatments.map(treatment => {
@@ -52,7 +76,7 @@ export default function (state = [], action) {
                             ...treatment,
                             comments: treatment.comments.map((comment) => {
                                 if (comment._id === action.payload.commentId) {
-                                    const updatedComment = Object.assign({}, comment, {upvotes: comment.upvotes.push(action.payload.author.id)});
+                                    const updatedComment = Object.assign({}, comment, { upvotes: comment.upvotes.push(action.payload.author.id) });
                                 }
                                 return comment;
                             })

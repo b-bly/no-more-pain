@@ -137,9 +137,6 @@ class InjuryList extends Component {
 // }
 
 function mapStateToProps(state) {
-    // console.log('InjuryList mapStateToProps called, state: ');
-    // console.log(state);
-
     return {
         injuryList: state.injuryList,
         user: state.user

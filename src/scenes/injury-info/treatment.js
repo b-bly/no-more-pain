@@ -118,8 +118,8 @@ class Treatment extends Component {
         this.props.commentUpvote(commentData);
     }
 
-    deleteComment(commentId) {
-        this.props.deleteComment(commentId);
+    deleteComment(commentData) {
+        this.props.deleteComment(commentData);
     }
     render() {
         let isTheAuthor = false;
