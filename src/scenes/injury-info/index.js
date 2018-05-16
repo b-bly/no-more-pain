@@ -149,12 +149,9 @@ class InjuryInfo extends Component {
                     {/* TREATMENTS  */}
 
                     <Treatment
-                        showForm={this.state.showForm}
-                        toggleDescription={this.toggleDescription}
+                        {...this.props}
                         treatment={treatment}
-                        treatmentId={treatment._id}
-                        injuryId={this.props.injuryInfo._id}
-                        comments={treatment.comments}
+                    
                         // *********************** treatmentCopy.comments
                         addReply={this.addReply}
                         editReply={this.editReply}

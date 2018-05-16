@@ -40,7 +40,7 @@ class Treatment extends Component {
         if (permission === true) {
             const treatmentData = {
                 treatmentId: this.props.treatment._id,
-                injuryId: this.props.injuryId,
+                injuryId: this.props.injuryInfo._id,
                 authorId: this.props.treatment.author.id
             }
             this.props.deleteTreatment(treatmentData);
@@ -106,8 +106,8 @@ class Treatment extends Component {
     treatmentUpvote(e) {
         e.preventDefault();
         const treatmentUpvoteData = {
-            injuryId: this.props.injuryId,
-            treatmentId: this.props.treatmentId,
+            injuryId: this.props.injuryInfo._id,
+            treatmentId: this.props.treatment._id,
             authorId: this.props.treatment.author._id, //this should be the treatment author
         };
 
@@ -128,13 +128,103 @@ class Treatment extends Component {
                 isTheAuthor = true;
             }
         }
-
+        console.log('treatment.js this.props');
+        console.log(this.props);
         return (
-            // <div className="col-mr-auto col-10">
-            // <div className="card">
-            //     <div className="columns card-bdy">
-            //         <div className="col-12 card-line">
+   //this.props.injuryInfo
+//    injuryId
+//    :
+//    "5af4d63f2e1dba9509e1b25f"
+//    injuryInfo
+//    :
+//    author
+//    :
+//    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+//    description
+//    :
+//    "hmmm in elbow"
+//    title
+//    :
+//    "Tennis Elbow"
+//    treatments
+//    :
+//    Array(4)
+//    0
+//    :
+//    author
+//    :
+//    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+//    comments
+//    :
+//    [{…}]
+//    description
+//    :
+//    "testing"
+//    name
+//    :
+//    "testing"
+//    upvotes
+//    :
+//    (4) ["5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb"]
+//    _id
+//    :
+//    "5af4dbc4c5a6fa95dd48a675"
+//    __proto__
+//    :
+//    Object
+//    1
+//    :
+//    {upvotes: Array(0), author: {…}, _id: "5af585edcc1fe5a3a740ab54", name: "Milkshakes", description: "drink", …}
+//    2
+//    :
+//    {upvotes: Array(0), author: {…}, _id: "5af8c90fafd81ccf05bbb6d6", name: "THis is what other people are doing", description: "", …}
+//    3
+//    :
+//    {upvotes: Array(0), author: {…}, _id: "5afb3ae36a517cf3f18d7521", name: "fff", description: "", …}
+//    length
+//    :
+//    4
+//    __proto__
+//    :
+//    Array(0)
+//    upvotes
+//    :
+//    ["5a7ddf840898fd83b5c6b3bb"]
+//    __v
+//    :
+//    0
+//    _id
+//    :
+//    "5af4d63f2e1dba9509e1b25f"
 
+// this.props.user
+// user
+// :
+// id
+// :
+// "5a7ddf840898fd83b5c6b3bb"
+// loggedIn
+// :
+// true
+// username
+// :
+// "al"
+
+            // Old treatment props: 
+        //     <Treatment
+        //     treatment={treatment}
+        //     treatmentId={treatment._id}
+        //     injuryId={this.props.injuryInfo._id}
+        //     comments={treatment.comments}
+        //     // *********************** treatmentCopy.comments
+        //     addReply={this.addReply}
+        //     editReply={this.editReply}
+        //     editTreatment={this.editTreatment}
+        //     treatmentUpvote={this.treatmentUpvote}
+        //     commentUpvote={this.commentUpvote}
+        //     user={this.props.user}
+        //     deleteComment={this.deleteComment}
+        // />
             <div className="columns" >
                 <div className="column col-4"></div>
                 <div className="column col-6">
@@ -145,7 +235,7 @@ class Treatment extends Component {
                             <div>
                                 <AddTreatmentForm
                                     treatment={this.props.treatment}
-                                    injuryId={this.props.injuryId}
+                                    injuryId={this.props.injuryInfo._id}
                                     editTreatment={this.editTreatment}
                                     cancelTreatment={this.cancelTreatment}
                                     mode={'edit'}
@@ -219,7 +309,7 @@ class Treatment extends Component {
                                             aria="delete"
                                         />
                                     )}
-                                    {this.props.comments.length > 0 && (
+                                    {this.props.treatment.comments.length > 0 && (
                                         <div>
 
                                             <span className="btn btn-sm list-links"
@@ -258,7 +348,7 @@ class Treatment extends Component {
                                 <div className="col-12">
                                     {this.state.showComments === true &&
                                         <Comments
-                                            comments={this.props.comments}
+                                            comments={this.props.comments} //replace
                                             toggleComments={this.toggleComments}
                                             injuryId={this.props.injuryId}
                                             editReply={this.editReply}
