@@ -36,6 +36,31 @@ export default function (state = [], action) {
             };
             // return state.
             //return action.payload;
+        case 'COMMENT_UPVOTE':
+              //from comments.js
+        // const commentData = {
+        //     injuryId: this.props.injuryId,
+        //     commentId: commentId,
+        //     author: this.props.user,
+        //     treatment_id: this.props.treatment._id,
+        // };
+            return {
+                ...state,
+                treatments: state.treatments.map(treatment => {
+                    if (treatment._id === action.payload.treatment_id) {
+                        return {
+                            ...treatment,
+                            comments: treatment.comments.map((comment) => {
+                                if (comment._id === action.payload.commentId) {
+                                    const updatedComment = Object.assign({}, comment, {upvotes: comment.upvotes.push(action.payload.author.id)});
+                                }
+                                return comment;
+                            })
+                        }
+                    }
+                    return treatment;
+                })
+            };
         default:
             return state;
     }

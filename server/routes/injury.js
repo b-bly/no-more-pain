@@ -302,19 +302,19 @@ router.put('/treatment-upvote:injuryId', (req, res) => {
                 }
                 else {
                     console.log('upvoted the treatment ');
-                    // Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
-                    //     {
-                    //         $push: { 'treatments.$.upvotes': userId }
-                    //     }, (err, data) => {
-                    //         if (err) {
-                    //             console.log(err);
-                    //         } else {
-                    //             console.log('upvote successful');
-                    //             console.log(data);
+                    Injury.collection.updateOne({ 'treatments._id': new mongoose.Types.ObjectId(treatmentId) },
+                        {
+                            $push: { 'treatments.$.upvotes': userId }
+                        }, (err, data) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('upvote successful');
+                                console.log(data);
 
-                    //             res.send(data);
-                    //         }
-                    //     });
+                                res.send(data);
+                            }
+                        });
 
                 }
             });

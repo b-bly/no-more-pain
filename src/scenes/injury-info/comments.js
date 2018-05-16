@@ -49,6 +49,8 @@ export default class Comments extends Component {
         const commentData = {
             injuryId: this.props.injuryId,
             commentId: commentId,
+            author: this.props.user,
+            treatment_id: this.props.treatment._id,
         };
         this.props.commentUpvote(commentData);
     }
@@ -61,6 +63,14 @@ export default class Comments extends Component {
     }
 
     render() {
+        //comments props from treatment.js
+        // comments={this.props.comments}
+        // toggleComments={this.toggleComments}
+        // injuryId={this.props.injuryId}
+        // editReply={this.editReply}
+        // commentUpvote={this.commentUpvote}
+        // deleteComment={this.deleteComment}
+        // user={this.props.user}
         const commentsCopy = Object.assign([], this.props.comments);
         // Injury schema
         // injury_id: Schema.Types.ObjectId,

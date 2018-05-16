@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 mongoose.promise = Promise
 
-// Define userSchema
+// Define commentsSchema
 const commentsSchema = new Schema({
     injury_id: Schema.Types.ObjectId,
     treatment_id: Schema.Types.ObjectId,

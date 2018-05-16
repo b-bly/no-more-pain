@@ -294,3 +294,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
 // for comments, I should be using the data that comes back from the server to add it in
     //redux because it will give the date info.  Maybe should use it for all of them because
     //the database makes up the _id also...
+// call actions from containers--make a container component for each component.
+    //treatments container - treatment - comments container - comment
+//comment upvote prevent 2x or more upvotes by same user client side

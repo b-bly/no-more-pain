@@ -265,6 +265,7 @@ class Treatment extends Component {
                                             commentUpvote={this.commentUpvote}
                                             deleteComment={this.deleteComment}
                                             user={this.props.user}
+                                            treatment={this.props.treatment}
                                         />
                                     }
                                 </div>

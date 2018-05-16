@@ -72,40 +72,25 @@ router.put('/comment-upvote/:commentId', (req, res) => {
                 }
                 else {
                     console.log('upvoting the comment ');
-                    // Comment.collection.updateOne({ '_id': new mongoose.Types.ObjectId(commentId) },
-                    //     {
-                    //         $push: { 'upvotes': userId }
-                    //     }, (err, data) => {
-                    //         if (err) {
-                    //             console.log(err);
-                    //         } else {
-                    //             console.log('upvote successful');
-                    //             console.log(data);
-                    //             res.send(data);
-                    //         }
-                    //     });
+                    Comment.collection.updateOne({ '_id': new mongoose.Types.ObjectId(commentId) },
+                        {
+                            $push: { 'upvotes': userId }
+                        }, (err, data) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('upvote successful');
+                                console.log(data);
+                                res.sendStatus(200);
+                            }
+                        });
                 }
             });
     } else {
         res.sendStatus(403);
     }
 
-    Comment.findByIdAndUpdate(
-        { _id: commentId },
-        {
-            $inc: { 'upvotes': 1 }
-        },
-        (err, data) => {
-            if (err) {
-                console.log('put error: ', err);
-                res.sendStatus(500);
-            } else {
-                console.log('comments update success: ');
-                console.log(data);
-                res.sendStatus(200);
-            }
-        }
-    );
+   
 });
 
 // finish
