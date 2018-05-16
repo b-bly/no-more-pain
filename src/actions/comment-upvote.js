@@ -6,19 +6,31 @@ export default function commentUpvote(commentUpvoteData) {
         console.log(commentUpvoteData);
         //from comments.js
         // const commentData = {
-        //     injuryId: this.props.injuryId,
-        //     commentId: commentId,
-        //     author: this.props.user,
-        //     treatment_id: this.props.treatment._id,
+            // {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+            // injury_id
+            // :
+            // "5af4d63f2e1dba9509e1b25f"
+            // parent_id
+            // :
+            // null
+            // posted
+            // :
+            // "2018-05-14T22:06:17.944Z"
+            // text
+            // :
+            // "did it work?↵"
+            // treatment_id
+            // :
+            // "5af
         // };
-        const commentId = commentUpvoteData.commentId;
-        const injuryId = commentUpvoteData.injuryId;
+        const commentId = commentUpvoteData._id;
+        const injuryId = commentUpvoteData.injury_id;
         console.log(commentId);
     return dispatch => {
         axios.put(url + commentId, commentUpvoteData).then(res => {
             console.log('commentUpvote action res.data');
             console.log(res.data);
-            dispatch(commentUpvoteAsync(commentUpvoteData))
+            dispatch(commentUpvoteAsync(res.data))
         }).catch((error) => {
             console.log('error commentUpvote: ');
             console.log(error);

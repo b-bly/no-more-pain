@@ -7,43 +7,44 @@ export default class Comment extends Component {
         super(props);
     }
 
-    commentUpvote(id) {
-        this.props.commentUpvote(id);
+    commentUpvote() {
+        this.props.commentUpvote(this.props.comment);
     }
-    showForm(id) {
-        this.props.showForm(id);
+    
+    showForm() {
+        this.props.showForm(this.props.comment._id);
     }
     deleteComment() {
         const commentData = {
             treatmentId : this.props.treatment._id,
-            commentId : this.props.id,
+            commentId : this.props.comment._id,
         }
-        this.props.deleteComment(commentData);
+        const permission = window.confirm("Are you sure you want to delete your comment?");
+        if (permission) this.props.deleteComment(commentData);
     }
 
     render() {
-        const isTheAuthor = this.props.author.id === this.props.user.id;
-     
-        
+        const isTheAuthor = this.props.comment.author.id === this.props.user.id;
+                // props
+            // text={commentObj.text}
+            // author={commentObj.author}
+            // id={commentObj._id}
+            // upvotes={commentObj.upvotes}
         return (
-            //text={this.props.text}
-            //author={this.props.author}  //.username, .id
-            //id={this.props.id}
-            //upvotes={this.props.upvotes}
+ 
 
             <div className="">
                 <div className="flex-row">
                     <div className="flex-column align-items-center upvote">
                         <Button
                             handleClick={this.commentUpvote.bind(this)}
-                            data={this.props.id} //comment id
                             icon="fa fa-thumbs-up"
                             aria="upvote"
                             isTheAuthor={isTheAuthor}
                         />
                         
                             <div className=" font-size-2 upvote">
-                                {this.props.upvotes.length}
+                                {this.props.comment.upvotes.length}
                             </div>
                         
                     </div>
@@ -52,15 +53,15 @@ export default class Comment extends Component {
                         <div className="font-size-2">
                             <span className="comment"><strong> </strong>
                                 <span>
-                                    {this.props.text}
+                                    {this.props.comment.text}
                                     &nbsp;
                                 </span>
                             </span>
                         </div>
 
-                        {this.props.author && (
+                        {this.props.comment.author && (
                             <div className="font-size-1">
-                                <span className="font-small" >Author: <strong>{this.props.author.username} </strong>&nbsp; </span>
+                                <span className="font-small" >Author: <strong>{this.props.comment.author.username} </strong>&nbsp; </span>
                             </div>
                         )}
                     </div>
@@ -71,7 +72,6 @@ export default class Comment extends Component {
 
                     <Button
                         handleClick={this.showForm.bind(this)}
-                        data={this.props.id} // comment id
                         icon="fa fa-edit"
                         aria="edit"
                     />

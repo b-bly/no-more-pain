@@ -29,10 +29,9 @@ router.post('/add-reply/:injuryId', (req, res) => {
 router.put('/', (req, res) => {
     console.log('comment put, req.body: ');
     console.log(req.body);
-
-    const id = req.body.commentId;
+    const id = req.body._id;
     const comment = {
-        text: req.body.comment
+        text: req.body.text
     }
 
     Comment.findByIdAndUpdate(
@@ -53,24 +52,27 @@ router.put('/', (req, res) => {
 
 router.put('/comment-upvote/:commentId', (req, res) => {
     console.log('comment upvote put, req.body: ');
-    const commentId = req.body.commentId
+    const commentId = req.body._id
     console.log(req.body);
     const userId = req.user._id;
 
+
     if (req.isAuthenticated()) {
-        Comment.collection.findOne({ 'upvotes': new mongoose.Types.ObjectId(userId) },
+        Comment.collection.findOne({
+            '_id': new mongoose.Types.ObjectId(commentId),
+            'upvotes': new mongoose.Types.ObjectId(userId)
+        },
             (err, data) => {
                 if (err) {
                     console.log('Comment upvote error: ', err)
                 } else if (data) {
                     console.log('user already upvoted');
                     console.log(data);
-                    
+
                     res.json({
                         error: `Sorry, user already upvoted this comment`
                     })
-                }
-                else {
+                } else {
                     console.log('upvoting the comment ');
                     Comment.collection.updateOne({ '_id': new mongoose.Types.ObjectId(commentId) },
                         {
@@ -80,8 +82,19 @@ router.put('/comment-upvote/:commentId', (req, res) => {
                                 console.log(err);
                             } else {
                                 console.log('upvote successful');
-                                console.log(data);
-                                res.sendStatus(200);
+                                Comment.collection.findOne({
+                                    '_id': new mongoose.Types.ObjectId(commentId)
+                                },
+                                    (err, data) => {
+                                        if (err) {
+                                            console.log('Comment upvote error: ', err)
+                                        } else {
+                                            console.log('sending comment');
+                                            console.log(data);
+                                            res.send(data);
+                                        }
+                                    }
+                                )
                             }
                         });
                 }
@@ -89,8 +102,6 @@ router.put('/comment-upvote/:commentId', (req, res) => {
     } else {
         res.sendStatus(403);
     }
-
-   
 });
 
 // finish

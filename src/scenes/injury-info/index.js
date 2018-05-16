@@ -62,7 +62,6 @@ class InjuryInfo extends Component {
     }
 
     addReply(treatmentId, comment) {
-
         // const commentsSchema = {
         //     injury_id: Schema.Types.ObjectId,
         //     treatment_id: Schema.Types.ObjectId,
@@ -75,8 +74,6 @@ class InjuryInfo extends Component {
         //              },
         //     text: String
         // }
-
-
         const replyObject = {
             injury_id: this.props.injuryInfo._id,
             treatment_id: treatmentId,
@@ -107,36 +104,6 @@ class InjuryInfo extends Component {
     render() {
         console.log('injury info props.injuryInfo: ');
         console.log(this.props.injuryInfo);
-        // this.props.injuryInfo data sample:
-        // [ anonymous {
-        //     id: 1,
-        //     title: 'High Hamstring Tendonopathy',
-        //     description: 'Pain in the butt.',
-        //     treatments: 
-        //      { name: 'squats',
-        //        comments: [Object],
-        //        description: 'Do two sets of 20',
-        //        upvotes: '0' } } ]
-
-        //recursive walk thorugh json object:
-        //need this if replies to replies are allowed
-        // https://stackoverflow.com/questions/19323699/iterating-through-json-object-javascript
-
-        // const practiceData = {
-        //     description: "pain in elbow",
-        //     title: "Tennis elbow",
-        //     treatments: [{
-        //         _id: "5a8a185f3dbc572f6c349c81", name: "stretch", description: "stretch", upvotes: 0,
-        //         comments: [
-        //             { text: 'worked for me.  But then again, everything works for me.  That\s just how things go for me.', upvotes: 1, _id: 1},
-        //             { text: 'do these every day', upvotes: 0, _id: 2 },
-        //             { text: 'warm up first', upvotes: 99, _id: 3 }
-        //         ]
-        //     },
-        //     { _id: "5a8f704f05f1287b39e0994f", name: "ice", description: "", upvotes: 0 },
-        //     { _id: "5a8f71063f68287b56b9f45e", name: "rest", description: "", upvotes: 0 },
-        //     { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
-        // }
 
         //**************** this.props.injuryInfo.treatments
         let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
@@ -147,21 +114,16 @@ class InjuryInfo extends Component {
                 <div className="treatment-container" key={i.toString()}>
 
                     {/* TREATMENTS  */}
-
                     <Treatment
                         {...this.props}
                         treatment={treatment}
-                    
-                        // *********************** treatmentCopy.comments
                         addReply={this.addReply}
                         editReply={this.editReply}
                         editTreatment={this.editTreatment}
                         treatmentUpvote={this.treatmentUpvote}
                         commentUpvote={this.commentUpvote}
-                        user={this.props.user}
                         deleteComment={this.deleteComment}
                     />
-
                 </div>
             );
         });
@@ -279,3 +241,33 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
         // });
 
 
+ // this.props.injuryInfo data sample:
+        // [ anonymous {
+        //     id: 1,
+        //     title: 'High Hamstring Tendonopathy',
+        //     description: 'Pain in the butt.',
+        //     treatments: 
+        //      { name: 'squats',
+        //        comments: [Object],
+        //        description: 'Do two sets of 20',
+        //        upvotes: '0' } } ]
+
+        //recursive walk thorugh json object:
+        //need this if replies to replies are allowed
+        // https://stackoverflow.com/questions/19323699/iterating-through-json-object-javascript
+
+        // const practiceData = {
+        //     description: "pain in elbow",
+        //     title: "Tennis elbow",
+        //     treatments: [{
+        //         _id: "5a8a185f3dbc572f6c349c81", name: "stretch", description: "stretch", upvotes: 0,
+        //         comments: [
+        //             { text: 'worked for me.  But then again, everything works for me.  That\s just how things go for me.', upvotes: 1, _id: 1},
+        //             { text: 'do these every day', upvotes: 0, _id: 2 },
+        //             { text: 'warm up first', upvotes: 99, _id: 3 }
+        //         ]
+        //     },
+        //     { _id: "5a8f704f05f1287b39e0994f", name: "ice", description: "", upvotes: 0 },
+        //     { _id: "5a8f71063f68287b56b9f45e", name: "rest", description: "", upvotes: 0 },
+        //     { _id: "5a8f7144ddc8b57b6720830c", name: "heat", description: "heat", upvotes: 0 }]
+        // }

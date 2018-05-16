@@ -348,9 +348,9 @@ class Treatment extends Component {
                                 <div className="col-12">
                                     {this.state.showComments === true &&
                                         <Comments
-                                            comments={this.props.comments} //replace
+                                            comments={this.props.treatment.comments} //replace
                                             toggleComments={this.toggleComments}
-                                            injuryId={this.props.injuryId}
+                                            injuryId={this.props.injuryInfo._id}
                                             editReply={this.editReply}
                                             commentUpvote={this.commentUpvote}
                                             deleteComment={this.deleteComment}

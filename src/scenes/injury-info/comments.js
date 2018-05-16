@@ -23,17 +23,9 @@ export default class Comments extends Component {
         });
     }
 
-    editReply(comment, commentId) {
-        console.log('comments.js, editReply, comment, id: ');
-        console.log(comment);
-        console.log(commentId);
-
-        this.props.editReply({
-            comment: comment,
-            commentId: commentId,
-            injuryId: this.props.injuryId,
-            authorId: this.props.comments.author.id
-        });
+    editReply(commentData) {     
+        this.props.editReply(
+        commentData);
         this.setState({
             showForm: '',
         })
@@ -45,21 +37,15 @@ export default class Comments extends Component {
         })
     }
 
-    commentUpvote(commentId) {
-        const commentData = {
-            injuryId: this.props.injuryId,
-            commentId: commentId,
-            author: this.props.user,
-            treatment_id: this.props.treatment._id,
-        };
+    commentUpvote(commentData) {
+    
         this.props.commentUpvote(commentData);
     }
 
     deleteComment(commentData) {
-        const permission = window.confirm("Are you sure you want to delete your comment?");
-        if (permission) {
+        
             this.props.deleteComment(commentData);
-        }
+        
     }
 
     render() {
@@ -83,46 +69,33 @@ export default class Comments extends Component {
         //           username: String
         //          },
         // text: String
-        
+
         const comments = commentsCopy.map((commentObj, j) =>
-
-            // <div className="container">
-            // <div className="columns">
-            //     <div className="column col-6 col-mx-auto">
-            //         <div className="card">
-
-            //             <div className="card-header">
-            //                 <div className="card-title-line">
-
             <div key={j.toString()}>
                 <div className="card">
                     {/* Reply in treatment.js needs same layout */}
                     {
                         this.state.showForm === commentObj._id ?
-                            
-                                <Reply
-                                    addReply={this.addReply}
-                                    cancelReply={this.cancelReply}
-                                    comment={commentObj.text}
-                                    comment_id={commentObj._id}
-                                    editReply={this.editReply}
-                                    mode={'edit'} />
-                            
+
+                            <Reply
+                                comment={commentObj}
+                                injuryId={this.props.injuryId}
+                                cancelReply={this.cancelReply}
+                                editReply={this.editReply}
+                                mode={'edit'} />
+
                             :
                             <Comment
-                                text={commentObj.text}
-                                author={commentObj.author}
-                                id={commentObj._id}
-                                upvotes={commentObj.upvotes}
+                                comment={commentObj}
                                 treatment={this.props.treatment}
+                                user={this.props.user}
+                                // actions
                                 commentUpvote={this.commentUpvote}
                                 showForm={this.showForm}
                                 deleteComment={this.deleteComment}
-                                user={this.props.user}
+                                
                             />
                     }
-
-
                 </div>
             </div>
 

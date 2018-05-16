@@ -8,20 +8,20 @@ export default class Reply extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            comment: '',
-           
+            text: '',
+
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.cancel = this.cancel.bind(this);
     }
 
-    componentWillMount () {
-        if (this.props.mode === 'edit') {       
-        this.setState({
-            comment: this.props.comment
-        })
-    }
+    componentWillMount() {
+        if (this.props.mode === 'edit') {
+            this.setState({
+                text: this.props.comment.text
+            });
+        }
     }
 
     handleChange(event) {
@@ -29,16 +29,21 @@ export default class Reply extends Component {
             [event.target.name]: event.target.value
         });
     }
-
+    // comment={commentObj.text}
+    // comment_id={commentObj._id}
     handleSubmit(event) {
         event.preventDefault()
         console.log('reply component, state: ');
         console.log(this.state);
         if (this.props.mode === 'add') {
-            this.props.addReply(this.state.comment);
+            this.props.addReply(this.state.text);
         } else if (this.props.mode === 'edit') {
-            this.props.editReply(this.state.comment, this.props.comment_id);
-        }       
+            const commentData = Object.assign({}, this.props.comment);
+            commentData.text = this.state.text;
+            commentData.injuryId = this.props.injuryId;
+            this.props.editReply(commentData);
+            
+        }
         //need to figure out how to get access to injury and treatment ids  
     }
 
@@ -49,36 +54,36 @@ export default class Reply extends Component {
     render() {
         return (
 
-           
+
             <div className="">
                 <form className="form-horizontal" onSubmit={this.handleSubmit}>
                     <div className="form-group col-12">
-  
-                            <textarea className="form-input"
-                                type="text"
-                                id=""
-                                name="comment"
-                                placeholder="Comment"
-                                value={this.state.comment}
-                                onChange={this.handleChange}
-                            /> 
+
+                        <textarea className="form-input"
+                            type="text"
+                            id=""
+                            name="text"
+                            placeholder="Comment"
+                            value={this.state.text}
+                            onChange={this.handleChange}
+                        />
                     </div>
                     <div className="form-group col-12">
-                                
-                                <input className="btn "
-                                    type="button"
-                                    value="Cancel"
-                                    onClick={this.cancel}
-                                />
-                                &nbsp;
-                                
-								<input
-                                    className="btn btn-primary "
-                                    type="submit"
-                                    value="Submit"
-                                    onClick={this.handleSubmit}
-                                />
-                            </div>
+
+                        <input className="btn "
+                            type="button"
+                            value="Cancel"
+                            onClick={this.cancel}
+                        />
+                        &nbsp;
+
+                        <input
+                            className="btn btn-primary "
+                            type="submit"
+                            value="Submit"
+                            onClick={this.handleSubmit}
+                        />
+                    </div>
                 </form>
             </div>
 

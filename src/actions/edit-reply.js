@@ -2,8 +2,8 @@ import axios from 'axios';
 const url = '/comment/';
 
 export default function editReply(commentObj) {
-            console.log('editReply action comment: ');
-        console.log(commentObj);
+    console.log('editReply action comment: ');
+    console.log(commentObj);
     return dispatch => {
 
         axios.put(url, commentObj).then(res => {

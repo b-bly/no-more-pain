@@ -75,8 +75,8 @@ export default function (state = [], action) {
                         return {
                             ...treatment,
                             comments: treatment.comments.map((comment) => {
-                                if (comment._id === action.payload.commentId) {
-                                    const updatedComment = Object.assign({}, comment, { upvotes: comment.upvotes.push(action.payload.author.id) });
+                                if (comment._id === action.payload._id) {
+                                    return action.payload
                                 }
                                 return comment;
                             })
