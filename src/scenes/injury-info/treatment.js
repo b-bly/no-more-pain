@@ -14,7 +14,7 @@ class Treatment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showAddCommentForm: '', //stores treatment id and passes to comments props to show form
+            addCommentForm: '', //stores treatment id and passes to comments props to show form
             commentId: '', // for edit comment
             commentParentId: '', //will need eventually for nested comments
             showComments: true, // show / hide comments
@@ -22,9 +22,7 @@ class Treatment extends Component {
 
         }
         this.toggleComments = this.toggleComments.bind(this);
-        this.showAddCommentForm = this.showAddCommentForm.bind(this);
-        this.cancelReply = this.cancelReply.bind(this);
-        this.addReply = this.addReply.bind(this);
+        this.toggleAddCommentForm = this.toggleAddCommentForm.bind(this);
         this.editReply = this.editReply.bind(this);
         this.deleteTreatment = this.deleteTreatment.bind(this);
         this.showEditForm = this.showEditForm.bind(this);
@@ -47,17 +45,17 @@ class Treatment extends Component {
         }
     }
 
-    showAddCommentForm() {
+    toggleAddCommentForm() {
 
-        this.setState({
-            showAddCommentForm: this.props.treatment._id
-        });
-    }
-
-    cancelReply() {
-        this.setState({
-            treatmentId: ''
-        });
+        if (this.state.addCommentForm === '') {
+            this.setState({
+                addCommentForm: this.props.treatment._id
+            });
+        } else {
+            this.setState({
+                addCommentForm: ''
+            });
+        }
     }
 
     showEditForm() {
@@ -80,12 +78,7 @@ class Treatment extends Component {
         });
     }
 
-    addReply(comment) {
-        this.props.addReply(this.props.treatment._id, comment); //calling addReply in index.js, not action
-        this.setState({
-            treatmentId: ''
-        });
-    }
+
 
     editReply(commentObject) {
         this.props.editReply(commentObject)
@@ -131,100 +124,100 @@ class Treatment extends Component {
         console.log('treatment.js this.props');
         console.log(this.props);
         return (
-   //this.props.injuryInfo
-//    injuryId
-//    :
-//    "5af4d63f2e1dba9509e1b25f"
-//    injuryInfo
-//    :
-//    author
-//    :
-//    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
-//    description
-//    :
-//    "hmmm in elbow"
-//    title
-//    :
-//    "Tennis Elbow"
-//    treatments
-//    :
-//    Array(4)
-//    0
-//    :
-//    author
-//    :
-//    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
-//    comments
-//    :
-//    [{…}]
-//    description
-//    :
-//    "testing"
-//    name
-//    :
-//    "testing"
-//    upvotes
-//    :
-//    (4) ["5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb"]
-//    _id
-//    :
-//    "5af4dbc4c5a6fa95dd48a675"
-//    __proto__
-//    :
-//    Object
-//    1
-//    :
-//    {upvotes: Array(0), author: {…}, _id: "5af585edcc1fe5a3a740ab54", name: "Milkshakes", description: "drink", …}
-//    2
-//    :
-//    {upvotes: Array(0), author: {…}, _id: "5af8c90fafd81ccf05bbb6d6", name: "THis is what other people are doing", description: "", …}
-//    3
-//    :
-//    {upvotes: Array(0), author: {…}, _id: "5afb3ae36a517cf3f18d7521", name: "fff", description: "", …}
-//    length
-//    :
-//    4
-//    __proto__
-//    :
-//    Array(0)
-//    upvotes
-//    :
-//    ["5a7ddf840898fd83b5c6b3bb"]
-//    __v
-//    :
-//    0
-//    _id
-//    :
-//    "5af4d63f2e1dba9509e1b25f"
+            //this.props.injuryInfo
+            //    injuryId
+            //    :
+            //    "5af4d63f2e1dba9509e1b25f"
+            //    injuryInfo
+            //    :
+            //    author
+            //    :
+            //    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+            //    description
+            //    :
+            //    "hmmm in elbow"
+            //    title
+            //    :
+            //    "Tennis Elbow"
+            //    treatments
+            //    :
+            //    Array(4)
+            //    0
+            //    :
+            //    author
+            //    :
+            //    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+            //    comments
+            //    :
+            //    [{…}]
+            //    description
+            //    :
+            //    "testing"
+            //    name
+            //    :
+            //    "testing"
+            //    upvotes
+            //    :
+            //    (4) ["5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb"]
+            //    _id
+            //    :
+            //    "5af4dbc4c5a6fa95dd48a675"
+            //    __proto__
+            //    :
+            //    Object
+            //    1
+            //    :
+            //    {upvotes: Array(0), author: {…}, _id: "5af585edcc1fe5a3a740ab54", name: "Milkshakes", description: "drink", …}
+            //    2
+            //    :
+            //    {upvotes: Array(0), author: {…}, _id: "5af8c90fafd81ccf05bbb6d6", name: "THis is what other people are doing", description: "", …}
+            //    3
+            //    :
+            //    {upvotes: Array(0), author: {…}, _id: "5afb3ae36a517cf3f18d7521", name: "fff", description: "", …}
+            //    length
+            //    :
+            //    4
+            //    __proto__
+            //    :
+            //    Array(0)
+            //    upvotes
+            //    :
+            //    ["5a7ddf840898fd83b5c6b3bb"]
+            //    __v
+            //    :
+            //    0
+            //    _id
+            //    :
+            //    "5af4d63f2e1dba9509e1b25f"
 
-// this.props.user
-// user
-// :
-// id
-// :
-// "5a7ddf840898fd83b5c6b3bb"
-// loggedIn
-// :
-// true
-// username
-// :
-// "al"
+            // this.props.user
+            // user
+            // :
+            // id
+            // :
+            // "5a7ddf840898fd83b5c6b3bb"
+            // loggedIn
+            // :
+            // true
+            // username
+            // :
+            // "al"
 
             // Old treatment props: 
-        //     <Treatment
-        //     treatment={treatment}
-        //     treatmentId={treatment._id}
-        //     injuryId={this.props.injuryInfo._id}
-        //     comments={treatment.comments}
-        //     // *********************** treatmentCopy.comments
-        //     addReply={this.addReply}
-        //     editReply={this.editReply}
-        //     editTreatment={this.editTreatment}
-        //     treatmentUpvote={this.treatmentUpvote}
-        //     commentUpvote={this.commentUpvote}
-        //     user={this.props.user}
-        //     deleteComment={this.deleteComment}
-        // />
+            //     <Treatment
+            //     treatment={treatment}
+            //     treatmentId={treatment._id}
+            //     injuryId={this.props.injuryInfo._id}
+            //     comments={treatment.comments}
+            //     // *********************** treatmentCopy.comments
+            //     addReply={this.addReply}
+            //     editReply={this.editReply}
+            //     editTreatment={this.editTreatment}
+            //     treatmentUpvote={this.treatmentUpvote}
+            //     commentUpvote={this.commentUpvote}
+            //     user={this.props.user}
+            //     deleteComment={this.deleteComment}
+            // />
             <div className="columns" >
                 <div className="column col-4"></div>
                 <div className="column col-6">
@@ -247,7 +240,7 @@ class Treatment extends Component {
                             <div className="">
                                 <div className="flex-row">
                                     <div className="flex-column align-items-center">
-                                            <Button
+                                        <Button
                                             handleClick={this.treatmentUpvote}
                                             icon="fa fa-thumbs-up"
                                             aria="upvote"
@@ -287,7 +280,7 @@ class Treatment extends Component {
 
                                     {this.props.user.loggedIn === true && (
                                         <Button
-                                            handleClick={this.showAddCommentForm}
+                                            handleClick={this.toggleAddCommentForm}
                                             icon="fa fa-reply"
                                             aria="comment"
                                         />
@@ -337,7 +330,9 @@ class Treatment extends Component {
                                             // deleteComment={this.deleteComment}
                                             user={this.props.user}
                                             treatment={this.props.treatment}
-                                            showAddCommentForm={this.state.showAddCommentForm}
+                                            toggleAddCommentForm={this.toggleAddCommentForm}
+                                            addCommentForm={this.state.addCommentForm}
+                                            cancelAddComment={this.cancelAddComment}
                                         />
                                     }
                                 </div>

@@ -30,6 +30,11 @@ class Comments extends Component {
         });
     }
 
+    addReply(comment) {
+        this.props.addReply(this.props.treatment._id, comment); //calling addReply in index.js, not action
+        this.props.toggleShowAddCommentForm();
+    }
+
     editReply(commentData) {
         this.props.editReply(
             commentData);
@@ -53,6 +58,10 @@ class Comments extends Component {
 
         this.props.deleteComment(commentData);
 
+    }
+
+    cancelAddComment() {
+        this.props.cancelAddComment();
     }
 
     render() {
@@ -99,7 +108,7 @@ class Comments extends Component {
                                 commentUpvote={this.commentUpvote}
                                 showForm={this.showForm}
                                 deleteComment={this.deleteComment}
-
+                                
                             />
                     }
                 </div>
@@ -114,12 +123,12 @@ class Comments extends Component {
                 <div className="col-11">
 
                     {/* *** add comment form *** */}
-                    {this.props.showAddCommentForm !== '' &&
+                    {this.props.addCommentForm !== '' &&
 
                         <div className="card">
                             <Reply
                                 addReply={this.addReply}
-                                cancelReply={this.cancelReply}
+                                cancelReply={this.props.toggleAddCommentForm}
                                 mode={'add'}
                             />
                         </div>

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import getInjuryInfo from '../../actions/getInjuryInfo';
 import editTreatment from '../../actions/edit-treatment';
 import treatmentUpvote from '../../actions/treatment-upvote';
-import addReply from '../../actions/add-reply';
+
 
 //components
 import Treatment from './treatment';
@@ -190,7 +190,6 @@ function mapDispatchToProps(dispatch) {
         getInjuryInfo: getInjuryInfo,      
         editTreatment: editTreatment,
         treatmentUpvote: treatmentUpvote, 
-        addReply: addReply,
     }, dispatch);
 }
 
