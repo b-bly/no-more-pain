@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 // components
 import Reply from './add-reply';
 import Comments from './comments';
 import AddTreatmentForm from './treatment-form'
 import Button from './button';
-//actions
-import deleteTreatment from '../../actions/delete-treatment'; //move to index.js
 
 
-class Treatment extends Component {
+export default class Treatment extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -347,17 +343,3 @@ class Treatment extends Component {
         );
     }
 }
-
-function mapStateToProps(state) {
-    return {
-
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        deleteTreatment: deleteTreatment
-    }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Treatment);

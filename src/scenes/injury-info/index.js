@@ -7,12 +7,10 @@ import { Link } from 'react-router-dom';
 
 //actions
 import getInjuryInfo from '../../actions/getInjuryInfo';
-import editTreatment from '../../actions/edit-treatment';
-import treatmentUpvote from '../../actions/treatment-upvote';
 
 
 //components
-import Treatment from './treatment';
+import TreatmentContainer from './treatment-container';
 
 
 
@@ -21,106 +19,9 @@ import Treatment from './treatment';
 class InjuryInfo extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            showForm: '',
-            showComments: false,
-            showDescription: false
-        }
-
-        this.toggleDescription = this.toggleDescription.bind(this);
-        this.toggleComments = this.toggleComments.bind(this);
-        this.addReply = this.addReply.bind(this);
-        this.editReply = this.editReply.bind(this);
-        this.editTreatment = this.editTreatment.bind(this);
-        this.treatmentUpvote = this.treatmentUpvote.bind(this);
-        this.commentUpvote = this.commentUpvote.bind(this);
-        this.deleteComment = this.deleteComment.bind(this);
-    }
-    componentWillMount() {
-
-    }
-
-    editTreatment(newTreatment) {
-        this.props.editTreatment(newTreatment);
-    }
-
-    toggleComments() {
-        this.setState({ showComments: !this.state.showComments });
-    }
-
-    toggleDescription(id) {
-        this.setState({ showDescription: id });
-    }
-
-    showForm(id) {
-        this.setState({
-            showForm: id
-        })
-    }
-
-    addReply(treatmentId, comment) {
-        // const commentsSchema = {
-        //     injury_id: Schema.Types.ObjectId,
-        //     treatment_id: Schema.Types.ObjectId,
-        //     parent_id: Schema.Types.ObjectId,
-        //     posted: { type: Date, default: Date.now },
-        //     upvotes: [],
-        //     author: {
-        //               id: Schema.Types.ObjectId,
-        //               username: String
-        //              },
-        //     text: String
-        // }
-        const replyObject = {
-            injury_id: this.props.injuryInfo._id,
-            treatment_id: treatmentId,
-            parent_id: null, //move values to state?
-            upvotes: [],
-            author: this.props.user,
-            text: comment
-        }
-        this.props.addReply(replyObject);
-    }
-
-    editReply(commentObject) {
-        this.props.editReply(commentObject);
-    }
-
-    treatmentUpvote(treatmentUpvoteData) {
-        this.props.treatmentUpvote(treatmentUpvoteData);
-    }
-
-    commentUpvote(commentData) {
-        this.props.commentUpvote(commentData);
-    }
-
-    deleteComment(commentData) {
-        this.props.deleteComment(commentData);
     }
 
     render() {
-        console.log('injury info props.injuryInfo: ');
-        console.log(this.props.injuryInfo);
-
-        //**************** this.props.injuryInfo.treatments
-        let treatments = Object.assign([], this.props.injuryInfo.treatments); //this.props.injuryInfo.treatments
-        treatments = treatments.map((treatmentCopy, i) => {
-            const treatment = Object.assign({}, treatmentCopy);
-
-            return (
-                <div className="treatment-container" key={i.toString()}>
-
-                    {/* TREATMENTS  */}
-                    <Treatment
-                        {...this.props}
-                        treatment={treatment}
-                        addReply={this.addReply}//*
-                        editTreatment={this.editTreatment}
-                        treatmentUpvote={this.treatmentUpvote}
-                    />
-                </div>
-            );
-        });
 
         return (
             <div>
@@ -166,8 +67,9 @@ class InjuryInfo extends Component {
                     </div>
 
                 </div>
-                {/* TREATMENTS LIST */}
-                {treatments}
+                <TreatmentContainer
+                    {...this.props}
+                />
             </div>
         );
     }
@@ -187,9 +89,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getInjuryInfo: getInjuryInfo,      
-        editTreatment: editTreatment,
-        treatmentUpvote: treatmentUpvote, 
+
     }, dispatch);
 }
 

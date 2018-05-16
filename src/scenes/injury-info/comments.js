@@ -98,7 +98,6 @@ class Comments extends Component {
                                 cancelReply={this.cancelReply}
                                 editReply={this.editReply}
                                 mode={'edit'} />
-
                             :
                             <Comment
                                 comment={commentObj}
@@ -108,20 +107,16 @@ class Comments extends Component {
                                 commentUpvote={this.commentUpvote}
                                 showForm={this.showForm}
                                 deleteComment={this.deleteComment}
-                                
                             />
                     }
                 </div>
             </div>
-
-        )
-
+       )
 
         return (
             <div className="columns">
                 <div className="col-1"></div>
                 <div className="col-11">
-
                     {/* *** add comment form *** */}
                     {this.props.addCommentForm !== '' &&
 
@@ -132,9 +127,7 @@ class Comments extends Component {
                                 mode={'add'}
                             />
                         </div>
-
                     }
-
                     {comments}
                 </div>
             </div>
