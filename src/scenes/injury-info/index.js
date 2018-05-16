@@ -68,7 +68,7 @@ class InjuryInfo extends Component {
         //     treatment_id: Schema.Types.ObjectId,
         //     parent_id: Schema.Types.ObjectId,
         //     posted: { type: Date, default: Date.now },
-        //     upvotes: Number,
+        //     upvotes: [],
         //     author: {
         //               id: Schema.Types.ObjectId,
         //               username: String
@@ -81,8 +81,8 @@ class InjuryInfo extends Component {
             injury_id: this.props.injuryInfo._id,
             treatment_id: treatmentId,
             parent_id: null, //move values to state?
-            //upvotes will be [] by default
-            author: null,
+            upvotes: [],
+            author: this.props.user,
             text: comment
         }
         this.props.addReply(replyObject);
@@ -107,7 +107,7 @@ class InjuryInfo extends Component {
     render() {
         console.log('injury info props.injuryInfo: ');
         console.log(this.props.injuryInfo);
-        //injuryInfo data:
+        // this.props.injuryInfo data sample:
         // [ anonymous {
         //     id: 1,
         //     title: 'High Hamstring Tendonopathy',
@@ -282,7 +282,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
         // });
 
 
-//Card
+// TO DO
 //x  get rid of description button
 //x Upvotes on left margin -- thumbs up with vote number underneath
 // toggle comments by clicking a '...' below first comment?
@@ -291,3 +291,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(InjuryInfo);
     //and simpler db queries 
     //https://github.com/reduxjs/redux/issues/432
 // fix styling on edit injury
+// for comments, I should be using the data that comes back from the server to add it in
+    //redux because it will give the date info.  Maybe should use it for all of them because
+    //the database makes up the _id also...

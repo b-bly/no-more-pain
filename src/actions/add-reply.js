@@ -8,19 +8,8 @@ export default function addReply(replyObject) {
         axios.post(url + replyObject.treatment_id, replyObject).then(res => {
             console.log('addReply action res.data');
             console.log(res.data);
-            //dispatch(addReplyAsync(res.data));
-            axios.get('injury/info', {
-                params: {
-                    id: replyObject.injury_id
-                }
-            }).then(res => {
-                console.log('add-reply, get action res.data');
-                console.log(res.data);              
-                dispatch(addReplyAsync(res.data));
-            }).catch(function (error) {
-                console.log('error getInjuryInfo in addReply: ');
-                console.log(error);
-            });
+            dispatch(addReplyAsync(replyObject));
+          
         }).catch(function (error) {
             console.log('error addReply : ');
             console.log(error);

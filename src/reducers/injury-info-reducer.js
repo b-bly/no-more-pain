@@ -14,7 +14,21 @@ export default function (state = [], action) {
                 ]
             };
         case 'ADD_REPLY':
-            return state;
+            return {
+                ...state,
+                treatments: state.treatments.map(treatment => {
+                    if (treatment._id === action.payload.treatment_id) {
+                        const updatedTreatment = Object.assign({}, treatment);
+                        updatedTreatment.comments = [
+                            ...treatment.comments,
+                            action.payload
+                        ]
+                        return updatedTreatment;
+                    };
+                    return treatment;
+                })
+            };
+            //return state;
         case 'DELETE_TREATMENT':
             return {
                 ...state,

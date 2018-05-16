@@ -16,7 +16,8 @@ export default function (state = [], action) {
             return state.map(injury => {
                 if (injury._id === action.payload._id) {
                     const updatedInjury = action.payload;
-                    updatedInjury.treatments = injury.treatments;
+                    updatedInjury.treatments = injury.treatments; //could have passed this in through
+                    //the original editInjury function
                     return updatedInjury;
                 } else {
                     return injury;
