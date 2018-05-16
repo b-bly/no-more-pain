@@ -7,12 +7,9 @@ import { Link } from 'react-router-dom';
 
 //actions
 import getInjuryInfo from '../../actions/getInjuryInfo';
-import addReply from '../../actions/add-reply';
-import editReply from '../../actions/edit-reply';
 import editTreatment from '../../actions/edit-treatment';
 import treatmentUpvote from '../../actions/treatment-upvote';
-import commentUpvote from '../../actions/comment-upvote';
-import deleteComment from '../../actions/delete-comment';
+import addReply from '../../actions/add-reply';
 
 //components
 import Treatment from './treatment';
@@ -117,12 +114,9 @@ class InjuryInfo extends Component {
                     <Treatment
                         {...this.props}
                         treatment={treatment}
-                        addReply={this.addReply}
-                        editReply={this.editReply}
+                        addReply={this.addReply}//*
                         editTreatment={this.editTreatment}
                         treatmentUpvote={this.treatmentUpvote}
-                        commentUpvote={this.commentUpvote}
-                        deleteComment={this.deleteComment}
                     />
                 </div>
             );
@@ -193,13 +187,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getInjuryInfo: getInjuryInfo,
-        addReply: addReply,
-        editReply: editReply,
+        getInjuryInfo: getInjuryInfo,      
         editTreatment: editTreatment,
-        treatmentUpvote: treatmentUpvote,
-        commentUpvote: commentUpvote,
-        deleteComment: deleteComment,
+        treatmentUpvote: treatmentUpvote, 
+        addReply: addReply,
     }, dispatch);
 }
 

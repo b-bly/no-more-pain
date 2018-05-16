@@ -14,7 +14,7 @@ class Treatment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            treatmentId: '', //selected treatment
+            showAddCommentForm: '', //stores treatment id and passes to comments props to show form
             commentId: '', // for edit comment
             commentParentId: '', //will need eventually for nested comments
             showComments: true, // show / hide comments
@@ -22,7 +22,7 @@ class Treatment extends Component {
 
         }
         this.toggleComments = this.toggleComments.bind(this);
-        this.showReplyForm = this.showReplyForm.bind(this);
+        this.showAddCommentForm = this.showAddCommentForm.bind(this);
         this.cancelReply = this.cancelReply.bind(this);
         this.addReply = this.addReply.bind(this);
         this.editReply = this.editReply.bind(this);
@@ -47,10 +47,10 @@ class Treatment extends Component {
         }
     }
 
-    showReplyForm() {
+    showAddCommentForm() {
 
         this.setState({
-            treatmentId: this.props.treatment._id
+            showAddCommentForm: this.props.treatment._id
         });
     }
 
@@ -287,7 +287,7 @@ class Treatment extends Component {
 
                                     {this.props.user.loggedIn === true && (
                                         <Button
-                                            handleClick={this.showReplyForm}
+                                            handleClick={this.showAddCommentForm}
                                             icon="fa fa-reply"
                                             aria="comment"
                                         />
@@ -325,25 +325,6 @@ class Treatment extends Component {
                                     )}
 
                                 </div>
-
-                                {/* ************************************************************ */}
-
-                                {this.state.treatmentId !== '' &&
-                                    <div className="col-12">
-                                        <div className="columns" >
-                                            <div className="col-1"></div>
-                                            <div className="col-11">
-                                                <div className="card columns">
-                                                    <Reply
-                                                        addReply={this.addReply}
-                                                        cancelReply={this.cancelReply}
-                                                        mode={'add'}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
                                 {/* *************************************************** */}
                                 <div className="col-12">
                                     {this.state.showComments === true &&
@@ -351,11 +332,12 @@ class Treatment extends Component {
                                             comments={this.props.treatment.comments} //replace
                                             toggleComments={this.toggleComments}
                                             injuryId={this.props.injuryInfo._id}
-                                            editReply={this.editReply}
-                                            commentUpvote={this.commentUpvote}
-                                            deleteComment={this.deleteComment}
+                                            // editReply={this.editReply}
+                                            // commentUpvote={this.commentUpvote}
+                                            // deleteComment={this.deleteComment}
                                             user={this.props.user}
                                             treatment={this.props.treatment}
+                                            showAddCommentForm={this.state.showAddCommentForm}
                                         />
                                     }
                                 </div>

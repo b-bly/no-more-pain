@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 //components
 import Reply from './add-reply';
 import Button from './button';
 import Comment from './comment';
+//actions
+import commentUpvote from '../../actions/comment-upvote';
+import deleteComment from '../../actions/delete-comment';
+import addReply from '../../actions/add-reply';
+import editReply from '../../actions/edit-reply';
 
-export default class Comments extends Component {
+class Comments extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,9 +30,9 @@ export default class Comments extends Component {
         });
     }
 
-    editReply(commentData) {     
+    editReply(commentData) {
         this.props.editReply(
-        commentData);
+            commentData);
         this.setState({
             showForm: '',
         })
@@ -38,14 +45,14 @@ export default class Comments extends Component {
     }
 
     commentUpvote(commentData) {
-    
+
         this.props.commentUpvote(commentData);
     }
 
     deleteComment(commentData) {
-        
-            this.props.deleteComment(commentData);
-        
+
+        this.props.deleteComment(commentData);
+
     }
 
     render() {
@@ -79,7 +86,6 @@ export default class Comments extends Component {
 
                             <Reply
                                 comment={commentObj}
-                                injuryId={this.props.injuryId}
                                 cancelReply={this.cancelReply}
                                 editReply={this.editReply}
                                 mode={'edit'} />
@@ -93,7 +99,7 @@ export default class Comments extends Component {
                                 commentUpvote={this.commentUpvote}
                                 showForm={this.showForm}
                                 deleteComment={this.deleteComment}
-                                
+
                             />
                     }
                 </div>
@@ -106,9 +112,41 @@ export default class Comments extends Component {
             <div className="columns">
                 <div className="col-1"></div>
                 <div className="col-11">
+
+                    {/* *** add comment form *** */}
+                    {this.props.showAddCommentForm !== '' &&
+
+                        <div className="card">
+                            <Reply
+                                addReply={this.addReply}
+                                cancelReply={this.cancelReply}
+                                mode={'add'}
+                            />
+                        </div>
+
+                    }
+
                     {comments}
                 </div>
             </div>
         );
     }
 }
+
+
+function mapStateToProps(state) {
+    return {
+
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addReply: addReply,
+        editReply: editReply,
+        commentUpvote: commentUpvote,
+        deleteComment: deleteComment,
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

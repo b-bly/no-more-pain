@@ -12,7 +12,7 @@ export default function editReply(commentObj) {
 
             axios.get('/injury/info', {
                 params: {
-                    id: commentObj.injuryId
+                    id: commentObj.injury_id
                 }
             }).then(res => {
                 console.log('editReply get action res.data');

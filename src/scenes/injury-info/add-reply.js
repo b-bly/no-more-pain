@@ -40,7 +40,6 @@ export default class Reply extends Component {
         } else if (this.props.mode === 'edit') {
             const commentData = Object.assign({}, this.props.comment);
             commentData.text = this.state.text;
-            commentData.injuryId = this.props.injuryId;
             this.props.editReply(commentData);
             
         }
