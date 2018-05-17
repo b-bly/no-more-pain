@@ -18,6 +18,8 @@ ReactJS, Redux, Node.js, Express, MongoDB, Passport.js and Spectre.css.
 ### Prerequisites
 
 - A package manager like [npm](https://www.npmjs.com/)
+- [Node.js](https://nodejs.org/en/)
+- [MongoDB](https://www.mongodb.com/)
 
 
 ### Installing
@@ -34,12 +36,12 @@ The app should automatically open in a browser at the url: localhost:3000
 - [x] Client-side routing with react-router-dom.
 - [x] User login with Passport.js authentication.
 - [x] Client and server-side permissions for edit, delete, and upvoting content.
+- [x] State management with Redux.
 
 ### Next Steps
 
 Features that you would like to add at some point in the future.
 
-- [ ] State management with Redux (it is currently implemented in an inefficient way)
 - [ ] Save injuries or treatments to user's myLibrary.
 - [ ] Add images to treatment and injury descriptions.
 - [ ] Pagination.

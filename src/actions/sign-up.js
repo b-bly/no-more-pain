@@ -10,6 +10,7 @@ export default function signUp(userInfo) {
             console.log(res.data);
             const user = {
                 username: res.data.username,
+                id: res.data._id,
                 loggedIn: false
             }
             dispatch(postNewUserAsync(user));

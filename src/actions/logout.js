@@ -10,6 +10,7 @@ export default function logout() {
             console.log(res.data);
             const user = {
                 username: '',
+                id: '',
                 loggedIn: false
             }
             dispatch(logoutAsync(user));
