@@ -25,7 +25,9 @@ ReactJS, Redux, Node.js, Express, MongoDB, Passport.js and Spectre.css.
 ### Installing
 
 Run these commands in the terminal:
+
 npm install
+
 npm run dev
 
 The app should automatically open in a browser at the url: localhost:3000
