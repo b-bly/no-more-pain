@@ -20,7 +20,7 @@ export default function addComment(replyObject) {
 
 function addCommentAsync (injuryInfo) {
     return {
-        type: 'ADD_REPLY',
+        type: 'ADD_COMMENT',
         payload: injuryInfo
     }
 }

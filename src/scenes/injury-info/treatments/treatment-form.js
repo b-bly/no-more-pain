@@ -8,11 +8,8 @@ export default class TreatmentForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            treatmentId: '',
             name: '',
             description: '',
-            upvotes: '',
-            injuryId: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,12 +19,9 @@ export default class TreatmentForm extends Component {
     componentWillMount() {
         if (this.props.mode === 'edit') {
             this.setState({
-                treatmentId: this.props.treatment._id,
                 name: this.props.treatment.name,
                 description: this.props.treatment.description,
-                upvotes: this.props.treatment.upvotes,
-                injuryId: this.props.injuryId,
-                user: this.props.user,
+              
             });
         }
     }
@@ -41,18 +35,15 @@ export default class TreatmentForm extends Component {
     handleSubmit(event) {
         event.preventDefault()
 
-        const newTreatment = {
-            name: this.state.name,
-            description: this.state.description,
-            upvotes: this.state.upvotes,
-            injuryId: this.state.injuryId,
-        };
+ 
+        const newTreatment = Object.assign({}, this.props.treatment);
+        newTreatment.name = this.state.name;
+        newTreatment.description = this.state.description;
         if (this.props.mode === 'add') {
+            newTreatment.author = this.props.user;
             this.props.addTreatment(newTreatment);
         } else if (this.props.mode === 'edit') {
             //need treatmentId for editing, but not for adding a new treatment
-            newTreatment.treatmentId = this.state.treatmentId;
-            newTreatment.authorId = this.props.user.id;
             this.props.editTreatment(newTreatment);      
         }
         //need to figure out how to get access to injury and treatment ids  

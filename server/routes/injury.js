@@ -225,14 +225,14 @@ router.put('/info', (req, res) => {
 });
 
 
-router.put('/edit-treatment:injuryId', (req, res) => {
+router.put('/edit-treatment', (req, res) => {
     console.log('info put, req.body: ');
     //const injuryId = req.params.injuryId;
     const name = req.body.name;
     const description = req.body.description;
-    const treatmentId = req.body.treatmentId;
+    const treatmentId = req.body._id;
     const userId = req.user._id.toString();
-    const authorId = req.body.authorId.toString();
+    const authorId = req.body.author.id.toString();
     console.log(req.body);
     // console.log(req.params.injuryId); works, but should probably be attached in params object
     //in edit-treatment.js, not concatenated to the url
