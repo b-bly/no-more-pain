@@ -8,7 +8,7 @@ import UserGreeting from './scenes/home/user-greeting'
 import InjuryList from './scenes/injury-list/index.js'
 import AddInjuryForm from './scenes/injury-list/add-injury-form'
 import InjuryInfo from './scenes/injury-info'
-import AddTreatmentForm from './scenes/injury-info/add-treatment'
+import AddTreatmentForm from './scenes/injury-info/treatments/add-treatment'
 import UserData from './user-data';
 
 class App extends Component {

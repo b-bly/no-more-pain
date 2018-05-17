@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 //actions
-import editTreatment from '../../actions/edit-treatment';
-import deleteTreatment from '../../actions/delete-treatment';
-import treatmentUpvote from '../../actions/treatment-upvote';
+import editTreatment from '../../../actions/edit-treatment';
+import deleteTreatment from '../../../actions/delete-treatment';
+import treatmentUpvote from '../../../actions/treatment-upvote';
 //components
 import Treatment from './treatment';
 

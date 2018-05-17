@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 // Style
-import './styles.css';
-import '../../index.css';
+import '../styles.css';
+import '../../../index.css';
 
-export default class Reply extends Component {
+export default class CommentForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -33,21 +33,21 @@ export default class Reply extends Component {
     // comment_id={commentObj._id}
     handleSubmit(event) {
         event.preventDefault()
-        console.log('reply component, state: ');
+        console.log('comment-form component, state: ');
         console.log(this.state);
         if (this.props.mode === 'add') {
-            this.props.addReply(this.state.text);
+            this.props.addComment(this.state.text);
         } else if (this.props.mode === 'edit') {
             const commentData = Object.assign({}, this.props.comment);
             commentData.text = this.state.text;
-            this.props.editReply(commentData);
+            this.props.editComment(commentData);
             
         }
         //need to figure out how to get access to injury and treatment ids  
     }
 
     cancel() {
-        this.props.cancelReply();
+        this.props.cancelComment();
     }
 
     render() {

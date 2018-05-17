@@ -10,7 +10,7 @@ import getInjuryInfo from '../../actions/getInjuryInfo';
 
 
 //components
-import TreatmentContainer from './treatment-container';
+import Treatments from './treatments/treatments';
 
 
 
@@ -67,7 +67,7 @@ class InjuryInfo extends Component {
                     </div>
 
                 </div>
-                <TreatmentContainer
+                <Treatments
                     {...this.props}
                 />
             </div>

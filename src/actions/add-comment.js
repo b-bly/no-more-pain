@@ -1,24 +1,24 @@
 import axios from 'axios';
 const url = '/comment/add-reply/';
 
-export default function addReply(replyObject) {
+export default function addComment(replyObject) {
     return dispatch => {
-        console.log('addReply action replyObject: ');
+        console.log('addComment action replyObject: ');
         console.log(replyObject);
         axios.post(url + replyObject.treatment_id, replyObject).then(res => {
-            console.log('addReply action res.data');
+            console.log('addComment action res.data');
             console.log(res.data);
-            dispatch(addReplyAsync(replyObject));
+            dispatch(addCommentAsync(replyObject));
           
         }).catch(function (error) {
-            console.log('error addReply : ');
+            console.log('error addComment : ');
             console.log(error);
-            dispatch(addReplyAsync('fail'));
+            dispatch(addCommentAsync('fail'));
         });
     }
 }
 
-function addReplyAsync (injuryInfo) {
+function addCommentAsync (injuryInfo) {
     return {
         type: 'ADD_REPLY',
         payload: injuryInfo

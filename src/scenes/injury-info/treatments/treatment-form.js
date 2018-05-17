@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 //styles
-import './styles.css';
-import '../../index.css';
+import '../styles.css';
+import '../../../index.css';
 
 export default class TreatmentForm extends Component {
     constructor(props) {

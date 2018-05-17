@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 // components
-import Reply from './add-reply';
-import Comments from './comments';
-import AddTreatmentForm from './treatment-form'
-import Button from './button';
+import Comments from '../comments/comments';
+import TreatmentForm from './treatment-form'
+import Button from '../button';
 
 
 export default class Treatment extends Component {
@@ -222,7 +221,7 @@ export default class Treatment extends Component {
                         {/* *** show form *** */}
                         {this.state.showEditTreatmentForm ?
                             <div>
-                                <AddTreatmentForm
+                                <TreatmentForm
                                     treatment={this.props.treatment}
                                     injuryId={this.props.injuryInfo._id}
                                     editTreatment={this.editTreatment}

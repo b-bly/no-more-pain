@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //components
-import Reply from './add-reply';
-import Button from './button';
+import CommentForm from './comment-form';
+import Button from '../button';
 import Comment from './comment';
 //actions
-import commentUpvote from '../../actions/comment-upvote';
-import deleteComment from '../../actions/delete-comment';
-import addReply from '../../actions/add-reply';
-import editReply from '../../actions/edit-reply';
+import commentUpvote from '../../../actions/comment-upvote';
+import deleteComment from '../../../actions/delete-comment';
+import addComment from '../../../actions/add-comment';
+import editComment from '../../../actions/edit-comment';
 
 class Comments extends Component {
     constructor(props) {
@@ -18,8 +18,8 @@ class Comments extends Component {
             showForm: '',
         }
         this.showForm = this.showForm.bind(this);
-        this.cancelReply = this.cancelReply.bind(this);
-        this.editReply = this.editReply.bind(this);
+        this.cancelComment = this.cancelComment.bind(this);
+        this.editComment = this.editComment.bind(this);
         this.commentUpvote = this.commentUpvote.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
     }
@@ -30,34 +30,31 @@ class Comments extends Component {
         });
     }
 
-    addReply(comment) {
-        this.props.addReply(this.props.treatment._id, comment); //calling addReply in index.js, not action
+    addComment(comment) {
+        this.props.addComment(this.props.treatment._id, comment); //calling addComment in index.js, not action
         this.props.toggleShowAddCommentForm();
     }
 
-    editReply(commentData) {
-        this.props.editReply(
+    editComment(commentData) {
+        this.props.editComment(
             commentData);
         this.setState({
             showForm: '',
         })
     }
 
-    cancelReply() {
+    cancelComment() {
         this.setState({
             showForm: '',
         })
     }
 
     commentUpvote(commentData) {
-
         this.props.commentUpvote(commentData);
     }
 
     deleteComment(commentData) {
-
         this.props.deleteComment(commentData);
-
     }
 
     cancelAddComment() {
@@ -69,7 +66,7 @@ class Comments extends Component {
         // comments={this.props.comments}
         // toggleComments={this.toggleComments}
         // injuryId={this.props.injuryId}
-        // editReply={this.editReply}
+        // editComment={this.editComment}
         // commentUpvote={this.commentUpvote}
         // deleteComment={this.deleteComment}
         // user={this.props.user}
@@ -89,14 +86,13 @@ class Comments extends Component {
         const comments = commentsCopy.map((commentObj, j) =>
             <div key={j.toString()}>
                 <div className="card">
-                    {/* Reply in treatment.js needs same layout */}
                     {
                         this.state.showForm === commentObj._id ?
 
-                            <Reply
+                            <CommentForm
                                 comment={commentObj}
-                                cancelReply={this.cancelReply}
-                                editReply={this.editReply}
+                                cancelComment={this.cancelComment}
+                                editComment={this.editComment}
                                 mode={'edit'} />
                             :
                             <Comment
@@ -121,9 +117,9 @@ class Comments extends Component {
                     {this.props.addCommentForm !== '' &&
 
                         <div className="card">
-                            <Reply
-                                addReply={this.addReply}
-                                cancelReply={this.props.toggleAddCommentForm}
+                            <CommentForm
+                                addComment={this.addComment}
+                                cancelComment={this.props.toggleAddCommentForm}
                                 mode={'add'}
                             />
                         </div>
@@ -144,8 +140,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        addReply: addReply,
-        editReply: editReply,
+        addComment: addComment,
+        editComment: editComment,
         commentUpvote: commentUpvote,
         deleteComment: deleteComment,
     }, dispatch);

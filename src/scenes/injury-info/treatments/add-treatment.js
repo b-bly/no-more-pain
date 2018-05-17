@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 //actions
-import addTreatment from '../../actions/add-treatment'
+import addTreatment from '../../../actions/add-treatment'
 //styles
-import './styles.css';
+import '../styles.css';
 
 class AddTreatmentForm extends Component {
     constructor(props) {

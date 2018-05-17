@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //components
-import Button from './button'
+import Button from '../button'
 
 export default class Comment extends Component {
     constructor(props) {

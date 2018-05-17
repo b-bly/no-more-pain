@@ -1,13 +1,13 @@
 import axios from 'axios';
 const url = '/comment/';
 
-export default function editReply(commentObj) {
-    console.log('editReply action comment: ');
+export default function editComment(commentObj) {
+    console.log('editComment action comment: ');
     console.log(commentObj);
     return dispatch => {
 
         axios.put(url, commentObj).then(res => {
-            console.log('editReply action res.data');
+            console.log('editComment action res.data');
             console.log(res.data);
 
             axios.get('/injury/info', {
@@ -15,25 +15,25 @@ export default function editReply(commentObj) {
                     id: commentObj.injury_id
                 }
             }).then(res => {
-                console.log('editReply get action res.data');
+                console.log('editComment get action res.data');
                 console.log(res.data);
 
-                dispatch(editReplyAsync(res.data));
+                dispatch(editCommentAsync(res.data));
             }).catch(function (error) {
-                console.log('error editReply get : ');
+                console.log('error editComment get : ');
                 console.log(error);
             });
 
-            dispatch(editReplyAsync(res.data));
+            dispatch(editCommentAsync(res.data));
         }).catch((error) => {
-            console.log('error editReply : ');
+            console.log('error editComment : ');
             console.log(error);
-            dispatch(editReplyAsync('fail'));
+            dispatch(editCommentAsync('fail'));
         });
     }
 }
 
-function editReplyAsync(payload) {
+function editCommentAsync(payload) {
     return {
         type: 'GET_INJURY_INFO',
         payload: payload
