@@ -26,7 +26,8 @@ ReactJS, Redux, Node.js, Express, MongoDB, Passport.js and Spectre.css.
 
 Run these commands in the terminal:
 
-```npm install
+```
+npm install
 
 npm run dev
 ```
