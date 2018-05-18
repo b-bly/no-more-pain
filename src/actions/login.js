@@ -12,14 +12,16 @@ export default function login(userInfo) {
             const user = {
                 username: res.data.username,
                 id: res.data._id,
-                loggedIn: true
+                loggedIn: true,
+                error: null,
             }
             dispatch(loginAsync(user));
         }).catch(function (error) {
             console.log('error login : ');
             console.log(error);
             const user = {
-                loggedIn: false
+                loggedIn: false,
+                error: error
             };
             dispatch(loginAsync(user));
         });

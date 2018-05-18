@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import PropTypes from 'prop-types';
 //actions
-import getUser from './actions/get-user';
+import getUser from '../../actions/get-user';
 
 class UserData extends Component {
     constructor() {

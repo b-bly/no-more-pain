@@ -28,13 +28,14 @@ class User extends Component {
         if (nextProps.user.loggedIn === true) {
             this.setState({
                 redirectTo: '/'
-            })
-        } else if (nextProps.user !== 'fail') {
-            //if successful login
-            this.setState({
-                redirectTo: '/login'
-            })
+            });
         }
+        // } else if (nextProps.user !== 'fail') {
+        //     //if successful login
+        //     this.setState({
+        //         redirectTo: '/login'
+        //     })
+        // }
 
     }
 

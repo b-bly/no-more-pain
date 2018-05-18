@@ -31,7 +31,7 @@ class InjuryInfo extends Component {
                             <div className="card">
                                 <div className="flex-start">
                                     <div className="">
-                                        <Link to='/injury-list'>
+                                        <Link to='/'>
                                             <button className="btn btn-sm arrow-left" aria-label="back">
                                                 <i className="icon icon-arrow-left"></i>
                                             </button>

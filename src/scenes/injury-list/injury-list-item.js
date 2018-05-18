@@ -16,7 +16,9 @@ export default class InjuryListItem extends Component {
             injuryId: this.props.injury._id,
             author: this.props.injury.author
         };
-        this.props.delete(injuryData);
+        if (window.confirm('Are you sure?')) {
+            this.props.delete(injuryData);
+        }
     }
 
     showForm() {

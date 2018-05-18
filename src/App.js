@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 // components
 import User from './scenes/user'
-import Navbar from './components/navbar'
+import Navbar from './scenes/navbar'
 // import Home from './scenes/home/index.js'
 import UserGreeting from './scenes/home/user-greeting'
 import InjuryList from './scenes/injury-list/index.js'
 import AddInjuryForm from './scenes/injury-list/add-injury-form'
 import InjuryInfo from './scenes/injury-info'
 import AddTreatmentForm from './scenes/injury-info/treatments/add-treatment'
-import UserData from './user-data';
+import UserData from './scenes/user/user-data';
 
 class App extends Component {
   constructor(props) {
@@ -18,8 +18,11 @@ class App extends Component {
       loggedIn: false,
       username: null,
       userId: null,
+      showBackground: '',
     }
     this.reportUser = this.reportUser.bind(this);
+    this.showBackground = this.showBackground.bind(this);
+    this.hideBackground=this.hideBackground.bind(this);
   }
 
   reportUser(user) {
@@ -38,19 +41,37 @@ class App extends Component {
     }
   }
 
-  render() {
-    return (
+  showBackground() {
+    this.setState({
+      showBackground: 'background-image'
+    })
+  }
 
-      <div className="">
-        
+  hideBackground() {
+    this.setState({
+      showBackground: ''
+    })
+  }
+
+  // showBackground () {}
+
+  render() {
+
+
+
+    return (
+      <div className={this.state.showBackground}>
+
+        <div>
+
           <UserData
             reportUser={this.reportUser} />
-            <div className="App">
-          <Navbar loggedIn={this.state.loggedIn} />
-          {/* greet user if logged in: */}
-          {/* <UserGreeting /> */}
-          {/* Routes to different components */}
-          {/* <Route
+          <div className="App">
+            <Navbar loggedIn={this.state.loggedIn} />
+            {/* greet user if logged in: */}
+            {/* <UserGreeting /> */}
+            {/* Routes to different components */}
+            {/* <Route
           exact path="/"
           render={() =>
             <Home
@@ -58,32 +79,39 @@ class App extends Component {
               loggedIn={this.state.loggedIn}
             />}
         /> */}
-          <Route
-            exact path="/"
-            component={InjuryList} />
-          <Route
-            path="/login"
-            component={User}
-          />
-          <Route
-            path="/signup"
-            component={User}
-          />
+            <Route exact path="/" render={(props) => <InjuryList
+              showBackground={this.showBackground}
+              hideBackground={this.hideBackground}
+              {...props} />} />
+            {/* <Route
+              exact path="/"
+              component={InjuryList} /> */}
+            <Route
+              path="/login"
+              component={User}
+            />
+            <Route
+              path="/signup"
+              component={User}
+            />
 
-          <Route
-            path="/add-treatment"
-            component={AddTreatmentForm} />
-          <Route
+            <Route
+              path="/add-treatment"
+              component={AddTreatmentForm} />
+            {/* <Route
             path="/injury-list"
-            component={InjuryList} />
-          <Route
-            path="/add-injury"
-            component={AddInjuryForm} />
-          <Route
-            path="/injury-info"
-            component={InjuryInfo} />
+            component={InjuryList} /> */}
+
+            <Route
+              path="/add-injury"
+              component={AddInjuryForm} />
+            <Route
+              exact path="/injury-info"
+              component={InjuryInfo} />
+          </div>
         </div>
       </div>
+
     );
   }
 }

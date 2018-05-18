@@ -18,8 +18,6 @@ import getUser from '../../actions/get-user'
 //STYLES
 import './styles.css';
 
-
-
 class InjuryList extends Component {
     constructor(props) {
         super(props);
@@ -27,13 +25,20 @@ class InjuryList extends Component {
             showForm: '',
             redirectTo: ''
         };
-        this.injuryInfo = this.injuryInfo.bind(this);
-        this.delete = this.delete.bind(this);
     }
 
     componentWillMount() {
         this.props.getUser();
         this.props.getInjuryList();
+        this.props.showBackground();
+        console.log('injury-list props:');
+        
+        console.log(this.props);
+        
+    }
+
+    componentWillUnmount() {
+        this.props.hideBackground();
     }
 
     injuryInfo(id) {
@@ -45,16 +50,20 @@ class InjuryList extends Component {
         });
     }
 
-    delete(injuryData) {
-        if (window.confirm('Are you sure?')) {
-            this.props.deleteInjury(injuryData);
-        }
-    }
-
     showForm(id) {
         this.setState({
             showForm: id
         })
+    }
+
+    cancel() {
+        this.setState({
+            showForm: ''
+        });
+    }
+
+    delete(injuryData) {
+        this.props.deleteInjury(injuryData);
     }
 
     editInjury(updatedInjury) {
@@ -64,17 +73,11 @@ class InjuryList extends Component {
         });
     }
 
-    cancel() {
-        this.setState({
-            showForm: ''
-        });
-    }
-
     render() {
         // console.log('injury-list props: ');      
         // console.log(this.props);
-
         if (this.state.redirectTo) {
+     
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             const injuryList = this.props.injuryList.map((injury, i) =>
@@ -86,43 +89,39 @@ class InjuryList extends Component {
                             injury={injury} />
                     ) : (
                             <InjuryListItem
-                                handleClick={this.injuryInfo}
-                                delete={this.delete}
+                                handleClick={this.injuryInfo.bind(this)}
+                                delete={this.delete.bind(this)}
                                 showForm={this.showForm.bind(this)}
                                 injury={injury}
                                 user={this.props.user} />
-
                         )}
-
-                    {/* to do: only show edit/delete if user = current user */}
-
                 </div>
             );
-            //     const injuryListStatic = [{title: 'high hamstring tendonopathy'}, {title: 'lower back pain'}, {title: 'iliotibial band syndrome'}, {title: 'medial epicondolitis'}];
-            //     const injuryList = injuryListStatic.map((titleObj, i) =>
-            //     <li key={i.toString()}> {titleObj.title} </li>
-            // );
-            return (
-                <div className="App background-image">
-                    <div className="container">
 
+            return (
+                <div className="">
+                    <div className="container">
                         {/* <div className="font-size-1">One</div>
                         <div className="font-size-2">One</div>
                         <div className="font-size-3">One</div>
                         <div className="font-size-4">One</div> */}
                         <div className="columns">
+                            <div className="col-4 col-mx-auto">
+                                <div className="card">
+                                    <div className="columns">
 
-                            <div className="col-4 col-mx-auto flex-space-between">
+                                        <div className="col-12 flex-space-between">
 
-                                <div className="font-size-3 text-black">Injury List</div>
-                                <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
-
+                                            <div className="font-size-3 text-black">Injury List</div>
+                                            <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            {/* search box */}
+                            {/* add search box */}
                             <ol className="col-12">
                                 {injuryList}
                             </ol>
-
                         </div>
                     </div>
                 </div>

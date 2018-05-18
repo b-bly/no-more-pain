@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../logo.svg';
-import '../App.css';
+
 import './navbar.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //actions
-import logout from '../actions/logout';
+import logout from '../../actions/logout';
 
 class Navbar extends Component {
     constructor(props) {
         super(props)
         this.logout = this.logout.bind(this)
+    }
+
+    componentWillMount() {
+        this.showBackground;
     }
 
     logout(event) {
@@ -30,7 +33,7 @@ class Navbar extends Component {
                     <div className="col-4" >
                         {loggedIn ? (
                             <section className="navbar-section">
-                                <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
+                                <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
                                 <span className="text-secondary nav-link">logout</span></Link>
 
                             </section>
