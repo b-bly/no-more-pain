@@ -28,8 +28,8 @@ export default class InjuryListItem extends Component {
     render() {
         return (
             <div className="col-4 col-mx-auto">
-                <div className="card">
-                    <div className="columns card-bdy font-size-1">
+                <div className="card card-opacity">
+                    <div className="columns  font-size-1">
                         <div className="col-12 card-title-line pointer title font-size-2"
                             onClick={this.handleClick.bind(this)}
                         >

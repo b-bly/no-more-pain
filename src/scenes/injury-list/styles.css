@@ -26,3 +26,11 @@
  
     margin-top: 10px;
   }
+
+  .card-opacity {
+    opacity: .85;
+  }
+
+  .title-opacity {
+    opacity: .8;
+  }

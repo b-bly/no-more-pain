@@ -106,12 +106,10 @@ class InjuryList extends Component {
                         <div className="font-size-3">One</div>
                         <div className="font-size-4">One</div> */}
                         <div className="columns">
-                            <div className="col-4 col-mx-auto">
-                                <div className="card">
+                            <div className="card title-opacity col-12">
+                                <div className="col-4 col-mx-auto">
                                     <div className="columns">
-
                                         <div className="col-12 flex-space-between">
-
                                             <div className="font-size-3 text-black">Injury List</div>
                                             <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
                                         </div>
