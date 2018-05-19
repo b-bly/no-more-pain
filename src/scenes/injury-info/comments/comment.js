@@ -31,7 +31,10 @@ export default class Comment extends Component {
             // id={commentObj._id}
             // upvotes={commentObj.upvotes}
         return (
- 
+            //CSS changes
+ // add column to comment columns, 
+// reduce card padding
+// increase padding on comment columns
 
             <div className="">
                 <div className="flex-row">

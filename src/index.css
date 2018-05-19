@@ -40,9 +40,7 @@ html {
   height: 100vh;
   background-size: cover;
   z-index: -1;
- 
 }
-
 
 .font-size-1 {
   font-size: 0.7rem!important;
@@ -62,6 +60,13 @@ html {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .flex-space-between {

@@ -62,27 +62,7 @@ class Comments extends Component {
     }
 
     render() {
-        //comments props from treatment.js
-        // comments={this.props.comments}
-        // toggleComments={this.toggleComments}
-        // injuryId={this.props.injuryId}
-        // editComment={this.editComment}
-        // commentUpvote={this.commentUpvote}
-        // deleteComment={this.deleteComment}
-        // user={this.props.user}
         const commentsCopy = Object.assign([], this.props.comments);
-        // Injury schema
-        // injury_id: Schema.Types.ObjectId,
-        // treatment_id: Schema.Types.ObjectId,
-        // parent_id: Schema.Types.ObjectId,
-        // posted: { type: Date, default: Date.now },
-        // upvotes: Number,
-        // author: {
-        //           id: Schema.Types.ObjectId,
-        //           username: String
-        //          },
-        // text: String
-
         const comments = commentsCopy.map((commentObj, j) =>
             <div key={j.toString()}>
                 <div className="card">
@@ -111,8 +91,8 @@ class Comments extends Component {
 
         return (
             <div className="columns">
-                <div className="col-1"></div>
-                <div className="col-11">
+                <div className="column col-1"></div>
+                <div className="column col-11">
                     {/* *** add comment form *** */}
                     {this.props.addCommentForm !== '' &&
 
@@ -148,3 +128,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);
+
+        //comments props from treatment.js
+        // comments={this.props.comments}
+        // toggleComments={this.toggleComments}
+        // injuryId={this.props.injuryId}
+        // editComment={this.editComment}
+        // commentUpvote={this.commentUpvote}
+        // deleteComment={this.deleteComment}
+        // user={this.props.user}

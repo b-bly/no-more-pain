@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import './navbar.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+import logo from "./Runners.png";
 //actions
 import logout from '../../actions/logout';
 
@@ -52,9 +54,10 @@ class Navbar extends Component {
                             )}
                     </div>
                     <div className="col-4 col-mr-auto">
-                    <div id="top-filler"></div>
-                        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                        <span className="App-title">No More Pain</span>
+                    <div id="top-filler flex-column"></div>
+                        <div><img src={logo} className="logo" alt="logo" /></div>
+
+                        <div className="App-title">No More Pain</div>
                     </div>
                 </header>
             </div>

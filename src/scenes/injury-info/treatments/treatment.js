@@ -91,8 +91,7 @@ export default class Treatment extends Component {
         });
     }
 
-    treatmentUpvote(e) {
-        e.preventDefault();
+    treatmentUpvote() {
         const treatmentUpvoteData = {
             injuryId: this.props.injuryInfo._id,
             treatmentId: this.props.treatment._id,
@@ -116,6 +115,9 @@ export default class Treatment extends Component {
                 isTheAuthor = true;
             }
         }
+        const userUpvoted = this.props.treatment.upvotes.includes(this.props.user.id);
+        let thumbsUpIconClass = userUpvoted ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up';
+
         //disable upvote button if not logged in or if it is the author of the treatment.
         let disableUpvote = this.props.user.loggedIn === false ? true : this.props.treatment.author.id === this.props.user.id;
         console.log('disableUpvote', disableUpvote);
@@ -143,15 +145,16 @@ export default class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="">
+                            <div className="columns ">
                                 <div className="flex-row">
                                     <div className="flex-column align-items-center">
                                         <Button
                                             handleClick={this.treatmentUpvote}
-                                            icon="fa fa-thumbs-up"
+                                            icon={thumbsUpIconClass}
                                             aria="upvote"
                                             disable={disableUpvote}
                                         />
+
                                         <div><div className="font-size-2" id="upvotes">{this.props.treatment.upvotes.length} &nbsp;
                                         </div></div>
                                     </div>
@@ -178,10 +181,7 @@ export default class Treatment extends Component {
                                     </div>
                                 </div>
 
-
-
-
-                                <div className="col-12  flex-start wrap" >
+                                <div className="column col-12  flex-end wrap" >
 
 
                                     {this.props.user.loggedIn === true && (
