@@ -11,14 +11,16 @@ export default function logout() {
             const user = {
                 username: '',
                 id: '',
-                loggedIn: false
+                loggedIn: false,
+                error: null,
             }
             dispatch(logoutAsync(user));
         }).catch(function (error) {
             console.log('error logout : ');
             console.log(error);
             const user = {
-                loggedIn: false
+                loggedIn: false,
+                error: error,
             };
             dispatch(logoutAsync(user));
         });

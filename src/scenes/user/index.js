@@ -16,7 +16,8 @@ class User extends Component {
         this.state = {
             username: '',
             password: '',
-            redirectTo: null
+            redirectTo: null,
+            message: null,
         }
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
@@ -29,13 +30,13 @@ class User extends Component {
             this.setState({
                 redirectTo: '/'
             });
+        } else if (nextProps.user.error) {
+            //if successful login
+            this.setState({
+                redirectTo: '/login',
+                message: 'Error logging in.'
+            });
         }
-        // } else if (nextProps.user !== 'fail') {
-        //     //if successful login
-        //     this.setState({
-        //         redirectTo: '/login'
-        //     })
-        // }
 
     }
 
@@ -64,39 +65,42 @@ class User extends Component {
 
     render() {
         const match = this.props.match;
-        
+        let buttonText = 'login';
+        if (match !== 'login') {
+            buttonText = 'submit';
+        }
+
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
                 <div>
-
                     <div>
-                       {match.url==="/login" ? (
+                        {match.url === "/login" ? (
+                            <div>
+                                <h4>Login</h4>
+                                <UserForm
+                                    handleChange={this.handleChange}
+                                    handleSubmit={this.login}
+                                    username={this.state.username}
+                                    password={this.state.password}
+                                    buttonText="login" />
 
-                       
-                                    <div>
-                                        <h4>Login</h4>
-                                        <UserForm
-                                            handleChange={this.handleChange}
-                                            handleSubmit={this.login}
-                                            username={this.state.username}
-                                            password={this.state.password}
-                                            buttonText="login" />
-                                    </div>
-                       ) : (
-                         
-                                    <div>
-                                        <h4>Sign up</h4>
-                                        <UserForm
-                                            handleChange={this.handleChange}
-                                            handleSubmit={this.signup}
-                                            username={this.state.username}
-                                            password={this.state.password}
-                                            buttonText="submit" />
-                                    </div>
-                       )}
-                           
+                            </div>
+                        ) : (
+
+                                <div>
+                                    <h4>Sign up</h4>
+
+                                    <UserForm
+                                        handleChange={this.handleChange}
+                                        handleSubmit={this.signup}
+                                        username={this.state.username}
+                                        password={this.state.password}
+                                        buttonText="submit" />
+                                </div>
+                            )}
+
                     </div>
                 </div>
             )

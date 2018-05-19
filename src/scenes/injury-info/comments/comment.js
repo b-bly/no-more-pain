@@ -24,7 +24,7 @@ export default class Comment extends Component {
     }
 
     render() {
-        const isTheAuthor = this.props.comment.author.id === this.props.user.id;
+        let disableUpvote = this.props.user.loggedIn === false ? true : this.props.comment.author.id === this.props.user.id;
                 // props
             // text={commentObj.text}
             // author={commentObj.author}
@@ -40,7 +40,7 @@ export default class Comment extends Component {
                             handleClick={this.commentUpvote.bind(this)}
                             icon="fa fa-thumbs-up"
                             aria="upvote"
-                            isTheAuthor={isTheAuthor}
+                            disable={disableUpvote}
                         />
                         
                             <div className=" font-size-2 upvote">
@@ -66,10 +66,11 @@ export default class Comment extends Component {
                         )}
                     </div>
                 </div>
+
                 <div className="col-12 card-line font-size-1 wrap flex-start">
                     {/* ****************** */}
                     {/* Should move edit button to separate component */}
-
+                    
                     <Button
                         handleClick={this.showForm.bind(this)}
                         icon="fa fa-edit"
@@ -83,11 +84,6 @@ export default class Comment extends Component {
                         icon="fa fa-trash"
                         aria="delete"
                     />
-
-                    {/* <div className="btn btn-sm list-links toggle"
-                    onClick={() => this.deleteComment(this.props.id)}
-                >Delete &nbsp;
-                 </div> */}
                 </div>
             </div>
 

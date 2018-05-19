@@ -11,14 +11,16 @@ export default function signUp(userInfo) {
             const user = {
                 username: res.data.username,
                 id: res.data._id,
-                loggedIn: false
+                loggedIn: false,
+                error: null,
             }
             dispatch(postNewUserAsync(user));
         }).catch(function (error) {
             console.log('error postNewUser : ');
             console.log(error);
             const user = {
-                loggedIn: false
+                loggedIn: false,
+                error: error,
             };
             dispatch(postNewUserAsync(user));
         });

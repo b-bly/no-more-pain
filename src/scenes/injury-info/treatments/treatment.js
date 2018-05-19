@@ -116,103 +116,14 @@ export default class Treatment extends Component {
                 isTheAuthor = true;
             }
         }
+        //disable upvote button if not logged in or if it is the author of the treatment.
+        let disableUpvote = this.props.user.loggedIn === false ? true : this.props.treatment.author.id === this.props.user.id;
+        console.log('disableUpvote', disableUpvote);
+        
         console.log('treatment.js this.props');
         console.log(this.props);
         return (
-            //this.props.injuryInfo
-            //    injuryId
-            //    :
-            //    "5af4d63f2e1dba9509e1b25f"
-            //    injuryInfo
-            //    :
-            //    author
-            //    :
-            //    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
-            //    description
-            //    :
-            //    "hmmm in elbow"
-            //    title
-            //    :
-            //    "Tennis Elbow"
-            //    treatments
-            //    :
-            //    Array(4)
-            //    0
-            //    :
-            //    author
-            //    :
-            //    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
-            //    comments
-            //    :
-            //    [{…}]
-            //    description
-            //    :
-            //    "testing"
-            //    name
-            //    :
-            //    "testing"
-            //    upvotes
-            //    :
-            //    (4) ["5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb"]
-            //    _id
-            //    :
-            //    "5af4dbc4c5a6fa95dd48a675"
-            //    __proto__
-            //    :
-            //    Object
-            //    1
-            //    :
-            //    {upvotes: Array(0), author: {…}, _id: "5af585edcc1fe5a3a740ab54", name: "Milkshakes", description: "drink", …}
-            //    2
-            //    :
-            //    {upvotes: Array(0), author: {…}, _id: "5af8c90fafd81ccf05bbb6d6", name: "THis is what other people are doing", description: "", …}
-            //    3
-            //    :
-            //    {upvotes: Array(0), author: {…}, _id: "5afb3ae36a517cf3f18d7521", name: "fff", description: "", …}
-            //    length
-            //    :
-            //    4
-            //    __proto__
-            //    :
-            //    Array(0)
-            //    upvotes
-            //    :
-            //    ["5a7ddf840898fd83b5c6b3bb"]
-            //    __v
-            //    :
-            //    0
-            //    _id
-            //    :
-            //    "5af4d63f2e1dba9509e1b25f"
-
-            // this.props.user
-            // user
-            // :
-            // id
-            // :
-            // "5a7ddf840898fd83b5c6b3bb"
-            // loggedIn
-            // :
-            // true
-            // username
-            // :
-            // "al"
-
-            // Old treatment props: 
-            //     <Treatment
-            //     treatment={treatment}
-            //     treatmentId={treatment._id}
-            //     injuryId={this.props.injuryInfo._id}
-            //     comments={treatment.comments}
-            //     // *********************** treatmentCopy.comments
-            //     addReply={this.addReply}
-            //     editReply={this.editReply}
-            //     editTreatment={this.editTreatment}
-            //     treatmentUpvote={this.treatmentUpvote}
-            //     commentUpvote={this.commentUpvote}
-            //     user={this.props.user}
-            //     deleteComment={this.deleteComment}
-            // />
+          
             <div className="columns" >
                 <div className="column col-4"></div>
                 <div className="column col-6">
@@ -239,7 +150,7 @@ export default class Treatment extends Component {
                                             handleClick={this.treatmentUpvote}
                                             icon="fa fa-thumbs-up"
                                             aria="upvote"
-                                            isTheAuthor={isTheAuthor}
+                                            disable={disableUpvote}
                                         />
                                         <div><div className="font-size-2" id="upvotes">{this.props.treatment.upvotes.length} &nbsp;
                                         </div></div>
@@ -342,3 +253,82 @@ export default class Treatment extends Component {
         );
     }
 }
+
+  //this.props.injuryInfo
+            //    injuryId
+            //    :
+            //    "5af4d63f2e1dba9509e1b25f"
+            //    injuryInfo
+            //    :
+            //    author
+            //    :
+            //    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+            //    description
+            //    :
+            //    "hmmm in elbow"
+            //    title
+            //    :
+            //    "Tennis Elbow"
+            //    treatments
+            //    :
+            //    Array(4)
+            //    0
+            //    :
+            //    author
+            //    :
+            //    {username: "al", id: "5a7ddf840898fd83b5c6b3bb"}
+            //    comments
+            //    :
+            //    [{…}]
+            //    description
+            //    :
+            //    "testing"
+            //    name
+            //    :
+            //    "testing"
+            //    upvotes
+            //    :
+            //    (4) ["5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb", "5a7ddf840898fd83b5c6b3bb"]
+            //    _id
+            //    :
+            //    "5af4dbc4c5a6fa95dd48a675"
+            //    __proto__
+            //    :
+            //    Object
+            //    1
+            //    :
+            //    {upvotes: Array(0), author: {…}, _id: "5af585edcc1fe5a3a740ab54", name: "Milkshakes", description: "drink", …}
+            //    2
+            //    :
+            //    {upvotes: Array(0), author: {…}, _id: "5af8c90fafd81ccf05bbb6d6", name: "THis is what other people are doing", description: "", …}
+            //    3
+            //    :
+            //    {upvotes: Array(0), author: {…}, _id: "5afb3ae36a517cf3f18d7521", name: "fff", description: "", …}
+            //    length
+            //    :
+            //    4
+            //    __proto__
+            //    :
+            //    Array(0)
+            //    upvotes
+            //    :
+            //    ["5a7ddf840898fd83b5c6b3bb"]
+            //    __v
+            //    :
+            //    0
+            //    _id
+            //    :
+            //    "5af4d63f2e1dba9509e1b25f"
+
+            // this.props.user
+            // user
+            // :
+            // id
+            // :
+            // "5a7ddf840898fd83b5c6b3bb"
+            // loggedIn
+            // :
+            // true
+            // username
+            // :
+            // "al"
