@@ -121,14 +121,14 @@ export default class Treatment extends Component {
         //disable upvote button if not logged in or if it is the author of the treatment.
         let disableUpvote = this.props.user.loggedIn === false ? true : this.props.treatment.author.id === this.props.user.id;
         console.log('disableUpvote', disableUpvote);
-        
+
         console.log('treatment.js this.props');
         console.log(this.props);
         return (
-          
+
             <div className="columns" >
-                <div className="column col-4"></div>
-                <div className="column col-6">
+                <div className="column col-4 col-sm-0"></div>
+                <div className="column col-6 col-sm-12">
                     <div className="card">
 
                         {/* *** show form *** */}
@@ -146,47 +146,50 @@ export default class Treatment extends Component {
                             :
 
                             <div className="columns ">
-                                <div className="flex-row">
+                                <div className="inline">
                                     <div className="upvotes-container">
                                         <div className="flex-column align-items-center">
-                                         
-                                                <Button
+
+                                            <Button
                                                 handleClick={this.treatmentUpvote}
                                                 icon={thumbsUpIconClass}
                                                 aria="upvote"
                                                 disable={disableUpvote}
                                                 className={''}
                                             />
-                                           
+
 
                                             <div className="font-size-2 padding-small" id="upvotes">{this.props.treatment.upvotes.length}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex-column">
-                                        <div className="">
-                                            <span className="treatment-name font-size-2" >
-                                                <strong >Treatment: </strong>
-                                                {this.props.treatment.name} &nbsp;
-                                            </span>
-                                        </div>
 
-                                        <div className="">
-                                            <span className="card-description font-size-2">
-                                                <strong>Description: </strong>
-                                                {this.props.treatment.description}
-                                            </span>
-                                        </div>
+                                    <p className="font-size-2" >
+                                        <strong >Treatment: </strong>
+                                        {this.props.treatment.name} &nbsp;
+                                    </p>
 
-                                        {this.props.treatment.author && (
-                                            <div className="">
-                                                <span className="font-size-1" >Author: <strong>{this.props.treatment.author.username} </strong>&nbsp; </span>
-                                            </div>
-                                        )}
-                                    </div>
+
+
+                                    <p className="card-description font-size-2">
+                                        <strong>Description: </strong>
+                                        {this.props.treatment.description}
+                                    </p>
+
+
+                                    {this.props.treatment.author && (
+
+                                        <p className="font-size-1" >Author: <strong>
+                                        {this.props.treatment.author.username} 
+                                        </strong>
+                                        &nbsp; 
+                                        </p>
+
+                                    )}
+
                                 </div>
 
-                                <div className=" col-12  flex-end wrap" >
+                                <div className="col-12  flex-end wrap" >
 
 
                                     {this.props.user.loggedIn === true && (

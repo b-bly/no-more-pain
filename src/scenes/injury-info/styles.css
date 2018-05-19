@@ -16,12 +16,14 @@
 
  .upvotes-container {
      margin: .5rem;
+     float: left;
  }
 
- .padding-small {
-     /* padding: .2rem; */
+ .inline {
+     display: inline;
+     width: 100%;
  }
 
- .treatment-container {
-     
+ .inline p {
+     margin-bottom: 0;
  }

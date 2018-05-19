@@ -26,7 +26,7 @@ class InjuryInfo extends Component {
             <div>
                 <div className="container">
                     <div className="columns">
-                        <div className="col-6 col-mx-auto">
+                        <div className="col-6 col-mx-auto col-sm-12">
                             <div className="card">
                                 <div className="flex-start">
                                     <div className="">
@@ -55,8 +55,8 @@ class InjuryInfo extends Component {
                     </div>
                 </div>
                 <div className="columns">
-                    <div className="col-4"></div>
-                    <div className="col-6 col-mr-auto column">
+                    <div className="col-4 col-sm-0"></div>
+                    <div className="col-6 col-mr-auto column col-sm-12">
                         <div className="treatment-title flex-space-between">
                             <div className="font-size-3">Treatments: </div>
                             <div><Link to='/add-treatment'

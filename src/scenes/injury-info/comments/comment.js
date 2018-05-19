@@ -37,7 +37,7 @@ export default class Comment extends Component {
             // increase padding on comment columns
 
             <div className="">
-                <div className="flex-row">
+                <div className="">
                     <div className="upvotes-container">
                         <div className="flex-column align-items-center">
                             <Button
@@ -54,22 +54,22 @@ export default class Comment extends Component {
                         </div>
                     </div>
 
-                    <div className="flex-column">
-                        <div className="font-size-2">
-                            <span className="comment"><strong> </strong>
-                                <span>
-                                    {this.props.comment.text}
-                                    &nbsp;
-                                </span>
-                            </span>
-                        </div>
 
-                        {this.props.comment.author && (
-                            <div className="font-size-1">
-                                <span >Author: <strong>{this.props.comment.author.username} </strong>&nbsp; </span>
-                            </div>
-                        )}
+                    <div className="font-size-2">
+                        <span className="comment"><strong> </strong>
+                            <span>
+                                {this.props.comment.text}
+                                &nbsp;
+                                </span>
+                        </span>
                     </div>
+
+                    {this.props.comment.author && (
+                        <div className="font-size-1">
+                            <span >Author: <strong>{this.props.comment.author.username} </strong>&nbsp; </span>
+                        </div>
+                    )}
+
                 </div>
 
                 <div className="col-12 font-size-1 wrap flex-end">
