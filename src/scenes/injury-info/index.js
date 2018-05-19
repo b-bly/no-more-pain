@@ -11,8 +11,7 @@ import getInjuryInfo from '../../actions/getInjuryInfo';
 
 //components
 import Treatments from './treatments/treatments';
-
-
+import './styles.css';
 
 //need to modify injuryInfo to include _id and title or import injuryList props in mapstatetoprops
 

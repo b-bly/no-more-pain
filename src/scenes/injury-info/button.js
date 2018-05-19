@@ -15,8 +15,9 @@ export default class Button extends Component {
         //     console.log('isTheAuthor button');
             
         // }
+        const className = this.props.className + ' btn btn-sm';
         return (
-            <button className="btn btn-sm list-links"
+            <button className={className}
                 disabled={ this.props.disable }
                 onClick={this.handleClick}>
                 { this.props.icon ?

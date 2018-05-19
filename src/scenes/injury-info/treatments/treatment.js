@@ -147,23 +147,28 @@ export default class Treatment extends Component {
 
                             <div className="columns ">
                                 <div className="flex-row">
-                                    <div className="flex-column align-items-center">
-                                        <Button
-                                            handleClick={this.treatmentUpvote}
-                                            icon={thumbsUpIconClass}
-                                            aria="upvote"
-                                            disable={disableUpvote}
-                                        />
+                                    <div className="upvotes-container">
+                                        <div className="flex-column align-items-center">
+                                         
+                                                <Button
+                                                handleClick={this.treatmentUpvote}
+                                                icon={thumbsUpIconClass}
+                                                aria="upvote"
+                                                disable={disableUpvote}
+                                                className={''}
+                                            />
+                                           
 
-                                        <div><div className="font-size-2" id="upvotes">{this.props.treatment.upvotes.length} &nbsp;
-                                        </div></div>
+                                            <div className="font-size-2 padding-small" id="upvotes">{this.props.treatment.upvotes.length}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="flex-column">
                                         <div className="">
                                             <span className="treatment-name font-size-2" >
                                                 <strong >Treatment: </strong>
                                                 {this.props.treatment.name} &nbsp;
-                                    </span>
+                                            </span>
                                         </div>
 
                                         <div className="">
@@ -181,7 +186,7 @@ export default class Treatment extends Component {
                                     </div>
                                 </div>
 
-                                <div className="column col-12  flex-end wrap" >
+                                <div className=" col-12  flex-end wrap" >
 
 
                                     {this.props.user.loggedIn === true && (
@@ -189,6 +194,7 @@ export default class Treatment extends Component {
                                             handleClick={this.toggleAddCommentForm}
                                             icon="fa fa-reply"
                                             aria="comment"
+                                            className='right-row-buttons'
                                         />
                                     )}
 
@@ -198,6 +204,7 @@ export default class Treatment extends Component {
                                             handleClick={this.showEditForm}
                                             icon="fa fa-edit"
                                             aria="edit"
+                                            className='right-row-buttons'
                                         />
 
                                     )}
@@ -206,12 +213,13 @@ export default class Treatment extends Component {
                                             handleClick={this.deleteTreatment}
                                             icon="fa fa-trash"
                                             aria="delete"
+                                            className='right-row-buttons'
                                         />
                                     )}
                                     {this.props.treatment.comments.length > 0 && (
                                         <div>
 
-                                            <span className="btn btn-sm list-links"
+                                            <span className="btn btn-sm right-row-buttons"
                                                 onClick={this.toggleComments}>
                                                 {this.state.showComments === true ?
                                                     (<span>hide </span>)
