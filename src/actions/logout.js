@@ -20,7 +20,7 @@ export default function logout() {
             console.log(error);
             const user = {
                 loggedIn: false,
-                error: error,
+                error: 'logout',
             };
             dispatch(logoutAsync(user));
         });

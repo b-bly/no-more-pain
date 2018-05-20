@@ -17,7 +17,7 @@ class User extends Component {
             username: '',
             password: '',
             redirectTo: null,
-            message: null,
+            message: '',
         }
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
@@ -32,9 +32,23 @@ class User extends Component {
             });
         } else if (nextProps.user.error) {
             //if successful login
+            let message = 'Error ';
+            let redirect = '/';
+            switch (nextProps.user.error) {
+                case 'login':
+                    message += 'logging in.  Try again';
+                    break;
+                case 'signup':
+                    message += 'signing up. Try again.';
+                    break; 
+                case 'logout':
+                    message += 'logging out. Try again.';
+                    break;
+                default:
+                    break;
+            }
             this.setState({
-                redirectTo: '/login',
-                message: 'Error logging in.'
+                message: message,
             });
         }
 
@@ -48,7 +62,6 @@ class User extends Component {
 
     login(event) {
         event.preventDefault()
-
         this.props.login({
             username: this.state.username,
             password: this.state.password
@@ -74,30 +87,48 @@ class User extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
-                <div>
-                    <div>
+                <div className="container">
+                    <div className="columns">
                         {match.url === "/login" ? (
-                            <div>
-                                <h4>Login</h4>
+                            <div className="user-container">
+                                <div className="justify-content-center ">
+                                    <div className="font-size-3">Login</div>
+                                </div>
+
+                                {this.state.message.length > 0 && (
+                                    <div className="justify-content-center ">
+                                        <div className="font-size-1">{this.state.message}</div>
+                                    </div>
+                                )}
+
+
                                 <UserForm
                                     handleChange={this.handleChange}
                                     handleSubmit={this.login}
                                     username={this.state.username}
                                     password={this.state.password}
-                                    buttonText="login" />
+                                    buttonText="login"
+                                    message={this.state.message} />
 
                             </div>
                         ) : (
-
-                                <div>
-                                    <h4>Sign up</h4>
+                                <div className="user-container">
+                                    <div className="justify-content-center">
+                                        <div className="font-size-3">Sign up</div>
+                                    </div>
+                                    {this.state.message.length > 0 && (
+                                        <div className="justify-content-center ">
+                                            <div className="font-size-1">{this.state.message}</div>
+                                        </div>
+                                    )}
 
                                     <UserForm
                                         handleChange={this.handleChange}
                                         handleSubmit={this.signup}
                                         username={this.state.username}
                                         password={this.state.password}
-                                        buttonText="submit" />
+                                        buttonText="submit"
+                                        message={this.state.message} />
                                 </div>
                             )}
 

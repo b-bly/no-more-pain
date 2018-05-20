@@ -20,7 +20,7 @@ export default function signUp(userInfo) {
             console.log(error);
             const user = {
                 loggedIn: false,
-                error: error,
+                error: 'signup',
             };
             dispatch(postNewUserAsync(user));
         });

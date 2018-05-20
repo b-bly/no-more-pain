@@ -29,7 +29,7 @@ class AddInjuryForm extends Component {
 			nextProps.injuryInfo !== 'fail') {
 			//if successful login
 			this.setState({
-				redirectTo: '/injury-list',
+				redirectTo: '/',
 				title: '',
 				description: '',
 				
@@ -52,7 +52,7 @@ class AddInjuryForm extends Component {
 			username: this.props.user.username ? this.props.user.username : 'anonymous',
 		})
 		this.setState({
-			redirectTo: '/injury-list',
+			redirectTo: '/',
 			title: '',
 			description: ''
 		})
@@ -60,7 +60,7 @@ class AddInjuryForm extends Component {
 
 	cancel() {
 		this.setState({
-			redirectTo: '/injury-list',
+			redirectTo: '/',
 			title: '',
 			description: ''
 		})

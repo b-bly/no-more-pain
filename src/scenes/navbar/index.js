@@ -30,7 +30,6 @@ class Navbar extends Component {
         
         return (
             <div className="text-center">
-
                 <header className="navbar App-header" id="nav-container">
                     <div className="col-4" >
                         {loggedIn ? (
@@ -56,17 +55,13 @@ class Navbar extends Component {
                     <div className="col-4 col-mr-auto">
                     <div id="top-filler flex-column"></div>
                         <div><img src={logo} className="logo" alt="logo" /></div>
-
                         <div className="App-title">No More Pain</div>
                     </div>
                 </header>
             </div>
-
         );
-
     }
 }
-
 
 function mapStateToProps(state) {
 	return {

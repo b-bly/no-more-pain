@@ -21,7 +21,7 @@ export default function login(userInfo) {
             console.log(error);
             const user = {
                 loggedIn: false,
-                error: error
+                error: 'login'
             };
             dispatch(loginAsync(user));
         });
