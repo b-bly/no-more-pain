@@ -33,6 +33,9 @@
     "api": "nodemon ./server/server.js",
     "dev": "concurrently \"react-scripts start\" \"nodemon server/server.js\""
   },
+  "engines": {
+    "node": "6.11.1"
+},
   "devDependencies": {
     "concurrently": "^3.5.1"
   },
