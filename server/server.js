@@ -10,8 +10,10 @@ const passport = require('./passport');
 const user = require('./routes/user');
 const injury = require('./routes/injury');
 const comment = require('./routes/comments');
+const dotenv = require("dotenv").config();
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080;
+const SECRET = process.env.SECRET || bubbles;
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -25,7 +27,7 @@ app.use(bodyParser.json())
 //SESSIONS
 app.use(
 	session({
-		secret: 'bubbles',
+		secret: SECRET,
 		store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false,
 		saveUninitialized: false
