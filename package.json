@@ -25,7 +25,8 @@
     "spectre.css": "^0.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export NODE_ENV=\"production\" && node server/server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
