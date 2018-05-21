@@ -14,9 +14,7 @@ if (process.env.MONGODB_URI) {
 }
 mongoose.connect(MONGO_URL).then(
     () => { 
-        /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ 
-        console.log('Connected to Mongo');
-        
+        /** ready to use. The `mongoose.connect()` promise resolves to undefined. */         
     },
     err => {
          /** handle initial connection error */ 
