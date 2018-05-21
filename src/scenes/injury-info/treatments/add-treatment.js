@@ -145,7 +145,8 @@ function mapStateToProps(state) {
     console.log('add-treatment mapStateToProps called, state: ');
     console.log(state);
     return {
-        injuryInfo: state.injuryInfo
+        injuryInfo: state.injuryInfo,
+        user: state.user
     };
 }
 

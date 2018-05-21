@@ -168,6 +168,9 @@ router.post('/add-treatment/:injuryId', (req, res) => {
     console.log(req.params.injuryId);
 
     const treatment = req.body;
+    treatment.author = {};
+    treatment.author.id = req.user._id;
+    treatment.author.username = req.user.username;
     const injuryId = req.params.injuryId;
   
 
@@ -184,7 +187,8 @@ router.post('/add-treatment/:injuryId', (req, res) => {
         //add statement that author.id === req.user._id ?  To make sure the user info sent matches?
         
         Injury.findOneAndUpdate({ _id: injuryId },
-            { $push: { treatments: treatment } })
+            { $push: { treatments: treatment } },
+            {new: true }) //returns the new, updated document in 'data' below when true
             .exec((err, data) => {
                 if (err) {
                     console.log('post treatment error:');
@@ -193,6 +197,14 @@ router.post('/add-treatment/:injuryId', (req, res) => {
                 }
                 console.log('post treatment, data:');
                 console.log(data);
+
+                // Injury.find({'treatments._id': new mongoose.Types.ObjectId(treatmentId) })
+                // .exec((err, data) => {
+                //     console.log('get injury list, data:');
+                //     console.log(data);
+                    
+                    
+                // });
                 res.send(data);
             });
     } else {
