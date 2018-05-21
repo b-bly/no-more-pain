@@ -50,6 +50,10 @@ class User extends Component {
             this.setState({
                 message: message,
             });
+        } else if (nextProps.match.path !== '/login') {
+            this.setState({
+                redirectTo: '/login'
+            });
         }
 
     }
@@ -76,10 +80,10 @@ class User extends Component {
         })
     }
 
-    render() {
-        const match = this.props.match;
+    render() {   
+        const match = this.props.match.path;
         let buttonText = 'login';
-        if (match !== 'login') {
+        if (match !== '/login') {            
             buttonText = 'submit';
         }
 
@@ -89,19 +93,16 @@ class User extends Component {
             return (
                 <div className="container">
                     <div className="columns">
-                        {match.url === "/login" ? (
+                        {match === "/login" ? (
                             <div className="user-container">
                                 <div className="justify-content-center ">
                                     <div className="font-size-3">Login</div>
                                 </div>
-
                                 {this.state.message.length > 0 && (
                                     <div className="justify-content-center ">
                                         <div className="font-size-1">{this.state.message}</div>
                                     </div>
                                 )}
-
-
                                 <UserForm
                                     handleChange={this.handleChange}
                                     handleSubmit={this.login}

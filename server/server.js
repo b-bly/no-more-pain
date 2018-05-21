@@ -13,7 +13,7 @@ const comment = require('./routes/comments');
 const dotenv = require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
-const SECRET = process.env.SECRET || bubbles;
+const SECRET = process.env.SECRET || 'bubbles';
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -40,6 +40,8 @@ app.use(passport.session())
 
 // ==== if its production environment!
 if (process.env.NODE_ENV === 'production') {
+	console.log('*** production environment ***');
+	
 	const path = require('path')
 	app.use('/static', express.static(path.join(__dirname, '../build/static')))
 	app.get('/', (req, res) => {
