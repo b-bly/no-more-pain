@@ -96,7 +96,7 @@ class App extends Component {
             />
 
             <Route
-              path="/add-treatment"
+              exact path="/add-treatment"
               component={AddTreatmentForm} />
             {/* <Route
             path="/injury-list"

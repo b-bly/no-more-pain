@@ -20,23 +20,6 @@ class AddInjuryForm extends Component {
 		this.cancel = this.cancel.bind(this);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		console.log('add-injury-form, nextProps: ');
-		console.log(nextProps);
-//need to work on this
-
-		if (!!nextProps.injuryInfo &&
-			nextProps.injuryInfo !== 'fail') {
-			//if successful login
-			this.setState({
-				redirectTo: '/',
-				title: '',
-				description: '',
-				
-			})
-		}
-	}
-
 	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value
