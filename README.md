@@ -1,4 +1,7 @@
-# No More Pain
+# [No More Pain](https://nomorepain.herokuapp.com/)
+
+View the app live at [https://nomorepain.herokuapp.com/](https://nomorepain.herokuapp.com/)
+
 An app for sharing injury treatments that worked for you.
 
 Have you ever struggled to get over an injury?  I have had athletic injuries that persisted after seeing multiple health professionals.  I spent many hours Googling to try to find effective injury treatment and prevention.  I found there were many people out there who wanted to help others by sharing their experiences and also those seeking help.  I was inspired to create a place for this sharing to take place.
