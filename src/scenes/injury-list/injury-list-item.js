@@ -30,18 +30,18 @@ export default class InjuryListItem extends Component {
             <div className="col-4 col-mx-auto">
                 <div className="card card-opacity">
                     <div className="columns  font-size-1">
-                        <div className="col-12 card-title-line pointer title font-size-2"
+                        <div className="col-12 dont-break-out pointer title font-size-2"
                             onClick={this.handleClick.bind(this)}
                         >
                             <span className="">{this.props.injury.title}</span>
                         </div>
                         {this.props.injury.author ? (
-                            <div className="col-12 card-line">
+                            <div className="col-12 dont-break-out">
                                 Author: {this.props.injury.author.username}
                             </div>
                         )
                             : (
-                                <div className="col-12 card-line">
+                                <div className="col-12 dont-break-out">
                                     Author: Anonymous
                             </div>
                             )}

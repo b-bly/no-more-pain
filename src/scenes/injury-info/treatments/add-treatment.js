@@ -72,7 +72,7 @@ class AddTreatmentForm extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else if (this.props.injuryInfo.title === undefined) {
             return <Redirect to='/injury-list' />
-        } 
+        }
         else {
             return (
                 <div className="columns">
@@ -86,7 +86,7 @@ class AddTreatmentForm extends Component {
                                 <div className="col-4 col-mr-auto">
                                     <input className="form-input font-size-1"
                                         type="text"
-                                        id="name"                                        
+                                        id="name"
                                         name="name"
                                         placeholder="Name of treatment"
                                         value={this.state.name}
@@ -109,6 +109,23 @@ class AddTreatmentForm extends Component {
                                     />
                                 </div>
                             </div>
+
+                            {/* <div className="form-group flex-start">
+                                <div className="col-2 col-ml-auto">
+                                    <label className="form-label" htmlFor="name">Name of Treatment:</label>
+                                </div>
+                                <div className="col-4 col-mr-auto">
+                                    <input className="form-input font-size-1"
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Name of treatment"
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div> */}
+
                             <div className="form-group">
                                 <div className="col-7"></div>
                                 <input className="btn col-1"

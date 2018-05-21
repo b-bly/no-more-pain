@@ -23,7 +23,7 @@ class TreatmentsContainer extends Component {
         this.toggleDescription = this.toggleDescription.bind(this);
         this.editTreatment = this.editTreatment.bind(this);
         this.treatmentUpvote = this.treatmentUpvote.bind(this);
-
+        this.deleteTreatment = this.deleteTreatment.bind(this);
     }
 
     toggleDescription(id) {

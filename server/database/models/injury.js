@@ -17,7 +17,8 @@ const injuriesSchema = new Schema({
         author: {
             id: { type: Schema.Types.ObjectId, ref: 'User' },
             username: String
-           }
+           },
+        image: String,
     }],
     author: {
         id: { type: Schema.Types.ObjectId, ref: 'User' },

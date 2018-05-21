@@ -96,8 +96,8 @@ router.get('/info', (req, res) => {
                                 });
                                 return treatmentCopy;
                             })
-                            // console.log('injuryObject');
-                            // console.log(injuryObject);
+                            console.log('injuryObject');
+                            console.log(injuryObject);
 
                             //send injury object with comments
                             res.send(injuryObject)

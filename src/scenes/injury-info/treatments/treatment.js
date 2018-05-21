@@ -119,11 +119,15 @@ export default class Treatment extends Component {
         let thumbsUpIconClass = userUpvoted ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up';
 
         //disable upvote button if not logged in or if it is the author of the treatment.
-        let disableUpvote = this.props.user.loggedIn === false ? true : this.props.treatment.author.id === this.props.user.id;
-        console.log('disableUpvote', disableUpvote);
+        let disableUpvote = true; //disabled
+        if (this.props.treatment.author &&
+            this.props.user.loggedIn === true) { //need to check if there is an author and a user or it will throw
+            //an undefined error.
+            if (this.props.treatment.author.id !== this.props.user.id) //if logged in and it's not the author,
+            //don't disable upvote
+            disableUpvote = false;
+        }
 
-        console.log('treatment.js this.props');
-        console.log(this.props);
         return (
 
             <div className="columns" >
@@ -164,7 +168,7 @@ export default class Treatment extends Component {
                                         </div>
                                     </div>
 
-                                    <p className="font-size-2" >
+                                    <p className="font-size-2 " >
                                         <strong >Treatment: </strong>
                                         {this.props.treatment.name} &nbsp;
                                     </p>
@@ -239,12 +243,8 @@ export default class Treatment extends Component {
                                 <div className="col-12">
                                     {this.state.showComments === true &&
                                         <Comments
-                                            comments={this.props.treatment.comments} //replace
                                             toggleComments={this.toggleComments}
                                             injuryId={this.props.injuryInfo._id}
-                                            // editReply={this.editReply}
-                                            // commentUpvote={this.commentUpvote}
-                                            // deleteComment={this.deleteComment}
                                             user={this.props.user}
                                             treatment={this.props.treatment}
                                             toggleAddCommentForm={this.toggleAddCommentForm}

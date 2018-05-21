@@ -1,19 +1,19 @@
 import axios from 'axios';
 const url = '/comment/add-reply/';
 
-export default function addComment(replyObject) {
+export default function addComment(commentData) {
     return dispatch => {
-        console.log('addComment action replyObject: ');
-        console.log(replyObject);
-        axios.post(url + replyObject.treatment_id, replyObject).then(res => {
+        console.log('addComment action commentData: ');
+        console.log(commentData);
+        axios.post(url + commentData.treatment_id, commentData).then(res => {
             console.log('addComment action res.data');
             console.log(res.data);
-            dispatch(addCommentAsync(replyObject));
+            dispatch(addCommentAsync(commentData));
           
         }).catch(function (error) {
             console.log('error addComment : ');
             console.log(error);
-            dispatch(addCommentAsync('fail'));
+            // to do: error handling
         });
     }
 }

@@ -4,27 +4,19 @@ const passport = require('../passport')
 const Comment = require('../database/models/comments')
 const mongoose = require('mongoose');
 
-router.post('/add-reply/:injuryId', (req, res) => {
-
-    const author = { username: req.user.username, id: req.user._id };
+router.post('/add-reply/:treatmentId', (req, res) => {
     req.body.author = { username: req.user.username, id: req.user._id };
     console.log('*** add reply req.body: ***');
     console.log(req.body);
-    console.log('injuryId:');
-    console.log(req.params.injuryId);
+ 
     const newComment = new Comment(req.body);
     console.log(newComment);
     newComment.save((err, comment) => {
         if (err) return res.json(err)
         console.log('success');
         res.json(comment)
-    })
-
-    // req.body
-    // treatment_id: this.state.treatmentId,
-    //         text: comment,
-    //         injury_id: this.props.injuryId
-})
+    });
+});
 
 router.put('/', (req, res) => {
     console.log('comment put, req.body: ');

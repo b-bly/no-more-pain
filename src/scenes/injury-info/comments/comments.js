@@ -22,6 +22,7 @@ class Comments extends Component {
         this.editComment = this.editComment.bind(this);
         this.commentUpvote = this.commentUpvote.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
+        this.addComment = this.addComment.bind(this);
     }
 
     showForm(id) {
@@ -31,8 +32,15 @@ class Comments extends Component {
     }
 
     addComment(comment) {
-        this.props.addComment(this.props.treatment._id, comment); //calling addComment in index.js, not action
-        this.props.toggleShowAddCommentForm();
+        const commentData = {
+            text: comment,
+            treatment_id: this.props.treatment._id,
+            upvotes: [],
+            author: this.props.user,
+            injury_id: this.props.injuryId,
+        }
+        this.props.addComment(commentData); //calling addComment in index.js, not action
+        this.props.toggleAddCommentForm();
     }
 
     editComment(commentData) {
@@ -62,7 +70,7 @@ class Comments extends Component {
     }
 
     render() {
-        const commentsCopy = Object.assign([], this.props.comments);
+        const commentsCopy = Object.assign([], this.props.treatment.comments);
         const comments = commentsCopy.map((commentObj, j) =>
             <div key={j.toString()}>
                 <div className="card">
@@ -130,7 +138,6 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);
 
         //comments props from treatment.js
-        // comments={this.props.comments}
         // toggleComments={this.toggleComments}
         // injuryId={this.props.injuryId}
         // editComment={this.editComment}

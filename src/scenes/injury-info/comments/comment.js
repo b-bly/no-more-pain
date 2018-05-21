@@ -18,13 +18,22 @@ export default class Comment extends Component {
         const commentData = {
             treatmentId: this.props.treatment._id,
             commentId: this.props.comment._id,
-        }
+        };
         const permission = window.confirm("Are you sure you want to delete your comment?");
         if (permission) this.props.deleteComment(commentData);
     }
 
     render() {
-        let disableUpvote = this.props.user.loggedIn === false ? true : this.props.comment.author.id === this.props.user.id;
+        let disableUpvote = true;
+        if (this.props.comment.author &&
+            this.props.user.loggedIn === true) { //need to check if there is an author and a user or it will throw
+            //an undefined error.
+            disableUpvote = false;
+        }
+        console.log('comment.js rendered, props: ');
+        
+        console.log(this.props);
+        
         // props
         // text={commentObj.text}
         // author={commentObj.author}
