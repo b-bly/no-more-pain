@@ -33,7 +33,6 @@ class User extends Component {
         } else if (nextProps.user.error) {
             //if successful login
             let message = 'Error ';
-            let redirect = '/';
             switch (nextProps.user.error) {
                 case 'login':
                     message += 'logging in.  Try again';
@@ -82,11 +81,6 @@ class User extends Component {
 
     render() {   
         const match = this.props.match.path;
-        let buttonText = 'login';
-        if (match !== '/login') {            
-            buttonText = 'submit';
-        }
-
         if (this.state.redirectTo) {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {

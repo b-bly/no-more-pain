@@ -1,6 +1,5 @@
 import axios from 'axios';
 const url = '/injury/update';
-const getUrl = '/injury';
 
 export default function updateInjury(injury) {
     return dispatch => {

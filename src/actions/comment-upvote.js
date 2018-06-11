@@ -24,7 +24,6 @@ export default function commentUpvote(commentUpvoteData) {
             // "5af
         // };
         const commentId = commentUpvoteData._id;
-        const injuryId = commentUpvoteData.injury_id;
         console.log(commentId);
     return dispatch => {
         axios.put(url + commentId, commentUpvoteData).then(res => {

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //components
 import CommentForm from './comment-form';
-import Button from '../button';
 import Comment from './comment';
 //actions
 import commentUpvote from '../../../actions/comment-upvote';

@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import Button from '../button'
 
 export default class Comment extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     commentUpvote() {
         this.props.commentUpvote(this.props.comment);

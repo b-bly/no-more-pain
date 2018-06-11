@@ -5,10 +5,6 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
-//actions
-import getInjuryInfo from '../../actions/getInjuryInfo';
-
-
 //components
 import Treatments from './treatments/treatments';
 import './styles.css';
@@ -16,10 +12,6 @@ import './styles.css';
 //need to modify injuryInfo to include _id and title or import injuryList props in mapstatetoprops
 
 class InjuryInfo extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         return (

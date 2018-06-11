@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 const url = '/user/login';
 
 export default function login(userInfo) {

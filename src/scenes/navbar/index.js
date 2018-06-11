@@ -15,9 +15,9 @@ class Navbar extends Component {
         this.logout = this.logout.bind(this)
     }
 
-    componentWillMount() {
-        this.showBackground;
-    }
+    // componentWillMount() {
+    //     this.showBackground;
+    // }
 
     logout(event) {
         event.preventDefault()

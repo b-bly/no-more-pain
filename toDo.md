@@ -18,7 +18,6 @@
 //move buttons to right
 // pass whole props object ...this.props to children when it makes sense
 // toggle upvote so users can un-upvote
-//
 
 Sample state
 injuryInfo
