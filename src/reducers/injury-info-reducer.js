@@ -14,7 +14,6 @@ export default function (state = [], action) {
                 ]
             };
 
-
         case 'DELETE_TREATMENT':
             return {
                 ...state,
