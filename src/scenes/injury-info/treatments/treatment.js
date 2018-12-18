@@ -91,7 +91,8 @@ export default class Treatment extends Component {
         });
     }
 
-    treatmentUpvote() {
+    treatmentUpvote(e) {
+        
         const treatmentUpvoteData = {
             injuryId: this.props.injuryInfo._id,
             treatmentId: this.props.treatment._id,
@@ -124,8 +125,8 @@ export default class Treatment extends Component {
             this.props.user.loggedIn === true) { //need to check if there is an author and a user or it will throw
             //an undefined error.
             if (this.props.treatment.author.id !== this.props.user.id) //if logged in and it's not the author,
-            //don't disable upvote
-            disableUpvote = false;
+                //don't disable upvote
+                disableUpvote = false;
         }
 
         return (
@@ -134,7 +135,6 @@ export default class Treatment extends Component {
                 <div className="column col-4 col-sm-0"></div>
                 <div className="column col-6 col-sm-12">
                     <div className="card">
-
                         {/* *** show form *** */}
                         {this.state.showEditTreatmentForm ?
                             <div>
@@ -149,97 +149,99 @@ export default class Treatment extends Component {
                             </div>
                             :
 
-                            <div className="columns ">
-                                <div className="inline">
-                                    <div className="upvotes-container">
-                                        <div className="flex-column align-items-center">
+                            <div className="flex-column flex-start">
+                                <div className="flex-row flex-start">
+                                    <div className="flex-column align-items-center card-left padding">
 
-                                            <Button
-                                                handleClick={this.treatmentUpvote}
-                                                icon={thumbsUpIconClass}
-                                                aria="upvote"
-                                                disable={disableUpvote}
-                                                className={''}
-                                            />
+                                        <Button
+                                            handleClick={this.treatmentUpvote}
+                                            icon={thumbsUpIconClass}
+                                            aria="upvote"
+                                            disable={disableUpvote}
+                                            className={''}
+                                        />
 
 
-                                            <div className="font-size-2 padding-small" id="upvotes">{this.props.treatment.upvotes.length}
-                                            </div>
+                                        <div className="font-size-2 padding-small" id="upvotes">{this.props.treatment.upvotes.length}
                                         </div>
                                     </div>
 
-                                    <p className="font-size-2 " >
-                                        <strong >Treatment: </strong>
-                                        {this.props.treatment.name} &nbsp;
-                                    </p>
+                                    {/* Treatment info */}
 
+                                    <div className="card-right padding">
+                                        <div className="text">
+                                            <p className="font-size-2 " >
+                                                <strong >Treatment: </strong>
+                                                {this.props.treatment.name} &nbsp;
+                                            </p>
 
+                                            <p className="card-description font-size-2">
+                                                <strong>Description: </strong>
+                                                {this.props.treatment.description}
+                                            </p>
 
-                                    <p className="card-description font-size-2">
-                                        <strong>Description: </strong>
-                                        {this.props.treatment.description}
-                                    </p>
+                                            {this.props.treatment.author && (
 
+                                                <p className="font-size-1" >Author: <strong>
+                                                    {this.props.treatment.author.username}
+                                                </strong>
+                                                    &nbsp;
+                                            </p>
 
-                                    {this.props.treatment.author && (
-
-                                        <p className="font-size-1" >Author: <strong>
-                                        {this.props.treatment.author.username} 
-                                        </strong>
-                                        &nbsp; 
-                                        </p>
-
-                                    )}
-
-                                </div>
-
-                                <div className="col-12  flex-end wrap" >
-
-
-                                    {this.props.user.loggedIn === true && (
-                                        <Button
-                                            handleClick={this.toggleAddCommentForm}
-                                            icon="fa fa-reply"
-                                            aria="comment"
-                                            className='right-row-buttons'
-                                        />
-                                    )}
-
-                                    {/* Only show if user === author  */}
-                                    {isTheAuthor === true && (
-                                        <Button
-                                            handleClick={this.showEditForm}
-                                            icon="fa fa-edit"
-                                            aria="edit"
-                                            className='right-row-buttons'
-                                        />
-
-                                    )}
-                                    {isTheAuthor === true && (
-                                        <Button
-                                            handleClick={this.deleteTreatment}
-                                            icon="fa fa-trash"
-                                            aria="delete"
-                                            className='right-row-buttons'
-                                        />
-                                    )}
-                                    {this.props.treatment.comments.length > 0 && (
-                                        <div>
-
-                                            <span className="btn btn-sm right-row-buttons"
-                                                onClick={this.toggleComments}>
-                                                {this.state.showComments === true ?
-                                                    (<span>hide </span>)
-                                                    :
-                                                    (<span>show </span>)
-                                                }
-                                                comments
-                                                </span>
+                                            )}
                                         </div>
-                                    )}
 
+                                        <div className="col-12  flex-end wrap" >
+                                            {this.props.user.loggedIn === true && (
+                                                <Button
+                                                    handleClick={this.toggleAddCommentForm}
+                                                    icon="fa fa-reply"
+                                                    aria="comment"
+                                                    className='right-row-buttons'
+                                                />
+                                            )}
+
+                                            {/* Only show if user === author  */}
+                                            {isTheAuthor === true && (
+                                                <Button
+                                                    handleClick={this.showEditForm}
+                                                    icon="fa fa-edit"
+                                                    aria="edit"
+                                                    className='right-row-buttons'
+                                                />
+
+                                            )}
+                                            {isTheAuthor === true && (
+                                                <Button
+                                                    handleClick={this.deleteTreatment}
+                                                    icon="fa fa-trash"
+                                                    aria="delete"
+                                                    className='right-row-buttons'
+                                                />
+                                            )}
+                                            {this.props.treatment.comments.length > 0 && (
+                                                <div>
+
+                                                    <span className="btn btn-sm right-row-buttons"
+                                                        onClick={this.toggleComments}>
+                                                        {this.state.showComments === true ?
+                                                            (<span>hide </span>)
+                                                            :
+                                                            (<span>show </span>)
+                                                        }
+                                                        comments
+                                                    </span>
+                                                </div>
+                                            )}
+
+
+                                            {/* *************************************************** */}
+                                        </div>
+
+                                    </div> {/* card-right */}
                                 </div>
-                                {/* *************************************************** */}
+
+
                                 <div className="col-12">
                                     {this.state.showComments === true &&
                                         <Comments
@@ -254,7 +256,8 @@ export default class Treatment extends Component {
                                     }
                                 </div>
                                 {/* *** end comments *** */}
-                            </div>
+
+                            </div>  // columns class end
 
                         }
                         {/* *** end treatment if statement *** */}

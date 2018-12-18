@@ -55,7 +55,7 @@ export default class TreatmentForm extends Component {
     render() {
         
         return (
-            <div >
+            <div className="padding">
                 {/* <h4>Add New Treatment to {this.props.injuryInfo.title}</h4> */}
 
                 <form className="form-horizontal" onSubmit={this.handleSubmit}>
@@ -89,19 +89,20 @@ export default class TreatmentForm extends Component {
                             />
                         </div>
                     </div>
-                    <div className="form-group ">
-                        <div className="col-8"></div>
-                        <input className="btn col-2"
+                    <div className="form-group flex-end">
+                        <div className="flex">
+                        <input className="btn"
                             type="button"
                             value="Cancel"
                             onClick={this.cancel}
                         ></input>
-                        &nbsp;
+                        <div>&nbsp;</div>
 								<input
-                            className="btn btn-primary col-2 "
+                            className="btn btn-primary"
                             type="submit"
                             value="Submit"
                         ></input>
+                        </div>
                     </div>
                 </form>
 

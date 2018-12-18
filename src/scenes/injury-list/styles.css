@@ -1,36 +1,31 @@
-.injury-list-item {
-    cursor: pointer;
+.treatment-name {
+  font-weight: 400;
 }
 
+.title:hover {
+  color: #4b48d6;
+}
 
-  .treatment-name {
-    font-weight: 400;
-  }
+.list-columns {
+  margin-top: 0;
+  padding-top: 1rem;
+}
 
-  .title:hover {
-    color: #4b48d6;
+.list-title {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-left: .2rem;
+  margin-top: 10px;
+}
 
-  }
+.card-opacity {
+  opacity: .85;
+}
 
-  .list-columns {
-    margin-top: 0;
-    padding-top: 1rem;
-  }
+.title-opacity {
+  opacity: .75;
+}
 
-
-  .list-title {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    padding-left: .2rem;
-    /* padding: 15px 30px; */
- 
-    margin-top: 10px;
-  }
-
-  .card-opacity {
-    opacity: .85;
-  }
-
-  .title-opacity {
-    opacity: .75;
-  }
+.injury-list-item {
+  max-width: 400px;
+}

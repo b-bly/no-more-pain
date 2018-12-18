@@ -16,7 +16,7 @@ html {
   margin-bottom: 1rem;
   margin-top: 1rem;
   box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .3);
-  padding: 1rem 2rem;
+  /* padding: .4rem; */
 
    /* These are technically the same, but use both */
    overflow-wrap: break-word;
@@ -33,7 +33,18 @@ html {
    -moz-hyphens: auto;
    -webkit-hyphens: auto;
    hyphens: auto;
+}
 
+.card-left {
+  background-color: rgb(242, 242, 242);
+}
+
+.card-right {
+  flex: 1 1 auto;
+}
+
+.padding {
+  padding: .4rem;
 }
 
 .no-pointer {
@@ -94,17 +105,18 @@ html {
   font-size: 3rem!important;
 }
 
+.flex {
+  display: flex;
+}
 
 .flex-start {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
 }
 
 
 .flex-end {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
 }
 
@@ -140,6 +152,10 @@ html {
   justify-content: center;
 }
 
+p {
+  margin: 0 0 .1rem!important;
+}
+
 @media screen and (max-width: 700px) {
   .card {
     padding: .5rem;
@@ -160,3 +176,29 @@ html {
   }
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1999px){ 
+
+}
+  
+@media only screen and (max-width: 991px){ 
+    
+}
+
+@media only screen and (max-width: 767px){ 
+  /* .font-size-1 {
+    font-size: 0.5rem!important;
+  } */
+  /* .font-size-2 {
+    font-size: .7rem!important;
+  } */
+  .font-size-3 {
+    font-size: 1.3rem!important;
+  }
+  .font-size-4 {
+    font-size: 1.5rem!important;
+  }
+}
+
+@media only screen and (max-width: 479px){ 
+
+}

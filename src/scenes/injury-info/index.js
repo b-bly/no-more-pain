@@ -16,28 +16,31 @@ class InjuryInfo extends Component {
 
         return (
             <div>
-                <div className="container">
+                <div className="">
                     <div className="columns">
                         <div className="col-6 col-mx-auto col-sm-12">
                             <div className="card">
-                                <div className="flex-start">
-                                    <div className="">
+                                <div className="flex-row">
+                                    <div className="card-left padding">
                                         <Link to='/'>
                                             <button className="btn btn-sm arrow-left" aria-label="back">
                                                 <i className="icon icon-arrow-left"></i>
                                             </button>
                                         </Link>
                                     </div>
-                                    <div className="">
-                                        <span className="card-title font-size-3">
-                                            &nbsp;
+
+                                    <div className="flex-start card-right padding flex-column">
+                                        <div className="title-container">
+                                            <span className="card-title font-size-3">
                                             {this.props.injuryInfo.title}
-                                        </span>
+                                            </span>
+                                        </div>
+                                        <div className="col-12 font-size-2">
+                                            {this.props.injuryInfo.description}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="col-12 font-size-2">
-                                    {this.props.injuryInfo.description}
-                                </div>
+
                                 {/* <div className="col-2 col-mr-auto">
 
                                 </div> */}

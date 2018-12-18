@@ -32,9 +32,9 @@ class InjuryList extends Component {
         this.props.getInjuryList();
         this.props.showBackground();
         console.log('injury-list props:');
-        
+
         console.log(this.props);
-        
+
     }
 
     componentWillUnmount() {
@@ -77,7 +77,7 @@ class InjuryList extends Component {
         // console.log('injury-list props: ');      
         // console.log(this.props);
         if (this.state.redirectTo) {
-     
+
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             const injuryList = this.props.injuryList.map((injury, i) =>
@@ -100,26 +100,16 @@ class InjuryList extends Component {
 
             return (
                 <div className="">
-                    <div className="container">
-                        {/* <div className="font-size-1">One</div>
-                        <div className="font-size-2">One</div>
-                        <div className="font-size-3">One</div>
-                        <div className="font-size-4">One</div> */}
-                        <div className="columns">
-                            <div className="card title-opacity col-12">
-                                <div className="col-4 col-mx-auto">
-                                    <div className="columns">
-                                        <div className="col-12 flex-space-between">
-                                            <div className="font-size-3 text-black">Injury List</div>
-                                            <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div className="">
+                        <div className="card title-opacity col-12 justify-content-center">
+                            <div className="flex-space-between injury-list-item " style={{ width: "100%" }}>
+                                <div className="font-size-3 text-black">Injury List</div>
+                                <div><Link to='/add-injury' className="btn font-size-1">Add injury</Link></div>
                             </div>
-                            {/* add search box */}
-                            <ol className="col-12">
-                                {injuryList}
-                            </ol>
+                        </div>
+                        {/* add search box */}
+                        <div className="">
+                            {injuryList}
                         </div>
                     </div>
                 </div>

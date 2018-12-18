@@ -14,6 +14,7 @@ import 'spectre.css/dist/spectre.min.css';
 import 'spectre.css/dist/spectre-icons.css';
 import './index.css';
 import 'font-awesome/css/font-awesome.min.css'; 
+import './spectre-overrides.css'
 
 const middleware = [thunk]
 if (process.env.NODE_ENV !== 'production') {

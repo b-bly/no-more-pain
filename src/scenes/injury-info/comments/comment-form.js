@@ -54,7 +54,7 @@ export default class CommentForm extends Component {
         return (
 
 
-            <div className="">
+            <div className="padding">
                 <form className="form-horizontal" onSubmit={this.handleSubmit}>
                     <div className="form-group col-12">
 

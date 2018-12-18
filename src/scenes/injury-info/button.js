@@ -5,7 +5,8 @@ export default class Button extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
-    handleClick() {
+    handleClick(e) {
+        e.preventDefault();
         this.props.data? this.props.handleClick(this.props.data) : this.props.handleClick();
     }
     render() {

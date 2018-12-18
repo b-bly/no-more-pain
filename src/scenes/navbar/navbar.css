@@ -1,32 +1,45 @@
 
 .navbar {
- 
-    margin-top: auto;
-    
-  }
-  #top-filler {
-    margin-bottom: auto;
-  }
-  
-  #nav-container {
-    align-items: flex-end;
-  }
+  margin-top: auto;
+}
 
-  .text-center {
-    text-align: center;
-  }
-  
-  .App-header {
-    background-color: #222;
-    opacity: .6;
-    padding: .5rem;
-    color: white;
-  }
-  
-  .App-title {
-    font-size: 1.4rem;
-  }
-  
+#top-filler {
+  margin-bottom: auto;
+}
+
+#nav-container {
+
+}
+
+.navbar-section {
+  display: flex;
+  align-items: flex-end;
+}
+
+.nav-section {
+  flex: 1 1 auto;
+  width: 33%;
+}
+
+.nav-links {
+  display: flex;
+  align-items: flex-end;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  opacity: .6;
+  padding: .5rem;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.4rem;
+}
 
 .nav-link:hover {
   opacity: 0.8;
@@ -34,4 +47,24 @@
 
 .logo {
   max-height: 50px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1999px){ 
+
+}
+  
+@media only screen and (max-width: 991px){ 
+    
+}
+
+@media only screen and (max-width: 767px){ 
+  .App-title {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 479px){ 
+  .App-title {
+    display: none;
+  }
 }

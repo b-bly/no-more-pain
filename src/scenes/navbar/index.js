@@ -23,40 +23,40 @@ class Navbar extends Component {
         event.preventDefault()
         console.log('logging out')
         this.props.logout(this.props.user);
-      }
+    }
 
     render() {
         const loggedIn = this.props.user.loggedIn;
-        
+
         return (
             <div className="text-center">
-                <header className="navbar App-header" id="nav-container">
-                    <div className="col-4" >
+                <header className="navbar App-header flex justify-content-center" id="nav-container">
+                    <div className="nav-links nav-section" >
                         {loggedIn ? (
                             <section className="navbar-section">
                                 <Link to="/" className="btn btn-link text-secondary" onClick={this.logout}>
-                                <span className="text-secondary nav-link">logout</span></Link>
-
+                                    <span className="text-secondary nav-link">logout</span></Link>
                             </section>
                         ) : (
                                 <section className="navbar-section">
                                     <Link to="/" className="btn btn-link text-secondary">
                                         <span className="text-secondary nav-link">home</span>
-                                        </Link>
+                                    </Link>
                                     <Link to="/login" className="btn btn-link text-secondary">
-                                    <span className="text-secondary nav-link">login</span>
-				</Link>
+                                        <span className="text-secondary nav-link">login</span>
+                                    </Link>
                                     <Link to="/signup" className="btn btn-link">
-                                    <span className="text-secondary nav-link">sign up</span>
-				</Link>
+                                        <span className="text-secondary nav-link">sign up</span>
+                                    </Link>
                                 </section>
                             )}
                     </div>
-                    <div className="col-4 col-mr-auto">
-                    <div id="top-filler flex-column"></div>
+                    <div className="nav-section">
+                        <div id="top-filler flex-column"></div>
                         <div><img src={logo} className="logo" alt="logo" /></div>
                         <div className="App-title">No More Pain</div>
                     </div>
+                    <div className="nav-section"></div>
                 </header>
             </div>
         );
@@ -64,16 +64,16 @@ class Navbar extends Component {
 }
 
 function mapStateToProps(state) {
-	return {
-		user: state.user //users is labeled in reducers/index.js
-	};
+    return {
+        user: state.user //users is labeled in reducers/index.js
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		logout: logout //binds function imported above to the name that will be available in this.props,
-		//so this.props.postNewUser
-	}, dispatch);
+    return bindActionCreators({
+        logout: logout //binds function imported above to the name that will be available in this.props,
+        //so this.props.postNewUser
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
