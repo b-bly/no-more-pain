@@ -150,7 +150,7 @@ export default class Treatment extends Component {
                             :
 
                             <div className="flex-column flex-start">
-                                <div className="flex-row flex-start">
+                                <div className="flex-row flex-start no-wrap">
                                     <div className="flex-column align-items-center card-left padding">
 
                                         <Button
