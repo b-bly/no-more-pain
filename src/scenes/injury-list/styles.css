@@ -29,3 +29,15 @@
 .injury-list-item {
   max-width: 400px;
 }
+
+.injury-list-item .card:hover {
+  background-color: rgb(223, 223, 223);
+  cursor:pointer;
+}
+
+@media only screen and (max-width: 767px){ 
+
+  .injury-info-card-left {
+    width: 100%;
+  }
+}

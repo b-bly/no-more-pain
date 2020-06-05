@@ -133,7 +133,7 @@ html {
 
 .flex-row {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
 }
 
 .flex-column {
@@ -197,6 +197,10 @@ p {
   }
   .font-size-4 {
     font-size: 1.5rem!important;
+  }
+  .flex-row {
+    flex-wrap: wrap;
+    width: 100%;
   }
 }
 

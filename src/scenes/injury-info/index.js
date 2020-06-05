@@ -21,7 +21,7 @@ class InjuryInfo extends Component {
                         <div className="col-6 col-mx-auto col-sm-12">
                             <div className="card">
                                 <div className="flex-row">
-                                    <div className="card-left padding">
+                                    <div className="card-left padding injury-info-card-left">
                                         <Link to='/'>
                                             <button className="btn btn-sm arrow-left" aria-label="back">
                                                 <i className="icon icon-arrow-left"></i>

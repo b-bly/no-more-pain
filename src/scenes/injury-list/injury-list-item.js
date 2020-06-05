@@ -28,11 +28,10 @@ export default class InjuryListItem extends Component {
     render() {
         return (
             <div className="injury-list-item col-mx-auto">
-                <div className="card card-opacity padding">
+                <div className="card card-opacity padding"
+                onClick={this.handleClick.bind(this)}>
                     <div className="flex-column font-size-1">
-                        <div className="col-12 dont-break-out pointer title font-size-2 flex"
-                            onClick={this.handleClick.bind(this)}
-                        >
+                        <div className="col-12 dont-break-out pointer title font-size-2 flex">
                             <span className="">{this.props.injury.title}</span>
                         </div>
                         {this.props.injury.author ? (
