@@ -2,7 +2,7 @@
 
 View the app live at [https://nomorepain.herokuapp.com/](https://nomorepain.herokuapp.com/)
 
-An app for sharing injury treatments that worked for you.
+An app for sharing injury treatments that have worked for you.
 
 Have you ever struggled to get over an injury?  I have had athletic injuries that persisted after seeing multiple health professionals.  I spent many hours Googling to try to find effective injury treatment and prevention.  I found there were many people out there who wanted to help others by sharing their experiences and also those seeking help.  I was inspired to create a place for this sharing to take place.
 
@@ -46,8 +46,6 @@ The app should automatically open in a browser at the url: localhost:3000
 - [x] State management with Redux.
 
 ### Next Steps
-
-Features that you would like to add at some point in the future.
 
 - [ ] Save injuries or treatments to user's myLibrary.
 - [ ] Add images to treatment and injury descriptions.
